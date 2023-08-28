@@ -1,0 +1,127 @@
+* {
+    font-family: 'Oswald', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    margin: 0px;
+    display: grid;
+    grid-template-rows: 80px 1fr 60px;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+        "cabecalho"
+        "principal"
+        "rodape";
+}
+
+.cabecalho h1 {
+    margin: 0px;
+    font-weight: 300;
+    font-size: 2.8rem;
+}
+
+.cabecalho {
+    grid-area: cabecalho;
+    background-color:  #CFB8FF;
+    color: white;
+    display: flex;
+    padding-bottom: 10px;
+    box-shadow: 0px 4px 9px -2px rgba(0,0,0,0.75);
+}
+
+.cabecalhoMenu {
+    width: 25%;
+    height: 100vh;
+    background: #fff;
+    z-index: 1;
+    display: none;
+    left: 0;
+    position: absolute;
+}
+
+.btnMenu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.principal {
+        grid-area: principal;
+        align-items: center;
+    justify-content: center;
+    display: flex;
+    background: linear-gradient(90deg,#6a03c6 opacity 52%, #6d57d9 65%);
+        padding: 20px;
+
+    }
+
+.modulos {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: wrap;
+
+    }
+    
+.modulo {
+        margin: 20px;
+        
+    }
+
+.modulo label {
+        font-size: 1rem;
+        margin: 0px;
+        font-weight: 400;
+        padding-top: 10px;
+        color: #f0f0f0;
+        align-items: center;
+        display: block;
+    }
+
+.modulo label input{
+        height: 30px;
+        width: 100%;
+        display: block;
+    }
+
+    
+.formulario {
+    background-color:  #CFB8FF;
+    height: 25em;
+    width: 25em;
+    padding-top: 40px;
+    box-shadow: 0px 4px 9px -2px rgba(0,0,0,0.75);
+}
+
+.esqueciSenha {
+    text-align: center;
+}
+
+.esqueciSenha a{
+    text-decoration: none;
+}
+
+.moduloBotao {
+    text-align: center;
+    padding: 20px 0;
+
+}
+
+.moduloBotao input{
+    height: 30px;
+    border: 0px;
+    width: 100px;
+}
+
+.botaoCadastro {
+    text-align: center;
+}
+
+.botaoCadastro a{
+    text-decoration: none;
+}
+
+.active {
+    display: block;
+}
