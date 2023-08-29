@@ -14,6 +14,12 @@
         <div class="btnMenu">
             <button id="toggleButton">Abrir Menu</button>
         </div>
+        <div class="pesquisa"> 
+            <form action="" method="post">
+<input type="text" name="pesquisa">
+<input type="submit" value="pesquisar">
+</form>
+        </div>
         <div class="cabecalhoMenu">
                 <div class="headerMenu">
                     <div class="closeMenu">
@@ -66,7 +72,9 @@
 
 
 
-     /*  $sql = "SELECT nome_usuario FROM usuario WHERE email = '". $usuario['email']."'";
+       $usuario = $_SESSION['usuario'];
+
+      /*  $sql = "SELECT nome_usuario FROM usuario WHERE email = '". $usuario['email']."'";
       
        $resultado = $conexao->query($sql);
        $linha = $resultado->fetch_assoc();
@@ -78,6 +86,11 @@
            exit();
        }
        //echo $nomeUsuario;
+if($_SERVER["REQUEST_METHOD"]==="POST"){
+$pesquisa=$_POST["pesquisa"];
+$_SESSION['pesquisa']=$pesquisa;
+echo"<meta http-equiv='refresh' content=0.1;url=pesquisa.php>";
+    }
        $conexao->close(); 
     ?>
     <script src="script.js"></script>
