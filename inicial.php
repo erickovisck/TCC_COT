@@ -66,22 +66,19 @@
 
 
 
-    /*    $usuario = $_SESSION['usuario'];
-
-       $sql = "SELECT nome_usuario FROM usuario WHERE email = '". $usuario['email']."'";
+     /*  $sql = "SELECT nome_usuario FROM usuario WHERE email = '". $usuario['email']."'";
       
        $resultado = $conexao->query($sql);
        $linha = $resultado->fetch_assoc();
-       $nomeUsuario = $linha['nome_usuario'];
+       $nomeUsuario = $linha['nome_usuario'] */;
        if(is_null($usuario["email"])){
            session_unset();
        session_destroy();
-           header("Location: login.php");
+           header("Location: index.php");
            exit();
        }
-       echo $nomeUsuario;
-
-       $conexao->close(); */
+       //echo $nomeUsuario;
+       $conexao->close(); 
     ?>
     <script src="script.js"></script>
 </body>
