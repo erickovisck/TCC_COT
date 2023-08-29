@@ -99,45 +99,60 @@ $conexao->close();
 </head>
 
 <body>
-    <header>
-         </header>
-<div class= "box">
-<fieldset>
-    <legend><b>CADASTRO</legend></b> <br>
-    <div class="inputbox">
-<main class="principal">
+<header class="cabecalho2">
+        <h1>Seja bem vindo</h1>
+    </header>
+<main class="principal2">
+    <div class="conteudo2">
+        <div class="form2">
+    <h2>CADASTRO</h2>
+    <div class="modulo2">
     <form action="" method="POST">
-Nome <br>
-    <input type="text" name="cadnome" id="cadnome"> <br>
-Email<br>
+</div>
+    <div class="modulo2">
+    <label for="lognome">Nome 
+    <input type="text" name="cadnome" id="cadnome">
+</div> 
+</label>
+    <div class="modulo2">
+    <label for="logemail2">E-mail
     <input type="text" name="cademail" id="cademail"> <br>
-Senha<br>
-    <input type="text" name="cadsenha" id="cadsenha"> <br> 
-    Preferências de livros<br>
-    <input type="text" name="cadpreferencia" id="cadpreferencia"> <br>
+</div>
+</label>
 
-    Insira um dado pessoal para recuperar a senha posteriormente<br> 
-    <input type="text" name="cadrecuperacao" id="cadrecuperacao"> <br>
-    <br>
-    <br>
-
-    <input type="submit" name="cadastrar" value="cadastrar">
-    
+<div class="modulo2">
+    <label for="logsenha2">Senha
+    <input type="text" name="cadsenha" id="cadsenha"> <br>
+</label> 
+</div>
+<div class="modulo2">
+<label for="logprelivro">Preferências de livros
+    <input type="text" name="cadpreferencia" id="cadpreferencia">
+</label>
+</div>
+<div class="modulo2">
+<label for="loginserirdado">
+    Insira um dado pessoal para recuperar a senha posteriormente 
+    <input type="text" name="cadrecuperacao" id="cadrecuperacao">
+</label>
+</div>
+<div class="botaocadastrar">
+    <input type="submit" name="cadastrar" value="Cadastrar">
+</div>
+</form>
+<div class="jatemconta">
     <a href="index.php">Já tem uma conta? </a>
 </div>
-</fieldset>
-</form>
-</div>
+</main>
 <?php if (!empty($logerro)) { 
             echo "<div>" . $logerro . "</div>";
         }
         echo $mens;
          ?>
-        
-</main>
+        <footer class="rodape2">
+    </footer>
+
 </body>
-
-
 
 
 </html>

@@ -48,52 +48,13 @@
         </div>
     </header>
     <main class="principal">
-        <div class="principal">
-            <div class="banners">
-                <a href="banners.php">Banners</a>
-            </div>
-            <div class="comunidade">
-                <a href="comunidade.php"> Comunidade</a>
-            </div>
-            <div class="itens">
-                <a href="itens.php">Itens</a>
-            </div>
-            <div class="sugestao">
-                <a href="sugestao.php"> Sugestão de livros</a>
+       <?php
+       require_once "conexao/conexao.php";
+       session_start();
+       $conexao->close();
+       ?>
 
-            </div>
-        </div>
+       
     </main>
-    <?php
-    session_start();
-
-    require_once "conexao/conexao.php";
-
-
-
-
-       $usuario = $_SESSION['usuario'];
-
-      /*  $sql = "SELECT nome_usuario FROM usuario WHERE email = '". $usuario['email']."'";
-      
-       $resultado = $conexao->query($sql);
-       $linha = $resultado->fetch_assoc();
-       $nomeUsuario = $linha['nome_usuario'] */;
-       if(is_null($usuario["email"])){
-           session_unset();
-       session_destroy();
-           header("Location: index.php");
-           exit();
-       }
-       //echo $nomeUsuario;
-if($_SERVER["REQUEST_METHOD"]==="POST"){
-$pesquisa=$_POST["pesquisa"];
-$_SESSION['pesquisa']=$pesquisa;
-echo"<meta http-equiv='refresh' content=0.1;url=pesquisa.php>";
-    }
-       $conexao->close(); 
-    ?>
-    <script src="script.js"></script>
 </body>
-
-</html>
+    </html>

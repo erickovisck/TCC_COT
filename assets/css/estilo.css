@@ -77,6 +77,8 @@ body {
         color: #f0f0f0;
         align-items: center;
         display: block;
+        color: #5B3D99;
+        font-weight: 400;
     }
 
 .modulo label input{
@@ -96,11 +98,22 @@ body {
 
 .esqueciSenha {
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .esqueciSenha a{
     text-decoration: none;
+    width: 12em;
+    color: #5B3D99;
+    border-radius: 10px;
+    height: 1.7em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
 
 .moduloBotao {
     text-align: center;
@@ -124,4 +137,10 @@ body {
 
 .active {
     display: block;
+}
+
+.formulario h2{
+    text-align: center;
+    color: #5B3D99;
+    font-weight: 500;
 }
