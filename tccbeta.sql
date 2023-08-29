@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Tempo de geração: 23-Ago-2023 às 12:57
--- Versão do servidor: 8.0.27
--- versão do PHP: 8.0.26
+-- Host: 127.0.0.1:3308
+-- Tempo de geração: 29-Ago-2023 às 13:57
+-- Versão do servidor: 8.0.21
+-- versão do PHP: 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -119,6 +119,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `email` varchar(50) NOT NULL,
   `Senha` varchar(20) DEFAULT NULL,
   `preferencias` varchar(200) DEFAULT NULL,
+  `recuperacao` varchar(20) NOT NULL,
   PRIMARY KEY (`email`),
   KEY `id_chat_privado` (`id_chat_privado`),
   KEY `id_chat_geral` (`id_chat_geral`),
@@ -129,11 +130,12 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 -- Extraindo dados da tabela `usuario`
 --
 
-INSERT INTO `usuario` (`id_chat_privado`, `id_chat_geral`, `id_carrinho`, `assinatura_nivel`, `nome_usuario`, `email`, `Senha`, `preferencias`) VALUES
-('', NULL, '2', NULL, 'erico', 'erickadm@gmail.com', '123', ''),
-('', NULL, '2', NULL, 'erick', '1', '2', ''),
-('', NULL, '2', NULL, 'a', 'b', 'c', 'd'),
-('', NULL, '2', NULL, '1', '3', '2', '2');
+INSERT INTO `usuario` (`id_chat_privado`, `id_chat_geral`, `id_carrinho`, `assinatura_nivel`, `nome_usuario`, `email`, `Senha`, `preferencias`, `recuperacao`) VALUES
+('', NULL, '2', NULL, 'erico', 'erickadm@gmail.com', '123', '', ''),
+('', NULL, '2', NULL, 'erick', '1', '2', '', ''),
+('', NULL, '2', NULL, 'a', 'b', 'c', 'd', ''),
+('', NULL, '2', NULL, '1', '3', '2', '2', ''),
+('', NULL, '2', NULL, '1', '23', 'senha', '1', 'maca');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
