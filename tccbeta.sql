@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Tempo de geração: 29-Ago-2023 às 13:57
+-- Tempo de geração: 29-Ago-2023 às 14:58
 -- Versão do servidor: 8.0.21
 -- versão do PHP: 7.3.21
 
@@ -92,16 +92,25 @@ CREATE TABLE IF NOT EXISTS `editora` (
 
 DROP TABLE IF EXISTS `livros`;
 CREATE TABLE IF NOT EXISTS `livros` (
-  `id_livro` int NOT NULL,
+  `id_livro` int NOT NULL AUTO_INCREMENT,
   `id_autor` int DEFAULT NULL,
   `id_editora` int DEFAULT NULL,
   `nome_livro` varchar(50) NOT NULL,
   `nome_autor` varchar(50) DEFAULT NULL,
-  `Preço` int DEFAULT NULL,
+  `preco` decimal(10,0) DEFAULT NULL,
   PRIMARY KEY (`id_livro`),
   KEY `id_editora` (`id_editora`),
   KEY `id_autor` (`id_autor`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Extraindo dados da tabela `livros`
+--
+
+INSERT INTO `livros` (`id_livro`, `id_autor`, `id_editora`, `nome_livro`, `nome_autor`, `preco`) VALUES
+(1, NULL, NULL, 'a', 'b', '2'),
+(2, NULL, NULL, 'a', 'b', '3'),
+(3, NULL, NULL, 'se', 'sa', '4');
 
 -- --------------------------------------------------------
 
