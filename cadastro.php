@@ -4,8 +4,8 @@ require_once "conexao/conexao.php";
 $logerro="";
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $nome = isset($_POST["cadnome"]) ? $_POST["cadnome"] : "";
+    $senha = isset($_POST["cadsenha"]) ? $_POST["cadsenha"] : "";
     $email = isset($_POST["cademail"]) ? $_POST["cademail"] : "";
-    $preferencia = isset($_POST["cadpreferencia"]) ? $_POST["cadpreferencia"] : "";
     $recuperacao = isset($_POST["cadrecuperacao"]) ? $_POST["cadrecuperacao"] : "";
  
 
@@ -16,7 +16,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     "email" => $_POST["cademail"],
     "chat_privado" => "",
     "carrinho" => "2",
-    "preferencia" => $_POST["cadpreferencia"],
     "recuperacao"=>$_POST["cadrecuperacao"]
 );
 $_SESSION['usuario']=$usuario;
@@ -35,16 +34,11 @@ function cadastrarUsuario($usuario, $conexao) {
     $nome = $conexao->real_escape_string($usuario["nome"]);
     $senha = $conexao->real_escape_string($usuario["senha"]);
     $email = $conexao->real_escape_string($usuario["email"]);
-    $preferencia = $conexao->real_escape_string($usuario["preferencia"]);
     $recuperacao = $conexao->real_escape_string($usuario["recuperacao"]);
 
-    $sql = "INSERT INTO usuario (nome_usuario, Senha, email, id_chat_privado, id_carrinho, preferencias, recuperacao) 
-            VALUES ('$nome', '$senha', '$email', '" . $usuario["chat_privado"] . "', '" . $usuario["carrinho"] . "', '$preferencia',
-            '$recuperacao')";
-            if($nome==null || $email==null|| $senha==null|| $preferencia==null || $recuperacao==null) {
-          
-                return null;
-            }
+    $sql = "INSERT INTO usuario (nome_usuario, Senha, email, id_chat_privado, id_carrinho, recuperacao) 
+            VALUES ('$nome', '$senha', '$email', '" . $usuario["chat_privado"] . "', '" . $usuario["carrinho"] . "',
+            '$recuperacao')"; 
     if ($conexao->query($sql) === TRUE) {
        $logerro="funcionando";
         return true;
@@ -60,15 +54,16 @@ if (verificarExistencia($email, $conexao)) {
 
 }else{
     if (cadastrarUsuario($usuario, $conexao)) {
-        $logerro="Cadastro realizado com sucesso!";
-        echo "<meta http-equiv='refresh' content='3;url=index.php'>";
-        $verif = 0;
-    }elseif(cadastrarUsuario($usuario,$conexao)==null){
-        echo"preencha todos os campos";
+      
+        echo"<script language='javascript' type='text/javascript'>alert('Cadastro realizado com sucesso!')
+        ;window.location.href='index.php'</script>";
+       
+    
     
         } else {
-        echo "<meta http-equiv='' content='2;url=cadastro.php'>";
-        $logerro="Erro ao cadastrar.";
+        echo "<script language='javascript' type='text/javascript'>alert('Erro ao cadastrar.')
+        ;window.location.href='cadastro.php'</script>";
+      
     }
 }
 
@@ -111,29 +106,25 @@ $conexao->close();
 </div>
     <div class="modulo2">
     <label for="lognome">Nome 
-    <input type="text" name="cadnome" id="cadnome">
+    <input type="text" name="cadnome" id="cadnome" required>
 </div> 
 </label>
     <div class="modulo2">
     <label for="logemail2">E-mail
-    <input type="text" name="cademail" id="cademail"> <br>
+    <input type="text" name="cademail" id="cademail" required> <br>
 </div>
 </label>
 
 <div class="modulo2">
     <label for="logsenha2">Senha
-    <input type="text" name="cadsenha" id="cadsenha"> <br>
+    <input type="text" name="cadsenha" id="cadsenha" required> <br>
 </label> 
 </div>
-<div class="modulo2">
-<label for="logprelivro">Preferências de livros
-    <input type="text" name="cadpreferencia" id="cadpreferencia">
-</label>
-</div>
+
 <div class="modulo2">
 <label for="loginserirdado">
     Insira um dado pessoal para recuperar a senha posteriormente 
-    <input type="text" name="cadrecuperacao" id="cadrecuperacao">
+    <input type="text" name="cadrecuperacao" id="cadrecuperacao" required>
 </label>
 </div>
 <div class="botaocadastrar">
