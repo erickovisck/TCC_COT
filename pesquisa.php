@@ -50,11 +50,29 @@
     <main class="principal">
        <?php
        require_once "conexao/conexao.php";
+       
        session_start();
+  $pesquisa=$_SESSION['pesquisa'];
+       $sql="SELECT * FROM livros WHERE nome_livro='$pesquisa'";
+       $resultado=$conexao->query($sql);
+    $dados=mysqli_fetch_array($resultado);
+    $livros = array (
+        "nome"=>$dados['nome_livro'],
+        "nome_autor"=>$dados['nome_autor'],
+        "preco"=>$dados['preco'],
+
+    );
+    
        $conexao->close();
        ?>
 
-       
+<script src="script.js"></script>
+<div class="livros">
+    <h1>
+        <?= $livro['nome_livro'];?>
+    </h1>
+    
+</div>
     </main>
 </body>
     </html>
