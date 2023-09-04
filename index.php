@@ -15,10 +15,10 @@
 
 <body>
 
-    <header class="cabecalho">
+  <!--   <header class="cabecalho">
         <h1>Seja bem vindo</h1>
     </header>
-
+ -->
     <main class="principal">
         <div class="conteudo">
 
@@ -104,10 +104,10 @@
     }
     ?>
 
-    <footer class="rodape">
+   <!--  <footer class="rodape">
         <h4>Siga @creatorsofthought no Instagram</h4>
         <?= date('Y') ?>
-    </footer>
+    </footer> -->
 
 </body>
 
