@@ -3,6 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/estilo.css">
@@ -12,7 +16,7 @@
 <body>
 
     <header class="cabecalho">
-        <h1>Seja bem vindo, leitor</h1>
+        <h1>Seja bem vindo</h1>
     </header>
 
     <main class="principal">
@@ -25,7 +29,8 @@
                 </h2>
                 <form method="post" action="">
                     <div class="modulo">
-                        <label for="logemail">E-mail
+                        <label for="logemail">
+                            E-mail
                             <input type="text" name="logemail" id="logemail">
                         </label>
                     </div>
@@ -72,22 +77,26 @@
             "email" => $_POST["logemail"],
             "senha" => $_POST["logsenha"],
         );
-        $_SESSION['usuario'] = $usuario;
         $resultado = verificaLogin($usuario["email"], $usuario["senha"], $conexao);
 
 
         if ($resultado && $resultado->num_rows > 0) {
 
-           
-            echo"<script language='javascript' type='text/javascript'>alert('Login realizado com sucesso!')
-            ;window.location.href='inicial.php'</script>";
+            echo "login efetuado com sucesso";
+            $dados=mysqli_fetch_array($resultado) ;
+           $usuario= array(
+            $_SESSION['nome_usuario'] = $dados['nome_usuario'],
+            $_SESSION['email'] = $dados['email'],
+            $_SESSION['senha'] = $dados['senha'],
+            $_SESSION['preferencia'] = $dados['preferencia'],
+            $_SESSION['recuperacao'] = $dados['recuperacao'],
+           );
+            echo "<meta http-equiv='refresh' content=1;url=inicial.php>";
 
 
 
         } else {
-            echo"<script language='javascript' type='text/javascript'>alert('Falha no login')
-            ;window.location.href='inicial.php'</script>";
-           
+            echo "Falha no login";
 
 
         }
@@ -96,6 +105,8 @@
     ?>
 
     <footer class="rodape">
+        <h4>Siga @creatorsofthought no Instagram</h4>
+        <?= date('Y') ?>
     </footer>
 
 </body>
