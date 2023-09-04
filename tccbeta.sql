@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3308
--- Tempo de geração: 29-Ago-2023 às 14:58
--- Versão do servidor: 8.0.21
--- versão do PHP: 7.3.21
+-- Host: 127.0.0.1:3306
+-- Tempo de geração: 04-Set-2023 às 22:35
+-- Versão do servidor: 8.0.31
+-- versão do PHP: 8.0.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -92,25 +92,23 @@ CREATE TABLE IF NOT EXISTS `editora` (
 
 DROP TABLE IF EXISTS `livros`;
 CREATE TABLE IF NOT EXISTS `livros` (
-  `id_livro` int NOT NULL AUTO_INCREMENT,
+  `id_livro` int NOT NULL,
   `id_autor` int DEFAULT NULL,
   `id_editora` int DEFAULT NULL,
   `nome_livro` varchar(50) NOT NULL,
-  `nome_autor` varchar(50) DEFAULT NULL,
-  `preco` decimal(10,0) DEFAULT NULL,
+  `nome_autor` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `preco` double NOT NULL,
   PRIMARY KEY (`id_livro`),
   KEY `id_editora` (`id_editora`),
   KEY `id_autor` (`id_autor`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `livros`
 --
 
 INSERT INTO `livros` (`id_livro`, `id_autor`, `id_editora`, `nome_livro`, `nome_autor`, `preco`) VALUES
-(1, NULL, NULL, 'a', 'b', '2'),
-(2, NULL, NULL, 'a', 'b', '3'),
-(3, NULL, NULL, 'se', 'sa', '4');
+(0, NULL, NULL, 'a', 'a', 2);
 
 -- --------------------------------------------------------
 
@@ -128,7 +126,8 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `email` varchar(50) NOT NULL,
   `Senha` varchar(20) DEFAULT NULL,
   `preferencias` varchar(200) DEFAULT NULL,
-  `recuperacao` varchar(20) NOT NULL,
+  `recuperacao` varchar(50) NOT NULL,
+  `autor` tinyint(1) NOT NULL,
   PRIMARY KEY (`email`),
   KEY `id_chat_privado` (`id_chat_privado`),
   KEY `id_chat_geral` (`id_chat_geral`),
@@ -139,12 +138,16 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 -- Extraindo dados da tabela `usuario`
 --
 
-INSERT INTO `usuario` (`id_chat_privado`, `id_chat_geral`, `id_carrinho`, `assinatura_nivel`, `nome_usuario`, `email`, `Senha`, `preferencias`, `recuperacao`) VALUES
-('', NULL, '2', NULL, 'erico', 'erickadm@gmail.com', '123', '', ''),
-('', NULL, '2', NULL, 'erick', '1', '2', '', ''),
-('', NULL, '2', NULL, 'a', 'b', 'c', 'd', ''),
-('', NULL, '2', NULL, '1', '3', '2', '2', ''),
-('', NULL, '2', NULL, '1', '23', 'senha', '1', 'maca');
+INSERT INTO `usuario` (`id_chat_privado`, `id_chat_geral`, `id_carrinho`, `assinatura_nivel`, `nome_usuario`, `email`, `Senha`, `preferencias`, `recuperacao`, `autor`) VALUES
+('', NULL, '2', NULL, 'erico', 'erickadm@gmail.com', '123', '', '', 0),
+('', NULL, '2', NULL, 'erick', '1', '2', '', '', 0),
+('', NULL, '2', NULL, 'a', 'b', 'c', 'd', '', 0),
+('', NULL, '2', NULL, '1', '3', '2', '2', '', 0),
+('', NULL, '2', NULL, 'ryeyer', 'yreyreyer@gmail.com', 'yeryeryery', 'yeryeryery', 'eryeryery', 0),
+('', NULL, '2', NULL, 'trjtrjtrj', 'jrtjrjr@gmail.com', 'fwefwf', 'fwefwfw', 'fwefwfwe', 0),
+('', NULL, '2', NULL, 'a', 'a', '', 'a', 'a', 0),
+('', NULL, '2', NULL, 'g', 'g', 'g', NULL, 'g', 0),
+('', NULL, '2', NULL, 't', 't', 't', NULL, 't', 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
