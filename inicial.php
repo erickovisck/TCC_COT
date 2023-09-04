@@ -71,14 +71,12 @@
 
 
 
-
+/* 
        $usuario = $_SESSION['usuario'];
+       $nome_usuario=$_SESSION['nome_usuario'];
+       echo $nome_usuario; */
 
-      /*  $sql = "SELECT nome_usuario FROM usuario WHERE email = '". $usuario['email']."'";
-      
-       $resultado = $conexao->query($sql);
-       $linha = $resultado->fetch_assoc();
-       $nomeUsuario = $linha['nome_usuario'] */;
+     
        if(is_null($usuario["email"])){
            session_unset();
        session_destroy();
