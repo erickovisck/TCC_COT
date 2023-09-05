@@ -71,10 +71,10 @@
 
 
 
-/* 
-       $usuario = $_SESSION['usuario'];
-       $nome_usuario=$_SESSION['nome_usuario'];
-       echo $nome_usuario; */
+
+       $usuario = $_SESSION["usuario"];
+    
+       echo $usuario["nome_usuario"]; 
 
      
        if(is_null($usuario["email"])){
@@ -87,7 +87,7 @@
 if($_SERVER["REQUEST_METHOD"]==="POST"){
 $pesquisa=$_POST["pesquisa"];
 $_SESSION['pesquisa']=$pesquisa;
-echo"<meta http-equiv='refresh' content=0.1;url=pesquisa.php>";
+include_once "pesquisa.php";
     }
        $conexao->close(); 
     ?>
