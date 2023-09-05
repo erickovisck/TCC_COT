@@ -137,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 --
 -- Extraindo dados da tabela `usuario`
 --
-
+ALTER TABLE `usuario` CHANGE `preferencias` `preferencias` VARCHAR(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL;
 INSERT INTO `usuario` (`id_chat_privado`, `id_chat_geral`, `id_carrinho`, `assinatura_nivel`, `nome_usuario`, `email`, `Senha`, `preferencias`, `recuperacao`, `autor`) VALUES
 ('', NULL, '2', NULL, 'erico', 'erickadm@gmail.com', '123', '', '', 0),
 ('', NULL, '2', NULL, 'erick', '1', '2', '', '', 0),
