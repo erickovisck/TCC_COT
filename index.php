@@ -73,24 +73,25 @@
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
-        $usuario = array(
+        $usuario = [
             "email" => $_POST["logemail"],
             "senha" => $_POST["logsenha"],
-        );
+        ];
         $resultado = verificaLogin($usuario["email"], $usuario["senha"], $conexao);
 
-
         if ($resultado && $resultado->num_rows > 0) {
-
             echo "login efetuado com sucesso";
-            $dados=mysqli_fetch_array($resultado) ;
-           $usuario= array(
-            'nome_usuario' => $dados['nome_usuario'],
-            'email' => $dados['email'],
-            'senha' => $dados['senha'],
-            'preferencia' => $dados['preferencia'],
-            'recuperacao' => $dados['recuperacao']
-           );
+            $dados = mysqli_fetch_array($resultado);
+            $usuario = [
+                'nome_usuario' => $dados['nome_usuario'],
+                'email' => $dados['email'],
+                'senha' => $dados['senha'],
+                'preferencia' => $dados['preferencia'],
+                'recuperacao' => $dados['recuperacao']
+            ];
+            $_SESSION["usuario"] = $usuario;
+           
+        
            $_SESSION["usuario"]=$usuario;
            echo"<script language='javascript' type='text/javascript'>alert('Login realizado com sucesso')
            ;window.location.href='inicial.php'</script>";
@@ -105,6 +106,7 @@
         }
 
     }
+
     ?>
 
    <!--  <footer class="rodape">
