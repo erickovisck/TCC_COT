@@ -85,18 +85,21 @@
             echo "login efetuado com sucesso";
             $dados=mysqli_fetch_array($resultado) ;
            $usuario= array(
-            $_SESSION['nome_usuario'] = $dados['nome_usuario'],
-            $_SESSION['email'] = $dados['email'],
-            $_SESSION['senha'] = $dados['senha'],
-            $_SESSION['preferencia'] = $dados['preferencia'],
-            $_SESSION['recuperacao'] = $dados['recuperacao'],
+            'nome_usuario' => $dados['nome_usuario'],
+            'email' => $dados['email'],
+            'senha' => $dados['senha'],
+            'preferencia' => $dados['preferencia'],
+            'recuperacao' => $dados['recuperacao']
            );
-            echo "<meta http-equiv='refresh' content=1;url=inicial.php>";
+           $_SESSION["usuario"]=$usuario;
+           echo"<script language='javascript' type='text/javascript'>alert('Login realizado com sucesso')
+           ;window.location.href='inicial.php'</script>";
 
 
 
         } else {
-            echo "Falha no login";
+            echo"<script language='javascript' type='text/javascript'>alert('Falha no login')
+            ;window.location.href='index.php'</script>";
 
 
         }
