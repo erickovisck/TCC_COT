@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 04-Set-2023 às 22:35
+-- Tempo de geração: 05-Set-2023 às 18:07
 -- Versão do servidor: 8.0.31
 -- versão do PHP: 8.0.26
 
@@ -92,23 +92,41 @@ CREATE TABLE IF NOT EXISTS `editora` (
 
 DROP TABLE IF EXISTS `livros`;
 CREATE TABLE IF NOT EXISTS `livros` (
-  `id_livro` int NOT NULL,
-  `id_autor` int DEFAULT NULL,
-  `id_editora` int DEFAULT NULL,
+  `id_livro` int NOT NULL AUTO_INCREMENT,
+  `id_autor` int NOT NULL,
+  `id_editora` int NOT NULL,
   `nome_livro` varchar(50) NOT NULL,
   `nome_autor` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `preco` double NOT NULL,
   PRIMARY KEY (`id_livro`),
   KEY `id_editora` (`id_editora`),
   KEY `id_autor` (`id_autor`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `livros`
 --
 
 INSERT INTO `livros` (`id_livro`, `id_autor`, `id_editora`, `nome_livro`, `nome_autor`, `preco`) VALUES
-(0, NULL, NULL, 'a', 'a', 2);
+(1, 0, 0, 'a', 'a', 2),
+(2, 0, 0, 'a', 'a', 3),
+(3, 0, 0, 'a', 'a', 3),
+(4, 0, 0, 'a', 'a', 0),
+(5, 0, 0, 'harrypotter ', 'jk rowling', 50.5),
+(6, 0, 0, 'b', 'b', 4),
+(7, 0, 0, 'a', 'a', 5.6),
+(8, 0, 0, 'a', 'a', 5.6),
+(9, 0, 0, 'jk', 'a', 5.6),
+(10, 0, 0, 'A.', 'fd', 4),
+(11, 0, 0, 'A A', 'fd', 4),
+(12, 0, 0, 'A a', '', 0),
+(13, 0, 0, 't', 't', 1),
+(14, 0, 0, 'T', 't', 2),
+(15, 0, 0, 'T t', 'T t', 3),
+(16, 0, 0, 'T T', 'T T', 4),
+(17, 0, 0, 'TT', 'TT', 5),
+(18, 0, 0, 'tt', 'tt', 6),
+(19, 0, 0, 'harry potter', 'J K Rowling', 50);
 
 -- --------------------------------------------------------
 
@@ -125,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `nome_usuario` varchar(50) DEFAULT NULL,
   `email` varchar(50) NOT NULL,
   `Senha` varchar(20) DEFAULT NULL,
-  `preferencias` varchar(200) DEFAULT NULL,
+  `preferencias` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `recuperacao` varchar(50) NOT NULL,
   `autor` tinyint(1) NOT NULL,
   PRIMARY KEY (`email`),
@@ -137,17 +155,15 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 --
 -- Extraindo dados da tabela `usuario`
 --
-ALTER TABLE `usuario` CHANGE `preferencias` `preferencias` VARCHAR(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL;
+
 INSERT INTO `usuario` (`id_chat_privado`, `id_chat_geral`, `id_carrinho`, `assinatura_nivel`, `nome_usuario`, `email`, `Senha`, `preferencias`, `recuperacao`, `autor`) VALUES
-('', NULL, '2', NULL, 'erico', 'erickadm@gmail.com', '123', '', '', 0),
-('', NULL, '2', NULL, 'erick', '1', '2', '', '', 0),
-('', NULL, '2', NULL, 'a', 'b', 'c', 'd', '', 0),
-('', NULL, '2', NULL, '1', '3', '2', '2', '', 0),
+('', NULL, '2', NULL, '1', '1', '1', '', '1', 0),
 ('', NULL, '2', NULL, 'ryeyer', 'yreyreyer@gmail.com', 'yeryeryery', 'yeryeryery', 'eryeryery', 0),
 ('', NULL, '2', NULL, 'trjtrjtrj', 'jrtjrjr@gmail.com', 'fwefwf', 'fwefwfw', 'fwefwfwe', 0),
 ('', NULL, '2', NULL, 'a', 'a', '', 'a', 'a', 0),
-('', NULL, '2', NULL, 'g', 'g', 'g', NULL, 'g', 0),
-('', NULL, '2', NULL, 't', 't', 't', NULL, 't', 0);
+('', NULL, '2', NULL, 'g', 'g', 'g', '', 'g', 0),
+('', NULL, '2', NULL, 't', 't', 't', '', 't', 0),
+('', NULL, '2', NULL, '4', '4', '4', '4', '4', 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
