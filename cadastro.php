@@ -94,54 +94,63 @@ $conexao->close();
 </head>
 
 <body>
-<header class="cabecalho2">
-        <h1>Seja bem vindo</h1>
-    </header>
-<main class="principal2">
-    <div class="conteudo2">
-        <div class="form2">
-    <h2>CADASTRO</h2>
-    <div class="modulo2">
+    <div class="cad_box">
     <form action="" method="POST">
-</div>
-    <div class="modulo2">
+            <fieldset>
+                <legend>CADASTRO</legend> 
+</br>
+    <div class="cad_input">
     <label for="lognome">Nome 
-    <input type="text" name="cadnome" id="cadnome" required>
+    <input type="text" name="cadnome" id="cadnome"  class="cad_inputuser" placeholder="Digite seu nome">
 </div> 
 </label>
-    <div class="modulo2">
+<br> <br>
+    <div class="cad_input">
     <label for="logemail2">E-mail
-    <input type="text" name="cademail" id="cademail" required> <br>
+    <input type="text" name="cademail" id="cademail"  class="cad_inputuser" placeholder="Digite seu e-mail"> <br>
 </div>
 </label>
-
-<div class="modulo2">
+<br> <br>
+<div class="cad_input">
     <label for="logsenha2">Senha
-    <input type="text" name="cadsenha" id="cadsenha" required> <br>
+    <input type="text" name="cadsenha" id="cadsenha" class="cad_inputuser" placeholder="Crie uma senha"> <br>
 </label> 
 </div>
-
-<div class="modulo2">
-<label for="loginserirdado">
-    Insira um dado pessoal para recuperar a senha posteriormente 
-    <input type="text" name="cadrecuperacao" id="cadrecuperacao" required>
+<br> <br>
+<div class="cad_input">
+<label for="logprelivro">Preferências de livros
+    <input type="text" name="cadpreferencia" id="cadpreferencia"  class="cad_inputuser" placeholder="Digite sua prefência de livro">
 </label>
 </div>
-<div class="botaocadastrar">
-    <input type="submit" name="cadastrar" value="Cadastrar">
+<br> <br>
+<div class="cad_input">
+<label for="loginserirdado">
+    Insira um dado pessoal para recuperar a senha posteriormente 
+    <input type="text" name="cadrecuperacao" id="cadrecuperacao"  class="cad_inputuser" placeholder="Digite uma palavra-chave">
+</label>
 </div>
-</form>
+<br> <br>
+<div class="botaocadastrar">
+    <input type="submit" name="cadastrar" value="Cadastrar" id="submit">
+</div>
+<br> <br>
 <div class="jatemconta">
     <a href="index.php">Já tem uma conta? </a>
 </div>
-</main>
+</form>
+</fieldset>
 <?php if (!empty($logerro)) { 
-            echo "<div>" . $logerro . "</div>";
+            echo " <div>" . $logerro . "</div>";
         }
-        echo $mens;
+        echo "<br> <br> <center> $mens </center>";
          ?>
-        <footer class="rodape2">
-    </footer>
+
+</body>
+
+
+
+
+</html>
 
 </body>
 
