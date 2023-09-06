@@ -2,117 +2,59 @@
     font-family: 'Oswald', sans-serif;
     box-sizing: border-box;
 }
-
 body {
-    height: 100vh;
-    margin: 0px;
-    display: grid;
-    grid-template-rows: 80px 1fr 60px;
-    grid-template-columns: 1fr;
-    grid-template-areas: 
-        "cabecalho2"
-        "principal2"
-        "rodape2";
-}
-.cabecalho2 h1 {
-    margin: 0px;
-    margin-left: 40%;
-    font-weight: 700;
-    font-size: 2.8rem;
-    text-align: center;
-}
-.cabecalho2 {
-    grid-area: cabecalho2;
-    background-color:  #CFB8FF;
-    color: white;
-    display: flex;
-    padding-bottom: 10px;
-    box-shadow: 0px 4px 9px -2px rgba(0,0,0,0.75);
-}
-.cabecalho2Menu {
-    width: 25%;
-    height: 100vh;
-    background: #fff;
-    z-index: 1;
-    display: none;
-    left: 0;
+background-image: linear-gradient(to right,#9D4DD6, #9940D2, #A696E8  );
+} 
+.cad_box{
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: rgb(0, 0, 0, 0.8);
+    padding: 15px;
+    border-radius: 15px;
+    width: 30%;
+    color: white;
 }
-.btnMenu {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+fieldset {
+border: 3px solid #FEDF01;
 }
-.principal2 {
-    grid-area: principal2;
-    align-items: center;
-justify-content: center;
-display: flex;
-background: linear-gradient(90deg,#6a03c6 opacity 52%, #6d57d9 65%);
-    padding: 20px;
-
-}
-.modulos2 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-wrap: wrap;
-
-}
-.modulo2 {
-    margin: 20px;
-    
-}
-.modulo2 label {
-    font-size: 1rem;
-    margin: 0px;
-    font-weight: 400;
-    padding-top: 10px;
-    color: #f0f0f0;
-    align-items: center;
-    display: block;
-    color: #5B3D99;
-    font-weight: 600;
-}
-.modulo2 label input{
-    height: 30px;
-    width: 100%;
-    display: block;
-}
-.form2 {
-    background-color:  #CFB8FF;
-    height: 39em;
-    width: 35em;
-    padding-top: 40px;
-    box-shadow: 0px 4px 9px -2px rgba(0,0,0,0.75);
-}
-.botaocadastrar {
+legend{
     text-align: center;
-    padding: 20px 0;
-
+    font-weight: bold;
+    background-color: #F5E43D;
+    border-radius: 8px;
+    padding: 10px;
 }
-
-.botaocadastrar input{
-    height: 30px;
-    border: 0px;
-    width: 100px;
+.cad_input{
+    position: relative;
+}
+.cad_inputuser{
+    border-bottom: 1px white;
+    font-size: 15px;
+    color: black;
+    width: 100%;
+    letter-spacing: 2px;
+}
+#submit{
+    background-image: linear-gradient(#9D4DD6,#9940D2,#B56AD5);
+    color: white;
+    width: 100%;
+    border: none;
+    padding: 10px;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 10px;
 }
 .jatemconta {
     text-align: center;
-    font-weight: 500;
 }
+
 .jatemconta a{
     text-decoration: none;
+    color: white;
 }
 
 .active {
     display: block;
-}
-.form2 h2{
-    text-align: center;
-    color: #5B3D99;
-    font-weight: 550;
-}
-h4{
-    color:red;
 }
