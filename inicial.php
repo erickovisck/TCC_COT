@@ -18,6 +18,7 @@
             <form action="" method="post">
 <input type="text" name="pesquisa">
 <input type="submit" value="pesquisar">
+<a href="carrinho.php"> carrinho</a>
 </form>
         </div>
         <div class="cabecalhoMenu">
