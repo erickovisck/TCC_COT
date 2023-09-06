@@ -101,37 +101,32 @@ $conexao->close();
 </br>
     <div class="cad_input">
     <label for="lognome">Nome 
-    <input type="text" name="cadnome" id="cadnome"  class="cad_inputuser" placeholder="Digite seu nome">
+    <input required type="text" name="cadnome" id="cadnome"  class="cad_inputuser" placeholder="Digite seu nome">
 </div> 
 </label>
 <br> <br>
     <div class="cad_input">
     <label for="logemail2">E-mail
-    <input type="text" name="cademail" id="cademail"  class="cad_inputuser" placeholder="Digite seu e-mail"> <br>
+    <input required type="text" name="cademail" id="cademail"  class="cad_inputuser" placeholder="Digite seu e-mail"> <br>
 </div>
 </label>
 <br> <br>
 <div class="cad_input">
     <label for="logsenha2">Senha
-    <input type="text" name="cadsenha" id="cadsenha" class="cad_inputuser" placeholder="Crie uma senha"> <br>
+    <input required type="text" name="cadsenha" id="cadsenha" class="cad_inputuser" placeholder="Crie uma senha"> <br>
 </label> 
 </div>
-<br> <br>
-<div class="cad_input">
-<label for="logprelivro">Preferências de livros
-    <input type="text" name="cadpreferencia" id="cadpreferencia"  class="cad_inputuser" placeholder="Digite sua prefência de livro">
-</label>
-</div>
+
 <br> <br>
 <div class="cad_input">
 <label for="loginserirdado">
     Insira um dado pessoal para recuperar a senha posteriormente 
-    <input type="text" name="cadrecuperacao" id="cadrecuperacao"  class="cad_inputuser" placeholder="Digite uma palavra-chave">
+    <input required type="text" name="cadrecuperacao" id="cadrecuperacao"  class="cad_inputuser" placeholder="Digite uma palavra-chave">
 </label>
 </div>
 <br> <br>
 <div class="botaocadastrar">
-    <input type="submit" name="cadastrar" value="Cadastrar" id="submit">
+    <input  type="submit" name="cadastrar" value="Cadastrar" id="submit">
 </div>
 <br> <br>
 <div class="jatemconta">
