@@ -88,8 +88,7 @@ if($conexao->query($sql)){
         
         'recuperacao' => $dados['recuperacao']
     ];
-    echo "Olá: " .  $usuario["nome_ usuario"] ."<br>";
-echo "Email: ". $usuario["email"];
+    $mens= "Olá: " .  $usuario["nome_usuario"] ."<br>"."Email: ". $usuario["email"];
 }else{
     echo "<script language='javascript' type='text/javascript'>alert('Não foi possível altera')
     ;</script>";
@@ -102,6 +101,7 @@ echo "Email: ". $usuario["email"];
 <body>
     <main class="principal">
     <form action="" method="POST">
+        <h2> <?=     $mens?> </h2>
     <h1> ALTERAR INFORMAÇÕES</h1>
     <br>
     Nome
@@ -111,6 +111,10 @@ echo "Email: ". $usuario["email"];
     <input type="submit" name="enviar">
 
 </form>
+<form action="deletarconta.php" method="post">
+<input type="submit" name="delet" value="deletarconta">
+</form>
+
 </main>
 </body>
 </html>
