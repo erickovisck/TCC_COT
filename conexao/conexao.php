@@ -26,7 +26,7 @@ if($conexao->connect_error){
               $conexao = new mysqli($servidor, $usuario, $senha, $banco); */
   die("erro conexao servidor");
 }else{
-    $mens="Servidor online <br>";
+    $mens2="Servidor online <br>";
 }
 
 
