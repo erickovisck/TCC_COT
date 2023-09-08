@@ -14,12 +14,12 @@
 
     );
     if($resultado){
-        echo "Aqui está o livro que você procura <br>";
-    echo $livros['nome_livro'] ;
-    echo "<br>";
-    echo $livros['nome_autor'];
-    echo "<br>";
-    echo $livros['preco'];
+       
+    echo "Aqui está o livro que você procura <br>";
+    $mens="Nome do livro: " .$livros['nome_livro']."<br>".
+     "Autor: " . $livros['nome_autor']. "<br>".
+     "Preço: R$" .  $livros['preco']. "<br><br>";
+     echo $mens; 
     }elseif($resultado==NULL){
 
         echo"livro nao encontrado"; 
