@@ -83,6 +83,7 @@
             echo "login efetuado com sucesso";
             $dados = mysqli_fetch_array($resultado);
             $usuario = [
+                'id_usuario' => $dados['id_usuario'],
                 'nome_usuario' => $dados['nome_usuario'],
                 'email' => $dados['email'],
                 'senha' => $dados['senha'],
