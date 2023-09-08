@@ -64,15 +64,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $resultado = $conexao->query($sql);
             
             if ($resultado) {
-                echo "Conta deletada";
+                echo"<script language='javascript' type='text/javascript'>alert('Conta deletada')
+                ;window.location.href='index.php'</script>";
             } else {
-                echo "Erro ao deletar a conta";
+                 echo"<script language='javascript' type='text/javascript'>alert('Erro ao deletar a conta')
+                ;window.location.href='deletarconta.php'</script>";
             }
         } else {
-            echo "As senhas não coincidem com a conta atual";
+            echo"<script language='javascript' type='text/javascript'>alert('Senha ou email incorretos.')
+            ;window.location.href='deletarconta.php'</script>";
         }
     } else {
-        echo "As senhas não coincidem";
+        echo"<script language='javascript' type='text/javascript'>alert('Senhas não coincidem.')
+        ;window.location.href='deletarconta.php'</script>";
     }
 }
 ?>
