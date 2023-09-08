@@ -111,8 +111,8 @@ if($conexao->query($sql)){
     <input type="submit" name="enviar">
 
 </form>
-<form action="deletarconta.php" method="post">
-<input type="submit" name="delet" value="deletarconta">
+
+<a href="deletarconta"><input type="submit" name="delet" value="deletarconta"></a>
 </form>
 
 </main>
