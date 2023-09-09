@@ -72,9 +72,15 @@
 
 </form> 
   <?php
+
   $id=$usuario["id_usuario"];
+  
   $mensagem=$_POST["mensagem"];
-  $sql="INSERT INTO chat_geral (mensagens, id_usuario, nome_usuario) VALUES
+  
+  if(!$mensagem){ 
+    echo "mensagem vazia <br><br>";
+}else{
+    $sql="INSERT INTO chat_geral (mensagens, id_usuario, nome_usuario) VALUES
    ('$mensagem','".$usuario['id_usuario']."', '".$usuario['nome_usuario']."')";
    $resultado=$conexao->query($sql);
    if($resultado){
@@ -82,25 +88,26 @@
    }else{
        echo "erro ao enviar";
    }
-   $sql = "SELECT * FROM chat_geral";
-   $resultado = $conexao->query($sql);
-   
-   if ($resultado) {
-       while ($dados = mysqli_fetch_array($resultado)) {
-           echo "Nome do Usuário: " . $dados["nome_usuario"] . "<br>";
-           echo "Mensagem: " . $dados["mensagens"] . "<br> <br>";
+}
+$sql = "SELECT * FROM chat_geral";
+$resultado = $conexao->query($sql);
 
-       }
-   
-       // Feche o resultado após o uso
-       mysqli_free_result($resultado);
-   } else {
-       // Lida com erros de consulta, se houverem
-       echo "Erro na consulta: " . mysqli_error($conexao);
-   }
-   
+if ($resultado) {
+    while ($dados = mysqli_fetch_array($resultado)) {
+        echo "Nome do Usuário: " . $dados["nome_usuario"] . "<br>";
+        echo "Mensagem: " . $dados["mensagens"] . "<br> <br>";
+
+    }
+
+    // Feche o resultado após o uso
+    mysqli_free_result($resultado);
+} else {
+    // Lida com erros de consulta, se houverem
+    echo "Erro na consulta: " . mysqli_error($conexao);
+}
+
    $conexao->close();
-   
+
   ?>
     </main>
     <script src="script.js"></script>
