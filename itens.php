@@ -14,6 +14,27 @@
            header("Location: index.php");
            exit();
        }
+       if (isset($_POST["comprar"])) {
+        $id_livro = $_POST["id_livro"];
+        $quantidade = $_POST["quantidade"];
+        $carrinho =[ 
+            "id_livro"=> $id_livro,
+            "quantidade" => $quantidade
+       
+        ];
+        echo $carrinho["quantidade"];
+        $_SESSION["carrinho"]=$carrinho;
+        // Verifica se o carrinho de compras já existe na sessão
+      
+    
+        // Adiciona o livro selecionado ao carrinho
+       
+    }
+    
+    // Conectar ao banco de dados (já mostrado no código anterior)
+    
+    $sql = "SELECT * FROM livros";
+    $resultado = $conexao->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -69,13 +90,19 @@
         </div>
     </header>
     <main class="principal">
-        <h2> <?=$mens?></h2>
+        <table>
+    <tr>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Preço</th>
+        </tr>
+   
         <?php
  
    $sql = "SELECT * FROM livros";
    $resultado = $conexao->query($sql);
    
-   if($_SERVER["REQUEST_METHOD"]==="POST"){
+   if (isset($_POST["pesquisa"])) {
     $pesquisa=$_POST["pesquisa"];
     
     $_SESSION['pesquisa']=$pesquisa;
@@ -83,13 +110,23 @@
     
    }else{
    if ($resultado) {
+
        while ($dados = mysqli_fetch_array($resultado)) {
-           $mens= "Nome do livro: " . $dados["nome_livro"] . "<br>".
-           "Autor: " . $dados["nome_autor"] . "<br>".
-           "Preço: R$" . $dados["preco"] . "<br><br>";
-echo $mens;
+        echo "<tr>"; 
+        echo "<td>" . $dados["nome_livro"] . "<br>";
+        echo "<td>". $dados["nome_autor"] . "<br>";
+        echo "<td>". "R$".$dados["preco"] . "<br>";
+        echo "<form method='post' action='carrinho.php'>"; // O formulário envia dados para a página "carrinho.php"
+        echo "<input type='hidden' name='id_livro' value='" . $dados["id_livro"] . "'>";
+        echo "<input type='number' name='quantidade' value='0' min='0'>";
+        echo "<input type='submit' name='comprar' value='Comprar'>";
+        echo "</form>";
+        echo "</tr>";
+
+
        }
-   
+
+
        // Feche o resultado após o uso
        mysqli_free_result($resultado);
    } else {
@@ -98,6 +135,7 @@ echo $mens;
    }
    }
    ?>
+    </table>
     </main>
     <?php
 
