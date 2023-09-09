@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 08-Set-2023 às 19:55
+-- Tempo de geração: 09-Set-2023 às 06:56
 -- Versão do servidor: 8.0.31
 -- versão do PHP: 8.0.26
 
@@ -29,13 +29,25 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `carrinho`;
 CREATE TABLE IF NOT EXISTS `carrinho` (
-  `id_carrinho` varchar(40) NOT NULL,
-  `id_usuario` int DEFAULT NULL,
-  `id_livro` int DEFAULT NULL,
+  `id_carrinho` int NOT NULL AUTO_INCREMENT,
+  `id_usuario` int NOT NULL,
+  `id_livro` int NOT NULL,
+  `quantidade` int NOT NULL,
   PRIMARY KEY (`id_carrinho`),
-  KEY `id_usuario` (`id_usuario`),
-  KEY `id_livro` (`id_livro`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `id_livro` (`id_livro`),
+  KEY `id_usuario` (`id_usuario`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Extraindo dados da tabela `carrinho`
+--
+
+INSERT INTO `carrinho` (`id_carrinho`, `id_usuario`, `id_livro`, `quantidade`) VALUES
+(1, 4, 5, 5),
+(2, 4, 5, 5),
+(3, 4, 5, 5),
+(4, 4, 5, 5),
+(5, 4, 5, 5);
 
 -- --------------------------------------------------------
 
@@ -52,13 +64,33 @@ CREATE TABLE IF NOT EXISTS `chat_geral` (
   `nome_usuario` varchar(40) NOT NULL,
   PRIMARY KEY (`id_mensagem`),
   KEY `id_usuario` (`id_usuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=80 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `chat_geral`
 --
 
 INSERT INTO `chat_geral` (`id_mensagem`, `id_autor`, `id_usuario`, `mensagens`, `nome_usuario`) VALUES
+(79, 0, 4, 'a', 'erick'),
+(78, 0, 4, 'a', 'erick'),
+(77, 0, 5, 'oi ', 'erick2'),
+(76, 0, 5, 'oi ', 'erick2'),
+(74, 0, 4, 'a', 'erick'),
+(75, 0, 4, 'jgjgaggka', 'erick'),
+(72, 0, 4, 'a', 'erick'),
+(73, 0, 4, 'a', 'erick'),
+(70, 0, 4, 'a', 'erick'),
+(71, 0, 4, 'a', 'erick'),
+(68, 0, 4, '', 'erick'),
+(69, 0, 4, 'a', 'erick'),
+(66, 0, 4, 'd', 'erick'),
+(67, 0, 4, '', 'erick'),
+(64, 0, 4, '', 'erick'),
+(65, 0, 4, 'd', 'erick'),
+(62, 0, 4, '', 'erick'),
+(63, 0, 4, '', 'erick'),
+(60, 0, 4, '', 'erick'),
+(61, 0, 4, 'a', 'erick'),
 (59, 0, 4, 'hhHAAHAHHAHAHHAHHSHSHSHSHSHHSSHSHSHSHHSHSHSHHS', 'erick');
 
 -- --------------------------------------------------------
@@ -156,14 +188,15 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `autor` tinyint(1) NOT NULL,
   `mensagens` varchar(140) NOT NULL,
   PRIMARY KEY (`id_usuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `usuario`
 --
 
 INSERT INTO `usuario` (`id_usuario`, `id_chat_privado`, `id_chat_geral`, `id_carrinho`, `assinatura_nivel`, `nome_usuario`, `email`, `senha`, `preferencias`, `recuperacao`, `autor`, `mensagens`) VALUES
-(4, '', 0, '2', 0, 'erick', '1', '1', '', '1', 0, '');
+(4, '', 0, '2', 0, 'erick', '1', '1', '', '1', 0, ''),
+(5, '', 0, '2', 0, 'erick2', '23', '23', '', '23', 0, '');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
