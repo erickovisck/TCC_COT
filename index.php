@@ -9,51 +9,44 @@
         rel="stylesheet">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/estilo.css">
+    <link rel="stylesheet" href="assets/css/cadastro.css">
     <title>index</title>
 </head>
 
 <body>
-
-  <!--   <header class="cabecalho">
-        <h1>Seja bem vindo</h1>
-    </header>
- -->
-    <main class="principal">
-        <div class="conteudo">
-
-            <div class="formulario">
-
-                <h2>
-                    Logar
-                </h2>
+    <div class="cad_box">
                 <form method="post" action="">
-                    <div class="modulo">
-                        <label for="logemail">
+                    <fieldset>
+                        <legend>LOGIN</legend>
+                        <br>
+                    <div class="cad_input">
+                        <label for="logemail2">
                             E-mail
-                            <input type="text" name="logemail" id="logemail">
+                            <input type="text" name="logemail" id="logemail" class="cad_inputuser" placeholder="Digite seu e-mail">
                         </label>
+                        <br> <br>
                     </div>
-                    <div class="modulo">
-                        <label for="logsenha">
+                    <div class="cad_input">
+                        <label for="logsenha2">
                             Senha
-                            <input type="text" name="logsenha" id="logsenha">
+                            <input type="text" name="logsenha" id="logsenha" class="cad_inputuser" placeholder="Digite sua senha">
                         </label>
                     </div>
-                    <div class="moduloBotao">
-                        <input type="submit" name="bentrar" value="Entrar">
+                    <br><br>
+                    <div class="botaocadastrar">
+                        <input type="submit" name="bentrar" value="Entrar" id="submit">
                     </div>
-                </form>
+                <br> <br>
                 <div class="esqueciSenha">
                     <a href="esqueci_senha.php"> Esqueci minha senha </a>
                 </div>
-            </div>
+            <br> <br>
             <div class="botaoCadastro">
                 <h3>Ainda não possui cadastro? </h3>
                 <a href="cadastro.php"> CADASTRAR </a>
-            </div>
         </div>
-    </main>
+</fieldset>
+</form>
     <?php
     session_start();
     require_once "conexao/conexao.php";
