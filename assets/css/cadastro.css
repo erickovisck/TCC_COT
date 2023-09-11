@@ -17,14 +17,15 @@ background-image: linear-gradient(to right,#9D4DD6, #9940D2, #A696E8  );
     color: white;
 }
 fieldset {
-border: 3px solid #FEDF01;
+border: 3px solid #FFF2A0;
 }
 legend{
     text-align: center;
     font-weight: bold;
-    background-color: #F5E43D;
+    background-color: #FFF2A0;
     border-radius: 8px;
     padding: 10px;
+    color: black;
 }
 .cad_input{
     position: relative;
@@ -56,5 +57,26 @@ legend{
 }
 
 .active {
+    display: block;
+}
+.esqueciSenha{
+    text-align: center;
+}
+.esqueciSenha a{
+    text-decoration: none;
+    color: white;
+}
+.active{
+    display: block;
+}
+
+.botaoCadastro{
+    text-align: center;
+}
+.botaoCadastro a {
+    text-decoration: none;
+    color:white;
+}
+.active{
     display: block;
 }
