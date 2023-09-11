@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/estilo.css">
+    <link rel="stylesheet" href="assets/css/cadastro.css">
 
     <title>Esqueci a Senha</title>
 </head>
@@ -20,32 +20,29 @@
          
             <input type="submit" name="enviar">
  -->
- <main class="principal">
-        <div class="conteudo">
-
-            <div class="formulario">
-
-                <h2>
-                    Esqueci a senha
-                </h2>
-                <form method="post" action="">
-                    <div class="modulo">
-                        <label for="esqemail">E-mail
-                        <input type="text" name="esqemail">
+            <div class="cad_box">
+            <form method="post" action=""> 
+            <fieldset>
+                    <legend>Esqueci a senha</legend>
+                    <div class="cad_input">
+                        <label for="logemail2">
+                            E-mail
+                        <input type="text" name="esqemail" class="cad_inputuser" placeholder="Digite seu e-mail">
                         </label>
                     </div>
-                    <div class="modulo">
-                        <label for="esqsenha">
+                    <div class="cad_input">
+                        <label for="logsenha2">
+                    </div>
+                <br> <br>
+                    <label for="cad_input">
                         Insira seu dado pessoal (inserida no cadastro)
-                        <input type="text" name="esqpref">   
+                        <input type="text" name="esqpref" class="cad_inputuser" placeholder="Digite a palavra-chave">   
                         </label>
+                    <br> <br>
+                        <input type="submit" name="bentrar" value="Entrar" id="submit">
                     </div>
-                    <div class="moduloBotao">
-                        <input type="submit" name="bentrar" value="Entrar">
-                    </div>
+                    </fieldset>
                 </form>
-             
-            </div>
 </body>
 
 </html>
