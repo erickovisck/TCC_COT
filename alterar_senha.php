@@ -7,25 +7,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alterar senha</title>
-    <link rel="stylesheet" href="assets/css/estilo.css">
+    <link rel="stylesheet" href="assets/css/cadastro.css">
 
 </head>
 
 <body>
 
-<main class="principal">
-    <div class="formulario">
+    <div class="cad_box">
 <form action="" method="POST">
-    <div class="modulo">
-
-    <h2>Digite sua nova senha</h2>
-    <label for="novasenha"> Senha
-    <input type="text" name="novasenha">
-
+    <fieldset>
+    <legend>Digite sua nova senha</legend>
+    <div class="cad_input">
+    <label for="logsenha2"> Senha
+    <input type="text" name="novasenha" class="cad_inputuser" placeholder="Digite sua nova senha">
 </label>
-        <input type="submit" name="enviar" action="">
 </div>
-
+<br> <br>
+            <label for="botaoenviar">
+                    <div class="moduloBotao">
+        <input type="submit" name="enviar" action="" id="submit">
+</div>
+</fieldset>
     </form>
 </div>
 
