@@ -1,43 +1,48 @@
 <?php
-    session_start();
+session_start();
 
-    require_once "conexao/conexao.php";
+require_once "conexao/conexao.php";
 
-       $usuario = $_SESSION["usuario"];
+$usuario = $_SESSION["usuario"];
+
+echo $usuario["nome_usuario"];
+
+if (is_null($usuario["email"])) {
+    session_unset();
+    session_destroy();
+    header("Location: index.php");
+    exit();
+}
+
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["comprar"])) {
+    $id_livro = $_POST["id_livro"];
+    $quantidade = $_POST["quantidade"];
     
-       echo $usuario["nome_usuario"]; 
-
-     
-       if(is_null($usuario["email"])){
-           session_unset();
-       session_destroy();
-           header("Location: Login.php");
-           exit();
-       }
-       if (isset($_POST["comprar"])) {
-        $id_livro = $_POST["id_livro"];
-        $quantidade = $_POST["quantidade"];
-        $carrinho =[ 
-            "id_livro"=> $id_livro,
-            "quantidade" => $quantidade
-       
-        ];
-        echo $carrinho["quantidade"];
-        $_SESSION["carrinho"]=$carrinho;
-        // Verifica se o carrinho de compras já existe na sessão
-      
-    
-        // Adiciona o livro selecionado ao carrinho
-       
+    // Verifica se o carrinho já existe na sessão
+    if (!isset($_SESSION["carrinho"])) {
+        $_SESSION["carrinho"] = [];
     }
     
-    // Conectar ao banco de dados (já mostrado no código anterior)
+    $carrinho = [
+        "id_livro" => $id_livro,
+        "quantidade" => $quantidade,
+        "id_carrinho" => $usuario['id_usuario']
+    ];
     
-    $sql = "SELECT * FROM livros";
-    $resultado = $conexao->query($sql);
-?>
+    // Adiciona o item ao carrinho na sessão
+    $_SESSION["carrinho"][] = $carrinhoItem;
 
-<!DOCTYPE html>
+    // Redireciona o usuário após o envio do formulário usando GET
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit();
+}
+
+// Conectar ao banco de dados (já mostrado no código anterior)
+
+$sql = "SELECT * FROM livros";
+$resultado = $conexao->query($sql);
+?>
+         <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -96,53 +101,54 @@
             <th>Autor</th>
             <th>Preço</th>
         </tr>
-   
-        <?php
- 
-   $sql = "SELECT * FROM livros";
-   $resultado = $conexao->query($sql);
-   
-   if (isset($_POST["pesquisa"])) {
-    $pesquisa=$_POST["pesquisa"];
-    
-    $_SESSION['pesquisa']=$pesquisa;
-    include_once "pesquisa.php";
-    
-   }else{
-   if ($resultado) {
+            
+                    <?php
+            
+            $sql = "SELECT * FROM livros";
+            $resultado = $conexao->query($sql);
+            
+            if (isset($_POST["pesquisa"])) {
+                $pesquisa=$_POST["pesquisa"];
+                
+                $_SESSION['pesquisa']=$pesquisa;
+                include_once "pesquisa.php";
+                
+            }else{
+            if ($resultado) {
 
-       while ($dados = mysqli_fetch_array($resultado)) {
-        echo "<tr>"; 
-        echo "<td>" . $dados["nome_livro"] . "<br>";
-        echo "<td>". $dados["nome_autor"] . "<br>";
-        echo "<td>". "R$".$dados["preco"] . "<br>";
-        echo "<form method='post' action='carrinho.php'>"; // O formulário envia dados para a página "carrinho.php"
-        echo "<input type='hidden' name='id_livro' value='" . $dados["id_livro"] . "'>";
-        echo "<input type='number' name='quantidade' value='0' min='0'>";
+            // ...
+        while ($dados = mysqli_fetch_array($resultado)) {
+            echo "<tr>"; 
+            echo "<td>" . $dados["nome_livro"] . "<br>";
+            echo "<td>". $dados["nome_autor"] . "<br>";
+            echo "<td>". "R$".$dados["preco"] . "<br>";
+            echo "<form method='post' action='carrinho.php'>"; // O formulário envia dados para a página "carrinho.php"
+            echo "<input type='hidden' name='id_livro' value='" . $dados["id_livro"] . "'>";
+            echo "<input type='checkbox' name='selecionado[]' value='" . $dados["id_livro"] . "'>";
+        
+        }
         echo "<input type='submit' name='comprar' value='Comprar'>";
         echo "</form>";
         echo "</tr>";
+        // ...
 
 
-       }
+                // Feche o resultado após o uso
+                mysqli_free_result($resultado);
+            } else {
+                // Lida com erros de consulta, se houverem
+                echo "Erro na consulta: " . mysqli_error($conexao);
+            }
+            }
+            ?>
+                </table>
+                </main>
+                <?php
 
 
-       // Feche o resultado após o uso
-       mysqli_free_result($resultado);
-   } else {
-       // Lida com erros de consulta, se houverem
-       echo "Erro na consulta: " . mysqli_error($conexao);
-   }
-   }
-   ?>
-    </table>
-    </main>
-    <?php
+                $conexao->close(); 
+                ?>
+                <script src="script.js"></script>
+            </body>
 
-
-       $conexao->close(); 
-    ?>
-    <script src="script.js"></script>
-</body>
-
-</html>
+            </html>
