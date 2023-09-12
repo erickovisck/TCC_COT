@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             
             if ($resultado) {
                 echo"<script language='javascript' type='text/javascript'>alert('Conta deletada')
-                ;window.location.href='index.php'</script>";
+                ;window.location.href='Login.php'</script>";
             } else {
                  echo"<script language='javascript' type='text/javascript'>alert('Erro ao deletar a conta')
                 ;window.location.href='deletarconta.php'</script>";

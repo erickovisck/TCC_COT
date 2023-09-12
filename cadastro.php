@@ -56,7 +56,7 @@ if (verificarExistencia($email, $conexao)) {
     if (cadastrarUsuario($usuario, $conexao)) {
       
         echo"<script language='javascript' type='text/javascript'>alert('Cadastro realizado com sucesso!')
-        ;window.location.href='index.php'</script>";
+        ;window.location.href='Login.php'</script>";
        
     
     
@@ -113,7 +113,7 @@ $conexao->close();
 <br> <br>
 <div class="cad_input">
     <label for="logsenha2">Senha
-    <input required type="text" name="cadsenha" id="cadsenha" class="cad_inputuser" placeholder="Crie uma senha"> <br>
+    <input required type="password" name="cadsenha" id="cadsenha" class="cad_inputuser" placeholder="Crie uma senha"> <br>
 </label> 
 </div>
 
@@ -130,7 +130,7 @@ $conexao->close();
 </div>
 <br> <br>
 <div class="jatemconta">
-    <a href="index.php">Já tem uma conta? </a>
+    <a href="Login.php">Já tem uma conta? </a>
 </div>
 </form>
 </fieldset>

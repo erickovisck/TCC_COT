@@ -49,7 +49,7 @@ $sql = "UPDATE `usuario`
 if ($conexao->query($sql)) {
 
     echo "Senha alterada com sucesso.";
-    echo "<meta http-equiv='refresh' content=1;url=index.php>";
+    echo "<meta http-equiv='refresh' content=1;url=Login.php>";
 
 } else {
     echo"Erro ao alterar a senha: " . $conexao->error;
