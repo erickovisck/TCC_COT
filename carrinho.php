@@ -10,7 +10,6 @@
 require_once "conexao/conexao.php";
 session_start();
 $usuario = $_SESSION['usuario'];
-$carrinho = $_SESSION['carrinho'];
 
 $itensAdicionados = 0;
 $itensSelecionados = isset($_POST["selecionado"]) ? $_POST["selecionado"] : [];
