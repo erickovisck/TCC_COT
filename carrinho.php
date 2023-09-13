@@ -72,37 +72,6 @@ if (isset($_POST["selecionado"])) {
     } else {
         echo "Erro ao buscar itens no carrinho: " . $conexao->error;
     }
-    ?>
-    <form method="post" action="">
-        <input type="submit" name="comprarcarrinho" value="Comprar"> </input>
-    </form>
-</body>
-</html>
-
-
-<?php 
-    $sql = "SELECT * FROM carrinho WHERE id_usuario='" . $usuario['id_usuario'] . "'";
-    $resultado = $conexao->query($sql);
-
-    if ($resultado) {
-        while ($dados = mysqli_fetch_array($resultado)) {
-            $verlivro = $dados['id_livro'];
-            $sql = "SELECT * FROM livros WHERE id_livro='$verlivro'";
-            $resultado2 = $conexao->query($sql);
-
-            if ($resultado2) {
-                while ($dados2 = mysqli_fetch_array($resultado2)) {
-                    echo "<tr>"; 
-                    echo "<td>" . $dados2["nome_livro"] . "<br>";
-                    echo "<td>" . "R$" . $dados2["preco"] . "<br>";
-                }
-            } else {
-                echo "Erro ao buscar detalhes dos livros: " . $conexao->error;
-            }
-        }
-    } else {
-        echo "Erro ao buscar itens no carrinho: " . $conexao->error;
-    }
     if(isset($_POST["comprarcarrinho"])){
         $sqll="DELETE FROM carrinho WHERE id_usuario='".$usuario["id_usuario"]."'";
         $resultado=$conexao->query($sqll);
@@ -115,6 +84,11 @@ if (isset($_POST["selecionado"])) {
         }
     }
     ?>
+    <form method="post" action="">
+        <input type="submit" name="comprarcarrinho" value="Comprar"> </input>
+    </form>
+</body>
+</html>
 
 </body>
 </html>
