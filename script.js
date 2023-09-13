@@ -11,3 +11,4 @@ closeMenuButton.addEventListener('click', () => {
     sidebar.classList.remove("active");
 })
 
+    

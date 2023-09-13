@@ -18,41 +18,31 @@ body {
         "rodape";
 }
 
+.cabecalho {
+    justify-content: flex-start;
+    grid-area: cabecalho;
+    color: white;
+    display: flex;
+    padding-bottom: 10px;
+    box-shadow: 3px 3px 9px 3px rgba(255,0,255,1);
+    background: #5B3D99;
+}
+
 .cabecalho h1 {
     margin: 0px;
     font-weight: 500;
     font-size: 2.8rem;
 }
 
-.cabecalho {
-    justify-content: center;
-    grid-area: cabecalho;
-    background-color: #CFB8FF;
-    color: white;
-    display: flex;
-    padding-bottom: 10px;
-    box-shadow: 0px 4px 9px -2px rgba(0, 0, 0, 0.75);
-}
-
-
-.cabecalhoInicial {
-    grid-area: cabecalho;
-    background-color: #CFB8FF;
-    color: white;
-    display: flex;
-    padding-bottom: 10px;
-    box-shadow: 0px 4px 9px -2px rgba(0, 0, 0, 0.75);
-}
-
-
 .cabecalhoMenu {
     width: 25%;
     height: 100vh;
-    background: #fff;
+    background: #2f2841;
     z-index: 1;
     display: none;
     left: 0;
     position: absolute;
+    box-shadow: 0px -10px 40px #00000056;
 }
 
 .btnMenu {
@@ -66,45 +56,14 @@ body {
     align-items: center;
     justify-content: center;
     display: flex;
-    background-color: #EFE6E6;
+    background-color: #ffffff;
     padding: 20px;
 
 }
 
-.modulos {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-wrap: wrap;
-
-}
-
-.modulo {
-    margin: 20px;
-
-}
-
-.modulo label {
-    font-size: 1rem;
-    margin: 0px;
-    font-weight: 400;
-    padding-top: 10px;
-    color: #f0f0f0;
-    align-items: center;
-    display: block;
-    color: #5B3D99;
-    font-weight: 400;
-}
-
-.modulo label input {
-    height: 30px;
-    width: 100%;
-    display: block;
-}
-
 .rodape {
     grid-area: rodape;
-    background-color: black;
+    background: #2f2841;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -177,4 +136,32 @@ body {
     font-weight: 500;
     font-size: 2.5rem;
     margin: 0px;
+}
+
+.contentMenu ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.contentMenu li{
+    margin: 20px 0px;
+}
+
+.contentMenu li a{
+    width: 90%;
+    border: none;
+    padding: 15px;
+    background: #514869;
+    color: #f0ffffde;
+    font-size: 12pt;
+    box-shadow: 0px 10px 40px #00000056;
+    outline: none;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+.contentMenu li a:hover{
+    background: #5B3D99;
+
 }
