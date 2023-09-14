@@ -81,7 +81,8 @@
                 'email' => $dados['email'],
                 'senha' => $dados['senha'],
                 'preferencia' => $dados['preferencia'],
-                'recuperacao' => $dados['recuperacao']
+                'recuperacao' => $dados['recuperacao'],
+                'numero_cartao' => $dados['numero_cartao'],
             ];
             $_SESSION["usuario"] = $usuario;
            
