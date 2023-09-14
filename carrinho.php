@@ -47,11 +47,12 @@ if (isset($_POST["selecionado"])) {
     <!-- Metatags, título, estilos, etc. -->
 </head>
 <body>
+    
     <h1>Seu carrinho</h1>
     <?php 
+    $totalpreco=0;
     $sql = "SELECT * FROM carrinho WHERE id_usuario='" . $usuario['id_usuario'] . "'";
     $resultado = $conexao->query($sql);
-
     if ($resultado) {
         while ($dados = mysqli_fetch_array($resultado)) {
             $verlivro = $dados['id_livro'];
@@ -60,10 +61,14 @@ if (isset($_POST["selecionado"])) {
 
             if ($resultado2) {
                 while ($dados2 = mysqli_fetch_array($resultado2)) {
+                    $totalpreco= $totalpreco+ $dados2["preco"];
+
                     echo "<tr>"; 
                     echo "<td>" . $dados2["nome_livro"] . "<br>";
                     echo "<td>" . "R$" . $dados2["preco"] . "<br>";
                 }
+              
+
             } else {
                 echo "Erro ao buscar detalhes dos livros: " . $conexao->error;
             }
@@ -72,19 +77,36 @@ if (isset($_POST["selecionado"])) {
         echo "Erro ao buscar itens no carrinho: " . $conexao->error;
     }
     if(isset($_POST["comprarcarrinho"])){
+        $sql2="SELECT * FROM cartao_credito WHERE numero_cartao='".$usuario['numero_cartao']."'";
+        $resultado3=$conexao->query($sql2);
+        $dados = mysqli_fetch_array($resultado3);
+        if($dados['limite']>=$totalpreco){
         $sqll="DELETE FROM carrinho WHERE id_usuario='".$usuario["id_usuario"]."'";
         $resultado=$conexao->query($sqll);
         if($resultado){
            
             header("Location: carrinho.php");
             echo "Compra realizada com sucesso!"; 
+             $novolimite=$dados['limite']-$totalpreco;
+             $sql3="UPDATE cartao_credito
+             SET limite='$novolimite'
+             WHERE numero_cartao='".$usuario['numero_cartao']."' ";
+             $resultado5=$conexao->query($sql3);
+             if(!$resultado5){
+                echo $conexao->error();
+             }
         }else{
             echo "erro na sua compra".$conexao->error;
         }
+    }else{
+        $saldo= "saldo insuficiente (R$". $dados['limite'].")";  
     }
+}
     ?>
     <form method="post" action="">
+        <h2> Valor total R$<?=$totalpreco?>
         <input type="submit" name="comprarcarrinho" value="Comprar"> </input>
+        <h3><?= $saldo?> </h3>
     </form>
 </body>
 </html>
