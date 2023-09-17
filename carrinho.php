@@ -50,6 +50,7 @@ if (isset($_POST["selecionado"])) {
     
     <h1>Seu carrinho</h1>
     <?php 
+     $saldo="";
     $totalpreco=0;
     $sql = "SELECT * FROM carrinho WHERE id_usuario='" . $usuario['id_usuario'] . "'";
     $resultado = $conexao->query($sql);
@@ -94,6 +95,7 @@ if (isset($_POST["selecionado"])) {
              $resultado5=$conexao->query($sql3);
              if(!$resultado5){
                 echo $conexao->error();
+               
              }
         }else{
             echo "erro na sua compra".$conexao->error;
