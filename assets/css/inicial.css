@@ -4,10 +4,16 @@ body {
     background-image: linear-gradient(to right, #9940D2, #a24edd);   
     margin: 0px;
     font-family: 'Oswald', sans-serif;
+    display: grid;
+
+    grid-template-areas:   
+    "inicio"
+    "baixo";
 }
 
 .inicio{
-    width: 100vw;
+    grid-area: inicio;
+    width: 95vw;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -91,5 +97,36 @@ body {
     text-decoration: underline calc(10%);
 }
 
+.baixo{
+    grid-area: baixo;
+    margin: 0px;
+    font-size: 2rem;
+}
+.baixo img{
+    width: 49%;
+    height: 400px;
+}
+.apresentacao{
+    
+    width:50%  ;
+float: right;
 
+    font-size: 2rem;
+    margin: 0px;
+
+}
+.informacoes{
+    width:400px;
+
+}
+.comunidade{
+   
+    width:40px ;
+    margin-left: 10%;
+}
+.compras{
+    width:40px ;
+    margin-right: 10%;
+  float: right;
+}
 
