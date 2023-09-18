@@ -8,7 +8,8 @@ body {
 
     grid-template-areas:   
     "inicio"
-    "baixo";
+    "baixo"
+    "baixo2";
 }
 
 .inicio{
@@ -121,12 +122,15 @@ float: right;
 }
 .comunidade{
    
-    width:40px ;
+    width:40px;
     margin-left: 10%;
 }
+.comunidade p{
+    width: 40px;
+}
 .compras{
-    width:40px ;
+    width:40px;
     margin-right: 10%;
-  float: right;
+    float: right;
 }
 
