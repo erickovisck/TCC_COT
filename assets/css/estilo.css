@@ -4,6 +4,7 @@
 * {
     font-family: 'Oswald', sans-serif;
     box-sizing: border-box;
+    
 }
 
 body {
@@ -53,12 +54,19 @@ body {
 
 .principal {
     grid-area: principal;
-    align-items: center;
-    justify-content: center;
-    display: flex;
+
     background-color: #ffffff;
     padding: 20px;
+/* grid-template-rows:50%;
+grid-template-columns:50%;
+grid-template-areas: 
+"banners"
+"comunidade"
+"itens"
+"sugestao"; */
 
+display: flex;
+flex-direction: column;
 }
 
 .rodape {
@@ -92,7 +100,9 @@ body {
     justify-content: center;
     align-items: center;
 }
-
+.principal a{
+    text-decoration: none;
+}
 .esqueciSenha a {
     text-decoration: none;
     width: 12em;
@@ -167,4 +177,39 @@ body {
 }
 .contentMenu ul{
     width: auto;
+}
+.banners{
+   /*  grid-area: banners; */
+   display: flex;
+width: 50%;
+height:50%;
+}
+.comunidade{
+  /*   grid-area: comunidade; */
+order: 2;
+    align-items: right;
+    display: flex;
+    width: 50%;
+    height:50%;
+
+    flex-direction: column;
+
+}
+.sugestao{
+    width: 50%;
+height:50%;
+display: flex;
+flex-direction: column;
+
+}
+.itens{
+    flex-direction: column;
+
+    order:3;
+    width: 50%;
+    height:50%;
+  /*   grid-area: itens; */
+  display: flex;
+justify-content: bottom ;
+    align-items: bottom;
 }
