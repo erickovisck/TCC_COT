@@ -6,6 +6,43 @@
     <title>Carrinho</title>
 </head>
 <body>
+    <header class="cabecalho">
+        <div class="btnMenu">
+            <button id="toggleButton">Abrir Menu</button>
+        </div>
+        <div class="pesquisa"> 
+            <form action="" method="post">
+<input type="text" name="pesquisa">
+<input type="submit" value="pesquisar">
+<a href="carrinho.php"> carrinho</a>
+</form>
+        </div>
+        <div class="cabecalhoMenu">
+                <div class="headerMenu">
+                    <div class="closeMenu">
+                        <button id="toggleButton2">Fechar Menu</button>
+                    </div>
+                    <div class="headerMenuTitle">
+                        <h2>
+                            <img src="">
+                            Olá
+                        </h2>
+                    </div>
+                </div>
+                <div class="contentMenu">
+                    <ul>
+                        <li><a href="perfil.php">Perfil</a></li>
+                        <li><a href="ajuda.php">Ajuda</a></li>
+                        <li><a href="configuracoes.php">Configurações</a></li>
+                        <li><a href="amigos.php">Amigos</a></li>
+                        <li><a href="autores.php">Autores</a></li>
+                        <li><a href="sobre_nos.php">Sobre nós</a></li>
+                        <li><a href="sair.php">Sair</a></li>
+                    </ul>
+                </div>
+           
+        </div>
+    </header>
  <?php
 require_once "conexao/conexao.php";
 session_start();
@@ -105,13 +142,17 @@ if (isset($_POST["selecionado"])) {
     }
 }
     ?>
-    <form method="post" action="">
-        <h2> Valor total R$<?=$totalpreco?>
+     <form method="post" action="">
+        <h2> Valor total R$<?=$totalpreco?> <br>
         <input type="submit" name="comprarcarrinho" value="Comprar"> </input>
         <h3><?= $saldo?> </h3>
     </form>
+    <div class="">
+                        <a href="cadastro.php">VOLTA AO INÍCIO</a>
+                    </div>
+    </form>
 </body>
 </html>
-
+<script src="script.js"></script>
 </body>
 </html>
