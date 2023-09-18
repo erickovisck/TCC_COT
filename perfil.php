@@ -37,7 +37,6 @@
                         <li><a href="sair.php">Sair</a></li>
                     </ul>
                 </div>
-            <input type="text" name="pesquisa" id="pesquisa">
             <img url="imagens/teste.png">
         </div>
     </header>
