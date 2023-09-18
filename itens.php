@@ -72,10 +72,7 @@ $resultado = $conexao->query($sql);
                         <button id="toggleButton2">Fechar Menu</button>
                     </div>
                     <div class="headerMenuTitle">
-                        <h2>
-                            <img src="">
-                            Olá
-                        </h2>
+                       
                     </div>
                 </div>
                 <div class="contentMenu">
