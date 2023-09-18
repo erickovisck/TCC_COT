@@ -27,9 +27,7 @@
                         <button id="toggleButton2">Fechar Menu</button>
                     </div>
                     <div class="headerMenuTitle">
-                        <h2>
-                         
-                        </h2>
+                      
                     </div>
                 </div>
                 <div class="contentMenu">
@@ -47,21 +45,18 @@
         </div>
     </header>
     <main class="principal">
-        <div class="principal">
             <div class="banners">
                 <a href="banners.php">Banners</a>
             </div>
             <div class="comunidade">
                 <a href="comunidade.php"> Comunidade</a>
             </div>
-            <div class="itens">
+             <div class="itens">
                 <a href="itens.php">Itens</a>
             </div>
             <div class="sugestao">
                 <a href="sugestao.php"> Sugestão de livros</a>
-
-            </div>
-        </div>
+            </div> 
     </main>
     <?php
     session_start();
