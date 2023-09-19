@@ -4,9 +4,7 @@ session_start();
 require_once "conexao/conexao.php";
 
 $usuario = $_SESSION["usuario"];
-
 echo $usuario["nome_usuario"];
-
 if (is_null($usuario["email"])) {
     session_unset();
     session_destroy();
@@ -92,8 +90,8 @@ $resultado = $conexao->query($sql);
             
         </div>
     </header>
-    <main class="principal">
-        <table>
+    <main class="principal">   
+    <table>
     <tr>
             <th>Título</th>
             <th>Autor</th>
@@ -118,16 +116,18 @@ $resultado = $conexao->query($sql);
         while ($dados = mysqli_fetch_array($resultado)) {
             echo "<tr>"; 
             echo "<td>" . $dados["nome_livro"] . "<br>";
+            echo"<hr>";
             echo "<td>". $dados["nome_autor"] . "<br>";
+            echo"<hr>";
             echo "<td>". "R$".$dados["preco"] . "<br>";
             echo "<form method='post' action='carrinho.php'>"; // O formulário envia dados para a página "carrinho.php"
             echo "<input type='hidden' name='id_livro' value='" . $dados["id_livro"] . "'>";
             echo "<input type='checkbox' name='selecionado[]' value='" . $dados["id_livro"] . "'>";
         
         }
-        echo "<input type='submit' name='comprar' value='Comprar'>";
+        echo "</table>";
+        echo "<input type='submit' id='sub_adicomprar' name='comprar' value='Comprar'>";
         echo "</form>";
-        echo "</tr>";
         // ...
 
 
@@ -139,7 +139,6 @@ $resultado = $conexao->query($sql);
             }
             }
             ?>
-                </table>
                 </main>
                 <?php
 
