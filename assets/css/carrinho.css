@@ -94,22 +94,6 @@ h1{
 h2{
     text-align: center;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .moduloBotao {
     text-align: center;
     padding: 20px 0;
@@ -133,4 +117,44 @@ h2{
 
 .active {
     display: block;
+}
+.voltarpagina{
+    text-align: center;
+}
+#voltainc{
+    padding: 10px;
+    border-radius:15px;
+    cursor: pointer;
+    background: white;
+    border-color:#5B3D99 ;
+    color: #42247e;
+}
+.carrinho_item{
+  max-width: 1200px;
+  margin:10px;
+}
+.carrinho_item p{
+    font-size:16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #5B3D99;
+    text-align: left;
+}
+.imagem_carrinho{
+text-align: center;
+}
+img{
+    width: 100px;
+    height:80px;
+}
+h2,h3{
+    text-align: right;
+    width: 98%;
+}
+#btncomprar{
+    padding: 10px;
+    border-radius:9px;
+    cursor: pointer;
+    background: rgb(132, 83, 187);
+    border-color:#5B3D99 ;
+    color: white;
 }
