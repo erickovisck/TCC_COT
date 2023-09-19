@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/carrinho.css">
     <title>Carrinho</title>
 </head>
 <body>
@@ -82,10 +83,14 @@ if (isset($_POST["selecionado"])) {
 <html lang="en">
 <head>
     <!-- Metatags, título, estilos, etc. -->
+    <link rel="stylesheet" href="assets/css/carrinho.css">
 </head>
 <body>
     
-    <h1>Seu carrinho</h1>
+    <h1>Meu carrinho</h1>
+    <div class="imagem_carrinho">
+    <img src="imagens/carrinho.png">
+</div> <br> <br>
     <?php 
      $saldo="";
     $totalpreco=0;
@@ -100,10 +105,9 @@ if (isset($_POST["selecionado"])) {
             if ($resultado2) {
                 while ($dados2 = mysqli_fetch_array($resultado2)) {
                     $totalpreco= $totalpreco+ $dados2["preco"];
-
-                    echo "<tr>"; 
-                    echo "<td>" . $dados2["nome_livro"] . "<br>";
-                    echo "<td>" . "R$" . $dados2["preco"] . "<br>";
+                    echo"<div class='carrinho_item'>";
+                    echo '<p>Nome: '.$dados2["nome_livro"].' |Preço: R$'.$dados2["preco"].'</p>';
+                    echo"</div>";
                 }
               
 
@@ -142,15 +146,17 @@ if (isset($_POST["selecionado"])) {
     }
 }
     ?>
+    
      <form method="post" action="">
-        <h2> Valor total R$<?=$totalpreco?> <br>
-        <input type="submit" name="comprarcarrinho" value="Comprar"> </input>
+        <h2> Valor total: R$<?=$totalpreco?> <br>
+        <input type="submit" name="comprarcarrinho" id="btncomprar" value="Comprar"> </input>
         <h3><?= $saldo?> </h3>
-    </form>
-    <div class="">
-                        <a href="cadastro.php">VOLTA AO INÍCIO</a>
-                    </div>
-    </form>
+    </form> <br> <br>
+    <div class="voltarpagina">
+    <form method="" action="inicial.php">
+     <input type="submit" id="voltainc" value="VOLTAR AO INÍCIO">
+</div>
+</form>
 </body>
 </html>
 <script src="script.js"></script>
