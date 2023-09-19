@@ -72,7 +72,9 @@ $resultado = $conexao->query($sql);
                         <button id="toggleButton2">Fechar Menu</button>
                     </div>
                     <div class="headerMenuTitle">
-                       
+                        <h2>
+                            
+                        </h2>
                     </div>
                 </div>
                 <div class="contentMenu">
@@ -87,7 +89,7 @@ $resultado = $conexao->query($sql);
                         <li><a href="sair.php">Sair</a></li>
                     </ul>
                 </div>
-           
+            
         </div>
     </header>
     <main class="principal">
