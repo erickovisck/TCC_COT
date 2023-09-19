@@ -213,3 +213,23 @@ flex-direction: column;
 justify-content: bottom ;
     align-items: bottom;
 }
+/* css para a tabela na página itens.php */
+table th,td{
+    border: 1px solid #5B3D99;
+}
+th,td{
+    padding: 5px 10px;
+}
+#sub_adicomprar{
+    padding: 10px;
+    border-radius:9px;
+    cursor: pointer;
+    background: rgb(132, 83, 187);
+    border-color:#5B3D99 ;
+    color: white;
+    width: 100px;
+}
+th{
+    background-color: #5B3D99;
+    color:white;
+}
