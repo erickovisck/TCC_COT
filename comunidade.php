@@ -70,13 +70,15 @@
 
 </form> 
   <?php
-
-  $id=$usuario["id_usuario"];
+  $mensagem="";
+            if (isset($_POST["enviar"])) {
+                $id=$usuario["id_usuario"];
   
   $mensagem=$_POST["mensagem"];
   
   if(!$mensagem){ 
     echo "mensagem vazia <br><br>";
+  }
 }else{
     $sql="INSERT INTO chat_geral (mensagens, id_usuario, nome_usuario) VALUES
    ('$mensagem','".$usuario['id_usuario']."', '".$usuario['nome_usuario']."')";
@@ -105,7 +107,7 @@ if ($resultado) {
 }
 
    $conexao->close();
-
+            
   ?>
     </main>
     <script src="script.js"></script>
