@@ -1,51 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil</title>
-    <link rel="stylesheet" href="assets/css/estilo.css">
-    <header class="cabecalho">
-        <div class="btnMenu">
-            <button id="toggleButton">Abrir Menu</button>
-        </div>
-        <div class="pesquisa"> 
-            <form action="" method="post">
-<input type="text" name="pesquisa">
-<input type="submit" value="pesquisar">
-</form>
-        </div>
-        <div class="cabecalhoMenu">
-                <div class="headerMenu">
-                    <div class="closeMenu">
-                        <button id="toggleButton2">Fechar Menu</button>
-                    </div>
-                    <div class="headerMenuTitle">
-                      
-                    </div>
-                </div>
-                <div class="contentMenu">
-                    <ul>
-                        <li><a href="inicial.php">Inicial</a></li>
-                        <li><a href="perfil.php">Perfil</a></li>
-                        <li><a href="ajuda.php">Ajuda</a></li>
-                        <li><a href="configuracoes.php">Configurações</a></li>
-                        <li><a href="amigos.php">Amigos</a></li>
-                        <li><a href="autores.php">Autores</a></li>
-                        <li><a href="sobre_nos.php">Sobre nós</a></li>
-                        <li><a href="sair.php">Sair</a></li>
-                    </ul>
-                </div>
-            <img url="imagens/teste.png">
-        </div>
-    </header>
-    <main class="principal">
-      
-    </main>
-    <script src="script.js"></script>
-
-    <?php 
+ <?php 
 require_once "conexao/conexao.php";
 session_start();
 if($_SERVER["REQUEST_METHOD"]==="POST"){
@@ -92,25 +45,72 @@ if($conexao->query($sql)){
 }
 }
 
-    ?>
+    ?> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+    <link rel="stylesheet" href="assets/css/estilo.css">
 </head>
 <body>
-    <main class="principal">
+<div class="cabecalho">
+        <div class="btnMenu">
+            <button id="toggleButton"><img src="imagens/menu_FILL0_wght400_GRAD0_opsz24.png"></button>
+        </div>
+        <form action="" method="post" class="botpesquisa">
+            <input type="text" name="pesquisa" id="pesquisa">
+            <button type="submit" name="pesquisar" id="iconpesquisa">
+                <img src="imagens/search_FILL0_wght400_GRAD0_opsz24.png">
+            </button>
+            <div class="carrinho">
+                <a href="carrinho.php"> <img src="imagens/shopping_cart_FILL0_wght400_GRAD0_opsz24.png" id="carrinho"></a>
+            </div>
+        </form>
+
+    </div>
+    <!--     menu lateral -->
+    <div class="cabecalhoMenu">
+        <div class="headerMenu">
+            <div class="closeMenu">
+                <button id="toggleButton2"><img src="imagens/close_FILL0_wght400_GRAD0_opsz24">
+                </button>
+            </div>
+            <div class="headerMenuTitle">
+
+            </div>
+        </div>
+        <div class="contentMenu">
+            <ul>
+                <h2>Usuário: <?= $usuario['nome_usuario']?> </h2>
+                <li><a href="perfil.php">Perfil</a></li>
+                <li><a href="ajuda.php">Ajuda</a></li>
+                <li><a href="configuracoes.php">Configurações</a></li>
+                <li><a href="amigos.php">Amigos</a></li>
+                <li><a href="autores.php">Autores</a></li>
+                <li><a href="sobre_nos.php">Sobre nós</a></li>
+                <li><a href="sair.php">Sair</a></li>
+            </ul>
+        </div>
+
+    </div>
+    <!--  fim menu -->
     <form action="" method="POST">
-        <h2> <?=     $mens?> </h2>
-    <h1> ALTERAR INFORMAÇÕES</h1>
-    <br>
-    Nome
-    <input type="text" name="nome">
-    Senha
-    <input type="text" name="senha">
-    <input type="submit" name="enviar">
+            <h2> <?=     $mens?> </h2>
+            <h1> ALTERAR INFORMAÇÕES</h1>
+            <br>
+            Nome
+            <input type="text" name="nome">
+            Senha
+            <input type="text" name="senha">
+            <input type="submit" name="enviar">
 
-</form>
+        </form>
 
-<a href="deletarconta"><input type="submit" name="delet" value="deletarconta"></a>
-</form>
+        <a href="deletarconta"><input type="submit" name="delet" value="deletarconta"></a>
+        </form>
+    <script src="script.js"></script>
 
-</main>
 </body>
 </html>
