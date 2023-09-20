@@ -7,6 +7,7 @@
     
 }
 
+
 body {
     height: 100vh;
     margin: 0px;
@@ -20,50 +21,84 @@ body {
 }
 
 .cabecalho {
-    justify-content: flex-start;
+    flex-direction: row;
     grid-area: cabecalho;
     color: white;
-    display: flex;
-    padding-bottom: 10px;
-    box-shadow: 0px 4px 9px -2px rgba(0, 0, 0, 0.75);
-    background: #5B3D99;
+   /*  box-shadow: 0px 30px 30px -1px rgba(37,24,64,1); */
+    background:#836FFF;
 }
-
+button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    width: 40px;
+}
+button img{
+    width: 35px;
+    height: 35px;
+}
 .cabecalho h1 {
     margin: 0px;
     font-weight: 500;
     font-size: 2.8rem;
 }
 
+ .cabecalhoMenu h2{
+    color:white;
+    font-weight: 400;
+ }
 .cabecalhoMenu {
+    transition: left 0.3s ease;
     width: 25%;
     height: 100vh;
     background: #2f2841;
     z-index: 1;
-    display: none;
-    left: 0;
-    position: absolute;
+    left: -400px;
+    position: fixed;
     box-shadow: 0px 4px 9px -2px rgba(0, 0, 0, 0.75);
 }
 
 .btnMenu {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
+    position: absolute;
+    width: 70px;
+    height: 80px;
+}
+.botpesquisa{
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    display:flex;
     justify-content: center;
+ 
 }
 
+#pesquisa{
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    border: none;
+    width: 65%;
+    height: 40px;
+}
+.carrinho{  
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; 
+}
+#carrinho{
+    width:40px;
+    height:40px;
+     
+}
 .principal {
     grid-area: principal;
 
     background-color: #ffffff;
-    padding: 20px;
-/* grid-template-rows:50%;
-grid-template-columns:50%;
-grid-template-areas: 
-"banners"
-"comunidade"
-"itens"
-"sugestao"; */
+     
 
 display: flex;
 flex-direction: column;
@@ -102,6 +137,7 @@ flex-direction: column;
 }
 .principal a{
     text-decoration: none;
+    
 }
 .esqueciSenha a {
     text-decoration: none;
@@ -137,6 +173,7 @@ flex-direction: column;
 }
 
 .active {
+    left: 0;
     display: block;
 }
 
@@ -179,39 +216,70 @@ flex-direction: column;
     width: auto;
 }
 .banners{
-   /*  grid-area: banners; */
-   display: flex;
-width: 50%;
-height:50%;
-}
-.comunidade{
-  /*   grid-area: comunidade; */
-order: 2;
-    align-items: right;
+    margin-top: 10px;
+    margin-left: 40px;
+    margin-right: 40px; 
+    align-items: center;
+    background-color: #5B3D99;
+    justify-content: center;
     display: flex;
-    width: 50%;
-    height:50%;
-
-    flex-direction: column;
-
+    width: calc(100% - 80px); 
+    height: 20%;
+    margin-bottom: 10px;
 }
-.sugestao{
-    width: 50%;
-height:50%;
-display: flex;
-flex-direction: column;
+
+.itens{
 
 }
 .itens{
-    flex-direction: column;
-
-    order:3;
+    margin-right: 40px;
+    justify-content: flex-end;
+    display: flex;
+    height: 100%;
     width: 50%;
-    height:50%;
-  /*   grid-area: itens; */
-  display: flex;
-justify-content: bottom ;
-    align-items: bottom;
+    align-items: center;
+    background-color: #000000;
+    justify-content: center;
+}
+.comunidade{
+    margin-right: 40px;
+    margin-left: 40px;
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    background-color: #000000;
+    justify-content: center;
+}
+.sugestao{
+    margin-left: 40px; 
+    margin-right: 40px; 
+    margin-top: 40px;
+    height: 25%;
+    width: calc(100% - 80px); /* Largura menos as margens */
+    display: flex;
+    align-items: center;
+    background-color: #000000;
+    justify-content: center;
+
+}
+.meio{
+    display: flex;
+    flex-direction: row;
+    height: 40%;
+}
+.principal a{
+    font-size: 1.9rem;
+}
+.banners a{
+    color: #000000;
+}
+.meio a{
+    color: #ffffff;
+}
+.sugestao a{
+    color: #ffffff;
+
 }
 
 
@@ -234,4 +302,60 @@ th,td{
 th{
     background-color: #5B3D99;
     color:white;
+}
+
+/* css para pagina carrinho */
+.voltarpagina{
+    text-align: center;
+}
+#voltainc{
+    padding: 10px;
+    border-radius:15px;
+    cursor: pointer;
+    background: white;
+    border-color:#5B3D99 ;
+    color: #42247e;
+}
+.carrinho_item{
+  max-width: 1200px;
+  margin:10px;
+}
+.carrinho_item p{
+    font-size:16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #5B3D99;
+    text-align: left;
+}
+.imagem_carrinho{
+ 
+text-align: center;
+}
+.imagem_carrinho img{
+    width: 100px;
+    height:80px;
+}
+#btncomprar{
+    padding: 10px;
+    border-radius:9px;
+    cursor: pointer;
+    background: rgb(132, 83, 187);
+    border-color:#5B3D99 ;
+    color: white;
+    display: flex;
+    justify-content: flex-end;
+}
+.carrinhos h2,h3{
+    
+        text-align: ;
+    width: 98%;
+    
+    
+}
+.carrinhos h1{
+  
+        text-align: center;
+   
+  
+       
+    
 }
