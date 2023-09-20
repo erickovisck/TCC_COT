@@ -1,50 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/carrinho.css">
-    <title>Carrinho</title>
-</head>
-<body>
-    <header class="cabecalho">
-        <div class="btnMenu">
-            <button id="toggleButton">Abrir Menu</button>
-        </div>
-        <div class="pesquisa"> 
-            <form action="" method="post">
-<input type="text" name="pesquisa">
-<input type="submit" value="pesquisar">
-<a href="carrinho.php"> carrinho</a>
-</form>
-        </div>
-        <div class="cabecalhoMenu">
-                <div class="headerMenu">
-                    <div class="closeMenu">
-                        <button id="toggleButton2">Fechar Menu</button>
-                    </div>
-                    <div class="headerMenuTitle">
-                        <h2>
-                            <img src="">
-                            Olá
-                        </h2>
-                    </div>
-                </div>
-                <div class="contentMenu">
-                    <ul>
-                        <li><a href="perfil.php">Perfil</a></li>
-                        <li><a href="ajuda.php">Ajuda</a></li>
-                        <li><a href="configuracoes.php">Configurações</a></li>
-                        <li><a href="amigos.php">Amigos</a></li>
-                        <li><a href="autores.php">Autores</a></li>
-                        <li><a href="sobre_nos.php">Sobre nós</a></li>
-                        <li><a href="sair.php">Sair</a></li>
-                    </ul>
-                </div>
-           
-        </div>
-    </header>
- <?php
+
+<?php
 require_once "conexao/conexao.php";
 session_start();
 $usuario = $_SESSION['usuario'];
@@ -79,18 +34,68 @@ if (isset($_POST["selecionado"])) {
 }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <!-- Metatags, título, estilos, etc. -->
-    <link rel="stylesheet" href="assets/css/carrinho.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/estilo.css">
+
 </head>
+
 <body>
+    <div class="cabecalho">
+        <div class="btnMenu">
+            <button id="toggleButton"><img src="imagens/menu_FILL0_wght400_GRAD0_opsz24.png"></button>
+        </div>
+        <form action="" method="post" class="botpesquisa">
+            <input type="text" name="pesquisa" id="pesquisa">
+            <button type="submit" name="pesquisar" id="iconpesquisa">
+                <img src="imagens/search_FILL0_wght400_GRAD0_opsz24.png">
+            </button>
+            <div class="carrinho">
+                <a href="carrinho.php"> <img src="imagens/shopping_cart_FILL0_wght400_GRAD0_opsz24.png"
+                        id="carrinho"></a>
+            </div>
+        </form>
+
+    </div>
+    <!--     menu lateral -->
+    <div class="cabecalhoMenu">
+        <div class="headerMenu">
+            <div class="closeMenu">
+                <button id="toggleButton2"><img src="imagens/close_FILL0_wght400_GRAD0_opsz24">
+                </button>
+            </div>
+            <div class="headerMenuTitle">
+
+            </div>
+        </div>
+        <div class="contentMenu">
+            <ul>
+                <h2>Usuário: <?= $usuario['nome_usuario']?> </h2>
+                <li><a href="inicial.php">Inicial</a></li>
+                <li><a href="perfil.php">Perfil</a></li>
+                <li><a href="ajuda.php">Ajuda</a></li>
+                <li><a href="configuracoes.php">Configurações</a></li>
+                <li><a href="amigos.php">Amigos</a></li>
+                <li><a href="autores.php">Autores</a></li>
+                <li><a href="sobre_nos.php">Sobre nós</a></li>
+                <li><a href="sair.php">Sair</a></li>
+            </ul>
+        </div>
+
+    </div>
+    <!--  fim menu -->
+    <script src="script.js"></script>
     
     <h1>Meu carrinho</h1>
     <div class="imagem_carrinho">
-    <img src="imagens/carrinho.png">
-</div> <br> <br>
+        <img src="imagens/carrinho.png">
+    </div> <br> <br>
     <?php 
      $saldo="";
     $totalpreco=0;
@@ -127,8 +132,9 @@ if (isset($_POST["selecionado"])) {
         $resultado=$conexao->query($sqll);
         if($resultado){
            
-            header("Location: carrinho.php");
-            echo "Compra realizada com sucesso!"; 
+            
+            echo"<script language='javascript' type='text/javascript'>alert('Compra realizada com sucesso!')
+            ;window.location.href='carrinho.php'</script>";
              $novolimite=$dados['limite']-$totalpreco;
              $sql3="UPDATE cartao_credito
              SET limite='$novolimite'
@@ -139,26 +145,29 @@ if (isset($_POST["selecionado"])) {
                
              }
         }else{
-            echo "erro na sua compra".$conexao->error;
+     
+            echo"<script language='javascript' type='text/javascript'>alert('erro na sua compra')
+            ;window.location.href='carrinho.php'</script>".$conexao->error;
         }
     }else{
         $saldo= "saldo insuficiente (R$". $dados['limite'].")";  
     }
 }
     ?>
-    
-     <form method="post" action="">
-        <h2> Valor total: R$<?=$totalpreco?> <br>
-        <input type="submit" name="comprarcarrinho" id="btncomprar" value="Comprar"> </input>
-        <h3><?= $saldo?> </h3>
+
+    <form method="post" action="">
+        <div class="carrinhos">
+        <h2> Valor total: R$<?=$totalpreco?></div> <br>
+            <input type="submit" name="comprarcarrinho" id="btncomprar" value="Comprar"> </input>
+            <div class="carrinhos">
+            <h3><?= $saldo?> </h3></div>
     </form> <br> <br>
     <div class="voltarpagina">
-    <form method="" action="inicial.php">
-     <input type="submit" id="voltainc" value="VOLTAR AO INÍCIO">
-</div>
-</form>
+        <form method="" action="inicial.php">
+            <input type="submit" id="voltainc" value="VOLTAR AO INÍCIO">
+    </div>
+    </form>
+
 </body>
-</html>
-<script src="script.js"></script>
-</body>
+
 </html>
