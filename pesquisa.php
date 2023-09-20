@@ -7,12 +7,12 @@
        $sql="SELECT * FROM livros WHERE nome_livro='$pesquisa'";
        $resultado=$conexao->query($sql);
     $dados=mysqli_fetch_array($resultado);
-    $livros = array (
+    $livros = [
         "nome_livro"=>$dados['nome_livro'],
         "nome_autor"=>$dados['nome_autor'],
         "preco"=>$dados['preco'],
 
-    );
+    ];
     if($resultado){
        
     echo "Aqui está o livro que você procura <br>";
