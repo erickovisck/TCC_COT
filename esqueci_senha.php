@@ -40,7 +40,11 @@
                         </label>
                     <br> <br>
                         <input type="submit" name="bentrar" value="Entrar" id="submit">
+                        <div class="esqueciSenha">
+                    <a href="Login.php"> Já tem uma conta? </a>
+                </div>
                     </div>
+                 
                     </fieldset>
                 </form>
 </body>
@@ -66,8 +70,8 @@ return $resultado;
 }
 $resultado=verificaSenha($esqpref, $esqemail, $conexao);
 if($resultado && $resultado->num_rows > 0){
-    echo"dados corretos";
-    echo "<meta http-equiv='refresh' content=1;url=alterar_senha.php>";
+    echo"<script language='javascript' type='text/javascript'>alert('Dados corretos')
+    ;window.location.href='alterar_senha.php'</script>";
     
 }else{
 echo"dados incorretos";
