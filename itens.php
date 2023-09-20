@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["comprar"])) {
 $sql = "SELECT * FROM livros";
 $resultado = $conexao->query($sql);
 ?>
-         <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -52,53 +52,58 @@ $resultado = $conexao->query($sql);
 </head>
 
 <body>
-    <header class="cabecalho">
+    <div class="cabecalho">
         <div class="btnMenu">
-            <button id="toggleButton">Abrir Menu</button>
+            <button id="toggleButton"><img src="imagens/menu_FILL0_wght400_GRAD0_opsz24.png"></button>
         </div>
-        <div class="pesquisa"> 
-            <form action="" method="post">
-<input type="text" name="pesquisa">
-<input type="submit" value="pesquisar">
+        <form action="" method="post" class="botpesquisa">
+            <input type="text" name="pesquisa" id="pesquisa">
+            <button type="submit" name="pesquisar" id="iconpesquisa">
+                <img src="imagens/search_FILL0_wght400_GRAD0_opsz24.png">
+            </button>
+            <div class="carrinho">
+                <a href="carrinho.php"> <img src="imagens/shopping_cart_FILL0_wght400_GRAD0_opsz24.png"
+                        id="carrinho"></a>
+            </div>
+        </form>
 
-</form>
-<a href="carrinho.php"> carrinho</a>
+    </div>
+    <!--     menu lateral -->
+    <div class="cabecalhoMenu">
+        <div class="headerMenu">
+            <div class="closeMenu">
+                <button id="toggleButton2"><img src="imagens/close_FILL0_wght400_GRAD0_opsz24">
+                </button>
+            </div>
+            <div class="headerMenuTitle">
+
+            </div>
         </div>
-        <div class="cabecalhoMenu">
-                <div class="headerMenu">
-                    <div class="closeMenu">
-                        <button id="toggleButton2">Fechar Menu</button>
-                    </div>
-                    <div class="headerMenuTitle">
-                        <h2>
-                            
-                        </h2>
-                    </div>
-                </div>
-                <div class="contentMenu">
-                    <ul> 
-                        <li><a href="inicial.php">Inicial</a></li>
-                        <li><a href="perfil.php">Perfil</a></li>
-                        <li><a href="ajuda.php">Ajuda</a></li>
-                        <li><a href="configuracoes.php">Configurações</a></li>
-                        <li><a href="amigos.php">Amigos</a></li>
-                        <li><a href="autores.php">Autores</a></li>
-                        <li><a href="sobre_nos.php">Sobre nós</a></li>
-                        <li><a href="sair.php">Sair</a></li>
-                    </ul>
-                </div>
-            
+        <div class="contentMenu">
+            <ul>
+                <h2>Usuário: <?= $usuario['nome_usuario']?> </h2>
+                <li><a href="inicial.php">Inicial</a></li>
+                <li><a href="perfil.php">Perfil</a></li>
+                <li><a href="ajuda.php">Ajuda</a></li>
+                <li><a href="configuracoes.php">Configurações</a></li>
+                <li><a href="amigos.php">Amigos</a></li>
+                <li><a href="autores.php">Autores</a></li>
+                <li><a href="sobre_nos.php">Sobre nós</a></li>
+                <li><a href="sair.php">Sair</a></li>
+            </ul>
         </div>
-    </header>
-    <main class="principal">   
-    <table>
-    <tr>
-            <th>Título</th>
-            <th>Autor</th>
-            <th>Preço</th>
-        </tr>
-            
-                    <?php
+
+    </div>
+    <!--  fim menu -->
+    <main class="principal">
+        <table>
+            <tr>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Preço</th>
+            </tr>
+
+            <?php
             
             $sql = "SELECT * FROM livros";
             $resultado = $conexao->query($sql);
@@ -139,13 +144,13 @@ $resultado = $conexao->query($sql);
             }
             }
             ?>
-                </main>
-                <?php
+    </main>
+    <?php
 
 
                 $conexao->close(); 
                 ?>
-                <script src="script.js"></script>
-            </body>
+    <script src="script.js"></script>
+</body>
 
-            </html>
+</html>
