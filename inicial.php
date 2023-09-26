@@ -33,6 +33,7 @@ include_once "pesquisa.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="assets/css/estilo.css">
+    
 
 </head>
 
@@ -96,7 +97,6 @@ include_once "pesquisa.php";
         </div>
     </main>
 
-    <script src="script.js"></script>
-</body>
+<script src="js/menulateral".js></script></body>
 
 </html>
