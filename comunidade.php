@@ -24,93 +24,117 @@
     <title>Document</title>
     <link rel="stylesheet" href="assets/css/estilo.css">
 
+
 </head>
 
 <body>
 
 
-    <header class="cabecalho">
+    <div class="cabecalho">
         <div class="btnMenu">
-            <button id="toggleButton">Abrir Menu</button>
+            <button id="toggleButton"><img src="imagens/menu_FILL0_wght400_GRAD0_opsz24.png"></button>
         </div>
-        
-                <a href="carrinho.php"> carrinho</a>
+        <form action="" method="post" class="botpesquisa">
+            <input type="text" name="pesquisa" id="pesquisa">
+            <button type="submit" name="pesquisar" id="iconpesquisa">
+                <img src="imagens/search_FILL0_wght400_GRAD0_opsz24.png">
+            </button>
+            <div class="carrinho">
+                <a href="carrinho.php"> <img src="imagens/shopping_cart_FILL0_wght400_GRAD0_opsz24.png"
+                        id="carrinho"></a>
+            </div>
+        </form>
 
-         
-        <div class="cabecalhoMenu">
-            <div class="headerMenu">
-                <div class="closeMenu">
-                    <button id="toggleButton2">Fechar Menu</button>
-                </div>
-                <div class="headerMenuTitle">
-                    <h2>
-                     
-                    </h2>
-                </div>
+    </div>
+    <!--     menu lateral -->
+    <div class="cabecalhoMenu">
+        <div class="headerMenu">
+            <div class="closeMenu">
+                <button id="toggleButton2"><img src="imagens/close_FILL0_wght400_GRAD0_opsz24">
+                </button>
             </div>
-            <div class="contentMenu">
-                <ul>
-                    <li><a href="inicial.php">Inicial</a></li>
-                    <li><a href="perfil.php">Perfil</a></li>
-                    <li><a href="ajuda.php">Ajuda</a></li>
-                    <li><a href="configuracoes.php">Configurações</a></li>
-                    <li><a href="amigos.php">Amigos</a></li>
-                    <li><a href="autores.php">Autores</a></li>
-                    <li><a href="sobre_nos.php">Sobre nós</a></li>
-                    <li><a href="sair.php">Sair</a></li>
-                </ul>
+            <div class="headerMenuTitle">
+
             </div>
-        
         </div>
-    </header>
+        <div class="contentMenu">
+            <ul>
+                <h2>Usuário: <?= $usuario['nome_usuario']?> </h2>
+                <li><a href="inicial.php">Inicial</a></li>
+                <li><a href="perfil.php">Perfil</a></li>
+                <li><a href="ajuda.php">Ajuda</a></li>
+                <li><a href="configuracoes.php">Configurações</a></li>
+                <li><a href="amigos.php">Amigos</a></li>
+                <li><a href="autores.php">Autores</a></li>
+                <li><a href="sobre_nos.php">Sobre nós</a></li>
+                <li><a href="sair.php">Sair</a></li>
+            </ul>
+        </div>
+
+    </div>
+    <!--  fim menu -->
     <main class="principal">
-    <form action="" method="post">
-<input type="text" name="mensagem">
-<input type="submit" value="enviar">
+        <form action="" method="post">
+            <input type="text" name="mensagem">
+            <input type="submit" name="enviar">
 
-</form> 
-  <?php
-  $mensagem="";
-            if (isset($_POST["enviar"])) {
-                $id=$usuario["id_usuario"];
+        </form>
+        <?php 
+ 
+ if (isset($_POST["enviar"])) {
   
-  $mensagem=$_POST["mensagem"];
-  
-  if(!$mensagem){ 
-    echo "mensagem vazia <br><br>";
-  }
-}else{
-    $sql="INSERT INTO chat_geral (mensagens, id_usuario, nome_usuario) VALUES
-   ('$mensagem','".$usuario['id_usuario']."', '".$usuario['nome_usuario']."')";
-   $resultado=$conexao->query($sql);
-   if($resultado){
-   echo "mensagem enviada <br>";
-   }else{
-       echo "erro ao enviar";
-   }
-}
-$sql = "SELECT * FROM chat_geral";
-$resultado = $conexao->query($sql);
+    $mensagem = $_POST["mensagem"];
 
+    // Verifique se a mensagem não está vazia
+    
+    if (!$mensagem) {
+        echo "mensagem vazia <br><br>";
+    }else{
+        // A mensagem não está vazia, então insira no banco de dados
+        $sql = "INSERT INTO chat_geral (id_usuario, mensagens,  nome_usuario) VALUES
+            ('" . $usuario['id_usuario'] . "', '$mensagem', '" . $usuario['nome_usuario'] . "')";
+        $resultado = $conexao->query($sql);
+        if ($resultado) {
+            echo "mensagem enviada <br>";
+            header("Location: comunidade.php");
+            $mensagem="";   
+            exit();
+          
+        } else {
+            echo "erro ao enviar";
+        }
+    }
+ }
+
+ $sql = "SELECT * FROM chat_geral";
+ $resultado = $conexao->query($sql);
+ 
 if ($resultado) {
     while ($dados = mysqli_fetch_array($resultado)) {
+        echo "<div class='message' data-id='". $dados['id_mensagem'] . "'>";
         echo "Nome do Usuário: " . $dados["nome_usuario"] . "<br>";
-        echo "Mensagem: " . $dados["mensagens"] . "<br> <br>";
-
+        echo "Mensagem: " . $dados["mensagens"] . "<br><br>";
+        echo "<p class='likes'>" . $dados["cont_like"] . " leitores curtiram" ."</p>";
+        echo "<button class='like_button'>Curtir</button>";
+        echo "</div>";
     }
+   
+  
+ 
+     // Feche o resultado após o uso
+     mysqli_free_result($resultado);
+ } else {
+     // Lida com erros de consulta, se houverem
+     echo "Erro na consulta: " . mysqli_error($conexao);
+ }
+ include_once "atualizar_likes.php";
+ $conexao->close();
+?>
 
-    // Feche o resultado após o uso
-    mysqli_free_result($resultado);
-} else {
-    // Lida com erros de consulta, se houverem
-    echo "Erro na consulta: " . mysqli_error($conexao);
-}
-
-   $conexao->close();
-            
-  ?>
     </main>
     <script src="script.js"></script>
+    <script src="botaolike.js"></script>
+
 </body>
 
 </html>
