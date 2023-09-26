@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 14-Set-2023 às 22:31
+-- Tempo de geração: 26-Set-2023 às 23:49
 -- Versão do servidor: 8.0.31
 -- versão do PHP: 8.0.26
 
@@ -36,24 +36,7 @@ CREATE TABLE IF NOT EXISTS `carrinho` (
   PRIMARY KEY (`id_carrinho`),
   KEY `id_livro` (`id_livro`),
   KEY `id_usuario` (`id_usuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=199 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Extraindo dados da tabela `carrinho`
---
-
-INSERT INTO `carrinho` (`id_carrinho`, `id_usuario`, `id_livro`, `quantidade`) VALUES
-(198, 4, 19, 1),
-(197, 4, 5, 1),
-(196, 4, 3, 1),
-(195, 4, 2, 1),
-(194, 4, 1, 1),
-(193, 4, 19, 1),
-(192, 4, 5, 1),
-(191, 4, 19, 1),
-(190, 4, 5, 1),
-(189, 4, 19, 1),
-(188, 4, 5, 1);
+) ENGINE=MyISAM AUTO_INCREMENT=221 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -77,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `cartao_credito` (
 --
 
 INSERT INTO `cartao_credito` (`numero_cartao`, `ccv`, `nome_usuario`, `data_validade`, `limite`) VALUES
-('1234567891234567', '123', '1', '30/09', '999999.00');
+('1234567891234567', '123', '1', '30/09', '999343.21');
 
 -- --------------------------------------------------------
 
@@ -88,43 +71,22 @@ INSERT INTO `cartao_credito` (`numero_cartao`, `ccv`, `nome_usuario`, `data_vali
 DROP TABLE IF EXISTS `chat_geral`;
 CREATE TABLE IF NOT EXISTS `chat_geral` (
   `id_mensagem` int NOT NULL AUTO_INCREMENT,
-  `id_autor` int NOT NULL,
   `id_usuario` int NOT NULL,
   `mensagens` varchar(140) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `nome_usuario` varchar(40) NOT NULL,
+  `cont_like` int NOT NULL,
+  `criado` int NOT NULL,
   PRIMARY KEY (`id_mensagem`),
   KEY `id_usuario` (`id_usuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=83 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=165 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `chat_geral`
 --
 
-INSERT INTO `chat_geral` (`id_mensagem`, `id_autor`, `id_usuario`, `mensagens`, `nome_usuario`) VALUES
-(82, 0, 4, 'a', 'erick'),
-(81, 0, 4, 'sexo', 'erick'),
-(80, 0, 4, 'a', 'erick'),
-(79, 0, 4, 'a', 'erick'),
-(78, 0, 4, 'a', 'erick'),
-(77, 0, 5, 'oi ', 'erick2'),
-(76, 0, 5, 'oi ', 'erick2'),
-(74, 0, 4, 'a', 'erick'),
-(75, 0, 4, 'jgjgaggka', 'erick'),
-(72, 0, 4, 'a', 'erick'),
-(73, 0, 4, 'a', 'erick'),
-(70, 0, 4, 'a', 'erick'),
-(71, 0, 4, 'a', 'erick'),
-(68, 0, 4, '', 'erick'),
-(69, 0, 4, 'a', 'erick'),
-(66, 0, 4, 'd', 'erick'),
-(67, 0, 4, '', 'erick'),
-(64, 0, 4, '', 'erick'),
-(65, 0, 4, 'd', 'erick'),
-(62, 0, 4, '', 'erick'),
-(63, 0, 4, '', 'erick'),
-(60, 0, 4, '', 'erick'),
-(61, 0, 4, 'a', 'erick'),
-(59, 0, 4, 'hhHAAHAHHAHAHHAHHSHSHSHSHSHHSSHSHSHSHHSHSHSHHS', 'erick');
+INSERT INTO `chat_geral` (`id_mensagem`, `id_usuario`, `mensagens`, `nome_usuario`, `cont_like`, `criado`) VALUES
+(162, 10, 'ad', 'erick', 2, 0),
+(161, 10, 'a', 'erick', 4, 0);
 
 -- --------------------------------------------------------
 
@@ -260,6 +222,23 @@ INSERT INTO `livros` (`id_livro`, `id_autor`, `id_editora`, `nome_livro`, `nome_
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `message_like`
+--
+
+DROP TABLE IF EXISTS `message_like`;
+CREATE TABLE IF NOT EXISTS `message_like` (
+  `like_id` int NOT NULL AUTO_INCREMENT,
+  `msg_id_fk` int DEFAULT NULL,
+  `uid_fk` int NOT NULL,
+  `criou` int NOT NULL,
+  PRIMARY KEY (`like_id`),
+  KEY `uid_fk` (`uid_fk`),
+  KEY `msg_id_fk` (`msg_id_fk`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `usuario`
 --
 
@@ -280,17 +259,19 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `numero_cartao` varchar(16) NOT NULL,
   PRIMARY KEY (`id_usuario`),
   KEY `numero_cartao` (`numero_cartao`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `usuario`
 --
 
 INSERT INTO `usuario` (`id_usuario`, `id_chat_privado`, `id_chat_geral`, `id_carrinho`, `assinatura_nivel`, `nome_usuario`, `email`, `senha`, `preferencias`, `recuperacao`, `autor`, `mensagens`, `numero_cartao`) VALUES
-(4, '', 0, '2', 0, 'a', '1', '1', '', '1', 0, '', '1234567891234567'),
+(4, '', 0, '2', 0, '', '1', '', '', '1', 0, '', '1234567891234567'),
 (5, '', 0, '2', 0, 'erick2', '23', '23', '', '23', 0, '', ''),
 (6, '', 0, '2', 0, 'b', 'b', '3', '', 'b', 0, '', ''),
-(7, '', 0, '2', 0, 'a', 'a', 'a', '', 'a', 0, '', '');
+(7, '', 0, '2', 0, 'a', 'a', 'a', '', 'a', 0, '', ''),
+(9, '', 0, '2', 0, 'erick', '123', '123', '', '123', 0, '', ''),
+(10, '', 0, '2', 0, 'erick', '2', '2', '', '2', 0, '', '');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
