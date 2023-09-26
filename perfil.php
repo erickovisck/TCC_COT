@@ -1,6 +1,7 @@
  <?php 
 require_once "conexao/conexao.php";
 session_start();
+$usuario=$_SESSION["usuario"];
 if($_SERVER["REQUEST_METHOD"]==="POST"){
 $usuario=$_SESSION["usuario"];
 $altnome=$_POST["nome"];
@@ -19,16 +20,11 @@ if($conexao->query($sql)){
     function verificaLogin($email, $conexao)
     {
         $email = $conexao->real_escape_string($email);
-
-
         $sql = "SELECT * FROM usuario WHERE email ='$email'";
-
         $resultado = $conexao->query($sql);
         return $resultado;
-
     }
     $resultado = verificaLogin($email, $conexao);
-
     $dados = mysqli_fetch_array($resultado);
     $usuario = [
         'nome_usuario' => $dados['nome_usuario'],
@@ -84,6 +80,7 @@ if($conexao->query($sql)){
         <div class="contentMenu">
             <ul>
                 <h2>Usuário: <?= $usuario['nome_usuario']?> </h2>
+                <li><a href="inicial.php">Inicial</a></li>
                 <li><a href="perfil.php">Perfil</a></li>
                 <li><a href="ajuda.php">Ajuda</a></li>
                 <li><a href="configuracoes.php">Configurações</a></li>
@@ -110,7 +107,7 @@ if($conexao->query($sql)){
 
         <a href="deletarconta"><input type="submit" name="delet" value="deletarconta"></a>
         </form>
-    <script src="script.js"></script>
+ <script src="js/menulateral.js"></script>
 
 </body>
 </html>
