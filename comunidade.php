@@ -113,8 +113,10 @@ if ($resultado) {
     while ($dados = mysqli_fetch_array($resultado)) {
         echo "<div class='message' data-id='". $dados['id_mensagem'] . "'>";
         echo "Nome do Usuário: " . $dados["nome_usuario"] . "<br>";
-        echo "Mensagem: " . $dados["mensagens"] . "<br><br>";
-        echo "<p class='likes'>" . $dados["cont_like"] . " leitores curtiram" ."</p>";
+        echo "Mensagem: " . $dados["mensagens"] . "<br>";
+        echo "<div class='curtidas'>";
+        echo "<div class='likes'>" . $dados["cont_like"] ."</div> " . " leitores curtiram";
+        echo "</div>";
         echo "<button class='like_button'>Curtir</button>";
         echo "</div>";
     }
@@ -132,9 +134,8 @@ if ($resultado) {
 ?>
 
     </main>
-    <script src="script.js"></script>
-    <script src="botaolike.js"></script>
-
+<script src="js/menulateral.js"></script> 
+<script src="js/botaolike.js"></script>
 </body>
 
 </html>
