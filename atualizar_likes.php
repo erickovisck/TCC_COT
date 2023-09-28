@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
    }    
 
    // Feche a conexão com o banco de dados
-   $conexao->close();
+
 }
 
 
