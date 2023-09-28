@@ -22,7 +22,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="assets/css/estilo.css">
+    <link rel="stylesheet" href="assets/css/comunidade.css">
 
 
 </head>
@@ -80,19 +80,16 @@
 
         </form>
         <?php 
- 
  if (isset($_POST["enviar"])) {
-  
     $mensagem = $_POST["mensagem"];
-
     // Verifique se a mensagem não está vazia
     
     if (!$mensagem) {
         echo "mensagem vazia <br><br>";
     }else{
         // A mensagem não está vazia, então insira no banco de dados
-        $sql = "INSERT INTO chat_geral (id_usuario, mensagens,  nome_usuario) VALUES
-            ('" . $usuario['id_usuario'] . "', '$mensagem', '" . $usuario['nome_usuario'] . "')";
+        $sql = "INSERT INTO chat_geral (id_usuario, mensagens,  nome_usuario, cont_like) VALUES
+            ('" . $usuario['id_usuario'] . "', '$mensagem', '" . $usuario['nome_usuario'] . "', 0)";
         $resultado = $conexao->query($sql);
         if ($resultado) {
             echo "mensagem enviada <br>";
@@ -101,27 +98,48 @@
             exit();
           
         } else {
-            echo "erro ao enviar";
+            echo "erro ao enviar". mysqli_error($conexao);
         }
     }
  }
-
- $sql = "SELECT * FROM chat_geral";
- $resultado = $conexao->query($sql);
- 
+?>
+        <main>
+            <section class="news-feed">
+                <?php 
+                 $sql = "SELECT * FROM chat_geral";
+                 $resultado = $conexao->query($sql);
+                 
 if ($resultado) {
+    include_once "atualizar_likes.php";
     while ($dados = mysqli_fetch_array($resultado)) {
         echo "<div class='message' data-id='". $dados['id_mensagem'] . "'>";
-        echo "Nome do Usuário: " . $dados["nome_usuario"] . "<br>";
-        echo "Mensagem: " . $dados["mensagens"] . "<br>";
-        echo "<div class='curtidas'>";
-        echo "<div class='likes'>" . $dados["cont_like"] ."</div> " . " leitores curtiram";
-        echo "</div>";
+        ?>
+                <article class="post">
+                    <div class="post_header">
+                        <img src="" alt="" class="avatar">
+                        <div class="post_info">
+                            <?php echo $dados["nome_usuario"]; ?> 
+                            <span> <?php   echo "postado agora";?> </span>
+                            <!--    echo $dados["data_mensagem"]. "<br>";  -->
+
+
+                        </div>
+                    </div>
+                    <div class="post_content">
+                    <?php echo  $dados["mensagens"] . "<br>";?> </div>
+                    <div class="post_engage">
+                        <?php  echo "<div class='likes'>" . $dados["cont_like"] ."</div> " . " leitores curtiram";  ?>
+                    </div>
+                    <?php
         echo "<button class='like_button'>Curtir</button>";
         echo "</div>";
     }
-   
-  
+ 
+  ?>
+                </article>
+            </section>
+        </main>
+        <?php
  
      // Feche o resultado após o uso
      mysqli_free_result($resultado);
@@ -129,13 +147,13 @@ if ($resultado) {
      // Lida com erros de consulta, se houverem
      echo "Erro na consulta: " . mysqli_error($conexao);
  }
- include_once "atualizar_likes.php";
- $conexao->close();
+
+
 ?>
 
     </main>
-<script src="js/menulateral.js"></script> 
-<script src="js/botaolike.js"></script>
+    <script src="js/menulateral.js"></script>
+    <script src="js/botaolike.js"></script>
 </body>
 
 </html>
