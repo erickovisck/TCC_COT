@@ -1133,4 +1133,111 @@ html {
   }
   
   /*# sourceMappingURL=Searchs_128.css.map */
-  
+  /* inicial */
+#page_banner{
+    z-index: 0;
+    margin-top: 1em;
+    width: 100%;
+    height: 33em;
+    margin-left: -0.5em;
+    margin-right: 0;
+}
+#banner, #banner_{
+    width: 100%;
+    padding: 25px;
+    height: 100%;
+    background-image: url(https://blogdocolecionador.com.br/wp-content/uploads/2020/01/como-comecar-colecao-de-livros.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+#msg_box{
+    margin-top: 7.5em;
+   /* margin-left: 25%;*/
+    color: white;
+   
+}
+.summer_s{
+    font-size: 26px;
+    font-weight: 500;
+    
+}
+#seventy_p{
+    font-size: 100px;
+    font-weight: bolder;
+  margin-top: -0.3em;
+    margin-left: 0;
+}
+.promo_c{
+    margin-top: -3em;
+    font-size: 20px;
+    font-weight: 500;
+}
+#shop_now{
+    border: none;
+   
+    width: 10em;
+    padding: 20px;
+    font-size: 18px;
+    color: white;
+    background-color: rgb(20, 20, 20);
+    border-radius: 3px;
+    
+}
+#shop_now:active{
+    transform: scale(0.9);
+
+}
+.click1{
+    background-color: white;
+    font-size: 20px;
+    font-weight: bold;
+    width: fit-content;
+    padding: 3px;
+   
+}
+#grid_f{
+    width: 100%;
+    z-index: 3;
+    margin-top: 6em;
+    display: flex;
+    justify-content: center;
+}
+.pro{
+    width: 33%;
+    height: 16em;
+    margin-left: 1em;
+    padding: 10px;
+    border-radius: 2px;
+    display: flex;
+    justify-content: center;
+    color: rgb(0, 0, 0);
+
+}
+#pro1{
+    background-image: url( );
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#pro2{
+    background-image: url();
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#pro3{
+    background-image: url();
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#msg{
+    margin: 50px auto;
+    text-align: center;
+}
+.shop_n{
+    
+    font-weight: bold;
+}
+
