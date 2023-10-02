@@ -93,20 +93,47 @@ include_once "pesquisa.php";
     </div>
 
     <main class="principal">
-        <div class="banners">
-            <a href="banners.php">Banners</a>
-        </div>
-        <div class="meio">
-            <div class="comunidade">
-                <a href="comunidade.php"> Comunidade</a>
-            </div>
-            <div class="itens">
-                <a href="itens.php">Itens</a>
-            </div>
-        </div>
-        <div class="sugestao">
-            <a href="sugestao.php"> Sugestão de livros</a>
-        </div>
+                     <!--START OF PAGE BANNER-->
+                     <div id="page_banner">
+                <div id="banner">
+                    <div id="msg_box">
+    
+                        <p class="summer_s">Confira nossos Livros</p>
+                        <h1 id="seventy_p">Compre agora!</h1>
+                       <p class="promo_c">with promo code CN67EW*</p>
+
+                        <button id="shop_now" type="submit" name="shop now" onclick="change()">Shop now <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+              </div>
+              <!--END OF PAGE BANNER-->
+              <!--START OF FIRST PRODUCTS GIRD-->
+              <div id="grid_f">
+                <div id="pro1" class="pro">
+                    <div id="msg">
+                        <h2 class="summer_pro">Comunidade</h2>
+                        <span class="shop_n animate__slideOutRight">Shop Now <i class="fa-solid fa-arrow-right"></i></span>
+                        
+                    </div>
+                </div>
+                <div id="pro2" class="pro">
+                    <div id="msg">
+                        <h2 class="summer_pro">Itens</h2>
+                        <span class="shop_n">Shop Now <i class="fa-solid fa-arrow-right"></i></span>
+                        
+                    </div>
+                </div>
+                <div id="pro3" class="pro">
+                    <div id="msg">
+                        <h2 class="summer_pro">Sugestão
+                            
+                        </h2>
+                        <span class="shop_n">Shop Now <i class="fa-solid fa-arrow-right"></i></span>
+                        
+                    </div>
+                </div>
+              </div>
+              <!--END OF FIRST PRODUCTS GIRD-->  
     </main>
     <script>
     var btnDelete = document.getElementById('clear');
