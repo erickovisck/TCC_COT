@@ -52,47 +52,55 @@ if($conexao->query($sql)){
 </head>
 <body>
 <div class="cabecalho">
-        <div class="btnMenu">
-            <button id="toggleButton"><img src="imagens/menu_FILL0_wght400_GRAD0_opsz24.png"></button>
-        </div>
-        <form action="" method="post" class="botpesquisa">
-            <input type="text" name="pesquisa" id="pesquisa">
-            <button type="submit" name="pesquisar" id="iconpesquisa">
-                <img src="imagens/search_FILL0_wght400_GRAD0_opsz24.png">
-            </button>
-            <div class="carrinho">
-                <a href="carrinho.php"> <img src="imagens/shopping_cart_FILL0_wght400_GRAD0_opsz24.png" id="carrinho"></a>
+        <nav role="navigation">
+            <div id="menuToggle">
+
+                <input type="checkbox" />
+                <span></span>
+                <span></span>
+                <span></span>
+
+
+
+                <ul id="menu">
+                    <h2>Usuário: <?= $usuario['nome_usuario']?> </h2>
+                    <li><a href="perfil.php">Perfil</a></li>
+                    <li><a href="ajuda.php">Ajuda</a></li>
+                    <li><a href="configuracoes.php">Configurações</a></li>
+                    <li><a href="amigos.php">Amigos</a></li>
+                    <li><a href="autores.php">Autores</a></li>
+                    <li><a href="sobre_nos.php">Sobre nós</a></li>
+                    <li><a href="sair.php">Sair</a></li>
+                </ul>
+
+
             </div>
-        </form>
+        </nav>
+
+
+
+        <div class="s128">
+            <form>
+                <div class="inner-form">
+                    <div class="row">
+                        <div class="input-field first" id="first">
+                            <input class="input" id="inputFocus" type="text" placeholder="Keyword" />
+                            <button class="clear" id="clear">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path
+                                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z">
+                                    </path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    
+                </div>
+            </form>
+        </div>
+
 
     </div>
-    <!--     menu lateral -->
-    <div class="cabecalhoMenu">
-        <div class="headerMenu">
-            <div class="closeMenu">
-                <button id="toggleButton2"><img src="imagens/close_FILL0_wght400_GRAD0_opsz24">
-                </button>
-            </div>
-            <div class="headerMenuTitle">
-
-            </div>
-        </div>
-        <div class="contentMenu">
-            <ul>
-                <h2>Usuário: <?= $usuario['nome_usuario']?> </h2>
-                <li><a href="inicial.php">Inicial</a></li>
-                <li><a href="perfil.php">Perfil</a></li>
-                <li><a href="ajuda.php">Ajuda</a></li>
-                <li><a href="configuracoes.php">Configurações</a></li>
-                <li><a href="amigos.php">Amigos</a></li>
-                <li><a href="autores.php">Autores</a></li>
-                <li><a href="sobre_nos.php">Sobre nós</a></li>
-                <li><a href="sair.php">Sair</a></li>
-            </ul>
-        </div>
-
-    </div>
-    <!--  fim menu -->
     <form action="" method="POST">
             <h2> <?=     $mens?> </h2>
             <h1> ALTERAR INFORMAÇÕES</h1>
