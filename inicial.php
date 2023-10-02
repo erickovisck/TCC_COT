@@ -33,15 +33,39 @@ include_once "pesquisa.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="assets/css/estilo.css">
-    
+    <link rel="stylesheet" href="assets/css/menu.css">
+
 
 </head>
 
 <body>
     <div class="cabecalho">
-        <div class="btnMenu">
-            <button id="toggleButton"><img src="imagens/menu_FILL0_wght400_GRAD0_opsz24.png"></button>
-        </div>
+        <nav role="navigation">
+            <div id="menuToggle">
+
+                <input type="checkbox" />
+                <span></span>
+                <span></span>
+                <span></span>
+             
+                   
+
+                    <ul id="menu">
+                        <h2>Usuário: <?= $usuario['nome_usuario']?> </h2>
+                        <li><a href="perfil.php">Perfil</a></li>
+                        <li><a href="ajuda.php">Ajuda</a></li>
+                        <li><a href="configuracoes.php">Configurações</a></li>
+                        <li><a href="amigos.php">Amigos</a></li>
+                        <li><a href="autores.php">Autores</a></li>
+                        <li><a href="sobre_nos.php">Sobre nós</a></li>
+                        <li><a href="sair.php">Sair</a></li>
+                    </ul>
+
+            
+            </div>
+        </nav>
+
+
         <form action="" method="post" class="botpesquisa">
             <input type="text" name="pesquisa" id="pesquisa">
             <button type="submit" name="pesquisar" id="iconpesquisa">
@@ -55,30 +79,7 @@ include_once "pesquisa.php";
 
     </div>
     <!--     menu lateral -->
-    <div class="cabecalhoMenu">
-        <div class="headerMenu">
-            <div class="closeMenu">
-                <button id="toggleButton2"><img src="imagens/close_FILL0_wght400_GRAD0_opsz24">
-                </button>
-            </div>
-            <div class="headerMenuTitle">
 
-            </div>
-        </div>
-        <div class="contentMenu">
-            <ul>
-                <h2>Usuário: <?= $usuario['nome_usuario']?> </h2>
-                <li><a href="perfil.php">Perfil</a></li>
-                <li><a href="ajuda.php">Ajuda</a></li>
-                <li><a href="configuracoes.php">Configurações</a></li>
-                <li><a href="amigos.php">Amigos</a></li>
-                <li><a href="autores.php">Autores</a></li>
-                <li><a href="sobre_nos.php">Sobre nós</a></li>
-                <li><a href="sair.php">Sair</a></li>
-            </ul>
-        </div>
-
-    </div>
     <!--  fim menu -->
     <main class="principal">
         <div class="banners">
@@ -97,6 +98,7 @@ include_once "pesquisa.php";
         </div>
     </main>
 
-<script src="js/menulateral".js></script></body>
+    <script src="js/menulateral" .js></script>
+</body>
 
 </html>
