@@ -18,10 +18,10 @@ if (is_null($usuario["email"])) {
     exit();
 }
 //echo $nomeUsuario;
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $pesquisa = $_POST["pesquisa"];
-    $_SESSION['pesquisa'] = $pesquisa;
-    include_once "pesquisa.php";
+if (isset($_POST["pesquisar"])) {
+    $pesquisa = $_POST["pesquisar"];
+    $_SESSION['pesquisar'] = $pesquisa;
+/*     include_once "pesquisa.php"; */
 }
 $conexao->close();
 ?>
@@ -72,11 +72,15 @@ $conexao->close();
 
 
         <div class="s128">
-            <form>
+            <form method="post" action="pesquisa.php">
                 <div class="inner-form">
                     <div class="row">
                         <div class="input-field first" id="first">
-                            <input class="input" id="inputFocus" type="text" placeholder="Keyword" />
+
+                            <input class="input" id="inputFocus" type="text" placeholder="Pesquisar" name="pesquisar"/>
+                            <input  type="submit" name="enviar" id="pesqenviar">
+
+
                             <button class="clear" id="clear">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                     <path
@@ -102,10 +106,9 @@ $conexao->close();
 
                     <p class="summer_s">Confira nossos Livros</p>
                     <h1 id="seventy_p">Compre agora!</h1>
-                    <p class="promo_c">with promo code CN67EW*</p>
-
-                    <button id="shop_now" type="submit" name="shop now" onclick="change()">Shop now <i
-                            class="fa-solid fa-arrow-right"></i></button>
+                    <!--                     <p class="promo_c">Melhores preços aqui!</p> -->
+                    <a href="itens.php"><button id="shop_now" type="submit" name="shop now" onclick="change()">Comprar
+                            <i class="fa-solid fa-arrow-right"></i></button> </a>
                 </div>
             </div>
         </div>
@@ -114,24 +117,24 @@ $conexao->close();
         <div id="grid_f">
             <div id="pro1" class="pro">
                 <div id="msg">
-                    <h2 class="summer_pro">Comunidade</h2>
-                    <span class="shop_n animate__slideOutRight">Shop Now <i class="fa-solid fa-arrow-right"></i></span>
-
+                    <a href="comunidade.php"><button id="shop_now" type="submit" name="shop now"
+                            onclick="change()">Comunidade <i class="fa-solid fa-arrow-right"></i></button> </a>
+                    <!--                     <span class="shop_n animate__slideOutRight">Shop Now <i class="fa-solid fa-arrow-right"></i></span> -->
                 </div>
             </div>
             <div id="pro2" class="pro">
                 <div id="msg">
-                    <h2 class="summer_pro">Itens</h2>
-                    <span class="shop_n">Shop Now <i class="fa-solid fa-arrow-right"></i></span>
+                    <a href="itens.php"><button id="shop_now" type="submit" name="shop now" onclick="change()">Itens <i
+                                class="fa-solid fa-arrow-right"></i></button> </a>
+                    <!--  <span class="shop_n">Shop Now <i class="fa-solid fa-arrow-right"></i></span> -->
 
                 </div>
             </div>
             <div id="pro3" class="pro">
                 <div id="msg">
-                    <h2 class="summer_pro">Sugestão
-
-                    </h2>
-                    <span class="shop_n">Shop Now <i class="fa-solid fa-arrow-right"></i></span>
+                    <a href="sugestao.php"><button id="shop_now" type="submit" name="shop now"
+                            onclick="change()">Sugestão <i class="fa-solid fa-arrow-right"></i></button> </a>
+                    <!--  <span class="shop_n">Shop Now <i class="fa-solid fa-arrow-right"></i></span> -->
 
                 </div>
             </div>
@@ -139,7 +142,7 @@ $conexao->close();
         <!--END OF FIRST PRODUCTS GIRD-->
     </main>
     <!-- Site footer -->
- <!--    <footer class="site-footer">
+    <!--    <footer class="site-footer">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-md-6">
@@ -184,27 +187,27 @@ $conexao->close();
         </div>
     </footer> -->
     <script>
-        var btnDelete = document.getElementById('clear');
-        var inputFocus = document.getElementById('inputFocus');
-        //- btnDelete.on('click', function(e) {
-        //-   e.preventDefault();
-        //-   inputFocus.classList.add('isFocus')
-        //- })
-        //- inputFocus.addEventListener('click', function() {
-        //-   this.classList.add('isFocus')
-        //- })
-        btnDelete.addEventListener('click', function (e) {
-            e.preventDefault();
-            inputFocus.value = ''
-        })
-        document.addEventListener('click', function (e) {
-            if (document.getElementById('first').contains(e.target)) {
-                inputFocus.classList.add('isFocus')
-            } else {
-                // Clicked outside the box
-                inputFocus.classList.remove('isFocus')
-            }
-        });
+    var btnDelete = document.getElementById('clear');
+    var inputFocus = document.getElementById('inputFocus');
+    //- btnDelete.on('click', function(e) {
+    //-   e.preventDefault();
+    //-   inputFocus.classList.add('isFocus')
+    //- })
+    //- inputFocus.addEventListener('click', function() {
+    //-   this.classList.add('isFocus')
+    //- })
+    btnDelete.addEventListener('click', function(e) {
+        e.preventDefault();
+        inputFocus.value = ''
+    })
+    document.addEventListener('click', function(e) {
+        if (document.getElementById('first').contains(e.target)) {
+            inputFocus.classList.add('isFocus')
+        } else {
+            // Clicked outside the box
+            inputFocus.classList.remove('isFocus')
+        }
+    });
     </script>
     <script src="js/extesion/choices.js"></script>
     <script src="js/extesion/custom-materialize.js"></script>
