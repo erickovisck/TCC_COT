@@ -95,7 +95,7 @@ body {
 .textfield a:hover {
     color: #9940D2;
     background: #FFF2A0;
-    text-decoration: underline calc(10%);
+    text-decoration: none;
 }
 
 .baixo{

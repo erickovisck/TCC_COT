@@ -1,30 +1,30 @@
 <?php
-    session_start();
+session_start();
 
-    require_once "conexao/conexao.php";
-
-
+require_once "conexao/conexao.php";
 
 
-       $usuario = $_SESSION["usuario"];
-    
-     
 
-     
-       if(is_null($usuario["email"])){
-           session_unset();
-       session_destroy();
-           header("Location: Login.php");
-           exit();
-       }
-       //echo $nomeUsuario;
-if($_SERVER["REQUEST_METHOD"]==="POST"){
-$pesquisa=$_POST["pesquisa"];
-$_SESSION['pesquisa']=$pesquisa;
-include_once "pesquisa.php";
-    }
-       $conexao->close(); 
-    ?>
+
+$usuario = $_SESSION["usuario"];
+
+
+
+
+if (is_null($usuario["email"])) {
+    session_unset();
+    session_destroy();
+    header("Location: Login.php");
+    exit();
+}
+//echo $nomeUsuario;
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $pesquisa = $_POST["pesquisa"];
+    $_SESSION['pesquisa'] = $pesquisa;
+    include_once "pesquisa.php";
+}
+$conexao->close();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,7 +53,9 @@ include_once "pesquisa.php";
 
 
                 <ul id="menu">
-                    <h2>Usuário: <?= $usuario['nome_usuario']?> </h2>
+                    <h2>Usuário:
+                        <?= $usuario['nome_usuario'] ?>
+                    </h2>
                     <li><a href="perfil.php">Perfil</a></li>
                     <li><a href="ajuda.php">Ajuda</a></li>
                     <li><a href="configuracoes.php">Configurações</a></li>
@@ -84,7 +86,7 @@ include_once "pesquisa.php";
                             </button>
                         </div>
                     </div>
-                    
+
                 </div>
             </form>
         </div>
@@ -93,70 +95,116 @@ include_once "pesquisa.php";
     </div>
 
     <main class="principal">
-                     <!--START OF PAGE BANNER-->
-                     <div id="page_banner">
-                <div id="banner">
-                    <div id="msg_box">
-    
-                        <p class="summer_s">Confira nossos Livros</p>
-                        <h1 id="seventy_p">Compre agora!</h1>
-                       <p class="promo_c">with promo code CN67EW*</p>
+        <!--START OF PAGE BANNER-->
+        <div id="page_banner">
+            <div id="banner">
+                <div id="msg_box">
 
-                        <button id="shop_now" type="submit" name="shop now" onclick="change()">Shop now <i class="fa-solid fa-arrow-right"></i></button>
-                    </div>
+                    <p class="summer_s">Confira nossos Livros</p>
+                    <h1 id="seventy_p">Compre agora!</h1>
+                    <p class="promo_c">with promo code CN67EW*</p>
+
+                    <button id="shop_now" type="submit" name="shop now" onclick="change()">Shop now <i
+                            class="fa-solid fa-arrow-right"></i></button>
                 </div>
-              </div>
-              <!--END OF PAGE BANNER-->
-              <!--START OF FIRST PRODUCTS GIRD-->
-              <div id="grid_f">
-                <div id="pro1" class="pro">
-                    <div id="msg">
-                        <h2 class="summer_pro">Comunidade</h2>
-                        <span class="shop_n animate__slideOutRight">Shop Now <i class="fa-solid fa-arrow-right"></i></span>
-                        
-                    </div>
+            </div>
+        </div>
+        <!--END OF PAGE BANNER-->
+        <!--START OF FIRST PRODUCTS GIRD-->
+        <div id="grid_f">
+            <div id="pro1" class="pro">
+                <div id="msg">
+                    <h2 class="summer_pro">Comunidade</h2>
+                    <span class="shop_n animate__slideOutRight">Shop Now <i class="fa-solid fa-arrow-right"></i></span>
+
                 </div>
-                <div id="pro2" class="pro">
-                    <div id="msg">
-                        <h2 class="summer_pro">Itens</h2>
-                        <span class="shop_n">Shop Now <i class="fa-solid fa-arrow-right"></i></span>
-                        
-                    </div>
+            </div>
+            <div id="pro2" class="pro">
+                <div id="msg">
+                    <h2 class="summer_pro">Itens</h2>
+                    <span class="shop_n">Shop Now <i class="fa-solid fa-arrow-right"></i></span>
+
                 </div>
-                <div id="pro3" class="pro">
-                    <div id="msg">
-                        <h2 class="summer_pro">Sugestão
-                            
-                        </h2>
-                        <span class="shop_n">Shop Now <i class="fa-solid fa-arrow-right"></i></span>
-                        
-                    </div>
+            </div>
+            <div id="pro3" class="pro">
+                <div id="msg">
+                    <h2 class="summer_pro">Sugestão
+
+                    </h2>
+                    <span class="shop_n">Shop Now <i class="fa-solid fa-arrow-right"></i></span>
+
                 </div>
-              </div>
-              <!--END OF FIRST PRODUCTS GIRD-->  
+            </div>
+        </div>
+        <!--END OF FIRST PRODUCTS GIRD-->
     </main>
+    <!-- Site footer -->
+ <!--    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <h6>Sobre</h6>
+                    <p class="text-justify">O desenvolvimento deste site se tornou necessário após uma breve pesquisa
+                        sobre sites com o mesmo propósito, contudo, percebemos que estes sites são quase inexistentes.
+                        Visando isso, decidimos fazer um site com mais reconhecimento para autores nacionais e para que
+                        mais pessoas possam ter gosto pela leitura.</p>
+                </div>
+
+
+
+                <div class="col-xs-6 col-md-3">
+                    <h6>Links Rapidos</h6>
+                    <ul class="footer-links">
+                        <li><a href="http://scanfcode.com/about/">Sobre nos</a></li>
+                        <li><a href="http://scanfcode.com/contact/">Fale conosco</a></li>
+                        <li><a href="http://scanfcode.com/privacy-policy/">Politica de Privacidade</a></li>
+                        <li><a href="http://scanfcode.com/sitemap/">Termos</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                    <p class="copyright-text">Copyright &copy; 2023 All Rights Reserved by
+                        <a href="#">Scanfcode</a>.
+                    </p>
+                </div>
+
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <ul class="social-icons">
+                        <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
+                        <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer> -->
     <script>
-    var btnDelete = document.getElementById('clear');
-    var inputFocus = document.getElementById('inputFocus');
-    //- btnDelete.on('click', function(e) {
-    //-   e.preventDefault();
-    //-   inputFocus.classList.add('isFocus')
-    //- })
-    //- inputFocus.addEventListener('click', function() {
-    //-   this.classList.add('isFocus')
-    //- })
-    btnDelete.addEventListener('click', function(e) {
-        e.preventDefault();
-        inputFocus.value = ''
-    })
-    document.addEventListener('click', function(e) {
-        if (document.getElementById('first').contains(e.target)) {
-            inputFocus.classList.add('isFocus')
-        } else {
-            // Clicked outside the box
-            inputFocus.classList.remove('isFocus')
-        }
-    });
+        var btnDelete = document.getElementById('clear');
+        var inputFocus = document.getElementById('inputFocus');
+        //- btnDelete.on('click', function(e) {
+        //-   e.preventDefault();
+        //-   inputFocus.classList.add('isFocus')
+        //- })
+        //- inputFocus.addEventListener('click', function() {
+        //-   this.classList.add('isFocus')
+        //- })
+        btnDelete.addEventListener('click', function (e) {
+            e.preventDefault();
+            inputFocus.value = ''
+        })
+        document.addEventListener('click', function (e) {
+            if (document.getElementById('first').contains(e.target)) {
+                inputFocus.classList.add('isFocus')
+            } else {
+                // Clicked outside the box
+                inputFocus.classList.remove('isFocus')
+            }
+        });
     </script>
     <script src="js/extesion/choices.js"></script>
     <script src="js/extesion/custom-materialize.js"></script>
