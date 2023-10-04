@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Tempo de geração: 02-Out-2023 às 15:32
--- Versão do servidor: 8.0.27
--- versão do PHP: 8.0.26
+-- Host: 127.0.0.1:3308
+-- Tempo de geração: 04-Out-2023 às 12:52
+-- Versão do servidor: 8.0.21
+-- versão do PHP: 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -169,56 +169,6 @@ CREATE TABLE IF NOT EXISTS `livros` (
 --
 
 INSERT INTO `livros` (`id_livro`, `id_autor`, `id_editora`, `nome_livro`, `nome_autor`, `preco`) VALUES
-(34, 9, 9, 'A Menina que Roubava Livros', 'Markus Zusak', 31.99),
-(33, 8, 8, 'Divergente', 'Veronica Roth', 26.99),
-(32, 7, 7, 'Percy Jackson e o Ladrão de Raios', 'Rick Riordan', 28.99),
-(31, 6, 6, 'A Guerra dos Tronos', 'George R.R. Martin', 34.99),
-(30, 5, 5, 'Dom Quixote', 'Miguel de Cervantes', 32.99),
-(29, 4, 4, '1984', 'George Orwell', 27.99),
-(28, 3, 3, 'Cem Anos de Solidão', 'Gabriel García Márquez', 35.99),
-(27, 2, 2, 'Harry Potter e a Pedra Filosofal', 'J.K. Rowling', 29.99),
-(26, 1, 1, 'O Senhor dos Anéis: A Sociedade do Anel', 'J.R.R. Tolkien', 39.99),
-(35, 10, 10, 'A Culpa é das Estrelas', 'John Green', 29.99),
-(36, 11, 11, 'Os Jogos da Fome', 'Suzanne Collins', 27.99),
-(37, 12, 12, 'A Hospedeira', 'Stephenie Meyer', 33.99),
-(38, 13, 13, 'O Código Da Vinci', 'Dan Brown', 30.99),
-(39, 14, 14, 'O Hobbit', 'J.R.R. Tolkien', 29.99),
-(40, 15, 15, 'A Torre Negra: O Pistoleiro', 'Stephen King', 32.99),
-(41, 16, 16, 'A Sombra do Vento', 'Carlos Ruiz Zafón', 35.99),
-(42, 17, 17, 'O Pequeno Príncipe', 'Antoine de Saint-Exupéry', 24.99),
-(43, 18, 18, 'O Silmarillion', 'J.R.R. Tolkien', 31.99),
-(44, 19, 19, 'A Revolução dos Bichos', 'George Orwell', 26.99),
-(45, 20, 20, 'A Hora da Estrela', 'Clarice Lispector', 29.99),
-(46, 21, 21, 'O Nome do Vento', 'Patrick Rothfuss', 34.99),
-(47, 22, 22, 'A Máquina do Tempo', 'H.G. Wells', 26.99),
-(48, 23, 23, 'O Alquimista', 'Paulo Coelho', 28.99),
-(49, 24, 24, 'A Estrada', 'Cormac McCarthy', 30.99),
-(50, 25, 25, 'O Lobo do Mar', 'Jack London', 27.99),
-(51, 26, 26, 'Os Três Mosqueteiros', 'Alexandre Dumas', 33.99),
-(52, 27, 27, 'Moby Dick', 'Herman Melville', 31.99),
-(53, 28, 28, 'Crime e Castigo', 'Fyodor Dostoevsky', 35.99),
-(54, 29, 29, 'Anna Karenina', 'Leo Tolstoy', 29.99),
-(55, 30, 30, 'O Conde de Monte Cristo', 'Alexandre Dumas', 38.99),
-(56, 31, 31, 'A Iliada', 'Homer', 27.99),
-(57, 6, 6, 'A Guerra dos Tronos', 'George R.R. Martin', 34.99),
-(58, 7, 7, 'Percy Jackson e o Ladrão de Raios', 'Rick Riordan', 28.99),
-(59, 8, 8, 'Divergente', 'Veronica Roth', 26.99),
-(60, 9, 9, 'A Menina que Roubava Livros', 'Markus Zusak', 31.99),
-(61, 10, 10, 'A Culpa é das Estrelas', 'John Green', 29.99),
-(62, 11, 11, 'Os Jogos da Fome', 'Suzanne Collins', 27.99),
-(63, 12, 12, 'A Hospedeira', 'Stephenie Meyer', 33.99),
-(64, 13, 13, 'O Código Da Vinci', 'Dan Brown', 30.99),
-(65, 14, 14, 'O Hobbit', 'J.R.R. Tolkien', 29.99),
-(66, 15, 15, 'A Torre Negra: O Pistoleiro', 'Stephen King', 32.99),
-(67, 16, 16, 'A Sombra do Vento', 'Carlos Ruiz Zafón', 35.99),
-(68, 17, 17, 'O Pequeno Príncipe', 'Antoine de Saint-Exupéry', 24.99),
-(69, 18, 18, 'O Silmarillion', 'J.R.R. Tolkien', 31.99),
-(70, 19, 19, 'A Revolução dos Bichos', 'George Orwell', 26.99),
-(71, 20, 20, 'A Hora da Estrela', 'Clarice Lispector', 29.99),
-(72, 21, 21, 'O Nome do Vento', 'Patrick Rothfuss', 34.99),
-(73, 22, 22, 'A Máquina do Tempo', 'H.G. Wells', 26.99),
-(74, 23, 23, 'O Alquimista', 'Paulo Coelho', 28.99),
-(75, 24, 24, 'A Estrada', 'Cormac McCarthy', 30.99),
 (76, 25, 25, 'O Lobo do Mar', 'Jack London', 27.99),
 (77, 26, 26, 'Os Três Mosqueteiros', 'Alexandre Dumas', 33.99),
 (78, 27, 27, 'Moby Dick', 'Herman Melville', 31.99),
