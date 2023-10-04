@@ -350,6 +350,58 @@ text-align: center;
        
     
 }
+/* css para a tabela na página sobre_nos.php */
+
+section.sobre{
+  height: calc(100% - 200px);
+position: relative;
+}
+.extras{
+  position: relative;
+  bottom: 2px;
+  right:-60%;
+  width: 400px;
+  height: 381px;
+  border-radius: 50%;
+  background-color: #836FFF;
+  margin-top: 6%;
+}
+.imagem_redonda{
+  border-radius: 50%;
+  width: 400px;
+  border-color: #000;
+}
+.texto_sobre{
+margin-top: -30%;
+right: -30px;
+}
+.texto_sobre h1{
+  font-size: 50px;
+  padding: 15px;
+  }
+  .texto_sobre h2{
+      font-size: 40px;
+      padding: 15px;
+      }
+  .texto_sobre p{
+      margin: 8px 0;
+      color: black;
+      font-size: 17px;
+      font-weight: bold;
+      max-width: 800px;
+      padding: 15px;
+      line-height: 30px;
+      }
+
+
+
+
+
+
+
+
+
+
 /*
  * Made by Erik Terwan
  * 24th of November 2015
