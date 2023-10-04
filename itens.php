@@ -48,6 +48,8 @@ $resultado = $conexao->query($sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="assets/css/estilo.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
 
 </head>
 
@@ -65,6 +67,7 @@ $resultado = $conexao->query($sql);
 
                 <ul id="menu">
                     <h2>Usuário: <?= $usuario['nome_usuario']?> </h2>
+                    <li><a href="inicial.php">Inicial</a></li>
                     <li><a href="perfil.php">Perfil</a></li>
                     <li><a href="ajuda.php">Ajuda</a></li>
                     <li><a href="configuracoes.php">Configurações</a></li>
@@ -125,18 +128,31 @@ $resultado = $conexao->query($sql);
             if ($resultado) {
 
             // ...
+          
         while ($dados = mysqli_fetch_array($resultado)) {
-            echo "<tr>"; 
-            echo "<td>" . $dados["nome_livro"] . "<br>";
-            echo"<hr>";
-            echo "<td>". $dados["nome_autor"] . "<br>";
-            echo"<hr>";
-            echo "<td>". "R$".$dados["preco"] . "<br>";
+         
+          
+         
+            ?><div class="container text-center">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+              <div class="col">
+             
+              <?php
+            echo $dados["nome_livro"] . "<br>";
+          
+            echo  $dados["nome_autor"] . "<br>";
+          
+            echo  "R$".$dados["preco"] . "<br>";
             echo "<form method='post' action='carrinho.php'>"; // O formulário envia dados para a página "carrinho.php"
             echo "<input type='hidden' name='id_livro' value='" . $dados["id_livro"] . "'>";
-            echo "<input type='checkbox' name='selecionado[]' value='" . $dados["id_livro"] . "'>";
         
-        }
+        echo "</div>";
+                }
+                ?>
+    
+          </div>
+          </div>
+          <?php
         echo "</table>";
         echo "<input type='submit' id='sub_adicomprar' name='comprar' value='Comprar'>";
         echo "</form>";
