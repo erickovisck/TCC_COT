@@ -384,29 +384,28 @@ position: relative;
 .extras{
   position: relative;
   bottom: 2px;
-  right:-60%;
+  right:-68%;
   width: 400px;
-  height: 381px;
+  height: 383px;
   border-radius: 50%;
-  background-color: #836FFF;
-  margin-top: 6%;
+  margin-top: 4%;
 }
 .imagem_redonda{
   border-radius: 50%;
   width: 400px;
-  border-color: #000;
+  border: 2px solid #5B3D99;
+  margin-top: 8%;
 }
 .texto_sobre{
 margin-top: -30%;
-right: -30px;
 }
 .texto_sobre h1{
   font-size: 50px;
-  padding: 15px;
+  padding-left: 100px;  
   }
   .texto_sobre h2{
       font-size: 40px;
-      padding: 15px;
+      padding-left: 100px; 
       }
   .texto_sobre p{
       margin: 8px 0;
@@ -414,9 +413,30 @@ right: -30px;
       font-size: 17px;
       font-weight: bold;
       max-width: 800px;
-      padding: 15px;
+      padding-left: 100px; 
       line-height: 30px;
+      text-align: justify;
       }
+
+span{
+  color:#836FFF;
+}
+.main_footer{
+  display: flex;
+  justify-content: center;
+  background-color: #191825;;
+  padding-top: 2px;
+  padding-bottom: 28px;
+  color: white;
+}
+.social_media{
+ right: 90%;
+}
+.social_media img{
+  display: block;
+  width: 20px;
+  margin: 10px 0;
+}
 
 
 
