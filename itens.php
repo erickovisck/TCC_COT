@@ -127,7 +127,7 @@ $resultado = $conexao->query($sql);
       foreach ($data->items as $item) {
       
             ?>
-                <div class="livro">
+                <div class="livros">
                     <?php
               echo "<a href='livro.php?id_livro=" . $item->volumeInfo->industryIdentifiers[0]->identifier. "'>";
               if (isset($item->volumeInfo->imageLinks->smallThumbnail)) {
