@@ -1,9 +1,16 @@
 <?php
 session_start();
+//GOOGLE API//
+$api_key = 'AIzaSyBHe1XX1RdFudsmfRaHaAkKlzIz7wDao9k';
+$idlivro=$_GET['id_livro'];
+$url = "https://www.googleapis.com/books/v1/volumes?q=" . urlencode($idlivro) . "&key=" . $api_key;
+$response = file_get_contents($url);
+$data = json_decode($response);
+
 
 require_once "conexao/conexao.php";
 
-$idlivro=$_GET['id_livro'];
+
 
 
 $usuario = $_SESSION["usuario"];
@@ -72,15 +79,12 @@ $conexao->close();
 
 
         <div class="s128">
-            <form method="post" action="pesquisa.php">
+            <form method="post" action="itens.php">
                 <div class="inner-form">
                     <div class="row">
                         <div class="input-field first" id="first">
-
                             <input class="input" id="inputFocus" type="text" placeholder="Pesquisar" name="pesquisar"/>
                             <input  type="submit" name="enviar" id="pesqenviar">
-
-
                             <button class="clear" id="clear">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                     <path
@@ -99,6 +103,13 @@ $conexao->close();
     </div>
 
     <main class="principal">
+<div class="imglivro">
+    <?php
+foreach ($data->items as $item) {
+    echo "<img src='" . $item->volumeInfo->imageLinks->smallThumbnail . "'>";
+}
+?>
+</div>
 
 </main>
 </body>
