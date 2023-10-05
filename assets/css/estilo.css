@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
 
-
+@import url("//fonts.googleapis.com/css?family=Allerta+Stencil");
 * {
-    font-family: 'Oswald', sans-serif;
-    box-sizing: border-box;
+  font-family: 'Times New Roman', Times, serif;
+        box-sizing: border-box;
     
 }
 
@@ -280,7 +280,7 @@ flex-direction: column;
   align-items: flex-start; /* Alinhe os itens no topo */
 }
 
-.livro {
+.livros {
   display: flex;
   flex-direction: column;
   padding: 25px;
@@ -290,24 +290,52 @@ flex-direction: column;
   font-size: 0.8rem;
 }
 
-.livro h1 {
+.livros h1 {
   color: #000;
   font-size: 0.8rem;
   margin-top: auto; /* Empurre o título para o meio verticalmente */
   text-align: center; /* Centralize o texto horizontalmente */
 }
 
-.livro h2 {
+.livros h2 {
   font-size: 0.8rem;
   margin-top: 10px; /* Adicione espaço entre o título e o subtítulo */
   text-align: center; /* Centralize o texto horizontalmente */
 }
 
-.livro img {
+.livros img {
   width: 100%;
   height: auto;
+  object-fit: cover;
+}
+.livro {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin: 20px;
 }
 
+.imglivro {
+  height: 350px;
+  width: 200px;
+  margin-right: 20px; /* Adiciona um espaço entre a imagem e os dados do livro */
+}
+
+.imglivro img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover; /* Para redimensionar a imagem mantendo a proporção */
+}
+
+.dadoslivro {
+  margin-left: 40px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+.dadoslivro h1{
+  margin: 0;
+}
 
 #sub_adicomprar{
     padding: 10px;
