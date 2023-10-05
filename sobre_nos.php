@@ -98,15 +98,13 @@ include_once "pesquisa.php";
     <div class="sobre_center">
     <div class="texto_sobre">
     <h1>QUEM SOMOS? </h1>
-    <p> Nossa empresa de tecnologia, denominada Creators of Thought, foi fundada com o objetivo de ajudar a solucionar um problema enfrentado por milhares de autores nacionais e por pessoas que não sabem por onde começar a ter o gosto pela leitura.</p>
-    <p>Nosso slogan, ”Levando você ao futuro”, reflete nosso compromisso em fornecer reconhecimento, acessibilidade e facilidade  de alta qualidade sobre o problema que estamos solucionando.</p>
-    <h2>O QUE É A "COT"?</h2>
-<p>Nosso site é dedicado a tudo que envolve livros em geral. Este site é  projetado para fornecer informações sobre autores, livros para comprar e interação entre os usuários.</p>
-<p>Nossa plataforma é fácil de usar e foi criada para atender tanto leitores quanto profissionais da área de leitura. Aqui você encontra autores, livros, chat de interação e um quiz, no qual lhe ajuda a descobrir qual gênero literário você pode mais se identificar. </p>
+    <p> Nossa empresa de tecnologia, denominada Creators of Thought, foi fundada com o objetivo de ajudar a solucionar um problema enfrentado por milhares de autores nacionais e por pessoas que não sabem por onde começar a ter o gosto pela leitura.
+        Nosso slogan, ”Levando você ao futuro”, reflete nosso compromisso em fornecer reconhecimento, acessibilidade e facilidade  de alta qualidade sobre o problema que estamos solucionando.</p>
+    <h2>O QUE É <span>COT</span>?</h2>
+<p>Nosso site é dedicado a tudo que envolve livros em geral. Este site é  projetado para fornecer informações sobre autores, livros para comprar e interação entre os usuários. Nossa plataforma é fácil de usar e foi criada para atender tanto leitores quanto profissionais da área de leitura. Aqui você encontra autores, livros, chat de interação e um quiz, no qual lhe ajuda a descobrir qual gênero literário você pode mais se identificar. </p>
+<p>Um site voltado para a leitura pode ser extremamente pertinente para várias  áreas, incluindo português, história, filosofia, sociologia, entre outras. Estudantes e profissionais de literatura podem se beneficiar muito desse site, pois ele fornece conhecimento do mundo da literatura nacional e internacional. Em resumo, um site voltado para essa área, pode ser altamente relevante e útil para várias áreas, fornecendo informações precisas e detalhadas sobre o mundo literário em geral. 
+</p>
 </div>
-</div>
-<div class="extra">
-            <img src="imagens/logo_projeto.png" class="imagem_redonda">
 </div>
     </section>
 
@@ -114,6 +112,14 @@ include_once "pesquisa.php";
 
 </main>
 
+
+
+
+<footer class="main_footer"> 
+    <div class="social_media">
+    <a href=""><img src="imagens/instagram_icon.png"></a> 
+</div>
+</footer>
 
 
 
