@@ -1,57 +1,18 @@
-
 <?php
 session_start();
 require_once "conexao/conexao.php";
+$pesquisa = $_POST["pesquisar"];
+
 //GOOGLE API//
 $api_key = 'AIzaSyBHe1XX1RdFudsmfRaHaAkKlzIz7wDao9k';
-$query = 'harry potter';
+$query ="intitle:".$pesquisa;
 $url = "https://www.googleapis.com/books/v1/volumes?q=" . urlencode($query) . "&key=" . $api_key;
 $response = file_get_contents($url);
 $data = json_decode($response);
-/*  foreach ($data->items as $item) {
-$titulo=$item->volumeInfo->title;
-$imagem=$item->volumeInfo->imageLinks->thumbnail;
-$preco=$item->volumeInfo->saleInfo->listPrice->amount;
-$descricao=$item->volumeInfo->description;
-$autor=$item->volumeInfo->authors;
-$editora=$item->volumeInfo->publisher;
-$nota=$item->volumeInfo->averageRating;
-$isbn=$item->
-    if (isset($item->volumeInfo->imageLinks->thumbnail)) {
-        echo "<img src='" . $item->volumeInfo->imageLinks->thumbnail . "'>";
-    } else {
-        // Lide com o caso em que a imagem não está disponível
-        echo "Imagem não disponível";
-    }
-                echo "<h1>". $item->volumeInfo->title. "</h1>";     
-    echo "</a>"; 
-    echo "<h2>";    
-    echo  implode("",$item->volumeInfo->authors) . "<br>";         
-    if (isset($item->volumeInfo->saleInfo->listPrice->amount)) {
-        echo "Preço: R$ " . $item->volumeInfo->saleInfo->listPrice->amount;
-    } else {
-        // Lide com o caso em que o preço não está disponível
-        echo "Preço não disponível";
-    }
-                echo "</h2>";
-} 
- 
- */ 
-
-
-
-
-
-
-
-
-
-
-
-
 //------//
+//API PREÇO//
 
-
+//----------//
 $usuario = $_SESSION["usuario"];
 echo $usuario["nome_usuario"];
 if (is_null($usuario["email"])) {
@@ -133,11 +94,12 @@ $resultado = $conexao->query($sql);
 
 
         <div class="s128">
-            <form>
+            <form method="post" action="itens.php">
                 <div class="inner-form">
                     <div class="row">
                         <div class="input-field first" id="first">
-                            <input class="input" id="inputFocus" type="text" placeholder="Keyword" />
+                            <input class="input" id="inputFocus" type="text" placeholder="Pesquisar" name="pesquisar" />
+                            <input type="submit" name="enviar" id="pesqenviar">
                             <button class="clear" id="clear">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                     <path
@@ -157,58 +119,46 @@ $resultado = $conexao->query($sql);
     <main class="principal">
         <table>
 
-            <?php
-            
-            $sql = "SELECT * FROM livros";
-            $resultado = $conexao->query($sql);
-            
-            if (isset($_POST["pesquisa"])) {
-                $pesquisa=$_POST["pesquisa"];
-                
-                $_SESSION['pesquisa']=$pesquisa;
-                include_once "pesquisa.php";
-                
-            }else{
-            if ($resultado) {
 
-            // ...
-          
-// Exibir os resultados (você pode personalizar isso de acordo com suas necessidades)
-
-          ?>
             <div class="estante">
                 <?php
+          if (isset($data->items) && count($data->items) > 0) {
+       
       foreach ($data->items as $item) {
+      
             ?>
                 <div class="livro">
                     <?php
-
-
-
-           echo "<a href='livro.php?id_livro=" . $item->volumeInfo->title . "'>"; 
-
-            if (isset($item->volumeInfo->imageLinks->smallThumbnail)) {
-                echo "<img src='" . $item->volumeInfo->imageLinks->thumbnail . "'>";
-            } else {
-                // Lide com o caso em que a imagem não está disponível
-                echo "Imagem não disponível";
-            }
-                        echo "<h1>". $item->volumeInfo->title. "</h1>";  
-/*                         echo "".$item->volumeInfo->averageRating;  
- */            echo "</a>"; 
-            echo "<h2>";    
-            echo  implode("",$item->volumeInfo->authors) . "<br>";         
-            if (isset($item->volumeInfo->saleInfo->listPrice->amount)) {
-                echo "Preço: R$ " . $item->volumeInfo->saleInfo->listPrice->amount;
-            } else {
-                // Lide com o caso em que o preço não está disponível
-                echo "Preço não disponível";
-            }
-                        echo "</h2>";
-            echo "<form method='post' action='carrinho.php'>"; // O formulário envia dados para a página "carrinho.php"
-          
-            echo "</div>";
+              echo "<a href='livro.php?id_livro=" . $item->volumeInfo->industryIdentifiers[0]->identifier. "'>";
+              if (isset($item->volumeInfo->imageLinks->smallThumbnail)) {
+                  echo "<img src='" . $item->volumeInfo->imageLinks->smallThumbnail . "'>";
+              } else {
+                  // Lide com o caso em que a imagem não está disponível
+                  echo "Imagem não disponível";
+              }
+                          echo "<h1>". $item->volumeInfo->title. "</h1>";  
+           echo "</a>"; 
+              echo "<h2>";    
+              if (isset($item->volumeInfo->authors)) {
+              echo  implode("",$item->volumeInfo->authors) . "<br>";  
+              }else{
+                  echo "Autor não disponivel<br>";
+              }
+              if (isset($item->volumeInfo->saleInfo->listPrice->amount)) {
+                  echo "Preço: R$ " . $item->volumeInfo->saleInfo->listPrice->amount;
+              } else {
+                  // Lide com o caso em que o preço não está disponível
+                  echo "Preço não disponível";
+              }
+                          echo "</h2>";
+              echo "<form method='post' action='carrinho.php'>"; // O formulário envia dados para a página "carrinho.php"
+            
+              echo "</div>";
+                  } 
+                }else{
+                    echo "<h1> Livro nao encontrado</h1>";
                 }
+                
                 ?>
 
                 </div>
@@ -220,22 +170,8 @@ $resultado = $conexao->query($sql);
         // ...
 
 
-                // Feche o resultado após o uso
-                mysqli_free_result($resultado);
-            } else {
-                // Lida com erros de consulta, se houverem
-                echo "Erro na consulta: " . mysqli_error($sql);
+               
             
-            
-            
-            
-            
-            
-            
-            
-            
-            }
-            }
             ?>
     </main>
     <?php
