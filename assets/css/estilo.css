@@ -89,7 +89,6 @@ button img{
 }
 .principal {
     grid-area: principal;
-
     background-color: #ffffff;
      
 
@@ -272,15 +271,44 @@ flex-direction: column;
     color: #ffffff;
 
 }
-
-
 /* css para a tabela na página itens.php */
-table th,td{
-    border: 1px solid #5B3D99;
+
+.estante {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start; /* Alinhe os itens no topo */
 }
-th,td{
-    padding: 5px 10px;
+
+.livro {
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  position: relative;
+  width: 15%;
+  height: 1%;
+  font-size: 0.8rem;
 }
+
+.livro h1 {
+  color: #000;
+  font-size: 0.8rem;
+  margin-top: auto; /* Empurre o título para o meio verticalmente */
+  text-align: center; /* Centralize o texto horizontalmente */
+}
+
+.livro h2 {
+  font-size: 0.8rem;
+  margin-top: 10px; /* Adicione espaço entre o título e o subtítulo */
+  text-align: center; /* Centralize o texto horizontalmente */
+}
+
+.livro img {
+  width: 100%;
+  height: auto;
+}
+
+
 #sub_adicomprar{
     padding: 10px;
     border-radius:9px;
@@ -290,10 +318,7 @@ th,td{
     color: white;
     width: 100px;
 }
-th{
-    background-color: #5B3D99;
-    color:white;
-}
+
 
 /* css para pagina carrinho */
 .voltarpagina{
