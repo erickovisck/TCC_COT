@@ -44,6 +44,7 @@
 
                 <ul id="menu">
                     <h2>Usuário: <?= $usuario['nome_usuario']?> </h2>
+                    <li><a href="inicial">Inicial</a></li>
                     <li><a href="perfil.php">Perfil</a></li>
                     <li><a href="ajuda.php">Ajuda</a></li>
                     <li><a href="configuracoes.php">Configurações</a></li>
