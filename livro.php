@@ -2,8 +2,9 @@
 session_start();
 //GOOGLE API//
 $api_key = 'AIzaSyBHe1XX1RdFudsmfRaHaAkKlzIz7wDao9k';
-$idlivro=$_GET['id_livro'];
-$url = "https://www.googleapis.com/books/v1/volumes?q=" . urlencode($idlivro) . "&key=" . $api_key;
+$idlivro=$_GET['id_livro']; 
+
+$url = "https://www.googleapis.com/books/v1/volumes?q=isbn:" . urlencode($idlivro) ."&key=" . $api_key;
 $response = file_get_contents($url);
 $data = json_decode($response);
 
@@ -63,6 +64,7 @@ $conexao->close();
                     <h2>Usuário:
                         <?= $usuario['nome_usuario'] ?>
                     </h2>
+                    <li><a href="inicial.php">Inicial</a></li>
                     <li><a href="perfil.php">Perfil</a></li>
                     <li><a href="ajuda.php">Ajuda</a></li>
                     <li><a href="configuracoes.php">Configurações</a></li>
@@ -83,8 +85,8 @@ $conexao->close();
                 <div class="inner-form">
                     <div class="row">
                         <div class="input-field first" id="first">
-                            <input class="input" id="inputFocus" type="text" placeholder="Pesquisar" name="pesquisar"/>
-                            <input  type="submit" name="enviar" id="pesqenviar">
+                            <input class="input" id="inputFocus" type="text" placeholder="Pesquisar" name="pesquisar" />
+                            <input type="submit" name="enviar" id="pesqenviar">
                             <button class="clear" id="clear">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                     <path
@@ -103,14 +105,51 @@ $conexao->close();
     </div>
 
     <main class="principal">
-<div class="imglivro">
-    <?php
-foreach ($data->items as $item) {
-    echo "<img src='" . $item->volumeInfo->imageLinks->smallThumbnail . "'>";
+        <div class="livro">
+            <?php
+if ($response) {
+    $data = json_decode($response);
+    
+    if (isset($data->items[0])) {
+        $item = $data->items[0];
+
+        ?>
+        <div class="sla">
+            <div class="imglivro">
+                <?php
+                if(isset($item->volumeInfo->imageLinks->thumbnail)){
+                    echo "<img src='". $thumbnail = $item->volumeInfo->imageLinks->thumbnail."'>";
+                }else{
+                    echo "Imagem não disponível";
+                }
+                if(isset($item->volumeInfo->averageRating)){
+                    echo "Nota média ".$item->volumeInfo->averageRating."★<br>";
+                }else{
+                    echo "Nota não disponivel";
+                }
+                if(isset($item->volumeInfo->saleInfo->listPrice->amount)){
+                    echo "Preço".$item->volumeInfo->saleInfo->listPrice->amount;
+                }else{
+                    echo "Preço  não disponivel";
+                }
+
+/*  echo "Preço R$".$item->volumeInfo->saleInfo->saleability;
+ */?>
+</div>
+            </div>
+<div class="dadoslivro">
+            <?php
+       echo "<h1>" . $title = $item->volumeInfo->title."</h1>";
+        echo "<h2>".$authors = implode(", ", $item->volumeInfo->authors)."</h2>";
+       echo $item->volumeInfo->description;
+    }
 }
+
+
 ?>
 </div>
-
-</main>
+        </div>
+    </main>
 </body>
+
 </html>
