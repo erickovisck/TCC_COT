@@ -1,7 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
 
 body {
-    background-image: linear-gradient(to right, #9940D2, #a24edd);   
+/*     background-image: linear-gradient(to right, #9940D2, #a24edd);   
+    background-color: rgb(25, 24, 37);*/
+    background-image: url("https://img.freepik.com/psd-gratuitas/sala-de-leitura-na-antiga-biblioteca-ou-casa-generative-ai_587448-1963.jpg?w=1380&t=st=1696513340~exp=1696513940~hmac=5d55f118f616eea42dfdb14cba8ecea559ee64874f0511dc4a113259cb54675b");
+background-repeat: no-repeat;
+background-size: 100%;
     margin: 0px;
     font-family: 'Oswald', sans-serif;
     display: grid;
