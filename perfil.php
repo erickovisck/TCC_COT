@@ -64,7 +64,7 @@ if($conexao->query($sql)){
 
                 <ul id="menu">
                     <h2>Usuário: <?= $usuario['nome_usuario']?> </h2>
-                    <li><a href="inicial.php">Inicial</a></li>
+                    <li><a href="inicial.php">Inicial   </a></li>
                     <li><a href="perfil.php">Perfil</a></li>
                     <li><a href="ajuda.php">Ajuda</a></li>
                     <li><a href="configuracoes.php">Configurações</a></li>
@@ -81,11 +81,12 @@ if($conexao->query($sql)){
 
 
         <div class="s128">
-            <form>
+            <form method="post" action="itens.php">
                 <div class="inner-form">
                     <div class="row">
                         <div class="input-field first" id="first">
-                            <input class="input" id="inputFocus" type="text" placeholder="Keyword" />
+                            <input class="input" id="inputFocus" type="text" placeholder="Pesquisar" name="pesquisar"/>
+                            <input  type="submit" name="enviar" id="pesqenviar">
                             <button class="clear" id="clear">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                     <path
@@ -95,7 +96,7 @@ if($conexao->query($sql)){
                             </button>
                         </div>
                     </div>
-                    
+
                 </div>
             </form>
         </div>
