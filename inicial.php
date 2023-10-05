@@ -72,7 +72,7 @@ $conexao->close();
 
 
         <div class="s128">
-            <form method="post" action="pesquisa.php">
+            <form method="post" action="itens.php">
                 <div class="inner-form">
                     <div class="row">
                         <div class="input-field first" id="first">
