@@ -1,7 +1,56 @@
+
 <?php
 session_start();
-
 require_once "conexao/conexao.php";
+//GOOGLE API//
+$api_key = 'AIzaSyBHe1XX1RdFudsmfRaHaAkKlzIz7wDao9k';
+$query = 'harry potter';
+$url = "https://www.googleapis.com/books/v1/volumes?q=" . urlencode($query) . "&key=" . $api_key;
+$response = file_get_contents($url);
+$data = json_decode($response);
+/*  foreach ($data->items as $item) {
+$titulo=$item->volumeInfo->title;
+$imagem=$item->volumeInfo->imageLinks->thumbnail;
+$preco=$item->volumeInfo->saleInfo->listPrice->amount;
+$descricao=$item->volumeInfo->description;
+$autor=$item->volumeInfo->authors;
+$editora=$item->volumeInfo->publisher;
+$nota=$item->volumeInfo->averageRating;
+$isbn=$item->
+    if (isset($item->volumeInfo->imageLinks->thumbnail)) {
+        echo "<img src='" . $item->volumeInfo->imageLinks->thumbnail . "'>";
+    } else {
+        // Lide com o caso em que a imagem não está disponível
+        echo "Imagem não disponível";
+    }
+                echo "<h1>". $item->volumeInfo->title. "</h1>";     
+    echo "</a>"; 
+    echo "<h2>";    
+    echo  implode("",$item->volumeInfo->authors) . "<br>";         
+    if (isset($item->volumeInfo->saleInfo->listPrice->amount)) {
+        echo "Preço: R$ " . $item->volumeInfo->saleInfo->listPrice->amount;
+    } else {
+        // Lide com o caso em que o preço não está disponível
+        echo "Preço não disponível";
+    }
+                echo "</h2>";
+} 
+ 
+ */ 
+
+
+
+
+
+
+
+
+
+
+
+
+//------//
+
 
 $usuario = $_SESSION["usuario"];
 echo $usuario["nome_usuario"];
@@ -48,13 +97,13 @@ $resultado = $conexao->query($sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="assets/css/estilo.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
 
 
 </head>
 
 <body>
-<div class="cabecalho">
+    <div class="cabecalho">
         <nav role="navigation">
             <div id="menuToggle">
 
@@ -98,7 +147,7 @@ $resultado = $conexao->query($sql);
                             </button>
                         </div>
                     </div>
-                    
+
                 </div>
             </form>
         </div>
@@ -107,11 +156,6 @@ $resultado = $conexao->query($sql);
     </div>
     <main class="principal">
         <table>
-            <tr>
-                <th>Título</th>
-                <th>Autor</th>
-                <th>Preço</th>
-            </tr>
 
             <?php
             
@@ -129,30 +173,47 @@ $resultado = $conexao->query($sql);
 
             // ...
           
-        while ($dados = mysqli_fetch_array($resultado)) {
-         
-          
-         
-            ?><div class="container text-center">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
-              <div class="col">
-             
-              <?php
-            echo $dados["nome_livro"] . "<br>";
-          
-            echo  $dados["nome_autor"] . "<br>";
-          
-            echo  "R$".$dados["preco"] . "<br>";
+// Exibir os resultados (você pode personalizar isso de acordo com suas necessidades)
+
+          ?>
+            <div class="estante">
+                <?php
+      foreach ($data->items as $item) {
+            ?>
+                <div class="livro">
+                    <?php
+
+
+
+           echo "<a href='livro.php?id_livro=" . $item->volumeInfo->title . "'>"; 
+
+            if (isset($item->volumeInfo->imageLinks->smallThumbnail)) {
+                echo "<img src='" . $item->volumeInfo->imageLinks->thumbnail . "'>";
+            } else {
+                // Lide com o caso em que a imagem não está disponível
+                echo "Imagem não disponível";
+            }
+                        echo "<h1>". $item->volumeInfo->title. "</h1>";  
+/*                         echo "".$item->volumeInfo->averageRating;  
+ */            echo "</a>"; 
+            echo "<h2>";    
+            echo  implode("",$item->volumeInfo->authors) . "<br>";         
+            if (isset($item->volumeInfo->saleInfo->listPrice->amount)) {
+                echo "Preço: R$ " . $item->volumeInfo->saleInfo->listPrice->amount;
+            } else {
+                // Lide com o caso em que o preço não está disponível
+                echo "Preço não disponível";
+            }
+                        echo "</h2>";
             echo "<form method='post' action='carrinho.php'>"; // O formulário envia dados para a página "carrinho.php"
-            echo "<input type='hidden' name='id_livro' value='" . $dados["id_livro"] . "'>";
-        
-        echo "</div>";
+          
+            echo "</div>";
                 }
                 ?>
-    
-          </div>
-          </div>
-          <?php
+
+                </div>
+            </div>
+            <?php
         echo "</table>";
         echo "<input type='submit' id='sub_adicomprar' name='comprar' value='Comprar'>";
         echo "</form>";
