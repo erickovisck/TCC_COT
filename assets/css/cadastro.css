@@ -6,8 +6,9 @@
 }
 
 body {
-    background-image: linear-gradient(to right, #9D4DD6, #9940D2, #A696E8);
-}
+/*     background-image: linear-gradient(to right, #9D4DD6, #9940D2, rgb(25, 24, 37));
+/*  */    background-color: rgb(25, 24, 37);
+ }
 
 .cad_box {
     position: absolute;
