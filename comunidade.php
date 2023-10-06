@@ -83,6 +83,7 @@
 
     </div>
     <main class="principal">
+        
         <form action="" method="post">
             <input type="text" name="mensagem">
             <input type="submit" name="enviar">
@@ -111,7 +112,6 @@
         }
     }
  }
-include "atualizar_likes.php";
 ?>
         <main>
             <section class="news-feed">
@@ -121,7 +121,9 @@ include "atualizar_likes.php";
                  
 if ($resultado) {
 
+
     while ($dados = mysqli_fetch_array($resultado)) {
+        include_once "atualizar_likes.php";
         echo "<div class='message' data-id='". $dados['id_mensagem'] . "'>";
         ?>
                 <article class="post">
@@ -131,12 +133,10 @@ if ($resultado) {
                             <?php echo $dados["nome_usuario"]; ?> 
                             <span> <?php   echo "postado agora";?> </span>
                             <!--    echo $dados["data_mensagem"]. "<br>";  -->
-
-
                         </div>
                     </div>
                     <div class="post_content">
-                    <?php echo  $dados["mensagens"] . "<br>";?> </div>
+                    <?php echo  $dados["mensagens"] . "<br>"?> </div>
                     <div class="post_engage">
                         <?php  echo "<div class='likes'>" . $dados["cont_like"] ."</div> " . " leitores curtiram";  ?>
                     </div>
@@ -144,7 +144,15 @@ if ($resultado) {
         echo "<button class='like_button'>Curtir</button>";
         echo "</div>";
     }
- 
+
+
+?>
+<?php
+
+    
+    // Feche a conexão com o banco de dados
+  
+    
   ?>
                 </article>
             </section>
