@@ -4,11 +4,13 @@ require_once "conexao/conexao.php";
 $pesquisa = $_POST["pesquisar"];
 
 //GOOGLE API//
+
 $api_key = 'AIzaSyBHe1XX1RdFudsmfRaHaAkKlzIz7wDao9k';
-$query ="intitle:".$pesquisa;
-$url = "https://www.googleapis.com/books/v1/volumes?q=" . urlencode($query) . "&key=" . $api_key;
+$query =$pesquisa;
+$url = "https://www.googleapis.com/books/v1/volumes?q=intitle:" . urlencode($query) . "&key=" . $api_key;
 $response = file_get_contents($url);
 $data = json_decode($response);
+
 //------//
 //API PREÇO//
 
@@ -122,15 +124,80 @@ $resultado = $conexao->query($sql);
 
             <div class="estante">
                 <?php
-          if (isset($data->items) && count($data->items) > 0) {
+              /*   if($geral=1){
+                    $query ="relevance:";
+                    $url = "https://www.googleapis.com/books/v1/volumes?q=" . urlencode($query) . "&key=" . $api_key;
+                    $response = file_get_contents($url);
+                    $data = json_decode($response);
+                }else{ */
+                    if ($pesquisa == null) {
+                 
+                    
+                        function pesquisarLivrosPorLetra($letra) {
+                            global $chave_api;
+                            $url = "https://www.googleapis.com/books/v1/volumes?q=intitle:$letra&key=$chave_api";
+                            $response = file_get_contents($url);
+                            $data = json_decode($response);
+                            if (isset($data->items) && count($data->items) > 0) {
+                                foreach ($data->items as $item) {
+      
+                                    ?>
+                    <div class="livros">
+                        <?php
+                                      echo "<a href='livro.php?id_livro=" . $item->volumeInfo->industryIdentifiers[0]->identifier. "'>";
+                                      if (isset($item->volumeInfo->imageLinks->smallThumbnail)) {
+                                          echo "<img src='" . $item->volumeInfo->imageLinks->smallThumbnail . "'>";
+                                      } else {
+                                          // Lide com o caso em que a imagem não está disponível
+                                          echo "Imagem não disponível";
+                                      }
+                                                  echo "<h1>". $item->volumeInfo->title. "</h1>";  
+                                   echo "</a>"; 
+                                      echo "<h2>";    
+                                      if (isset($item->volumeInfo->authors)) {
+                                      echo  implode("",$item->volumeInfo->authors) . "<br>";  
+                                      }else{
+                                          echo "Autor não disponivel<br>";
+                                      }
+                                      if (isset($item->volumeInfo->saleInfo->listPrice->amount)) {
+                                          echo "Preço: R$ " . $item->volumeInfo->saleInfo->listPrice->amount;
+                                      } else {
+                                          // Lide com o caso em que o preço não está disponível
+                                          echo "Preço não disponível";
+                                      }
+                                                  echo "</h2>";
+                                      echo "<form method='post' action='carrinho.php'>"; // O formulário envia dados para a página "carrinho.php"
+                                    
+                                      echo "</div>";
+                                          
+                                      
+                            }
+                            } else {
+                                echo "<h1>Livro não encontrado</h1>";
+                            }
+                        }
+                    
+                        $alfabeto = range('a', 'z');
+                    
+                        foreach ($alfabeto as $letra) {
+                            pesquisarLivrosPorLetra($letra);
+                        }
+                    } else {
+                       
+                        
+                       
+                 
+
+                    
+       
        
       foreach ($data->items as $item) {
       
             ?>
-                <div class="livros">
-                    <?php
-              echo "<a href='livro.php?id_livro=" . $item->volumeInfo->industryIdentifiers[0]->identifier. "'>";
-              if (isset($item->volumeInfo->imageLinks->smallThumbnail)) {
+                    <div class="livros">
+                        <?php
+                                      echo "<a href='livro.php?id_livro=" . $item->volumeInfo->industryIdentifiers[0]->identifier. "'>";
+                                      if (isset($item->volumeInfo->imageLinks->smallThumbnail)) {
                   echo "<img src='" . $item->volumeInfo->imageLinks->smallThumbnail . "'>";
               } else {
                   // Lide com o caso em que a imagem não está disponível
@@ -155,15 +222,13 @@ $resultado = $conexao->query($sql);
             
               echo "</div>";
                   } 
-                }else{
-                    echo "<h1> Livro nao encontrado</h1>";
-                }
-                
+              
+            }
                 ?>
 
+                    </div>
                 </div>
-            </div>
-            <?php
+                <?php
         echo "</table>";
         echo "<input type='submit' id='sub_adicomprar' name='comprar' value='Comprar'>";
         echo "</form>";
