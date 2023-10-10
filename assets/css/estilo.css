@@ -94,7 +94,15 @@ button img{
 display: flex;
 flex-direction: column;
 }
+/* .principallivro{
 
+  background-color: #ffffff;
+  grid-column-gap: 12px;
+  grid-template-areas: " nav feed services";
+display: flex;
+flex-direction: column;
+}
+ */
 .rodape {
     grid-area: rodape;
     background: #2f2841;
@@ -278,10 +286,12 @@ flex-direction: column;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: flex-start; /* Alinhe os itens no topo */
+  overflow-y:scroll;
+  height: calc(100%-400px);
 }
 
 .livros {
-  height: 25%;
+  height: 45%;
   display: flex;
   flex-direction: column;
   padding: 25px;
