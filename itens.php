@@ -7,9 +7,8 @@ $pesquisa = $_POST["pesquisar"];
 
 $api_key = 'AIzaSyBHe1XX1RdFudsmfRaHaAkKlzIz7wDao9k';
 $query =$pesquisa;
-$url = "https://www.googleapis.com/books/v1/volumes?q=intitle:" . urlencode($query) . "&startIndex=10&maxResults=20&key=" . $api_key;
-$response = file_get_contents($url);
-$data = json_decode($response);
+$max=11;
+
 
 //------//
 //API PREÇO//
@@ -134,6 +133,7 @@ $resultado = $conexao->query($sql);
                     if ($pesquisa == null) {
                  $categoria=["romance","fiction","action","terror","horror"];
                     foreach($categoria as $tipo){
+                     
                         function pesquisarLivrosPorLetra($categoria) {
                             global $chave_api;
                             $url = "https://www.googleapis.com/books/v1/volumes?q=subject:$tipo&key=$chave_api";
@@ -188,44 +188,57 @@ $resultado = $conexao->query($sql);
 
                     
        
+                        do {
+                            $url = "https://www.googleapis.com/books/v1/volumes?q=intitle:" . urlencode($query) . "&startIndex=0&maxResults=$max&key=" . $api_key;
+                            $response = file_get_contents($url);
+                            $data = json_decode($response);
+                        
+                         
+                            foreach ($data->items as $item) {
        
-      foreach ($data->items as $item) {
+                                ?>
+                                        <div class="livros">
+                                            <?php
+                                                          echo "<a href='livro.php?id_livro=" . $item->volumeInfo->industryIdentifiers[0]->identifier. "'>";
+                    /*                                       echo implode("",$item->volumeInfo->categories);
+                     */                                      if (isset($item->volumeInfo->imageLinks)) {
+                                      echo "<img src='" . $item->volumeInfo->imageLinks->thumbnail . "'>";
+                                  } else {
+                                      // Lide com o caso em que a imagem não está disponível
+                                      echo "Imagem não disponível";
+                                  }
+                                              echo "<h1>". $item->volumeInfo->title. "</h1>";  
+                               echo "</a>"; 
+                                  echo "<h2>";    
+                                  if (isset($item->volumeInfo->authors)) {
+                                  echo  implode("",$item->volumeInfo->authors) . "<br>";  
+                                  }else{
+                                      echo "Autor não disponivel<br>";
+                                  }
+                                  if (isset($item->volumeInfo->saleInfo->listPrice->amount)) {
+                                      echo "Preço: R$ " . $item->volumeInfo->saleInfo->listPrice->amount;
+                                  } else {
+                                      // Lide com o caso em que o preço não está disponível
+                                      echo "Preço não disponível";
+                                  }
+                                              echo "</h2>";
+                                  echo "<form method='post' action='carrinho.php'>"; // O formulário envia dados para a página "carrinho.php"
+                                  $max++;
+                                  echo "</div>";
+                                      } 
+                                   if (isset($data->totalItems) && $max >= $data->totalItems) {
+                                break;
+                            }
+                            $max++;
+/*                             $max += count($data->items);
+ */
+                        } while (isset($data->items) && count($data->items) > 0);
+                                    }
+                                
+                                    
+                           
      
-            ?>
-                    <div class="livros">
-                        <?php
-                                      echo "<a href='livro.php?id_livro=" . $item->volumeInfo->industryIdentifiers[0]->identifier. "'>";
-/*                                       echo implode("",$item->volumeInfo->categories);
- */                                      if (isset($item->volumeInfo->imageLinks)) {
-                  echo "<img src='" . $item->volumeInfo->imageLinks->thumbnail . "'>";
-              } else {
-                  // Lide com o caso em que a imagem não está disponível
-                  echo "Imagem não disponível";
-              }
-                          echo "<h1>". $item->volumeInfo->title. "</h1>";  
-           echo "</a>"; 
-              echo "<h2>";    
-              if (isset($item->volumeInfo->authors)) {
-              echo  implode("",$item->volumeInfo->authors) . "<br>";  
-              }else{
-                  echo "Autor não disponivel<br>";
-              }
-              if (isset($item->volumeInfo->saleInfo->listPrice->amount)) {
-                  echo "Preço: R$ " . $item->volumeInfo->saleInfo->listPrice->amount;
-              } else {
-                  // Lide com o caso em que o preço não está disponível
-                  echo "Preço não disponível";
-              }
-                          echo "</h2>";
-              echo "<form method='post' action='carrinho.php'>"; // O formulário envia dados para a página "carrinho.php"
-            
-              echo "</div>";
-                  } 
-              
-                }
-            
-                ?>
-
+?>
                     </div>
                 </div>
                 <?php
