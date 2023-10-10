@@ -7,7 +7,7 @@ $pesquisa = $_POST["pesquisar"];
 
 $api_key = 'AIzaSyBHe1XX1RdFudsmfRaHaAkKlzIz7wDao9k';
 $query =$pesquisa;
-$url = "https://www.googleapis.com/books/v1/volumes?q=intitle:" . urlencode($query) . "&key=" . $api_key;
+$url = "https://www.googleapis.com/books/v1/volumes?q=intitle:" . urlencode($query) . "&startIndex=10&maxResults=20&key=" . $api_key;
 $response = file_get_contents($url);
 $data = json_decode($response);
 
@@ -195,8 +195,8 @@ $resultado = $conexao->query($sql);
                     <div class="livros">
                         <?php
                                       echo "<a href='livro.php?id_livro=" . $item->volumeInfo->industryIdentifiers[0]->identifier. "'>";
-/*                                       echo implode("",$item->volumeInfo->categories);*/
-          if (isset($item->volumeInfo->imageLinks)) {
+/*                                       echo implode("",$item->volumeInfo->categories);
+ */                                      if (isset($item->volumeInfo->imageLinks)) {
                   echo "<img src='" . $item->volumeInfo->imageLinks->thumbnail . "'>";
               } else {
                   // Lide com o caso em que a imagem não está disponível
