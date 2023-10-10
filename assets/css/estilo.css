@@ -291,7 +291,7 @@ flex-direction: column;
 }
 
 .livros {
-  height: 45%;
+  height: 25rem;
   display: flex;
   flex-direction: column;
   padding: 25px;
