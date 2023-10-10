@@ -195,8 +195,8 @@ $resultado = $conexao->query($sql);
                     <div class="livros">
                         <?php
                                       echo "<a href='livro.php?id_livro=" . $item->volumeInfo->industryIdentifiers[0]->identifier. "'>";
-                                      echo implode("",$item->volumeInfo->categories);
-                                      if (isset($item->volumeInfo->imageLinks)) {
+/*                                       echo implode("",$item->volumeInfo->categories);*/
+          if (isset($item->volumeInfo->imageLinks)) {
                   echo "<img src='" . $item->volumeInfo->imageLinks->thumbnail . "'>";
               } else {
                   // Lide com o caso em que a imagem não está disponível
