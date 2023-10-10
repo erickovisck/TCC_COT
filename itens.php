@@ -64,7 +64,6 @@ $resultado = $conexao->query($sql);
 
 
 
-
 </head>
 
 <body>
@@ -133,13 +132,14 @@ $resultado = $conexao->query($sql);
                     $data = json_decode($response);
                 }else{ */
                     if ($pesquisa == null) {
-                 
-                    
-                        function pesquisarLivrosPorLetra($letra) {
+                 $categoria=["romance","fiction","action","terror","horror"];
+                    foreach($categoria as $tipo){
+                        function pesquisarLivrosPorLetra($categoria) {
                             global $chave_api;
-                            $url = "https://www.googleapis.com/books/v1/volumes?q=intitle:$letra&key=$chave_api";
+                            $url = "https://www.googleapis.com/books/v1/volumes?q=subject:$tipo&key=$chave_api";
                             $response = file_get_contents($url);
                             $data = json_decode($response);
+                        }
                             if (isset($data->items) && count($data->items) > 0) {
                                 foreach ($data->items as $item) {
       
@@ -179,11 +179,7 @@ $resultado = $conexao->query($sql);
                             }
                         }
                     
-                        $alfabeto = range('a', 'z');
                     
-                        foreach ($alfabeto as $letra) {
-                            pesquisarLivrosPorLetra($letra);
-                        }
                     } else {
                        
                         
@@ -194,13 +190,14 @@ $resultado = $conexao->query($sql);
        
        
       foreach ($data->items as $item) {
-      
+     
             ?>
                     <div class="livros">
                         <?php
                                       echo "<a href='livro.php?id_livro=" . $item->volumeInfo->industryIdentifiers[0]->identifier. "'>";
-                                      if (isset($item->volumeInfo->imageLinks->smallThumbnail)) {
-                  echo "<img src='" . $item->volumeInfo->imageLinks->smallThumbnail . "'>";
+                                      echo implode("",$item->volumeInfo->categories);
+                                      if (isset($item->volumeInfo->imageLinks)) {
+                  echo "<img src='" . $item->volumeInfo->imageLinks->thumbnail . "'>";
               } else {
                   // Lide com o caso em que a imagem não está disponível
                   echo "Imagem não disponível";
@@ -225,7 +222,8 @@ $resultado = $conexao->query($sql);
               echo "</div>";
                   } 
               
-            }
+                }
+            
                 ?>
 
                     </div>
@@ -241,7 +239,6 @@ $resultado = $conexao->query($sql);
             
             ?>
     </main>
-
     <footer class="site-footer">
     <div class="container">
       <div class="row">
