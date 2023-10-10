@@ -2,7 +2,7 @@
 
 @import url("//fonts.googleapis.com/css?family=Allerta+Stencil");
 * {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: Arial, Helvetica, sans-serif;
         box-sizing: border-box;
     
 }
@@ -12,12 +12,11 @@ body {
     height: 100vh;
     margin: 0px;
     display: grid;
-    grid-template-rows: 80px 1fr 60px;
+    grid-template-rows: 80px 1fr;
     grid-template-columns: 1fr;
     grid-template-areas:
         "cabecalho"
-        "principal"
-        "rodape";
+        "principal";
 }
 
 .cabecalho {
@@ -274,6 +273,7 @@ flex-direction: column;
 /* css para a tabela na página itens.php */
 
 .estante {
+  justify-content: center;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -281,29 +281,40 @@ flex-direction: column;
 }
 
 .livros {
+  height: 49%;
   display: flex;
   flex-direction: column;
   padding: 25px;
   position: relative;
+  background-color: rgb(255, 234, 223);
   width: 15%;
-  height: 1%;
   font-size: 0.8rem;
+  margin: 2px;
+  border: 2px solid #000;
+  box-shadow: 0px 10px 11px -10px rgba(0,0,0,0.75);
+}
+
+.livro:hover{
+  box-shadow: inset 0px 0px 18px 3px rgba(0,0,0,0.75);
 }
 
 .livros h1 {
+  margin: 2px;
   color: #000;
-  font-size: 0.8rem;
+  font-size: 1rem;
   margin-top: auto; /* Empurre o título para o meio verticalmente */
   text-align: center; /* Centralize o texto horizontalmente */
 }
 
 .livros h2 {
   font-size: 0.8rem;
+  font-weight: 400;
   margin-top: 10px; /* Adicione espaço entre o título e o subtítulo */
   text-align: center; /* Centralize o texto horizontalmente */
 }
 
 .livros img {
+  margin-bottom: 10px;
   width: 100%;
   height: auto;
   object-fit: cover;
@@ -1381,169 +1392,328 @@ background-image: url("https://img.freepik.com/fotos-gratis/grande-colecao-de-li
  
  
  */
-/* 
- .site-footer
+/*
+ * Made by Erik Terwan
+ * 24th of November 2015
+ * MIT License
+ *
+ *
+ * If you are thinking of using this in
+ * production code, beware of the browser
+ * prefixes.
+ */
+
+
+ 
+ #menuToggle
  {
-   background-color:#26272b;
-   padding:45px 0 20px;
-   font-size:1.5rem;
-   line-height:24px;
-   color:#FFA3FD;
+   
+
+   position: absolute;
+   top: 30px;
+   left: 50px;
+   
+   z-index: 1;
+   
+   -webkit-user-select: none;
+   user-select: none;
  }
- .site-footer hr
+ 
+ #menuToggle a
  {
-   border-top-color:#FFA3FD;
-   opacity:0.5
- }
- .site-footer hr.small
- {
-   margin:20px 0
- }
- .site-footer h6
- {
-   color:#fff;
-   font-size: 1.6rem;
-   text-transform:uppercase;
-   margin-top:5px;
-   letter-spacing:2px
- }
- .site-footer a
- {
-   color:#737373;
- }
- .site-footer a:hover
- {
+   text-decoration: none;
    color: #FFA3FD;
-   text-decoration:none;
+   
+   transition: color 0.3s ease;
  }
- .footer-links
+ 
+ #menuToggle a:hover
  {
-   padding-left:0;
-   list-style:none
+   color: tomato;
  }
- .footer-links li
+ 
+ 
+ #menuToggle input
  {
-   display:block
+  
+   display: block;
+   width: 40px;
+   height: 32px;
+   position: absolute;
+   top: -7px;
+   left: -5px;
+   
+   cursor: pointer;
+   
+   opacity: 0; /* hide this */
+   z-index: 2; /* and place it over the hamburger */
+   
+   -webkit-touch-callout: none;
  }
- .footer-links a
+ 
+ /*
+  * Just a quick hamburger
+  */
+ #menuToggle span
  {
-   color:#737373
+   display: block;
+   width: 33px;
+   height: 4px;
+   margin-bottom: 5px;
+   position: relative;
+
+   background: #FFA3FD;
+   border-radius: 3px;
+   
+   z-index: 1;
+   
+   transform-origin: 4px 0px;
+   
+   transition: transform 0.2s cubic-bezier(0.77,0.2,0.05,1.0),
+               background 0.2s cubic-bezier(0.77,0.2,0.05,1.0),
+               opacity 0.2s ease;
  }
- .footer-links a:active,.footer-links a:focus,.footer-links a:hover
+ #menuToggle h2{
+   color: #FFA3FD;
+ }
+ #menuToggle span:first-child
  {
-   color:#FFA3FD;
-   text-decoration:none;
+   transform-origin: 0% 0%;
  }
- .footer-links.inline li
+ 
+ #menuToggle span:nth-last-child(2)
  {
-   display:inline-block
+   transform-origin: 0% 100%;
  }
- .site-footer .social-icons
+ 
+ /* 
+  * Transform all the slices of hamburger
+  * into a crossmark.
+  */
+ #menuToggle input:checked ~ span
  {
-   text-align:right
+   opacity: 1;
+   transform: rotate(45deg) translate(-2px, -1px);
+   background: #FFA3FD;
+   transition-duration: 0.2s;
  }
- .site-footer .social-icons a
+ 
+ /*
+  * But let's hide the middle one.
+  */
+ #menuToggle input:checked ~ span:nth-last-child(3)
  {
-   width:40px;
-   height:40px;
-   line-height:40px;
-   margin-left:6px;
-   margin-right:0;
-   border-radius:100%;
-   background-color:#33353d
+   opacity: 0;
+   transform: rotate(0deg) scale(0.1, 0.1);
+   transition-duration: 0.2s;
  }
- .copyright-text
+ 
+ /*
+  * Ohyeah and the last one should go the other direction
+  */
+ #menuToggle input:checked ~ span:nth-last-child(2)
  {
-   margin:0
+   transform: rotate(-45deg) translate(0, -1px);
+   transition-duration: 0.2s;
  }
- @media (max-width:991px)
+ 
+ /*
+  * Make this absolute positioned
+  * at the top left of the screen
+  */
+ #menu
  {
-   .site-footer [class^=col-]
-   {
-     margin-bottom:30px
-   }
+   position: absolute;
+   width: 300px;
+   margin: -100px 0 0 -50px;
+   padding: 50px;
+   padding-top: 125px;
+   background: #191825;
+   list-style-type: none;
+   -webkit-font-smoothing: antialiased;
+   /* to stop flickering of text in safari */
+   
+   transform-origin: 0% 0%;
+   transform: translate(-100%, 0);
+   
+   transition: transform 0.2s cubic-bezier(0.77,0.2,0.05,1.0);
  }
- @media (max-width:767px)
+ 
+ #menu li
  {
-   .site-footer
-   {
-     padding-bottom:0
-   }
-   .site-footer .copyright-text,.site-footer .social-icons
-   {
-     text-align:center
-   }
+   padding: 10px 0;
+   font-size: 22px;
  }
- .social-icons
+ 
+ /*
+  * And let's slide it in from the left
+  */
+ #menuToggle input:checked ~ ul
  {
-   padding-left:0;
-   margin-bottom:0;
-   list-style:none
- }
- .social-icons li
- {
-   display:inline-block;
-   margin-bottom:4px
- }
- .social-icons li.title
- {
-   margin-right:15px;
-   text-transform:uppercase;
-   color:#96a2b2;
-   font-weight:700;
-   font-size:13px
- }
- .social-icons a{
-   background-color:#eceeef;
-   color:#818a91;
-   font-size:16px;
-   display:inline-block;
-   line-height:44px;
-   width:44px;
-   height:44px;
-   text-align:center;
-   margin-right:8px;
-   border-radius:100%;
-   -webkit-transition:all .2s linear;
-   -o-transition:all .2s linear;
-   transition:all .2s linear
- }
- .social-icons a:active,.social-icons a:focus,.social-icons a:hover
- {
-   color:#fff;
-   background-color:#29aafe
- }
- .social-icons.size-sm a
- {
-   line-height:34px;
-   height:34px;
-   width:34px;
-   font-size:14px
- }
- .social-icons a.facebook:hover
- {
-   background-color:#3b5998
- }
- .social-icons a.twitter:hover
- {
-   background-color:#00aced
- }
- .social-icons a.linkedin:hover
- {
-   background-color:#007bb6
- }
- .social-icons a.dribbble:hover
- {
-   background-color:#ea4c89
- }
- @media (max-width:767px)
- {
-   .social-icons li.title
-   {
-     display:block;
-     margin-right:0;
-     font-weight:600
-   }
+   transform: none;
  }
 
- */
+
+.site-footer
+{
+  background-color:#26272b;
+  padding:45px 0 20px;
+  font-size: 0.9rem;
+  line-height:24px;
+  color:#FFA3FD;
+}
+.site-footer hr
+{
+  border-top-color:#FFA3FD;
+  opacity:0.5
+}
+.site-footer hr.small
+{
+  margin:20px 0
+}
+.site-footer h6
+{
+  color:#fff;
+  font-size: 1rem;
+  text-transform:uppercase;
+  margin-top:5px;
+  letter-spacing:2px
+}
+.site-footer a
+{
+  color:#737373;
+}
+.site-footer a:hover
+{
+  color: #FFA3FD;
+  text-decoration:none;
+}
+.footer-links
+{
+  padding-left:0;
+  list-style:none
+}
+.footer-links li
+{
+  display:block
+}
+.footer-links a
+{
+  color:#737373
+}
+.footer-links a:active,.footer-links a:focus,.footer-links a:hover
+{
+  color:#FFA3FD;
+  text-decoration:none;
+}
+.footer-links.inline li
+{
+  display:inline-block
+}
+.site-footer .social-icons
+{
+  text-align:right
+}
+.site-footer .social-icons a
+{
+  width:40px;
+  height:40px;
+  line-height:40px;
+  margin-left:6px;
+  margin-right:0;
+  border-radius:100%;
+  background-color:#33353d
+}
+.copyright-text
+{
+  margin:0
+}
+@media (max-width:991px)
+{
+  .site-footer [class^=col-]
+  {
+    margin-bottom:30px
+  }
+}
+@media (max-width:767px)
+{
+  .site-footer
+  {
+    padding-bottom:0
+  }
+  .site-footer .copyright-text,.site-footer .social-icons
+  {
+    text-align:center
+  }
+}
+.social-icons
+{
+  padding-left:0;
+  margin-bottom:0;
+  list-style:none
+}
+.social-icons li
+{
+  display:inline-block;
+  margin-bottom:4px
+}
+.social-icons li.title
+{
+  margin-right:15px;
+  text-transform:uppercase;
+  color:#96a2b2;
+  font-weight:700;
+  font-size:13px
+}
+.social-icons a{
+  background-color:#eceeef;
+  color:#818a91;
+  font-size:16px;
+  display:inline-block;
+  line-height:44px;
+  width:44px;
+  height:44px;
+  text-align:center;
+  margin-right:8px;
+  border-radius:100%;
+  -webkit-transition:all .2s linear;
+  -o-transition:all .2s linear;
+  transition:all .2s linear
+}
+.social-icons a:active,.social-icons a:focus,.social-icons a:hover
+{
+  color:#fff;
+  background-color:#29aafe
+}
+.social-icons.size-sm a
+{
+  line-height:34px;
+  height:34px;
+  width:34px;
+  font-size:14px
+}
+.social-icons a.facebook:hover
+{
+  background-color:#3b5998
+}
+.social-icons a.twitter:hover
+{
+  background-color:#00aced
+}
+.social-icons a.linkedin:hover
+{
+  background-color:#007bb6
+}
+.social-icons a.dribbble:hover
+{
+  background-color:#ea4c89
+}
+@media (max-width:767px)
+{
+  .social-icons li.title
+  {
+    display:block;
+    margin-right:0;
+    font-weight:600
+  }
+}
