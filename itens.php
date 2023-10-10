@@ -146,14 +146,15 @@ $resultado = $conexao->query($sql);
                                     ?>
                     <div class="livros">
                         <?php
-                                      echo "<a href='livro.php?id_livro=" . $item->volumeInfo->industryIdentifiers[0]->identifier. "'>";
+                                 echo mb_strimwidth("Hello World", 0, 10, "...");
+                                 echo "<a href='livro.php?id_livro=" . $item->volumeInfo->industryIdentifiers[0]->identifier. "'>";
                                       if (isset($item->volumeInfo->imageLinks->smallThumbnail)) {
                                           echo "<img src='" . $item->volumeInfo->imageLinks->smallThumbnail . "'>";
                                       } else {
                                           // Lide com o caso em que a imagem não está disponível
                                           echo "Imagem não disponível";
                                       }
-                                                  echo "<h1>". $item->volumeInfo->title. "</h1>";  
+                                                  echo "<h1>"; echo mb_strimwidth ("$item->volumeInfo->title" , 0, 10, "..."); echo "</h1>";  
                                    echo "</a>"; 
                                       echo "<h2>";    
                                       if (isset($item->volumeInfo->authors)) {
