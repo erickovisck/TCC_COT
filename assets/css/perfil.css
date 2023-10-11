@@ -1,0 +1,46 @@
+/*css para a tabela na página perfil.php*/
+.perfil{
+    margin-left: 31%;
+    margin-top: 6%;
+    width: 39%;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border:1px solid black;
+    }
+    .perfil form{
+      text-align: center;
+    }
+    .perfil h1{
+      text-align: center;
+    }
+    .perfil_card{
+        width: 90%;
+        max-width: 450px;
+        text-align: center;
+        background: #fff;
+        color:#333;
+        margin-top: 10%;
+    }
+    .profile-pic{
+        width: 140px;
+        border-radius: 50%;
+        margin-top: -106px;
+        height: 100px;
+        margin-left: -7%;
+        border: 1px solid black;
+    }
+    .perfil_card h1{
+        text-align: center;
+    }
+    .perfil_card h1{
+        font-size: 20px;
+    }
+    .perfil2{
+        text-align: left;
+    }
+    .perfil2 h1{
+        font-size: 20px;
+        text-align: left;
+    }
