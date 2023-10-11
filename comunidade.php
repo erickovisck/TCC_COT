@@ -1,20 +1,19 @@
 <?php
-    session_start();
+session_start();
 
-    require_once "conexao/conexao.php";
+require_once "conexao/conexao.php";
 
-    $usuario = $_SESSION["usuario"];
-    
-    echo $usuario["nome_usuario"]; 
+$usuario = $_SESSION["usuario"];
 
 
-    if(is_null($usuario["email"])){
-        session_unset();
-        session_destroy();
-        header("Location: Login.php");
-        exit();
-    }
-    ?>
+
+if (is_null($usuario["email"])) {
+    session_unset();
+    session_destroy();
+    header("Location: Login.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,8 +21,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="assets/css/estilo.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/comunidade.css">
-    <link rel="stylesheet" href="assets/css/menu.css">
+
 
 
 </head>
@@ -31,7 +32,8 @@
 <body>
 
 
-<div class="cabecalho">
+
+    <div class="cabecalho">
         <nav role="navigation">
             <div id="menuToggle">
 
@@ -43,7 +45,9 @@
 
 
                 <ul id="menu">
-                    <h2>Usuário: <?= $usuario['nome_usuario']?> </h2>
+                    <h2>Usuário:
+                        <?= $usuario['nome_usuario'] ?>
+                    </h2>
                     <li><a href="inicial">Inicial</a></li>
                     <li><a href="perfil.php">Perfil</a></li>
                     <li><a href="ajuda.php">Ajuda</a></li>
@@ -75,167 +79,131 @@
                             </button>
                         </div>
                     </div>
-                    
+
                 </div>
             </form>
         </div>
+        </div>
+<!-- FIM MENU -->
 
 
-    </div>
-    <main class="principal">
-        
-        <form action="" method="post">
-            <input type="text" name="mensagem">
-            <input type="submit" name="enviar">
 
-        </form>
-        <?php 
- if (isset($_POST["enviar"])) {
-    $mensagem = $_POST["mensagem"];
-    // Verifique se a mensagem não está vazia
-    
-    if (!$mensagem) {
-        echo "mensagem vazia <br><br>";
-    }else{
-        // A mensagem não está vazia, então insira no banco de dados
-        $sql = "INSERT INTO chat_geral (id_usuario, mensagens,  nome_usuario, cont_like) VALUES
+            <main class="principal">
+            <!--<div class="container">
+            <div class="row">
+                <form action="" method="post">
+                    <input type="text" name="mensagem">
+                      <input type="submit" name="enviar">
+                    
+
+                </form> -->
+<div class="container text-center text-bg-dark p-3">
+  <div class="row justify-content-center    ">
+                <div class="mb-3 col-md-auto">
+  <label for="exampleFormControlInput1" class="form-label"   >Titulo</label>   
+  <input type="email" class="form-control" id="exampleFormControlInput1" >
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label" name="mensagem" >Mensagem: </label>
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Bom Dia a todos!!"></textarea>
+  <input class="btn btn-secondary" type="submit" value="enviar" name="enviar">
+</div>
+</div>
+</div>
+                <?php
+                if (isset($_POST["enviar"])) {
+                    $mensagem = $_POST["mensagem"];
+                    // Verifique se a mensagem não está vazia
+                
+                    if (!$mensagem) {
+                        echo "mensagem vazia <br><br>";
+                    } else {
+                        // A mensagem não está vazia, então insira no banco de dados
+                        $sql = "INSERT INTO chat_geral (id_usuario, mensagens,  nome_usuario, cont_like) VALUES
             ('" . $usuario['id_usuario'] . "', '$mensagem', '" . $usuario['nome_usuario'] . "', 0)";
-        $resultado = $conexao->query($sql);
-        if ($resultado) {
-            echo "mensagem enviada <br>";
-            header("Location: comunidade.php");
-            $mensagem="";   
-            exit();
-          
-        } else {
-            echo "erro ao enviar". mysqli_error($conexao);
-        }
-    }
- }
-?>
-        <main>
-            <section class="news-feed">
-                <?php 
-                 $sql = "SELECT * FROM chat_geral";
-                 $resultado = $conexao->query($sql);
-                 
-if ($resultado) {
+                        $resultado = $conexao->query($sql);
+                        if ($resultado) {
+                            echo "mensagem enviada <br>";
+                            header("Location: comunidade.php");
+                            $mensagem = "";
+                            exit();
+
+                        } else {
+                            echo "erro ao enviar" . mysqli_error($conexao);
+                        }
+                    }
+                }
+                ?>
+            </div>
+            </div>
+
+            <div class="container text-center text-bg-dark p-3">
+                <main class="row justify-content-center">
+                <div class="col-8">
+                    <section class="news-feed">
+                        <?php
+                        $sql = "SELECT * FROM chat_geral";
+                        $resultado = $conexao->query($sql);
+
+                        if ($resultado) {
 
 
-    while ($dados = mysqli_fetch_array($resultado)) {
-        echo "<div class='message' data-id='". $dados['id_mensagem'] . "'>";
-        ?>
-                <article class="post">
-                    <div class="post_header">
-                        <img src="" alt="" class="avatar">
-                        <div class="post_info">
-                            <?php echo "<a href='perfil_pessoa.php?id_usuario=".$dados["id_usuario"]."'>". $dados["nome_usuario"] ."</a>";?> 
-                            <span> <?php   echo "postado agora";?> </span>
-                            <!--    echo $dados["data_mensagem"]. "<br>";  -->
-                        </div>
-                    </div>
-                    <div class="post_content">
-                    <?php echo  $dados["mensagens"] . "<br>"?> </div>
-                    <div class="post_engage">
-                        <?php  echo "<div class='likes'>" . $dados["cont_like"] ."</div> " . " leitores curtiram";  ?>
+                            while ($dados = mysqli_fetch_array($resultado)) {
+                                include_once "atualizar_likes.php";
+                                echo "<div class='message' data-id='" . $dados['id_mensagem'] . "'>";
+                                ?>
+                                <article class="post border border-primary">
+                                    <div class="post_header">
+                                        <img src="" alt="" class="avatar">
+                                        <div class="post_info">
+                                            <?php echo $dados["nome_usuario"]; ?>
+                                            <span>
+                                                <?php echo "postado agora"; ?>
+                                            </span>
+                                            <!--    echo $dados["data_mensagem"]. "<br>";  -->
+                                        </div>
+                                    </div>
+                                    <div class="post_content">
+                                        <?php echo $dados["mensagens"] . "<br>" ?>
+                                    </div>
+                                    <div class="post_engage">
+                                        <?php echo "<div class='likes'>" . $dados["cont_like"] . "</div> " . " leitores curtiram"; ?>
+                                    </div>
+                                    <?php
+                                    echo "<button class='like_button'>Curtir</button>";
+                                    echo "</div>";
+                            }
+
+
+                            ?>
+                                <?php
+
+
+                                // Feche a conexão com o banco de dados
+                            
+
+                                ?>
+                            </article>
+                        </section>
+                </div>
+                
+                    </main>
                     </div>
                     <?php
-        echo "<button id='likezin'>Curtir</button>";
-        echo "</div>";
-    }
 
+                    // Feche o resultado após o uso
+                    mysqli_free_result($resultado);
+                        } else {
+                            // Lida com erros de consulta, se houverem
+                            echo "Erro na consulta: " . mysqli_error($conexao);
+                        }
 
-?>
-   <script>
- // ...
+                        $conexao->close();
+                        ?>
 
-document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll('.like_button').forEach((button) => {
-        button.addEventListener('click', () => {
-            const messageId = button.parentNode.getAttribute('data-id');
-            const cont_likeElement = button.parentNode.querySelector('.likes');
-            let cont_like = parseInt(cont_likeElement.innerHTML);
-
-            // Verifique se o usuário já deu "like"
-            const hasLiked = button.classList.contains('liked');
-
-            if (hasLiked) {
-                // Remove o "like"
-                cont_like--;
-                button.classList.remove('liked');
-            } else {
-                // Adiciona o "like"
-                cont_like++;
-                button.classList.add('liked');
-            }
-
-            // Enviar cont_like para o PHP usando AJAX
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', '<?= $_SERVER['REQUEST_URI'] ?>');
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.onload = () => {
-                if (xhr.status === 200) {
-                    // Atualize o valor de cont_like no elemento HTML após a confirmação do servidor
-                    cont_likeElement.innerHTML = cont_like;
-                } else {
-                    // Lida com erros, se houverem
-                    console.error('Erro na solicitação AJAX');
-                }
-            };
-
-            // Crie uma string de dados a serem enviados
-            const data = `id_mensagem=${messageId}&cont_like=${cont_like}`;
-
-            xhr.send(data);
-        });
-    });
-});
-
-
-
-    </script>
-<?php
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $idMensagem = $_POST['id_mensagem'];
-    $contLike = $_POST['cont_like'];
-
-    // Atualize a contagem de curtidas no banco de dados
-    $sql = "UPDATE chat_geral SET cont_like = $contLike WHERE id_mensagem = $idMensagem";
-    
-    // Execute a consulta SQL para atualizar as curtidas
-    // Certifique-se de que $conexao esteja configurado corretamente e a consulta seja executada.
-    
-    echo "Curtida atualizada com sucesso!";
-} else {
-    echo "Método de solicitação inválido.";
-}
-?>
-
-
-
-    
-    // Feche a conexão com o banco de dados
-  
-    
-  ?>
-                </article>
-            </section>
-        </main>
-        <?php
- 
-     // Feche o resultado após o uso
-     mysqli_free_result($resultado);
- } else {
-     // Lida com erros de consulta, se houverem
-     echo "Erro na consulta: " . mysqli_error($conexao);
- }
-
-$conexao->close();
-?>
-
-    </main>
-    <script src="js/menulateral.js"></script>
+            </main>
+            <script src="js/menulateral.js"></script>
+            <script src="js/botaolike.js"></script>
 </body>
 
 </html>
