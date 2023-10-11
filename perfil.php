@@ -103,20 +103,35 @@ if($conexao->query($sql)){
 
 
     </div>
+     <div class="perfil">
+    <div class="perfil_card"> 
+        <div class="perfil2">   
+    <img src="imagens/perfil.jpg" class="profile-pic">
+    <h1>Usuário</h1>
+</div>
+    <br>
+  <h2>Bio: </h2>
+    <br>
+    <br>
+    <br>
+<hr>
     <form action="" method="POST">
-            <h2> <?=     $mens?> </h2>
+            <h1> <?=     $mens?> </h1>
+
             <h1> ALTERAR INFORMAÇÕES</h1>
             <br>
-            Nome
-            <input type="text" name="nome">
-            Senha
+            <p>Nome</p>
+            <input type="text" name="nome"> 
+            <p>Senha</p>
             <input type="text" name="senha">
             <input type="submit" name="enviar">
 
         </form>
 
-        <a href="deletarconta"><input type="submit" name="delet" value="deletarconta"></a>
+        <a href="deletarconta"><input type="submit" name="delet" value="deletar conta"></a>
         </form>
+</div>
+</div>
  <script src="js/menulateral.js"></script>
 
 </body>
