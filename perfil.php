@@ -2,46 +2,63 @@
 require_once "conexao/conexao.php";
 session_start();
 $usuario=$_SESSION["usuario"];
-if($_SERVER["REQUEST_METHOD"]==="POST"){
-$usuario=$_SESSION["usuario"];
-$altnome=$_POST["nome"];
-$altsenha=$_POST["senha"];
-$email=$usuario["email"];
+$sql="SELECT * FROM usuario WHERE id_usuario = ".$usuario["id_usuario"]." ";
+$resultado=$conexao->query($sql);
+$id = $usuario ["id_usuario"];
 
+if ($resultado && $resultado->num_rows > 0) {
+    echo "login efetuado com sucesso";
+    
+    $dados = mysqli_fetch_array($resultado);
+    
+    $_SESSION["usuario"]=$dados;
 
-$sql="UPDATE `usuario`
+}
+    
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["enviarnome"])) {
+
+    
+    $altnome = $_POST["nome"];
+    $altsenha = $_POST["senha"];
+
+    // Certifique-se de que as variáveis POST existem antes de usá-las.
+    if (isset($altnome, $altsenha)) {
+     
+        
+        // Prepare a consulta SQL e vincule os parâmetros.
+        $sql="UPDATE `usuario`
 SET `nome_usuario`='$altnome' ,
 `senha`='$altsenha'
-WHERE `email`= '$email'";
-
-if($conexao->query($sql)){
+WHERE `id_usuario`= '$id'";
+$resultado=$conexao->query($sql);
+if($resultado){
     echo "<script language='javascript' type='text/javascript'>alert('Dados alterados com sucesso!')
     ;</script>";
-    function verificaLogin($email, $conexao)
-    {
-        $email = $conexao->real_escape_string($email);
-        $sql = "SELECT * FROM usuario WHERE email ='$email'";
-        $resultado = $conexao->query($sql);
-        return $resultado;
-    }
-    $resultado = verificaLogin($email, $conexao);
-    $dados = mysqli_fetch_array($resultado);
-    $usuario = [
-        'nome_usuario' => $dados['nome_usuario'],
-        'email' => $dados['email'],
-        'senha' => $dados['senha'],
-        
-        'recuperacao' => $dados['recuperacao']
-    ];
-    $mens= "Olá: " .  $usuario["nome_usuario"] ."<br>"."Email: ". $usuario["email"];
+
 }else{
-    echo "<script language='javascript' type='text/javascript'>alert('Não foi possível altera')
-    ;</script>";
 
 }
+       /*  $stmt = $conexao->prepare($sql);
+        $stmt->bind_param("sss", $altnome, $altsenha, $email);
+
+        // Execute a consulta.
+        if ($stmt->execute()) {
+            echo "Dados atualizados com sucesso.";
+        } else {
+            echo "Erro ao atualizar os dados: " . $conexao->error;
+        } */
+
+    
+    }
 }
 
-    ?> 
+    
+    
+ 
+
+
+
+?> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,7 +80,7 @@ if($conexao->query($sql)){
 
 
                 <ul id="menu">
-                    <h2>Usuário: <?= $usuario['nome_usuario']?> </h2>
+                    <h2>Usuário: <?= $dados['nome_usuario']?> </h2>
                     <li><a href="inicial.php">Inicial   </a></li>
                     <li><a href="perfil.php">Perfil</a></li>
                     <li><a href="ajuda.php">Ajuda</a></li>
@@ -100,17 +117,82 @@ if($conexao->query($sql)){
                 </div>
             </form>
         </div>
-
-
-    </div>
-     <div class="perfil">
+</div>
+<div class="perfil">
+<form action="" method="post">
+    <h3>Editar imagem</h3>
+    <input type="text" placeholder="Endereço da imagem" name="img" />
+    <input type="submit" name="enviarimg" id="enviarimg" placeholder="Endereço da imagem...">
+    <?php
+    if (isset($_POST["img"])) {
+        $img = $_POST["img"];
+        $sql="UPDATE `usuario`
+        SET `img_perfil`='$img'
+        WHERE `id_usuario`= '$id'";
+ 
+$resultado=$conexao->query($sql);
+if($resultado){
+  echo "imagem alterada";
+}else{
+ echo "Não foi possivel atualizar a imagem";   
+}
+    }
+?>
+</form>
     <div class="perfil_card"> 
         <div class="perfil2">   
-    <img src="imagens/perfil.jpg" class="profile-pic">
-    <h1>Usuário</h1>
+            
+        <?php
+    if($dados["img_perfil"]){    
+    ?>
+    <img class="profile-pic" id="iconperfil" src="<?=$dados["img_perfil"]?>" >
+    
+    <?php 
+    }else{ 
+        ?>
+       <img class="profile-pic" id="iconperfil" src="https://img.freepik.com/fotos-gratis/icone-de-perfil-de-usuario-frontal-com-fundo-branco_187299-40010.jpg?w=740&t=st=1697032016~exp=1697032616~hmac=d6f954d7e8c6ce2127a1fc24d262b5a7ccaa9abffb3a117fe93d5bc3055b5ab0">
+       
+    <?php
+    }
+    ?>
+
+  
+    <h1><?= $dados["nome_usuario"]?></h1>
 </div>
     <br>
   <h2>Bio: </h2>
+  <?php 
+
+if ($dados["biografia"]) {
+    echo "<p>" . $dados["biografia"] . "</p>";
+} else {
+    if (isset($_POST["enviarbio"])) {
+        $bio = $_POST["bio"];
+        $sql="UPDATE `usuario`
+        SET `biografia`='$bio' ,
+        `senha`='$altsenha'
+        WHERE `id_usuario`= '$id'";
+/*  $sql="INSERT biografia INTO usuario VALUE ($bio); "        ;
+ */    
+$resultado=$conexao->query($sql);
+if($resultado){
+    echo $bio;
+}else{
+ echo "Não foi possivel atualizar a bio";   
+}
+   
+        
+    } else {
+        ?>
+        <form action="" method="post">
+            <input type="text" placeholder="insira algo aqui..." name="bio" />
+            <input type="submit" name="enviarbio" id="envbio">
+        </form>
+        <?php
+    }
+}
+?>
+
     <br>
     <br>
     <br>
@@ -132,6 +214,11 @@ if($conexao->query($sql)){
         </form>
 </div>
 </div>
+
+
+  
+        
+
  <script src="js/menulateral.js"></script>
 
 </body>
