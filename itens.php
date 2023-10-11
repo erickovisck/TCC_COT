@@ -2,12 +2,20 @@
 session_start();
 require_once "conexao/conexao.php";
 $pesquisa = $_POST["pesquisar"];
+function limitarCaracteres($texto, $limite) {
+    // Verifica se o texto é maior que o limite
+    if (strlen($texto) > $limite) {
+        // Corta o texto no limite e adiciona "..." ao final
+        $texto = substr($texto, 0, $limite) . "...";
+    }
+    return $texto;
+}
 
 //GOOGLE API//
 
 $api_key = 'AIzaSyBHe1XX1RdFudsmfRaHaAkKlzIz7wDao9k';
 $query =$pesquisa;
-$max=11;
+$max=1;
 
 
 //------//
@@ -15,7 +23,7 @@ $max=11;
 
 //----------//
 $usuario = $_SESSION["usuario"];
-echo $usuario["nome_usuario"];
+
 if (is_null($usuario["email"])) {
     session_unset();
     session_destroy();
@@ -118,69 +126,91 @@ $resultado = $conexao->query($sql);
 
 
     </div>
-    <main class="principal">
-        <table>
+    <main class="principal" id="principal-estante">
+     
 
+   <!--  <div class="div-master">
+  <div class="before"><div class="arrow-left"></div></div>
+  <div class="middle">
+    <h4 class="title">Popular Movies</h4>
+    <div class="carrossel" id="mylist">
+      <div class="item-c">
+        <img src="https://i.kinja-img.com/gawker-media/image/upload/s--MuEBzPKk--/c_scale,fl_progressive,q_80,w_800/blhf0f9hujxfki62hhsp.jpg">
+        <div class="caption">
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+        </div>
+      </div> 
+    </div>
+  </div>
+    <div class="after"><div class="arrow-right"></div></div>
+</div>
 
-            <div class="estante">
+<div class="div-master">
+  <h4 class="title">Popular Movies</h4>
+  
+  <div class="carrossel" id="mylist2">
+    
+  </div>
+  
+</div>
+ -->
+
+     
+
                 <?php
-              /*   if($geral=1){
-                    $query ="relevance:";
-                    $url = "https://www.googleapis.com/books/v1/volumes?q=" . urlencode($query) . "&key=" . $api_key;
-                    $response = file_get_contents($url);
-                    $data = json_decode($response);
-                }else{ */
-                    if ($pesquisa == null) {
-                 $categoria=["romance","fiction","action","terror","horror"];
-                    foreach($categoria as $tipo){
-                     
-                        function pesquisarLivrosPorLetra($categoria) {
-                            global $chave_api;
-                            $url = "https://www.googleapis.com/books/v1/volumes?q=subject:$tipo&key=$chave_api";
-                            $response = file_get_contents($url);
-                            $data = json_decode($response);
-                        }
-                            if (isset($data->items) && count($data->items) > 0) {
-                                foreach ($data->items as $item) {
+                 if ($pesquisa == null) {
+    $categoria=["romance","fiction","action","terror","horror"];
+do {    
+        $url = "https://www.googleapis.com/books/v1/volumes?q=subject:romance&startIndex=0&maxResults=10&key=" . $api_key;
+        $response = file_get_contents($url);
+        $data = json_decode($response);
+    
+
+
+    if ($data === null || !property_exists($data, 'items')) {
+        break;  // Saia do loop do-while se não houver mais resultados
+    }
+    foreach ($data->items as $item) {
+
       
-                                    ?>
-                    <div class="livros">
-                        <?php
-                                 echo mb_strimwidth("Hello World", 0, 10, "...");
-                                 echo "<a href='livro.php?id_livro=" . $item->volumeInfo->industryIdentifiers[0]->identifier. "'>";
-                                      if (isset($item->volumeInfo->imageLinks->smallThumbnail)) {
-                                          echo "<img src='" . $item->volumeInfo->imageLinks->smallThumbnail . "'>";
-                                      } else {
-                                          // Lide com o caso em que a imagem não está disponível
-                                          echo "Imagem não disponível";
-                                      }
-                                                  echo "<h1>"; echo mb_strimwidth ("$item->volumeInfo->title" , 0, 10, "..."); echo "</h1>";  
-                                   echo "</a>"; 
-                                      echo "<h2>";    
-                                      if (isset($item->volumeInfo->authors)) {
-                                      echo  implode("",$item->volumeInfo->authors) . "<br>";  
-                                      }else{
-                                          echo "Autor não disponivel<br>";
-                                      }
-                                      if (isset($item->volumeInfo->saleInfo->listPrice->amount)) {
-                                          echo "Preço: R$ " . $item->volumeInfo->saleInfo->listPrice->amount;
-                                      } else {
-                                          // Lide com o caso em que o preço não está disponível
-                                          echo "Preço não disponível";
-                                      }
-                                                  echo "</h2>";
-                                      echo "<form method='post' action='carrinho.php'>"; // O formulário envia dados para a página "carrinho.php"
-                                    
-                                      echo "</div>";
-                                          
-                                      
-                            }
-                            } else {
-                                echo "<h1>Livro não encontrado</h1>";
-                            }
-                        }
-                    
-                    
+        ?>
+                <div class="livros">
+                    <?php
+                                  echo "<a href='livro.php?id_livro=" . $item->volumeInfo->industryIdentifiers[0]->identifier. "'>";
+/*                                       echo implode("",$item->volumeInfo->categories);
+*/                                      if (isset($item->volumeInfo->imageLinks)) {
+              echo "<img src='" . $item->volumeInfo->imageLinks->thumbnail . "'>";
+          } else {
+              // Lide com o caso em que a imagem não está disponível
+              echo "Imagem não disponível";
+          }
+         $texto= $item->volumeInfo->title;
+         $limite = 33;
+          $titulo=limitarCaracteres($texto,$limite);
+
+                      echo "<h1>". $titulo. "</h1>";  
+       echo "</a>"; 
+          echo "<h2>";    
+          if (isset($item->volumeInfo->authors)) {
+          echo  implode("",$item->volumeInfo->authors) . "<br>";  
+          }else{
+              echo "Autor não disponivel<br>";
+          }
+          if (isset($item->volumeInfo->saleInfo->listPrice->amount)) {
+              echo "Preço: R$ " . $item->volumeInfo->saleInfo->listPrice->amount;
+          } else {
+              // Lide com o caso em que o preço não está disponível
+              echo "Preço não disponível";
+          }
+                      echo "</h2>";
+          echo "<form method='post' action='carrinho.php'>"; // O formulário envia dados para a página "carrinho.php"
+          echo "</div>";
+              } 
+         
+              
+            $max += count($data->items);
+        } while (isset($data->items) && count($data->items) > 0);
+        
                     } else {
                        
                         
@@ -188,15 +218,29 @@ $resultado = $conexao->query($sql);
                  
 
                     
-       
+       ?>
+              <div class="estante" id="estante2">
+                <?php
                         do {
+                            error_reporting(0);
+        ini_set('display_errors', '0');
                             $url = "https://www.googleapis.com/books/v1/volumes?q=intitle:" . urlencode($query) . "&startIndex=0&maxResults=$max&key=" . $api_key;
-                            $response = file_get_contents($url);
+                            $response= file_get_contents($url);
+
+    if ($response ===false){
+        
+
+       
+    }
+       
+    
                             $data = json_decode($response);
-                        
-                         
+                            if ($data === null || !property_exists($data, 'items')) {
+                                break;  // Saia do loop do-while se não houver mais resultados
+                            }
                             foreach ($data->items as $item) {
        
+                              
                                 ?>
                                         <div class="livros">
                                             <?php
@@ -208,7 +252,11 @@ $resultado = $conexao->query($sql);
                                       // Lide com o caso em que a imagem não está disponível
                                       echo "Imagem não disponível";
                                   }
-                                              echo "<h1>". $item->volumeInfo->title. "</h1>";  
+                                 $texto= $item->volumeInfo->title;
+                                 $limite = 33;
+                                  $titulo=limitarCaracteres($texto,$limite);
+
+                                              echo "<h1>". $titulo. "</h1>";  
                                echo "</a>"; 
                                   echo "<h2>";    
                                   if (isset($item->volumeInfo->authors)) {
@@ -224,16 +272,13 @@ $resultado = $conexao->query($sql);
                                   }
                                               echo "</h2>";
                                   echo "<form method='post' action='carrinho.php'>"; // O formulário envia dados para a página "carrinho.php"
-                                  $max++;
                                   echo "</div>";
                                       } 
-                                   if (isset($data->totalItems) && $max >= $data->totalItems) {
-                                break;
-                            }
-                            $max++;
-/*                             $max += count($data->items);
- */
-                        } while (isset($data->items) && count($data->items) > 0);
+                                 
+                                      
+                                    $max += count($data->items);
+                                } while (isset($data->items) && count($data->items) > 0);
+                       
                                     }
                                 
                                     
@@ -243,9 +288,6 @@ $resultado = $conexao->query($sql);
                     </div>
                 </div>
                 <?php
-        echo "</table>";
-        echo "<input type='submit' id='sub_adicomprar' name='comprar' value='Comprar'>";
-        echo "</form>";
         // ...
 
 
