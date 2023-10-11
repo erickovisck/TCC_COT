@@ -123,14 +123,13 @@ if ($resultado) {
 
 
     while ($dados = mysqli_fetch_array($resultado)) {
-        include_once "atualizar_likes.php";
         echo "<div class='message' data-id='". $dados['id_mensagem'] . "'>";
         ?>
                 <article class="post">
                     <div class="post_header">
                         <img src="" alt="" class="avatar">
                         <div class="post_info">
-                            <?php echo $dados["nome_usuario"]; ?> 
+                            <?php echo "<a href='perfil_pessoa.php?id_usuario=".$dados["id_usuario"]."'>". $dados["nome_usuario"] ."</a>";?> 
                             <span> <?php   echo "postado agora";?> </span>
                             <!--    echo $dados["data_mensagem"]. "<br>";  -->
                         </div>
@@ -141,13 +140,79 @@ if ($resultado) {
                         <?php  echo "<div class='likes'>" . $dados["cont_like"] ."</div> " . " leitores curtiram";  ?>
                     </div>
                     <?php
-        echo "<button class='like_button'>Curtir</button>";
+        echo "<button id='likezin'>Curtir</button>";
         echo "</div>";
     }
 
 
 ?>
+   <script>
+ // ...
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll('.like_button').forEach((button) => {
+        button.addEventListener('click', () => {
+            const messageId = button.parentNode.getAttribute('data-id');
+            const cont_likeElement = button.parentNode.querySelector('.likes');
+            let cont_like = parseInt(cont_likeElement.innerHTML);
+
+            // Verifique se o usuário já deu "like"
+            const hasLiked = button.classList.contains('liked');
+
+            if (hasLiked) {
+                // Remove o "like"
+                cont_like--;
+                button.classList.remove('liked');
+            } else {
+                // Adiciona o "like"
+                cont_like++;
+                button.classList.add('liked');
+            }
+
+            // Enviar cont_like para o PHP usando AJAX
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '<?= $_SERVER['REQUEST_URI'] ?>');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = () => {
+                if (xhr.status === 200) {
+                    // Atualize o valor de cont_like no elemento HTML após a confirmação do servidor
+                    cont_likeElement.innerHTML = cont_like;
+                } else {
+                    // Lida com erros, se houverem
+                    console.error('Erro na solicitação AJAX');
+                }
+            };
+
+            // Crie uma string de dados a serem enviados
+            const data = `id_mensagem=${messageId}&cont_like=${cont_like}`;
+
+            xhr.send(data);
+        });
+    });
+});
+
+
+
+    </script>
 <?php
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $idMensagem = $_POST['id_mensagem'];
+    $contLike = $_POST['cont_like'];
+
+    // Atualize a contagem de curtidas no banco de dados
+    $sql = "UPDATE chat_geral SET cont_like = $contLike WHERE id_mensagem = $idMensagem";
+    
+    // Execute a consulta SQL para atualizar as curtidas
+    // Certifique-se de que $conexao esteja configurado corretamente e a consulta seja executada.
+    
+    echo "Curtida atualizada com sucesso!";
+} else {
+    echo "Método de solicitação inválido.";
+}
+?>
+
+
 
     
     // Feche a conexão com o banco de dados
@@ -171,7 +236,6 @@ $conexao->close();
 
     </main>
     <script src="js/menulateral.js"></script>
-    <script src="js/botaolike.js"></script>
 </body>
 
 </html>
