@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3308
--- Tempo de geração: 04-Out-2023 às 12:52
--- Versão do servidor: 8.0.21
--- versão do PHP: 7.3.21
+-- Host: 127.0.0.1:3306
+-- Tempo de geração: 11-Out-2023 às 15:10
+-- Versão do servidor: 8.0.31
+-- versão do PHP: 8.0.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `chat_geral` (
   `cont_like` int NOT NULL,
   PRIMARY KEY (`id_mensagem`),
   KEY `id_usuario` (`id_usuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=95 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=98 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `chat_geral`
@@ -113,7 +113,10 @@ INSERT INTO `chat_geral` (`id_mensagem`, `id_autor`, `id_usuario`, `mensagens`, 
 (86, 0, 4, 'k', 'a', 0),
 (85, 0, 4, 'a', 'a', 0),
 (83, 0, 4, 'a', 'a', 0),
-(84, 0, 4, 'a', 'a', 0);
+(84, 0, 4, 'a', 'a', 0),
+(95, 0, 4, 'ola', 'a', 0),
+(96, 0, 4, 'nem fudend', 'a', 0),
+(97, 0, 4, 'ola', 'erick', 0);
 
 -- --------------------------------------------------------
 
@@ -217,19 +220,28 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `autor` tinyint(1) NOT NULL,
   `mensagens` varchar(140) NOT NULL,
   `numero_cartao` varchar(16) NOT NULL,
+  `img_perfil` varchar(200) NOT NULL,
+  `biografia` varchar(200) NOT NULL,
+  `seguindo` varchar(50) NOT NULL,
+  `seguidores` varchar(50) NOT NULL,
+  `cont_seguindo` int NOT NULL,
+  `cont_seguidores` int NOT NULL,
+  `seguindoId` int NOT NULL,
+  `quemsegueId` int NOT NULL,
   PRIMARY KEY (`id_usuario`),
   KEY `numero_cartao` (`numero_cartao`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `usuario`
 --
 
-INSERT INTO `usuario` (`id_usuario`, `id_chat_privado`, `id_chat_geral`, `id_carrinho`, `assinatura_nivel`, `nome_usuario`, `email`, `senha`, `preferencias`, `recuperacao`, `autor`, `mensagens`, `numero_cartao`) VALUES
-(4, '', 0, '2', 0, 'a', '1', '1', '', '1', 0, '', '1234567891234567'),
-(5, '', 0, '2', 0, 'erick2', '23', '23', '', '23', 0, '', ''),
-(6, '', 0, '2', 0, 'b', 'b', '3', '', 'b', 0, '', ''),
-(7, '', 0, '2', 0, 'a', 'a', 'a', '', 'a', 0, '', '');
+INSERT INTO `usuario` (`id_usuario`, `id_chat_privado`, `id_chat_geral`, `id_carrinho`, `assinatura_nivel`, `nome_usuario`, `email`, `senha`, `preferencias`, `recuperacao`, `autor`, `mensagens`, `numero_cartao`, `img_perfil`, `biografia`, `seguindo`, `seguidores`, `cont_seguindo`, `cont_seguidores`, `seguindoId`, `quemsegueId`) VALUES
+(4, '', 0, '2', 0, 'erick', '1', '1', '', '1', 0, '', '1234567891234567', '', '', '', '', 4, 104, 0, 0),
+(5, '', 0, '2', 0, 'erick2', '23', '23', '', '23', 0, '', '', '', '', '', '', 0, 0, 0, 0),
+(6, '', 0, '2', 0, 'b', 'b', '3', '', 'b', 0, '', '', '', '', '', '', 0, 0, 0, 0),
+(7, '', 0, '2', 0, 'a', 'a', 'a', '', 'a', 0, '', '', '', '', '', '', 0, 0, 0, 0),
+(10, '', 0, '2', 0, 'camila', '2', '2', '', '2', 0, '', '', 'https://img.freepik.com/psd-gratuitas/icone-3d-para-aplicativo-de-midia-social_23-2150049569.jpg?size=626&ext=jpg&ga=GA1.1.833333440.1697023576&semt=ais', 'sasd', '', '', 0, 0, 0, 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
