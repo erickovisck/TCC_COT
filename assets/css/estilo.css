@@ -437,7 +437,7 @@ position: relative;
   width: 400px;
   height: 383px;
   border-radius: 50%;
-  margin-top: 4%;
+  margin-top: 8%;
 }
 .imagem_redonda{
   border-radius: 50%;
@@ -446,7 +446,7 @@ position: relative;
   margin-top: 8%;
 }
 .texto_sobre{
-margin-top: -30%;
+margin-top: -28%;
 }
 .texto_sobre h1{
   font-size: 50px;
@@ -471,21 +471,45 @@ span{
   color:#836FFF;
 }
 .main_footer{
-  display: flex;
-  justify-content: center;
-  background-color: #191825;;
-  padding-top: 2px;
-  padding-bottom: 28px;
-  color: white;
+  position: relative;
+  background-color: #191825;
+  height: 550px;
+  overflow-y: hidden;
+ 
 }
 .social_media{
- right: 90%;
+text-align:center ;
+}
+.social_media a{
+  color: white;
 }
 .social_media img{
-  display: block;
-  width: 20px;
+  width: 26px;
   margin: 10px 0;
 }
+.criadores h1{
+  font-size: 40px;
+ text-align: center;
+  color:white;
+}
+.ladoalado img{
+  height: 300px;
+  width: 200px;
+}
+.criadores h3{
+  font-size: 15px;
+  color:white;
+}
+.ladoalado{
+  float: center;
+  margin: auto;
+  text-align: center;
+}
+.social_media h3{
+  font-size: 17px;
+  color:white;
+}
+
 
 
 
