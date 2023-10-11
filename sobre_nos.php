@@ -90,7 +90,7 @@ include_once "pesquisa.php";
 
     </div>
     <!--  fim menu -->
-<main class="principal">
+ <main class="principal">
 <section class="sobre">
         <div class="extras">
             <img src="imagens/simbolo_empresa.jpg" class="imagem_redonda">
@@ -115,12 +115,24 @@ include_once "pesquisa.php";
 
 
 
-<footer class="main_footer"> 
+<footer class="main_footer">
+    <div class="criadores">
+    <h1>Criadores:</h1> <br>
+    <div class="ladoalado">
+    <img src="imagens/logo_projeto.png"> 
+    <img src="imagens/logo_projeto.png">
+    <img src="imagens/logo_projeto.png">
+    <img src="imagens/logo_projeto.png">
+    <img src="imagens/logo_projeto.png">
+</div>
+</div>
+<br> <br>
     <div class="social_media">
-    <a href=""><img src="imagens/instagram_icon.png"></a> 
+        <h3>Acesse nossas redes sociais:</h3>
+    <a href=""><img src="imagens/instagram_icon.png"> </a> 
+    <a href=""><img src="imagens/email_icon.png"></a>
 </div>
 </footer>
-
 
 
 
