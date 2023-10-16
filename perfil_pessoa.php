@@ -27,13 +27,16 @@ if (isset($_POST["pesquisar"])) {
 /*     include_once "pesquisa.php"; */
 }
 $iddados=$_GET["id_usuario"];
+echo $iddados;
 $sql="SELECT * FROM usuario where id_usuario = $iddados";
 $resultado = $conexao->query($sql);
-if ($resultado && $resultado->num_rows > 0) {
+if ($resultado) {
     echo "USUARIO ENCONTRADO";
     $dados = mysqli_fetch_array($resultado);
    
 
+}else{
+    echo "usuario nao";
 }
 ?>
 <!DOCTYPE html>
