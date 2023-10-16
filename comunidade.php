@@ -104,14 +104,17 @@ if (is_null($usuario["email"])) {
   <input type="email" class="form-control" id="exampleFormControlInput1" >
 </div>
 <div class="mb-3">
+   
   <label for="exampleFormControlTextarea1" class="form-label" name="mensagem" >Mensagem: </label>
-  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Bom Dia a todos!!"></textarea>
+  <form action="" method="post">
+  <input type="text" class="form-control" name="mensagem" id="exampleFormControlTextarea1" rows="3" placeholder="Bom Dia a todos!!"></input>
   <input class="btn btn-secondary" type="submit" value="enviar" name="enviar">
+</form> 
 </div>
 </div>
 </div>
                 <?php
-                if (isset($_POST["enviar"])) {
+                if (isset($_POST["mensagem"])) {
                     $mensagem = $_POST["mensagem"];
                     // Verifique se a mensagem não está vazia
                 
@@ -150,13 +153,14 @@ if (is_null($usuario["email"])) {
 
                             while ($dados = mysqli_fetch_array($resultado)) {
                                 include_once "atualizar_likes.php";
-                                echo "<div class='message' data-id='" . $dados['id_mensagem'] . "'>";
+                                echo "<div class='message' data-id='" . $dados['id_usuario'] . "'>";
+                                $id_usuario=$dados["id_usuario"];
                                 ?>
                                 <article class="post border border-primary">
                                     <div class="post_header">
                                         <img src="" alt="" class="avatar">
                                         <div class="post_info">
-                                            <?php echo $dados["nome_usuario"]; ?>
+                                          <a href="perfil_pessoa.php?<?=$id_usuario?>">  <?php echo  $dados["nome_usuario"]; ?></a>
                                             <span>
                                                 <?php echo "postado agora"; ?>
                                             </span>
