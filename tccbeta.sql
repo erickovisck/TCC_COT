@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Tempo de geração: 11-Out-2023 às 15:10
--- Versão do servidor: 8.0.31
--- versão do PHP: 8.0.26
+-- Host: 127.0.0.1:3308
+-- Tempo de geração: 16-Out-2023 às 14:07
+-- Versão do servidor: 8.0.21
+-- versão do PHP: 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `chat_geral` (
   `cont_like` int NOT NULL,
   PRIMARY KEY (`id_mensagem`),
   KEY `id_usuario` (`id_usuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=98 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=99 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `chat_geral`
@@ -116,7 +116,8 @@ INSERT INTO `chat_geral` (`id_mensagem`, `id_autor`, `id_usuario`, `mensagens`, 
 (84, 0, 4, 'a', 'a', 0),
 (95, 0, 4, 'ola', 'a', 0),
 (96, 0, 4, 'nem fudend', 'a', 0),
-(97, 0, 4, 'ola', 'erick', 0);
+(97, 0, 4, 'ola', 'erick', 0),
+(98, 0, 11, 'ola', '5', 0);
 
 -- --------------------------------------------------------
 
@@ -202,6 +203,20 @@ INSERT INTO `livros` (`id_livro`, `id_autor`, `id_editora`, `nome_livro`, `nome_
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `seguir`
+--
+
+DROP TABLE IF EXISTS `seguir`;
+CREATE TABLE IF NOT EXISTS `seguir` (
+  `id_seguidor` int NOT NULL,
+  `id_seguido` int NOT NULL,
+  `tabseguir` int NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`tabseguir`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `usuario`
 --
 
@@ -230,18 +245,19 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `quemsegueId` int NOT NULL,
   PRIMARY KEY (`id_usuario`),
   KEY `numero_cartao` (`numero_cartao`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `usuario`
 --
 
 INSERT INTO `usuario` (`id_usuario`, `id_chat_privado`, `id_chat_geral`, `id_carrinho`, `assinatura_nivel`, `nome_usuario`, `email`, `senha`, `preferencias`, `recuperacao`, `autor`, `mensagens`, `numero_cartao`, `img_perfil`, `biografia`, `seguindo`, `seguidores`, `cont_seguindo`, `cont_seguidores`, `seguindoId`, `quemsegueId`) VALUES
-(4, '', 0, '2', 0, 'erick', '1', '1', '', '1', 0, '', '1234567891234567', '', '', '', '', 4, 104, 0, 0),
+(4, '', 0, '2', 0, 'erick', '1', '1', '', '1', 0, '', '1234567891234567', '', '', '', '', 4, 135, 0, 0),
 (5, '', 0, '2', 0, 'erick2', '23', '23', '', '23', 0, '', '', '', '', '', '', 0, 0, 0, 0),
 (6, '', 0, '2', 0, 'b', 'b', '3', '', 'b', 0, '', '', '', '', '', '', 0, 0, 0, 0),
 (7, '', 0, '2', 0, 'a', 'a', 'a', '', 'a', 0, '', '', '', '', '', '', 0, 0, 0, 0),
-(10, '', 0, '2', 0, 'camila', '2', '2', '', '2', 0, '', '', 'https://img.freepik.com/psd-gratuitas/icone-3d-para-aplicativo-de-midia-social_23-2150049569.jpg?size=626&ext=jpg&ga=GA1.1.833333440.1697023576&semt=ais', 'sasd', '', '', 0, 0, 0, 0);
+(10, '', 0, '2', 0, 'camila', '2', '2', '', '2', 0, '', '', 'https://img.freepik.com/psd-gratuitas/icone-3d-para-aplicativo-de-midia-social_23-2150049569.jpg?size=626&ext=jpg&ga=GA1.1.833333440.1697023576&semt=ais', 'sasd', '', '', 0, 0, 0, 0),
+(11, '', 0, '2', 0, '5', '5', '5', '', '5', 0, '', '', '', '', '', '', 0, 4, 0, 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
