@@ -152,7 +152,6 @@ if (is_null($usuario["email"])) {
 
 
                             while ($dados = mysqli_fetch_array($resultado)) {
-                                include_once "atualizar_likes.php";
                                 echo "<div class='message' data-id='" . $dados['id_usuario'] . "'>";
                                 $id_usuario=$dados["id_usuario"];
                                 ?>
@@ -160,7 +159,7 @@ if (is_null($usuario["email"])) {
                                     <div class="post_header">
                                         <img src="" alt="" class="avatar">
                                         <div class="post_info">
-                                          <a href="perfil_pessoa.php?<?=$id_usuario?>">  <?php echo  $dados["nome_usuario"]; ?></a>
+                                          <a href="perfil_pessoa.php?id_usuario='<?=$id_usuario?>'">  <?php echo  $dados["nome_usuario"]; ?></a>
                                             <span>
                                                 <?php echo "postado agora"; ?>
                                             </span>
@@ -176,9 +175,56 @@ if (is_null($usuario["email"])) {
                                     <?php
                                     echo "<button class='like_button'>Curtir</button>";
                                     echo "</div>";
+
                             }
 
-
+                            ?>
+                            <script>
+                            // ...
+                
+                document.addEventListener("DOMContentLoaded", function () {
+                    document.querySelectorAll('.like_button').forEach((button) => {
+                        button.addEventListener('click', () => {
+                            const messageId = button.parentNode.getAttribute('data-id');
+                            const cont_likeElement = button.parentNode.querySelector('.likes');
+                            let cont_like = parseInt(cont_likeElement.innerHTML);
+                
+                            // Verifique se o usuário já deu "like"
+                            const hasLiked = button.classList.contains('liked');
+                
+                            if (hasLiked) {
+                                // Remove o "like"
+                                cont_like--;
+                                button.classList.remove('liked');
+                            } else {
+                                // Adiciona o "like"
+                                cont_like++;
+                                button.classList.add('liked');
+                            }
+                
+                            // Enviar cont_like para o PHP usando AJAX
+                            const xhr = new XMLHttpRequest();
+                            xhr.open('POST', 'atualizar_likes.php');
+                            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                            xhr.onload = () => {
+                                if (xhr.status === 200) {
+                                    // Atualize o valor de cont_like no elemento HTML após a confirmação do servidor
+                                    cont_likeElement.innerHTML = cont_like;
+                                } else {
+                                    // Lida com erros, se houverem
+                                    console.error('Erro na solicitação AJAX');
+                                }
+                            };
+                
+                            // Crie uma string de dados a serem enviados
+                            const data = `id_mensagem=${messageId}&cont_like=${cont_like}`;
+                
+                            xhr.send(data);
+                        });
+                    });
+                });
+                 </script>
+                 <?php
                             ?>
                                 <?php
 
@@ -207,7 +253,7 @@ if (is_null($usuario["email"])) {
 
             </main>
             <script src="js/menulateral.js"></script>
-            <script src="js/botaolike.js"></script>
+           
 </body>
 
 </html>
