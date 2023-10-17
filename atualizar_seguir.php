@@ -13,10 +13,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($seguir === 'true') {
             // Ação para seguir
-            $sql = "UPDATE usuario SET cont_seguindo = cont_seguindo + 1 WHERE id_usuario = $idUsuario";
+            $sql="INSERT INTO seguir (id_seguido, id_seguidor) VALUES ('$idUsuario' , '$idUsuario')";
+           /*  $sql = "UPDATE usuario SET cont_seguindo = cont_seguindo + 1 WHERE id_usuario = $idUsuario"; */
         } else {
             // Ação para deixar de seguir
-            $sql = "UPDATE usuario SET cont_seguindo = cont_seguindo - 1 WHERE id_usuario = $idUsuario";
         }
 
         if ($conexao->query($sql) === true) {
