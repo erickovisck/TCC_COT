@@ -32,7 +32,7 @@ include_once "pesquisa.php";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/estilo.css">
-    <link rel="stylesheet" href="assets/css/menu.css">
+   
     <title>sobre nos</title>
 </head>
 <body>

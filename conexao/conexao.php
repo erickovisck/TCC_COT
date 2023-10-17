@@ -3,7 +3,7 @@
 
 $servidor="localhost:3306";
 $usuario="root";
-$senha="prof@etec";
+$senha="";
 $banco="tccbeta";
 
 $conexao = new mysqli($servidor, $usuario, $senha, $banco);

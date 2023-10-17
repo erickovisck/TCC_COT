@@ -49,7 +49,7 @@ if ($resultado) {
 
     <title>Document</title>
     <link rel="stylesheet" href="assets/css/estilo.css">
-    <link rel="stylesheet" href="assets/css/menu.css">
+   
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 
 
@@ -221,10 +221,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="col-xs-6 col-md-3">
           <h6>Links Rapidos</h6>
           <ul class="footer-links">
-            <li><a href="http://scanfcode.com/about/">Sobre nos</a></li>
-            <li><a href="http://scanfcode.com/contact/">Fale conosco</a></li>
-            <li><a href="http://scanfcode.com/privacy-policy/">Politica de Privacidade</a></li>
-            <li><a href="http://scanfcode.com/sitemap/">Termos</a></li>
+                        <li><a href="#">Sobre nos</a></li>
+            <li><a href="#">Fale conosco</a></li>
+            <li><a href="#">Politica de Privacidade</a></li>
+            <li><a href="#">Termos</a></li>
           </ul>
         </div>
       </div>

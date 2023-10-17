@@ -43,7 +43,7 @@ $conexao->close();
 
     <title>Document</title>
     <link rel="stylesheet" href="assets/css/estilo.css">
-    <link rel="stylesheet" href="assets/css/menu.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
 
 </head>
@@ -105,7 +105,9 @@ $conexao->close();
     </div>
 
     <main class="principal">
-        <div class="livro">
+
+    <div class="container-xxl text-center">
+        <div class="row align-items-center  bg-body p-3 border border-black">
             <?php
 if ($response) {
     $data = json_decode($response);
@@ -114,8 +116,8 @@ if ($response) {
         $item = $data->items[0];
 
         ?>
-        <div class="sla">
-            <div class="imglivro">
+        <div class="sla col-md-auto">
+            <div class="imglivro ">
                 <?php
                 if(isset($item->volumeInfo->imageLinks->thumbnail)){
                     echo "<img src='". $thumbnail = $item->volumeInfo->imageLinks->thumbnail."'>";
@@ -137,7 +139,7 @@ if ($response) {
  */?>
 </div>
             </div>
-<div class="dadoslivro">
+<div class="dadoslivro col align-self-end">
             <?php
        echo "<h1>" . $title = $item->volumeInfo->title."</h1>";
         echo "<h2>".$authors = implode(", ", $item->volumeInfo->authors)."</h2>";
@@ -147,6 +149,7 @@ if ($response) {
 
 
 ?>
+</div>
 </div>
         </div>
     </main>

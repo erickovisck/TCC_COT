@@ -126,7 +126,7 @@ $resultado = $conexao->query($sql);
 
 
     </div>
-    <main class="principal" id="principal-estante">
+    <main class="principal bg-body-secondary">
      
 
    <!--  <div class="div-master">
@@ -219,7 +219,7 @@ do {
 
                     
        ?>
-              <div class="estante" id="estante2">
+              <div class="estante container text-center">
                 <?php
                         do {
                             error_reporting(0);
@@ -242,7 +242,7 @@ do {
        
                               
                                 ?>
-                                        <div class="livros">
+                                        <div class="livros bg-body p-3 border border-black">
                                             <?php
                                                           echo "<a href='livro.php?id_livro=" . $item->volumeInfo->industryIdentifiers[0]->identifier. "'>";
                     /*                                       echo implode("",$item->volumeInfo->categories);
@@ -306,10 +306,10 @@ do {
         <div class="col-xs-6 col-md-3">
           <h6>Links Rapidos</h6>
           <ul class="footer-links">
-            <li><a href="http://scanfcode.com/about/">Sobre nos</a></li>
-            <li><a href="http://scanfcode.com/contact/">Fale conosco</a></li>
-            <li><a href="http://scanfcode.com/privacy-policy/">Politica de Privacidade</a></li>
-            <li><a href="http://scanfcode.com/sitemap/">Termos</a></li>
+                        <li><a href="#">Sobre nos</a></li>
+            <li><a href="#">Fale conosco</a></li>
+            <li><a href="#">Politica de Privacidade</a></li>
+            <li><a href="#">Termos</a></li>
           </ul>
         </div>
       </div>
