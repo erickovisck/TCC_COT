@@ -182,10 +182,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if ($seguir) {
                 // Ação para seguir
-                $sql = "UPDATE usuario SET cont_seguidores = cont_seguidores + 1 WHERE id_usuario = $idUsuario";
+            
+                $verific = "SELECT * FROM seguir WHERE id_seguido = '$idUsuario' AND id_seguidor = '" . $usuario["id_usuario"] . "'";
+                $result = $conexao->query($verific);
+if($result && $result->num_rows>0){
+                echo "seguindo";
+
+} else {
+ $dados= mysqli_fetch_array($result);
+ if($dados)
+    $sql = "INSERT INTO seguir (id_seguido, id_seguidor) VALUES ('$idUsuario', '" . $usuario["id_usuario"] . "')";
+}
+
             } else {
                 // Ação para deixar de seguir
-                $sql = "UPDATE usuario SET cont_seguindo = cont_seguindo - 1 WHERE id_usuario = $idUsuario";
             }
 
             if ($conexao->query($sql) === true) {
