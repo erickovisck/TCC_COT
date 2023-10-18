@@ -3,12 +3,13 @@ session_start();
 
 require_once "conexao/conexao.php";
 
-
-
+//ARRUMAR BANCO//
+$dupl = "DELETE FROM `seguir` WHERE id_seguido = 0";
+$dupl2 = $conexao->query($dupl);
 
 $usuario = $_SESSION["usuario"];
-if($usuario["id_usuario"]==$_GET["id_usuario"]){
-    header ("Location:perfil.php");
+if ($usuario["id_usuario"] == $_GET["id_usuario"]) {
+    header("Location:perfil.php");
 }
 
 
@@ -24,18 +25,18 @@ if (is_null($usuario["email"])) {
 if (isset($_POST["pesquisar"])) {
     $pesquisa = $_POST["pesquisar"];
     $_SESSION['pesquisar'] = $pesquisa;
-/*     include_once "pesquisa.php"; */
+    /*     include_once "pesquisa.php"; */
 }
-$iddados=$_GET["id_usuario"];
+$iddados = $_GET["id_usuario"];
 echo $iddados;
-$sql="SELECT * FROM usuario where id_usuario = $iddados";
+$sql = "SELECT * FROM usuario where id_usuario = $iddados";
 $resultado = $conexao->query($sql);
 if ($resultado) {
     echo "USUARIO ENCONTRADO";
     $dados = mysqli_fetch_array($resultado);
-   
 
-}else{
+
+} else {
     echo "usuario nao";
 }
 ?>
@@ -49,7 +50,7 @@ if ($resultado) {
 
     <title>Document</title>
     <link rel="stylesheet" href="assets/css/estilo.css">
-   
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 
 
@@ -93,8 +94,8 @@ if ($resultado) {
                     <div class="row">
                         <div class="input-field first" id="first">
 
-                            <input class="input" id="inputFocus" type="text" placeholder="Pesquisar" name="pesquisar"/>
-                            <input  type="submit" name="enviar" id="pesqenviar">
+                            <input class="input" id="inputFocus" type="text" placeholder="Pesquisar" name="pesquisar" />
+                            <input type="submit" name="enviar" id="pesqenviar">
 
 
                             <button class="clear" id="clear">
@@ -115,153 +116,163 @@ if ($resultado) {
     </div>
 
     <main class="principal">
-        <img> 
-<h1> <?= $dados["nome_usuario"]?></h1>
-<h2> Bio</h2>
+        <img>
+        <h1>
+            <?= $dados["nome_usuario"] ?>
+        </h1>
+        <h2> Bio</h2>
 
 
-    <p><?= $dados["biografia"]?> </p>
-<h4> Seguidores <?= $dados["cont_seguidores"]?> </h4>
-<form method="post" action="">
-    <button type="submit" name="seguir" id="meuBotao">Seguir</button>
-</form>
-<h4>Seguindo <?= $dados["cont_seguindo"]?></h4>
+        <p>
+            <?= $dados["biografia"] ?>
+        </p>
+        <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const seguirButton = document.getElementById('meuBotao');
+            const contSeguindoElement = document.querySelector('h4');
+            const hasSeguido = seguirButton.classList.contains('seguido');
 
-    <?php
+            seguirButton.addEventListener('click', () => {
+                const idUsuario = <?= $dados["id_usuario"] ?>;
+                const seguir = !hasSeguido;
 
-    ?>
-    <script>
-   document.addEventListener("DOMContentLoaded", function () {
-    const seguirButton = document.getElementById('meuBotao');
-    const contSeguindoElement = document.querySelector('h4');
-    const hasSeguido = seguirButton.classList.contains('seguido');
+                if (seguir) {
+                    seguirButton.classList.add('seguido');
+                } else {
+                    seguirButton.classList.remove('seguido');
+                }
 
-    seguirButton.addEventListener('click', () => {
-        const idUsuario = <?= $dados["id_usuario"] ?>;
-        const seguir = !hasSeguido;
+                // Enviar a ação para a mesma página usando AJAX
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', 'perfil_pessoa.php', true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.onload = () => {
+                    if (xhr.status === 200) {
+                        // Atualize o valor no elemento HTML após a confirmação do servidor
+                        // Isso pode ser feito no retorno da resposta do servidor
+                        console.log('Ação de seguir realizada com sucesso.');
+                    } else {
+                        // Lida com erros, se houverem
+                        console.error('Erro na solicitação AJAX');
+                    }
+                };
 
-        if (seguir) {
-            seguirButton.classList.add('seguido');
-        } else {
-            seguirButton.classList.remove('seguido');
-        }
+                // Crie uma string de dados a serem enviados
+                const data = `seguir=${seguir ? 'true' : 'false'} seguido=${}`;
 
-        // Enviar a ação para a mesma página usando AJAX
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', 'perfil_pessoa.php', true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onload = () => {
-            if (xhr.status === 200) {
-                // Atualize o valor no elemento HTML após a confirmação do servidor
-                // Isso pode ser feito no retorno da resposta do servidor
-                console.log('Ação de seguir realizada com sucesso.');
-            } else {
-                // Lida com erros, se houverem
-                console.error('Erro na solicitação AJAX');
+                xhr.send(data);
+            });
+        });
+        </script>
+        <?php
+        $seguir = isset($_POST['seguir']) ? true : false;
+        $idUsuario = $dados['id_usuario'];
+        $_SESSION["idUsuario"]=$idUsuario;
+        $verific = "SELECT * FROM seguir WHERE id_seguido = '$idUsuario' AND id_seguidor = '" . $usuario["id_usuario"] . "'";
+        $result = $conexao->query($verific);
+        if ($result && $result->num_rows > 0) {
+            $seguindosn = "seguir";
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                if (isset($_POST['seguir'])) {
+                    if ($seguir) {
+                        $sql = "DELETE FROM seguir WHERE id_seguido=$idUsuario AND id_seguidor= " . $usuario["id_usuario"] . "";
+                    }
+                }
             }
-        };
+        } else {
+            $seguindosn = "seguindo";
+            $dados = mysqli_fetch_array($result);
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                if (isset($_POST['seguir'])) {
 
-        // Crie uma string de dados a serem enviados
-        const data = `seguir=${seguir ? 'true' : 'false'}`;
-
-        xhr.send(data);
-    });
-});
-
-    </script>
-<?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['seguir'])) {
+                    if ($seguir) {
+                        $sql = "INSERT INTO seguir (id_seguido, id_seguidor) VALUES ('$idUsuario', '" . $usuario["id_usuario"] . "')";
+                    }
+                }
+            }
+        }
         // Verifique se o usuário está logado (você pode personalizar essa verificação)
         if (isset($_SESSION['usuario'])) {
-            $idUsuario = $dados['id_usuario'];
             $seguir = isset($_POST['seguir']) ? true : false;
-
-
-            
-
-            if ($seguir) {
-                // Ação para seguir
-            
-                $verific = "SELECT * FROM seguir WHERE id_seguido = '$idUsuario' AND id_seguidor = '" . $usuario["id_usuario"] . "'";
-                $result = $conexao->query($verific);
-if($result && $result->num_rows>0){
-                echo "seguindo";
-
-} else {
- $dados= mysqli_fetch_array($result);
- if($dados)
-    $sql = "INSERT INTO seguir (id_seguido, id_seguidor) VALUES ('$idUsuario', '" . $usuario["id_usuario"] . "')";
-}
-
-            } else {
-                // Ação para deixar de seguir
-            }
-
             if ($conexao->query($sql) === true) {
                 // Redirecione para a mesma página para atualizar a exibição
-                exit;
             } else {
-                echo "Erro na atualização da ação de seguir: " . $conexao->error;
+                echo "Erro na atualização da ação de seguir: " . mysqli_error($conexao);
             }
-
-            $conexao->close();
         } else {
             echo "Usuário não autenticado. Faça o login para seguir.";
         }
-    }
-}
-?>
-
-<h4>Seguindo <?= $dados["cont_seguindo"] ?></h4>
-<form method="post" action="">
-    <button type="submit" name="seguir" id="meuBotao">Seguir</button>
-</form>
-
-
-</main>
-<footer class="site-footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12 col-md-6">
-          <h6>Sobre</h6>
-          <p class="text-justify">O desenvolvimento deste site se tornou necessário após uma breve pesquisa sobre sites com o mesmo propósito, contudo, percebemos que estes sites são quase inexistentes. Visando isso, decidimos fazer um site com mais reconhecimento para autores nacionais e para que mais pessoas possam ter gosto pela leitura.</p>
-        </div>
-
-        <div class="col-xs-6 col-md-3">
-          <h6>Links Rapidos</h6>
-          <ul class="footer-links">
+        $seguirverifi = "SELECT * FROM seguir WHERE id_seguido = $idUsuario";
+        $resulseguir = $conexao->query($seguirverifi);
+        $seguidores = 0;
+        while ($dados = mysqli_fetch_array($resulseguir)) {
+            $seguidores++;
+        }
+        $seguirverifi2 = "SELECT * FROM seguir WHERE id_seguidor = $idUsuario";
+        $resulseguir2 = $conexao->query($seguirverifi2);
+        $seguindo = 0;
+        while ($dados = mysqli_fetch_array($resulseguir2)) {
+            $seguindo++;
+        }
+        ?>
+        <h4> <a href="seguir.php?seguir='1'"> Seguidores </a>
+      <?= $seguidores ?> 
+        </h4>
+        <form method="post" action="">
+            <button type="submit" name="seguir" id="meuBotao">
+                <?= $seguindosn ?>
+            </button>
+        </form>
+        <h4><a href="seguir.php?seguir='2'"> Seguindo </a>
+            <?= $seguindo ?>
+        </h4>
+        <form method="post" action="">
+        </form>
+    </main>
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <h6>Sobre</h6>
+                    <p class="text-justify">O desenvolvimento deste site se tornou necessário após uma breve pesquisa
+                        sobre sites com o mesmo propósito, contudo, percebemos que estes sites são quase inexistentes.
+                        Visando isso, decidimos fazer um site com mais reconhecimento para autores nacionais e para que
+                        mais pessoas possam ter gosto pela leitura.</p>
+                </div>
+                <div class="col-xs-6 col-md-3">
+                    <h6>Links Rapidos</h6>
+                    <ul class="footer-links">
                         <li><a href="#">Sobre nos</a></li>
-            <li><a href="#">Fale conosco</a></li>
-            <li><a href="#">Politica de Privacidade</a></li>
-            <li><a href="#">Termos</a></li>
-          </ul>
+                        <li><a href="#">Fale conosco</a></li>
+                        <li><a href="#">Politica de Privacidade</a></li>
+                        <li><a href="#">Termos</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
         </div>
-      </div>
-      <hr>
-    </div>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8 col-sm-6 col-xs-12">
-          <p class="copyright-text">Copyright &copy; 2023 All Rights Reserved by
-            <a href="#">Scanfcode</a>.
-          </p>
-        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                    <p class="copyright-text">Copyright &copy; 2023 All Rights Reserved by
+                        <a href="#">Scanfcode</a>.
+                    </p>
+                </div>
 
-        <div class="col-md-4 col-sm-6 col-xs-12">
-          <ul class="social-icons">
-            <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-            <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-            <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
-            <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
-          </ul>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <ul class="social-icons">
+                        <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
+                        <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </footer>
+    </footer>
     <?php
 
-$conexao->close();
-                ?>
+    ?>
 </body>
+
 </html>
