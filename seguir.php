@@ -120,16 +120,27 @@ if ($resultado) {
         <?php
         $seguir=$_GET["seguir"];
         $idUsuario=$_SESSION["idUsuario"];
-    if($seguir=1){
-        $sql="SELECT id_seguidor FROM seguir WHERE id_seguido = $idUsuario";
-        $resultado=$conexao ->query($sql);
-        while($dados=mysqli_fetch_array($resultado)){
-        $sql="SELECT * FROM usuario WHERE id_usuario= ".$dados["id_seguidor"]." ";
-        $resultado2=$conexao->query($sql);
-        $dados3= mysqli_fetch_array($resultado2);
-        ?><a href="perfil_pessoa.php?id_usuario='<?=$dados3["id_usuario"]?>'"><?php echo $dados3["nome_usuario"]."</a> <br>";
+        $idUsuario = $_SESSION["idUsuario"];
+        if ($seguir == 1) { // Use "==" para comparar, em vez de "="
+            $sql = "SELECT id_seguidor FROM seguir WHERE id_seguido = $idUsuario";
+            $resultado = $conexao->query($sql);
+            while ($dados = mysqli_fetch_array($resultado)) {
+                $sql2 = "SELECT * FROM usuario WHERE id_usuario = " . $dados["id_seguidor"];
+                $resultado2 = $conexao->query($sql2);
+                $dados3 = mysqli_fetch_array($resultado2);
+                ?><a href="perfil_pessoa.php?id_usuario=<?=$dados3["id_usuario"]?>"><?php echo $dados3["nome_usuario"]; ?></a> <br> <?php
+            }
+        } elseif ($seguir == 2) { // Use "==" para comparar, em vez de "="
+            $sql = "SELECT id_seguido FROM seguir WHERE id_seguidor = $idUsuario";
+            $resultado = $conexao->query($sql);
+            while ($dados = mysqli_fetch_array($resultado)) {
+                $sql2 = "SELECT * FROM usuario WHERE id_usuario = " . $dados["id_seguido"];
+                $resultado2 = $conexao->query($sql2); // Use $resultado2 em vez de $resultado3
+                $dados4 = mysqli_fetch_array($resultado2); // Use $dados4 em vez de $dados3
+                ?><a href="perfil_pessoa.php?id_usuario=<?=$dados4["id_usuario"]?>"><?php echo $dados4["nome_usuario"]; ?></a> <br> <?php
+            }
         }
-    }
+        
         ?>
     </main>
     <footer class="site-footer">
