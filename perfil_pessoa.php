@@ -37,6 +37,7 @@ if ($resultado) {
     $idUsuario = $dados['id_usuario'];
     $_SESSION["idUsuario"]=$idUsuario;
 
+
 } else {
     echo "usuario nao";
 }
@@ -51,13 +52,13 @@ if ($resultado) {
 
     <title>Document</title>
     <link rel="stylesheet" href="assets/css/estilo.css">
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 
 
 </head>
 
 <body>
+    <!-- começo cabeçalho -->
     <div class="cabecalho">
         <nav role="navigation">
             <div id="menuToggle">
@@ -112,21 +113,40 @@ if ($resultado) {
                 </div>
             </form>
         </div>
-
-
     </div>
+<!-- fim cabeçalho -->
+
 
     <main class="principal">
+<div class="container p-4">
+<div class="row align-items-start">
+        <div class="col text-center">
+           <h1> nnnnnnn </h1>
         <img>
-        <h1>
-            <?= $dados["nome_usuario"] ?>
-        </h1>
-        <h2> Bio</h2>
-<a href="mensagem.php"> Chat</a>
+    </div>
 
+    <div class="row align-items-center">
+        <div class="col">
+        <img>
+
+       <h1> <?= $dados["nome_usuario"] ?>  </h1>
+    </div>
+    <div class="col">
+        
+          
+    <a class="btn btn-outline-dark" role="button" href="mensagem.php"> Chat</a>
+    </div>
+    <div class="col">
+        <h2> Bio</h2>
         <p>
             <?= $dados["biografia"] ?>
+            
+
         </p>
+    </div>    
+</div>
+</div>
+        
         <script>
         document.addEventListener("DOMContentLoaded", function() {
             const seguirButton = document.getElementById('meuBotao');
@@ -165,38 +185,38 @@ if ($resultado) {
             });
         });
         </script>
+        
+        
+        
+        
+        <div class="container">
         <?php
         $seguir = isset($_POST['seguir']) ? true : false;
-      
         $verific = "SELECT * FROM seguir WHERE id_seguido = '$idUsuario' AND id_seguidor = '" . $usuario["id_usuario"] . "'";
         $result = $conexao->query($verific);
         if ($result && $result->num_rows > 0) {
             $seguindosn = "seguir";
             if (isset($_POST['seguir'])) {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                
                     if ($seguir) {
                         $sql = "DELETE FROM seguir WHERE id_seguido=$idUsuario AND id_seguidor= " . $usuario["id_usuario"] . "";
-                          
                     }
                 }
             }
-          
         } else {
             $seguindosn = "seguindo";
             $dados = mysqli_fetch_array($result);
             if (isset($_POST['seguir'])) {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-           
+              
 
                     if ($seguir) {
                         $sql = "INSERT INTO seguir (id_seguido, id_seguidor) VALUES ('$idUsuario', '" . $usuario["id_usuario"] . "')";
-                      
                     }
                 }
             }
-           
         }
+        
         // Verifique se o usuário está logado (você pode personalizar essa verificação)
         if (isset($_SESSION['usuario'])) {
             $seguir = isset($_POST['seguir']) ? true : false;
@@ -221,20 +241,40 @@ if ($resultado) {
             $seguindo++;
         }
         ?>
-        <h4> <a href="seguir.php?seguir=1"> Seguidores </a>
+
+
+
+
+       
+        <h4> <a href="seguir.php?seguir='1'" class="btn btn-outline-success" role="button"> Seguidores </a>
       <?= $seguidores ?> 
         </h4>
+
+
+
+
         <form method="post" action="">
             <button type="submit" name="seguir" id="meuBotao">
                 <?= $seguindosn ?>
             </button>
         </form>
-        <h4><a href="seguir.php?seguir=2"> Seguindo </a>
+
+        <h4><a href="seguir.php?seguir='2'"> Seguindo </a>
             <?= $seguindo ?>
         </h4>
-        <form method="post" action="">
-        </form>
+        </div>
+
+
+    </div>
+
+
     </main>
+
+
+
+
+
+    <!-- rodapé -->
     <footer class="site-footer">
         <div class="container">
             <div class="row">
