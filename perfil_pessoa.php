@@ -34,7 +34,8 @@ $resultado = $conexao->query($sql);
 if ($resultado) {
     echo "USUARIO ENCONTRADO";
     $dados = mysqli_fetch_array($resultado);
-
+    $idUsuario = $dados['id_usuario'];
+    $_SESSION["idUsuario"]=$idUsuario;
 
 } else {
     echo "usuario nao";
@@ -121,7 +122,7 @@ if ($resultado) {
             <?= $dados["nome_usuario"] ?>
         </h1>
         <h2> Bio</h2>
-
+<a href="mensagem.php"> Chat</a>
 
         <p>
             <?= $dados["biografia"] ?>
@@ -166,30 +167,35 @@ if ($resultado) {
         </script>
         <?php
         $seguir = isset($_POST['seguir']) ? true : false;
-        $idUsuario = $dados['id_usuario'];
-        $_SESSION["idUsuario"]=$idUsuario;
+      
         $verific = "SELECT * FROM seguir WHERE id_seguido = '$idUsuario' AND id_seguidor = '" . $usuario["id_usuario"] . "'";
         $result = $conexao->query($verific);
         if ($result && $result->num_rows > 0) {
             $seguindosn = "seguir";
+            if (isset($_POST['seguir'])) {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                if (isset($_POST['seguir'])) {
+                
                     if ($seguir) {
                         $sql = "DELETE FROM seguir WHERE id_seguido=$idUsuario AND id_seguidor= " . $usuario["id_usuario"] . "";
+                          
                     }
                 }
             }
+          
         } else {
             $seguindosn = "seguindo";
             $dados = mysqli_fetch_array($result);
+            if (isset($_POST['seguir'])) {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                if (isset($_POST['seguir'])) {
+           
 
                     if ($seguir) {
                         $sql = "INSERT INTO seguir (id_seguido, id_seguidor) VALUES ('$idUsuario', '" . $usuario["id_usuario"] . "')";
+                      
                     }
                 }
             }
+           
         }
         // Verifique se o usuário está logado (você pode personalizar essa verificação)
         if (isset($_SESSION['usuario'])) {
@@ -215,7 +221,7 @@ if ($resultado) {
             $seguindo++;
         }
         ?>
-        <h4> <a href="seguir.php?seguir='1'"> Seguidores </a>
+        <h4> <a href="seguir.php?seguir=1"> Seguidores </a>
       <?= $seguidores ?> 
         </h4>
         <form method="post" action="">
@@ -223,7 +229,7 @@ if ($resultado) {
                 <?= $seguindosn ?>
             </button>
         </form>
-        <h4><a href="seguir.php?seguir='2'"> Seguindo </a>
+        <h4><a href="seguir.php?seguir=2"> Seguindo </a>
             <?= $seguindo ?>
         </h4>
         <form method="post" action="">
