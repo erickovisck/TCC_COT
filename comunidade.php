@@ -29,7 +29,7 @@ if (is_null($usuario["email"])) {
 
 </head>
 
-<body>
+<body>  
 
 
 
@@ -252,7 +252,6 @@ if (is_null($usuario["email"])) {
                         ?>
 
             </main>
-            <script src="js/menulateral.js"></script>
            
 </body>
 
