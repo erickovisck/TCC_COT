@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="assets/css/cadastro.css">
 
     <title>Esqueci a Senha</title>
+    <link rel="shortcut icon" href="imagens/logo_empresa.jpg">
+
 </head>
 
 <body>
