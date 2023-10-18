@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3308
--- Tempo de geração: 16-Out-2023 às 14:07
--- Versão do servidor: 8.0.21
--- versão do PHP: 7.3.21
+-- Host: 127.0.0.1:3306
+-- Tempo de geração: 18-Out-2023 às 12:55
+-- Versão do servidor: 8.0.27
+-- versão do PHP: 8.0.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -93,6 +93,7 @@ CREATE TABLE IF NOT EXISTS `chat_geral` (
   `mensagens` varchar(140) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `nome_usuario` varchar(40) NOT NULL,
   `cont_like` int NOT NULL,
+  `data_mensagem` date NOT NULL,
   PRIMARY KEY (`id_mensagem`),
   KEY `id_usuario` (`id_usuario`)
 ) ENGINE=MyISAM AUTO_INCREMENT=99 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -101,23 +102,23 @@ CREATE TABLE IF NOT EXISTS `chat_geral` (
 -- Extraindo dados da tabela `chat_geral`
 --
 
-INSERT INTO `chat_geral` (`id_mensagem`, `id_autor`, `id_usuario`, `mensagens`, `nome_usuario`, `cont_like`) VALUES
-(94, 0, 4, 'cachorro de chapeu', 'a', 0),
-(93, 0, 4, 'A', 'a', 0),
-(92, 0, 4, 'A', 'a', 0),
-(91, 0, 4, 'livros sao mt fodas', 'a', 0),
-(90, 0, 4, 'k', 'a', 0),
-(89, 0, 4, 'k', 'a', 0),
-(88, 0, 4, 'k', 'a', 0),
-(87, 0, 4, 'k', 'a', 0),
-(86, 0, 4, 'k', 'a', 0),
-(85, 0, 4, 'a', 'a', 0),
-(83, 0, 4, 'a', 'a', 0),
-(84, 0, 4, 'a', 'a', 0),
-(95, 0, 4, 'ola', 'a', 0),
-(96, 0, 4, 'nem fudend', 'a', 0),
-(97, 0, 4, 'ola', 'erick', 0),
-(98, 0, 11, 'ola', '5', 0);
+INSERT INTO `chat_geral` (`id_mensagem`, `id_autor`, `id_usuario`, `mensagens`, `nome_usuario`, `cont_like`, `data_mensagem`) VALUES
+(94, 0, 4, 'cachorro de chapeu', 'a', 0, '0000-00-00'),
+(93, 0, 4, 'A', 'a', 0, '0000-00-00'),
+(92, 0, 4, 'A', 'a', 0, '0000-00-00'),
+(91, 0, 4, 'livros sao mt fodas', 'a', 0, '0000-00-00'),
+(90, 0, 4, 'k', 'a', 0, '0000-00-00'),
+(89, 0, 4, 'k', 'a', 0, '0000-00-00'),
+(88, 0, 4, 'k', 'a', 0, '0000-00-00'),
+(87, 0, 4, 'k', 'a', 0, '0000-00-00'),
+(86, 0, 4, 'k', 'a', 0, '0000-00-00'),
+(85, 0, 4, 'a', 'a', 0, '0000-00-00'),
+(83, 0, 4, 'a', 'a', 0, '0000-00-00'),
+(84, 0, 4, 'a', 'a', 0, '0000-00-00'),
+(95, 0, 4, 'ola', 'a', 0, '0000-00-00'),
+(96, 0, 4, 'nem fudend', 'a', 0, '0000-00-00'),
+(97, 0, 4, 'ola', 'erick', 0, '0000-00-00'),
+(98, 0, 11, 'ola', '5', 0, '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -127,12 +128,25 @@ INSERT INTO `chat_geral` (`id_mensagem`, `id_autor`, `id_usuario`, `mensagens`, 
 
 DROP TABLE IF EXISTS `chat_privado`;
 CREATE TABLE IF NOT EXISTS `chat_privado` (
-  `id_chat_privado` varchar(30) DEFAULT NULL,
-  `id_autor` int DEFAULT NULL,
-  `id_usuario` int DEFAULT NULL,
-  KEY `id_autor` (`id_autor`),
-  KEY `id_usuario` (`id_usuario`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `id_chat_privado` int NOT NULL AUTO_INCREMENT,
+  `mensagem` varchar(200) NOT NULL,
+  `id_enviou` int NOT NULL,
+  `id_recebeu` int NOT NULL,
+  `id_usuario` int NOT NULL,
+  `data_mensagem` date NOT NULL,
+  PRIMARY KEY (`id_chat_privado`)
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Extraindo dados da tabela `chat_privado`
+--
+
+INSERT INTO `chat_privado` (`id_chat_privado`, `mensagem`, `id_enviou`, `id_recebeu`, `id_usuario`, `data_mensagem`) VALUES
+(20, 'ai', 11, 4, 11, '2023-10-18'),
+(19, 'OLAAAAAAAAAAAA', 11, 4, 11, '2023-10-18'),
+(18, 'OIIIIIIIIIIIIII', 4, 11, 4, '2023-10-18'),
+(17, 'OIIIII', 11, 10, 11, '2023-10-18'),
+(21, 'ola', 4, 11, 4, '2023-10-18');
 
 -- --------------------------------------------------------
 
@@ -212,7 +226,18 @@ CREATE TABLE IF NOT EXISTS `seguir` (
   `id_seguido` int NOT NULL,
   `tabseguir` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`tabseguir`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Extraindo dados da tabela `seguir`
+--
+
+INSERT INTO `seguir` (`id_seguidor`, `id_seguido`, `tabseguir`) VALUES
+(4, 4, 16),
+(4, 11, 47),
+(11, 4, 25),
+(11, 11, 29),
+(11, 10, 34);
 
 -- --------------------------------------------------------
 
@@ -252,7 +277,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `id_chat_privado`, `id_chat_geral`, `id_carrinho`, `assinatura_nivel`, `nome_usuario`, `email`, `senha`, `preferencias`, `recuperacao`, `autor`, `mensagens`, `numero_cartao`, `img_perfil`, `biografia`, `seguindo`, `seguidores`, `cont_seguindo`, `cont_seguidores`, `seguindoId`, `quemsegueId`) VALUES
-(4, '', 0, '2', 0, 'erick', '1', '1', '', '1', 0, '', '1234567891234567', '', '', '', '', 4, 135, 0, 0),
+(4, '', 0, '2', 0, 'erick', '1', '1', '', '1', 0, '', '1234567891234567', 'https://www.petz.com.br/blog/wp-content/uploads/2019/05/cachorro-independente-1-1280x720.jpg', '', '', '', 4, 135, 0, 0),
 (5, '', 0, '2', 0, 'erick2', '23', '23', '', '23', 0, '', '', '', '', '', '', 0, 0, 0, 0),
 (6, '', 0, '2', 0, 'b', 'b', '3', '', 'b', 0, '', '', '', '', '', '', 0, 0, 0, 0),
 (7, '', 0, '2', 0, 'a', 'a', 'a', '', 'a', 0, '', '', '', '', '', '', 0, 0, 0, 0),
