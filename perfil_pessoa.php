@@ -246,7 +246,7 @@ if ($resultado) {
 
 
        
-        <h4> <a href="seguir.php?seguir='1'" class="btn btn-outline-success" role="button"> Seguidores </a>
+        <h4> <a href="seguir.php?seguir=1" class="btn btn-outline-success" role="button"> Seguidores </a>
       <?= $seguidores ?> 
         </h4>
 
@@ -259,7 +259,7 @@ if ($resultado) {
             </button>
         </form>
 
-        <h4><a href="seguir.php?seguir='2'"> Seguindo </a>
+        <h4><a href="seguir.php?seguir=2"> Seguindo </a>
             <?= $seguindo ?>
         </h4>
         </div>
