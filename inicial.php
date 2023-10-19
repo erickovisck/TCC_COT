@@ -156,7 +156,7 @@ $conexao->close();
         <div class="col-xs-6 col-md-3">
           <h6>Links Rapidos</h6>
           <ul class="footer-links">
-            <li><a href="#">Sobre nos</a></li>
+            <li><a href="sobre_nos.php">Sobre nos</a></li>
             <li><a href="#">Fale conosco</a></li>
             <li><a href="#">Politica de Privacidade</a></li>
             <li><a href="#">Termos</a></li>
