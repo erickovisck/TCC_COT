@@ -50,7 +50,8 @@ if ($resultado) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="colorlib.com">
 
-    <title>Document</title>
+    <title>Leitor</title>
+    <link rel="shortcut icon" href="imagens/logo_projeto.png">
     <link rel="stylesheet" href="assets/css/estilo.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 
@@ -91,15 +92,12 @@ if ($resultado) {
 
 
         <div class="s128">
-            <form method="post" action="itens.php">
+        <form method="post" action="pessoas.php">
                 <div class="inner-form">
                     <div class="row">
                         <div class="input-field first" id="first">
-
-                            <input class="input" id="inputFocus" type="text" placeholder="Pesquisar" name="pesquisar" />
+                            <input class="input" id="inputFocus" type="text" placeholder="Pesquisar" name="pesquisarpessoa" />
                             <input type="submit" name="enviar" id="pesqenviar">
-
-
                             <button class="clear" id="clear">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                     <path
@@ -191,43 +189,45 @@ if ($resultado) {
         
         <div class="container">
         <?php
-        $seguir = isset($_POST['seguir']) ? true : false;
-        $verific = "SELECT * FROM seguir WHERE id_seguido = '$idUsuario' AND id_seguidor = '" . $usuario["id_usuario"] . "'";
-        $result = $conexao->query($verific);
-        if ($result && $result->num_rows > 0) {
-            $seguindosn = "seguir";
-            if (isset($_POST['seguir'])) {
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                    if ($seguir) {
-                        $sql = "DELETE FROM seguir WHERE id_seguido=$idUsuario AND id_seguidor= " . $usuario["id_usuario"] . "";
-                    }
-                }
-            }
-        } else {
-            $seguindosn = "seguindo";
-            $dados = mysqli_fetch_array($result);
-            if (isset($_POST['seguir'])) {
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-              
 
-                    if ($seguir) {
-                        $sql = "INSERT INTO seguir (id_seguido, id_seguidor) VALUES ('$idUsuario', '" . $usuario["id_usuario"] . "')";
-                    }
+$seguir = isset($_POST['seguir']) ? true : false;
+$idUsuario = $_SESSION['idUsuario']; // Certifique-se de que a variável $idUsuario está definida
+
+// Verifique se o usuário está logado (você pode personalizar essa verificação)
+if (isset($_SESSION['usuario'])) {
+    $verific = "SELECT * FROM seguir WHERE id_seguido = '$idUsuario' AND id_seguidor = '" . $usuario["id_usuario"] . "'";
+    $result = $conexao->query($verific);
+
+    if ($result && $result->num_rows > 0) {
+        $seguindosn = "seguir";
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if ($seguir) {
+                $sql = "DELETE FROM seguir WHERE id_seguido = $idUsuario AND id_seguidor = " . $usuario["id_usuario"];
+                if ($conexao->query($sql) === true) {
+                    // Redirecione para a mesma página para atualizar a exibição
+                } else {
+                    echo "Erro";
                 }
             }
         }
-        
-        // Verifique se o usuário está logado (você pode personalizar essa verificação)
-        if (isset($_SESSION['usuario'])) {
-            $seguir = isset($_POST['seguir']) ? true : false;
-            if ($conexao->query($sql) === true) {
-                // Redirecione para a mesma página para atualizar a exibição
-            } else {
-                echo "Erro na atualização da ação de seguir: " . mysqli_error($conexao);
+    } else {
+        $seguindosn = "seguindo";
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if ($seguir) {
+                $sql = "INSERT INTO seguir (id_seguido, id_seguidor) VALUES ('$idUsuario', '" . $usuario["id_usuario"] . "')";
+                if ($conexao->query($sql) === true) {
+                    // Redirecione para a mesma página para atualizar a exibição
+                } else {
+                    echo "Erro";
+                }
             }
-        } else {
-            echo "Usuário não autenticado. Faça o login para seguir.";
         }
+    }
+} else {
+    echo "Usuário não autenticado. Faça o login para seguir.";
+}
+
+
         $seguirverifi = "SELECT * FROM seguir WHERE id_seguido = $idUsuario";
         $resulseguir = $conexao->query($seguirverifi);
         $seguidores = 0;
