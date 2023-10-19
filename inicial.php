@@ -158,8 +158,8 @@ $conexao->close();
           <ul class="footer-links">
             <li><a href="sobre_nos.php">Sobre nos</a></li>
             <li><a href="#">Fale conosco</a></li>
-            <li><a href="#">Politica de Privacidade</a></li>
-            <li><a href="#">Termos</a></li>
+            <li><a href="politicas.html">Politica de Privacidade</a></li>
+            <li><a href="politicas.html">Termos</a></li>
           </ul>
         </div>
       </div>
