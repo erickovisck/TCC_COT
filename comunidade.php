@@ -66,11 +66,12 @@ if (is_null($usuario["email"])) {
 
 
         <div class="s128">
-            <form>
+        <form method="post" action="pessoas.php">
                 <div class="inner-form">
                     <div class="row">
                         <div class="input-field first" id="first">
-                            <input class="input" id="inputFocus" type="text" placeholder="Keyword" />
+                            <input class="input" id="inputFocus" type="text" placeholder="Pesquisar" name="pesquisarpessoa" />
+                            <input type="submit" name="enviar" id="pesqenviar">
                             <button class="clear" id="clear">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                     <path
@@ -123,8 +124,8 @@ if (is_null($usuario["email"])) {
                         echo "mensagem vazia <br><br>";
                     } else {
                         // A mensagem não está vazia, então insira no banco de dados
-                        $sql = "INSERT INTO chat_geral (id_usuario, mensagens,  nome_usuario, cont_like) VALUES
-            ('" . $usuario['id_usuario'] . "', '$mensagem', '" . $usuario['nome_usuario'] . "', 0)";
+                        $sql = "INSERT INTO chat_geral (id_usuario, mensagens,  nome_usuario, cont_like, data_mensagem) VALUES
+            ('" . $usuario['id_usuario'] . "', '$mensagem', '" . $usuario['nome_usuario'] . "', 0, NOW())";
                         $resultado = $conexao->query($sql);
                         if ($resultado) {
                             echo "mensagem enviada <br>";
@@ -162,7 +163,7 @@ if (is_null($usuario["email"])) {
                                         <div class="post_info">
                                           <a href="perfil_pessoa.php?id_usuario='<?=$id_usuario?>'">  <?php echo  $dados["nome_usuario"]; ?></a>
                                             <span>
-                                                <?php echo "postado agora"; ?>
+                                                <?php echo "Postado em " . $dados["data_mensagem"]; ?>
                                             </span>
                                             <!--    echo $dados["data_mensagem"]. "<br>";  -->
                                         </div>
