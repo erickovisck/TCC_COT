@@ -90,15 +90,12 @@ if ($resultado) {
 
 
         <div class="s128">
-            <form method="post" action="itens.php">
+        <form method="post" action="pessoas.php">
                 <div class="inner-form">
                     <div class="row">
                         <div class="input-field first" id="first">
-
-                            <input class="input" id="inputFocus" type="text" placeholder="Pesquisar" name="pesquisar" />
+                            <input class="input" id="inputFocus" type="text" placeholder="Pesquisar" name="pesquisarpessoa" />
                             <input type="submit" name="enviar" id="pesqenviar">
-
-
                             <button class="clear" id="clear">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                     <path
@@ -119,6 +116,7 @@ if ($resultado) {
     <main class="principal">
         <?php
         $seguir=$_GET["seguir"];
+        echo $seguir;
         $idUsuario=$_SESSION["idUsuario"];
         $idUsuario = $_SESSION["idUsuario"];
         if ($seguir == 1) { // Use "==" para comparar, em vez de "="
