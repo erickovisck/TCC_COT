@@ -1,0 +1,10 @@
+No pc que vai hospedar
+
+trocar require local por require all granted
+em apache->httpd.config e vhost,
+alias->phpmyadmin.conf
+firewall configuraçoes avançadas regras de entrada permitir entrada da porta 80
+
+No pc que vai conectar
+trocar require local por require all granted
+em apache->httpd.config e httpd.vhost.
