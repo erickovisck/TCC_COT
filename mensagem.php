@@ -7,7 +7,6 @@ require_once "conexao/conexao.php";
 $dupl = "DELETE FROM `seguir` WHERE id_seguido = 0";
 $dupl2 = $conexao->query($dupl);
 $iddados=$_SESSION["idUsuario"];
-echo $iddados;
 $usuario = $_SESSION["usuario"];
 if ($usuario["id_usuario"] == $iddados) {
     header("Location:perfil.php");
@@ -32,7 +31,6 @@ if (isset($_POST["pesquisar"])) {
 $sql = "SELECT * FROM usuario where id_usuario = $iddados";
 $resultado = $conexao->query($sql);
 if ($resultado) {
-    echo "USUARIO ENCONTRADO";
     $dados = mysqli_fetch_array($resultado);
     
 
@@ -49,7 +47,7 @@ if ($resultado) {
     <meta name="author" content="colorlib.com">
 
     <title>Document</title>
-    <link rel="stylesheet" href="assets/css/estilo.css">
+    <link rel="stylesheet" href="assets/css/mensagem.css">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 
@@ -88,42 +86,20 @@ if ($resultado) {
 
 
 
-        <div class="s128">
-        <form method="post" action="pessoas.php">
-                <div class="inner-form">
-                    <div class="row">
-                        <div class="input-field first" id="first">
-                            <input class="input" id="inputFocus" type="text" placeholder="Pesquisar" name="pesquisarpessoa" />
-                            <input type="submit" name="enviar" id="pesqenviar">
-                            <button class="clear" id="clear">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                    <path
-                                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z">
-                                    </path>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
 
-                </div>
-            </form>
-        </div>
 
 
     </div>
 
-    <main class="principal">
-        <form action="" method="post">
-            <input type="text" class="form-control" name="mensagempessoal" id="exampleFormControlTextarea1" rows="3"
-                placeholder="Bom Dia a todos!!"></input>
-            <input class="btn btn-secondary" type="submit" value="enviar" name="enviar">
-        </form>
-  
+    <main class="mensagens container">
 
-<!--         <img src="<?=$dados["img_perfil "]?>" alt="" class="avatar"> -->
+
+
+        <h2 id="nomeuser">    <img class="profile-pic" id="iconperfil" src="<?=$dados["img_perfil"]?>" >
+<?=$dados["nome_usuario"]?></h2>
+
         <?php
          $datapost = date('y/m/d' );
-         echo $dados["nome_usuario"];
   if (isset($_POST["mensagempessoal"])) {
     $mensagem = $_POST["mensagempessoal"];
     // Verifique se a mensagem não está vazia
@@ -147,59 +123,37 @@ if ($resultado) {
         }
     }
 }
-$sql = "SELECT * FROM chat_privado WHERE id_recebeu=".$usuario["id_usuario"]." AND id_enviou=$iddados";
+
+
+
+// Consulta SQL para obter todas as mensagens relacionadas a essa conversa, ordenadas da mais recente para a mais antiga
+$sql = "SELECT * FROM chat_privado WHERE (id_recebeu = " . $usuario["id_usuario"] . " AND id_enviou = $iddados) OR (id_enviou = " . $usuario["id_usuario"] . " AND id_recebeu = $iddados) ORDER BY data_mensagem ASC";
 $resultado = $conexao->query($sql);
-$sql2 = "SELECT * FROM chat_privado WHERE id_enviou=".$usuario["id_usuario"]." AND id_recebeu=$iddados";
-$resultado2 = $conexao->query($sql2);
 
-if ($resultado || $resultado2) {
-
-
+if ($resultado) {
     while ($dados = mysqli_fetch_array($resultado)) {
-        echo "<div class='' data-id='" . $dados['id_recebeu'] . "'>";
-        $id_usuario=$dados["id_recebeu"];
-        ?>
+        echo "<div class='id' data-id='" . $dados['id_enviou'] . "'></div>";
+        $id_usuario = $dados["id_enviou"];
 
-        <img src="" alt="" class="avatar">
-
-        <span>
-            <?php echo ""; ?>
-        </span>
-        <!--    echo $dados["data_mensagem"]. "<br>";  -->
-        </div>
-        </div>
-        <div class="recebeu">
-            <?php echo $dados["mensagem"] ."Enviada em ".$dados["data_mensagem"]."". "<br>" ?>
-        </div>
-     
-        <?php
+        if ($dados["id_enviou"] == $usuario["id_usuario"]) {
+            // Se a mensagem foi enviada pelo usuário atual
+            echo "<div class='enviou col'>";
+            echo "<div class='btn btn-secondary btn-sm'>" . $dados["mensagem"] .   "</div><br>" ."<div id='horario'> ". substr($dados["data_mensagem"], 10).'</div>';
             echo "</div>";
-
-    }
-
-    while ($dados = mysqli_fetch_array($resultado2)) {
-        echo "<div class='' data-id='" . $dados['id_enviou'] . "'>";
-        $id_usuario=$dados["id_enviou"];
-        ?>
-
-        <img src="" alt="" class="avatar">
-
-        <span>
-            <?php echo ""; ?>
-        </span>
-        <!--    echo $dados["data_mensagem"]. "<br>";  -->
-        </div>
-        </div>
-        <div class="enviou">
-        <?php echo $dados["mensagem"] ." Enviada em ".$dados["data_mensagem"]."". "<br>" ?>
-        </div>
-      
-        <?php
+        } else {
+            // Se a mensagem foi recebida pelo usuário atual
+            echo "<div class='recebeu col-md-4'>";
+            echo "<div class='btn btn-primary btn-sm'>" . $dados["mensagem"] ."</div><br>"."<div id='horario'> ". substr($dados["data_mensagem"], 10).'</div>';
             echo "</div>";
-
+        }
     }
 }
-    ?>
+
+
+?>
+
+
+
         <script>
         // ...
 
@@ -245,50 +199,14 @@ if ($resultado || $resultado2) {
             });
         });
         </script>
-
-
+        </div>
+        <form action="" method="post">
+            <input type="text" class="form-control" name="mensagempessoal" id="exampleFormControlTextarea1" rows="3"
+                placeholder="Enviar mensagem"></input>
+            <input style="display:none;"class="btn btn-secondary" type="submit" value="enviar" name="enviar">
+        </form>
     </main>
-    <footer class="site-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 col-md-6">
-                    <h6>Sobre</h6>
-                    <p class="text-justify">O desenvolvimento deste site se tornou necessário após uma breve pesquisa
-                        sobre sites com o mesmo propósito, contudo, percebemos que estes sites são quase inexistentes.
-                        Visando isso, decidimos fazer um site com mais reconhecimento para autores nacionais e para que
-                        mais pessoas possam ter gosto pela leitura.</p>
-                </div>
-                <div class="col-xs-6 col-md-3">
-                    <h6>Links Rapidos</h6>
-                    <ul class="footer-links">
-                        <li><a href="#">Sobre nos</a></li>
-                        <li><a href="#">Fale conosco</a></li>
-                        <li><a href="#">Politica de Privacidade</a></li>
-                        <li><a href="#">Termos</a></li>
-                    </ul>
-                </div>
-            </div>
-            <hr>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-sm-6 col-xs-12">
-                    <p class="copyright-text">Copyright &copy; 2023 All Rights Reserved by
-                        <a href="#">Scanfcode</a>.
-                    </p>
-                </div>
 
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                    <ul class="social-icons">
-                        <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
-                        <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
     <?php
 
     ?>
