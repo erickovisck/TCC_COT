@@ -67,7 +67,6 @@ if($resultado){
     <title>Perfil</title>
     <link rel="shortcut icon" href="imagens/logo_empresa.jpg">
     <link rel="stylesheet" href="assets/css/estilo.css">
- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
 <div class="cabecalho">
@@ -123,8 +122,7 @@ if($resultado){
 <div class="principal">
 <div class="container text-center " style="border: 1px solid black; border-radius: 3%; margin-top: 8%; height: 500px; ">
 <div class="row">
-    <div class="col   p-4" style="border-radius:3%;">
-    <div class="edit">
+    <div class="col   p-4">
 <form action="" method="post">
     <h3>Editar imagem</h3>
     <input type="text" placeholder="Endereço da imagem" name="img" />
@@ -163,7 +161,6 @@ if($resultado){
   
     <h1><?= $dados["nome_usuario"]?></h1>
     <br>
-</div>
 </div>
     <div class="col col-lg-2  p-4">
   <h2>Bio: </h2>
@@ -217,15 +214,9 @@ if($resultado){
 </label>
 <br>  <br>
 </div>
-<div class="atnome">
-            <label for="alt_senha">Confirmar senha <br>
-            <input type="text" name="senha"> 
-</label>
-<br>  <br>
-</div>
 <div class="atenviar">
-<label>
-            <input type="submit" name="enviar" class="alt_enviar">
+<label for="alt_enviar">
+            <input type="submit" name="enviar">
 </label>
 </div>
         </form>

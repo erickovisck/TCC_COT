@@ -33,10 +33,11 @@ $conexao->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="colorlib.com">
 
- <title>Inical</title>
+ <title>Inicial</title>
+
     <link rel="shortcut icon" href="imagens/logo_empresa.jpg">
     <link rel="stylesheet" href="assets/css/estilo.css">
-   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 
 
@@ -102,6 +103,7 @@ $conexao->close();
 
     <main class="principal">
         <!--START OF PAGE BANNER-->
+        <div class="container-fluid">
         <div id="page_banner">
             <div id="banner">
                 <div id="msg_box">
@@ -113,6 +115,7 @@ $conexao->close();
                             <i class="fa-solid fa-arrow-right"></i></button> </a>
                 </div>
             </div>
+        </div>
         </div>
         <!--END OF PAGE BANNER-->
         <!--START OF FIRST PRODUCTS GIRD-->
@@ -168,17 +171,15 @@ $conexao->close();
     <div class="container">
       <div class="row">
         <div class="col-md-8 col-sm-6 col-xs-12">
-          <p class="copyright-text">Copyright &copy; 2023 All Rights Reserved by
-            <a href="#">Scanfcode</a>.
-          </p>
+   
         </div>
 
         <div class="col-md-4 col-sm-6 col-xs-12">
           <ul class="social-icons">
-            <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-            <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-            <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
-            <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+            <li><a class="facebook" href="#"><i class="bi bi-facebook"></i></a></li>
+            <li><a class="twitter" href="#"><i class="bi bi-twitter"></i></a></li>
+            <li><a class="dribbble" href="https://instagram.com/creatorsofthought?igshid=MzRlODBiNWFlZA"><i class="bi bi-instagram"></i></a></li>
+            <li><a class="linkedin" href="#"><i class="bi bi-linkedin"></i></a></li>
           </ul>
         </div>
       </div>

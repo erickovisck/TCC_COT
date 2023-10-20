@@ -90,7 +90,7 @@ if (is_null($usuario["email"])) {
 
 
 
-            <main class="principal">
+            <main class="principal bg-dark">
             <!--<div class="container">
             <div class="row">
                 <form action="" method="post">
@@ -100,8 +100,8 @@ if (is_null($usuario["email"])) {
 
                 </form> -->
 <div class="container text-center text-bg-dark p-3">
-  <div class="row justify-content-center    ">
-                <div class="mb-3 col-md-auto">
+  <div class="row justify-content-center">
+                <div class="mb-3 col-md-auto ">
   <label for="exampleFormControlInput1" class="form-label"   >Titulo</label>   
   <input type="email" class="form-control" id="exampleFormControlInput1" >
 </div>
@@ -142,9 +142,9 @@ if (is_null($usuario["email"])) {
             </div>
             </div>
 
-            <div class="container text-center text-bg-dark p-3">
+            <div class="container text-center text-bg-dark p-3 border border-white">
                 <main class="row justify-content-center">
-                <div class="col-8">
+                <div class="col-8 " >
                     <section class="news-feed">
                         <?php
                         $sql = "SELECT * FROM chat_geral";
@@ -158,24 +158,24 @@ if (is_null($usuario["email"])) {
                                 $id_usuario=$dados["id_usuario"];
                                 ?>
                                 <article class="post border border-primary">
-                                    <div class="post_header">
+                                    <div class="post_header text-start">
                                         <img src="" alt="" class="avatar">
                                         <div class="post_info">
-                                          <a href="perfil_pessoa.php?id_usuario='<?=$id_usuario?>'">  <?php echo  $dados["nome_usuario"]; ?></a>
+                                          <a href="perfil_pessoa.php?id_usuario='<?=$id_usuario?>'">  <img class="profile-pic" id="iconperfil" src="imagens/teste.jpg" > <?php echo  $dados["nome_usuario"]; ?></a>
                                             <span>
                                                 <?php echo "Postado em " . $dados["data_mensagem"]; ?>
                                             </span>
                                             <!--    echo $dados["data_mensagem"]. "<br>";  -->
                                         </div>
                                     </div>
-                                    <div class="post_content">
+                                    <div class="post_content ">
                                         <?php echo $dados["mensagens"] . "<br>" ?>
                                     </div>
-                                    <div class="post_engage">
+                                    <div class="post_engage row p-3 text-start ">
                                         <?php echo "<div class='likes'>" . $dados["cont_like"] . "</div> " . " leitores curtiram"; ?>
                                     </div>
                                     <?php
-                                    echo "<button class='like_button'>Curtir</button>";
+                                    echo "<button class='like_button btn btn-primary'><i class='bi bi-hand-thumbs-up'></i></button>";
                                     echo "</div>";
 
                             }

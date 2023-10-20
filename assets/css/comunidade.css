@@ -9,7 +9,6 @@
   .news-feed {
       grid-area:feed;
       height: calc(100vh - var(--header));
-      overflow-y:scroll;
   }
   
   .services {
@@ -20,10 +19,8 @@
   .post {
     background: white;
     border: solid 1px #ccc;
-    border-radius: 5px;
     padding: 10px;
     overflow:hidden;
-    margin:1rem 0;
   }
   
   .post__header {

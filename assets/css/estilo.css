@@ -460,6 +460,7 @@ margin-top: -28%;
       }
 
 span{
+  font-size: 0.7rem;
   color:#836FFF;
 }
 .main_footer{
@@ -532,20 +533,13 @@ text-align:center ;
 }
 .atenviar{
   text-align: center;
-  padding: 15px;
 }
 .atenviar label{
-  margin-left: 24%;
+  text-align: right;
 }
-.alt_enviar{
-background-color: white;
-font-weight: bold;
-text-decoration: none;
 
-}
-.alt_enviar:hover{
-      background-color: #FFA3FD;
-}
+
+
 .profile-pic {
   border-radius: 100%;
   -o-border-radius:100%;
@@ -554,18 +548,6 @@ text-decoration: none;
   max-height: 150px;
   border: 1px solid black;
 }
-.edit{
-  text-align: left;
-  margin-left: 10%;
-}
-.edit h3{
-  text-align: left;
-  font-size:20px ;
-  font-weight: bold;  
-  padding: 8px;
-
-}
-
 
 
 
@@ -1374,7 +1356,7 @@ html {
 #banner, #banner_{
     width: 100%;
     padding: 25px;
-    height: 100%;
+    height: 80%;
 /*     background-image: url(https://blogdocolecionador.com.br/wp-content/uploads/2020/01/como-comecar-colecao-de-livros.jpg); */
 background-image: url("https://img.freepik.com/fotos-gratis/grande-colecao-de-livros-antigos-em-prateleiras-de-madeira-geradas-por-ia_188544-29739.jpg?w=1060&t=st=1696514170~exp=1696514770~hmac=c7a20b1b384c226002d9a865ed724113701c59f9fd72f44830c7c17356e634ac");
     background-repeat: no-repeat;
@@ -1646,7 +1628,7 @@ background-image: url("https://img.freepik.com/fotos-gratis/grande-colecao-de-li
 }
 .social-icons a.dribbble:hover
 {
-  background-color:#ea4c89
+  background-color:#f192b7
 }
 @media (max-width:767px)
 {
