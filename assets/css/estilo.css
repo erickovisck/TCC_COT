@@ -501,6 +501,52 @@ text-align:center ;
   font-size: 17px;
   color:white;
 }
+.sobre_iconp{
+  border-radius: 100%;
+  -o-border-radius:100%;
+  -webkit-border-radius:100%;
+  max-width: 200px;
+  max-height: 150px;
+}
+.sobre_hp{
+  font-size: 20px;
+}
+.sobre_title{
+  color: white;
+  font-size: 37px;
+}
+/*css página perfil_pessoa*/
+.alterar{
+  font-size: 20px;
+  text-align: center;
+  font-weight: bold;  
+  padding: 8px;
+}
+.atnome{
+  text-align: center;
+}
+.atnome label{
+  text-align: left;
+  padding-left: 2px;
+  font-weight: bold;
+}
+.atenviar{
+  text-align: center;
+}
+.atenviar label{
+  text-align: right;
+}
+
+
+
+.profile-pic {
+  border-radius: 100%;
+  -o-border-radius:100%;
+  -webkit-border-radius:100%;
+  max-width: 200px;
+  max-height: 150px;
+  border: 1px solid black;
+}
 
 
 
