@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 18-Out-2023 às 12:55
--- Versão do servidor: 8.0.27
+-- Tempo de geração: 20-Out-2023 às 00:14
+-- Versão do servidor: 8.0.31
 -- versão do PHP: 8.0.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -96,29 +96,16 @@ CREATE TABLE IF NOT EXISTS `chat_geral` (
   `data_mensagem` date NOT NULL,
   PRIMARY KEY (`id_mensagem`),
   KEY `id_usuario` (`id_usuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=99 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `chat_geral`
 --
 
 INSERT INTO `chat_geral` (`id_mensagem`, `id_autor`, `id_usuario`, `mensagens`, `nome_usuario`, `cont_like`, `data_mensagem`) VALUES
-(94, 0, 4, 'cachorro de chapeu', 'a', 0, '0000-00-00'),
-(93, 0, 4, 'A', 'a', 0, '0000-00-00'),
-(92, 0, 4, 'A', 'a', 0, '0000-00-00'),
-(91, 0, 4, 'livros sao mt fodas', 'a', 0, '0000-00-00'),
-(90, 0, 4, 'k', 'a', 0, '0000-00-00'),
-(89, 0, 4, 'k', 'a', 0, '0000-00-00'),
-(88, 0, 4, 'k', 'a', 0, '0000-00-00'),
-(87, 0, 4, 'k', 'a', 0, '0000-00-00'),
-(86, 0, 4, 'k', 'a', 0, '0000-00-00'),
-(85, 0, 4, 'a', 'a', 0, '0000-00-00'),
-(83, 0, 4, 'a', 'a', 0, '0000-00-00'),
-(84, 0, 4, 'a', 'a', 0, '0000-00-00'),
-(95, 0, 4, 'ola', 'a', 0, '0000-00-00'),
-(96, 0, 4, 'nem fudend', 'a', 0, '0000-00-00'),
-(97, 0, 4, 'ola', 'erick', 0, '0000-00-00'),
-(98, 0, 11, 'ola', '5', 0, '0000-00-00');
+(101, 0, 10, 'ola', 'camila', 0, '2023-10-19'),
+(100, 0, 10, 'OII', 'camila', 0, '2023-10-19'),
+(99, 0, 10, 'OIII', 'camila', 0, '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -133,20 +120,22 @@ CREATE TABLE IF NOT EXISTS `chat_privado` (
   `id_enviou` int NOT NULL,
   `id_recebeu` int NOT NULL,
   `id_usuario` int NOT NULL,
-  `data_mensagem` date NOT NULL,
+  `data_mensagem` datetime NOT NULL,
   PRIMARY KEY (`id_chat_privado`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `chat_privado`
 --
 
 INSERT INTO `chat_privado` (`id_chat_privado`, `mensagem`, `id_enviou`, `id_recebeu`, `id_usuario`, `data_mensagem`) VALUES
-(20, 'ai', 11, 4, 11, '2023-10-18'),
-(19, 'OLAAAAAAAAAAAA', 11, 4, 11, '2023-10-18'),
-(18, 'OIIIIIIIIIIIIII', 4, 11, 4, '2023-10-18'),
-(17, 'OIIIII', 11, 10, 11, '2023-10-18'),
-(21, 'ola', 4, 11, 4, '2023-10-18');
+(32, 'se fode maluco', 4, 10, 4, '2023-10-19 00:00:00'),
+(31, '?', 10, 4, 10, '2023-10-19 00:00:00'),
+(30, 'Ue porra', 10, 4, 10, '2023-10-19 00:00:00'),
+(29, 'cala boca', 10, 4, 10, '2023-10-19 00:00:00'),
+(28, 'pimenta no cu dos outro e refresco', 4, 10, 4, '2023-10-19 00:00:00'),
+(33, 'oi', 4, 10, 4, '2023-10-19 21:08:42'),
+(34, 'teste', 4, 10, 4, '2023-10-19 21:08:57');
 
 -- --------------------------------------------------------
 
@@ -226,7 +215,7 @@ CREATE TABLE IF NOT EXISTS `seguir` (
   `id_seguido` int NOT NULL,
   `tabseguir` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`tabseguir`)
-) ENGINE=MyISAM AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=68 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `seguir`
@@ -237,7 +226,8 @@ INSERT INTO `seguir` (`id_seguidor`, `id_seguido`, `tabseguir`) VALUES
 (4, 11, 47),
 (11, 4, 25),
 (11, 11, 29),
-(11, 10, 34);
+(11, 10, 34),
+(10, 4, 67);
 
 -- --------------------------------------------------------
 
@@ -260,7 +250,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `autor` tinyint(1) NOT NULL,
   `mensagens` varchar(140) NOT NULL,
   `numero_cartao` varchar(16) NOT NULL,
-  `img_perfil` varchar(200) NOT NULL,
+  `img_perfil` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `biografia` varchar(200) NOT NULL,
   `seguindo` varchar(50) NOT NULL,
   `seguidores` varchar(50) NOT NULL,
@@ -281,7 +271,7 @@ INSERT INTO `usuario` (`id_usuario`, `id_chat_privado`, `id_chat_geral`, `id_car
 (5, '', 0, '2', 0, 'erick2', '23', '23', '', '23', 0, '', '', '', '', '', '', 0, 0, 0, 0),
 (6, '', 0, '2', 0, 'b', 'b', '3', '', 'b', 0, '', '', '', '', '', '', 0, 0, 0, 0),
 (7, '', 0, '2', 0, 'a', 'a', 'a', '', 'a', 0, '', '', '', '', '', '', 0, 0, 0, 0),
-(10, '', 0, '2', 0, 'camila', '2', '2', '', '2', 0, '', '', 'https://img.freepik.com/psd-gratuitas/icone-3d-para-aplicativo-de-midia-social_23-2150049569.jpg?size=626&ext=jpg&ga=GA1.1.833333440.1697023576&semt=ais', 'sasd', '', '', 0, 0, 0, 0),
+(10, '', 0, '2', 0, 'camila', '2', '2', '', '2', 0, '', '', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', 'sasd', '', '', 0, 0, 0, 0),
 (11, '', 0, '2', 0, '5', '5', '5', '', '5', 0, '', '', '', '', '', '', 0, 4, 0, 0);
 COMMIT;
 
