@@ -532,13 +532,20 @@ text-align:center ;
 }
 .atenviar{
   text-align: center;
+  padding: 15px;
 }
 .atenviar label{
-  text-align: right;
+  margin-left: 24%;
 }
+.alt_enviar{
+background-color: white;
+font-weight: bold;
+text-decoration: none;
 
-
-
+}
+.alt_enviar:hover{
+      background-color: #FFA3FD;
+}
 .profile-pic {
   border-radius: 100%;
   -o-border-radius:100%;
@@ -547,6 +554,18 @@ text-align:center ;
   max-height: 150px;
   border: 1px solid black;
 }
+.edit{
+  text-align: left;
+  margin-left: 10%;
+}
+.edit h3{
+  text-align: left;
+  font-size:20px ;
+  font-weight: bold;  
+  padding: 8px;
+
+}
+
 
 
 
