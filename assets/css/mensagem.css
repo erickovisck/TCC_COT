@@ -1701,11 +1701,23 @@ text-align:right;
   }
   .mensagens{
     grid-area: mensagens;
-     
   }
   .id{
     display: none;
   }
   .recebeu{
     height: 30px;
+  }
+  #nomeuser{
+display: flex;
+justify-content: center;
+  }
+  #iconperfil{
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    margin-right: 10px;
+  }
+  #horario{
+    opacity: 40%;
   }
