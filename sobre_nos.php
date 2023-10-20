@@ -116,19 +116,34 @@ include_once "pesquisa.php";
 
 
 <footer class="main_footer">
-    <div class="criadores">
-    <h1>Criadores:</h1> <br>
-    <div class="ladoalado">
-    <img src="imagens/logo_projeto.png"> 
-    <img src="imagens/logo_projeto.png">
-    <img src="imagens/logo_projeto.png">
-    <img src="imagens/logo_projeto.png">
-    <img src="imagens/logo_projeto.png">
+<div class="container text-center" style="margin-top: 4%; color:white;">
+<div class="row">
+<h2 class="sobre_title" style="padding:10px;">Criadores:</h2> 
+<div class="col">
+     <img src="imagens/icon_camila.jpeg" class="sobre_iconp"> <br>
+     <h3 class="sobre_hp">Camila Santiago</h3>
+     </div>
+     <div class="col">
+     <img src="imagens/icon_dantas.jpeg" class="sobre_iconp">
+     <h3 class="sobre_hp">Erick Dantas</h3>
+     </div>
+     <div class="col">
+     <img src="imagens/icon_fernando.jpeg" class="sobre_iconp" >
+     <h3 class="sobre_hp">Erick Fernando</h3>
+     </div>
+     <div class="col">
+     <img src="imagens/icon_pereira.jpeg" class="sobre_iconp">
+     <h3 class="sobre_hp">Guilherme Pereira</h3>
+     </div>
+     <div class="col">
+     <img src="imagens/icon_barbosa.jpeg" class="sobre_iconp">
+     <h3 class="sobre_hp">Gustavo Del Manto</h3>
+     </div>
 </div>
 </div>
 <br> <br>
-    <div class="social_media">
-        <h3>Acesse nossas redes sociais:</h3>
+     <div class="container text-center">
+        <h2 class="sobre_title">Acesse nossas redes sociais:</h2>
     <a href=""><img src="imagens/instagram_icon.png"> </a> 
     <a href=""><img src="imagens/email_icon.png"></a>
 </div>
