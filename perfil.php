@@ -119,7 +119,10 @@ if($resultado){
             </form>
         </div>
 </div>
-<div class="perfil">
+<div class="principal">
+<div class="container text-center " style="border: 1px solid black; border-radius: 3%; margin-top: 8%; height: 500px; ">
+<div class="row">
+    <div class="col   p-4">
 <form action="" method="post">
     <h3>Editar imagem</h3>
     <input type="text" placeholder="Endereço da imagem" name="img" />
@@ -139,9 +142,7 @@ if($resultado){
 }
     }
 ?>
-</form>
-    <div class="perfil_card"> 
-        <div class="perfil2">   
+</form>  
             
         <?php
     if($dados["img_perfil"]){    
@@ -159,8 +160,9 @@ if($resultado){
 
   
     <h1><?= $dados["nome_usuario"]?></h1>
-</div>
     <br>
+</div>
+    <div class="col col-lg-2  p-4">
   <h2>Bio: </h2>
   <?php 
 
@@ -193,28 +195,42 @@ if($resultado){
     }
 }
 ?>
-
-    <br>
-    <br>
-    <br>
-<hr>
+</div>
+    <div class="col  p-4" style="background-color:#2f2841; color: white; border-radius: 3%;  height: 500px; ">
     <form action="" method="POST">
             <h1> <?=     $mens?> </h1>
 
-            <h1> ALTERAR INFORMAÇÕES</h1>
+            <h2 class="alterar"> ALTERAR INFORMAÇÕES</h2>
             <br>
-            <p>Nome</p>
-            <input type="text" name="nome"> 
-            <p>Senha</p>
-            <input type="text" name="senha">
+            <div class="atnome">
+           <label for="alt_nome"> Nome <br>
+            <input type="text" name="nome">
+        </label>
+</div>
+<br>
+<div class="atnome">
+            <label for="alt_senha">Senha <br>
+            <input type="text" name="senha"> 
+</label>
+<br>  <br>
+</div>
+<div class="atenviar">
+<label for="alt_enviar">
             <input type="submit" name="enviar">
-
+</label>
+</div>
         </form>
-
-        <a href="deletarconta"><input type="submit" name="delet" value="deletar conta"></a>
+        <a href="deletarconta"><input type="submit" name="delet" value="Deletar conta" class="btn btn-danger" style="font-weight: bold;"></a>
         </form>
+        
 </div>
 </div>
+</div>
+</div>
+</div>
+<footer  class="site-footer">
+</footer>
+
 
 
   
