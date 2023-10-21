@@ -11,21 +11,9 @@ if (isset($_POST["selecionado"])) {
     $itensSelecionados = $_POST["selecionado"];
     
     foreach ($itensSelecionados as $id_livro) {
-        // Você pode ajustar a quantidade conforme necessário
         $quantidade = 1;
         
-        // Use instruções preparadas para evitar SQL Injection
-        $sql = "INSERT INTO carrinho (id_livro, id_usuario, quantidade) 
-        VALUES ('$id_livro','".$usuario['id_usuario']."','$quantidade')";
-        $resultado = $conexao->prepare($sql);
-        
-        if ($resultado->execute()) {
-            $itensAdicionados++;
-        } else {
-            echo "Erro ao adicionar item ao carrinho: " . $resultado->error;
-        }
-        
-        $resultado->close();
+       
     }
     
     // Redirecionar para esta página usando GET após a inserção bem-sucedida
