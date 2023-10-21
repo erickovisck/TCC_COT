@@ -176,10 +176,9 @@ $conexao->close();
 
         <div class="col-md-4 col-sm-6 col-xs-12">
           <ul class="social-icons">
-            <li><a class="facebook" href="#"><i class="bi bi-facebook"></i></a></li>
-            <li><a class="twitter" href="#"><i class="bi bi-twitter"></i></a></li>
+            <li><a class="facebook" href="https://www.facebook.com/profile.php?id=61552309210774&is_tour_dismissed=true"><i class="bi bi-facebook"></i></a></li>
+            <li><a class="twitter" href="https://twitter.com/creababyohw"><i class="bi bi-twitter"></i></a></li>
             <li><a class="dribbble" href="https://instagram.com/creatorsofthought?igshid=MzRlODBiNWFlZA"><i class="bi bi-instagram"></i></a></li>
-            <li><a class="linkedin" href="#"><i class="bi bi-linkedin"></i></a></li>
           </ul>
         </div>
       </div>
