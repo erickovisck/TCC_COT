@@ -118,33 +118,49 @@ $conexao->close();
         </div>
         </div>
         <!--END OF PAGE BANNER-->
-        <!--START OF FIRST PRODUCTS GIRD-->
-        <div id="grid_f">
-            <div id="pro1" class="pro">
-                <div id="msg">
-                    <a href="comunidade.php"><button id="shop_now" type="submit" name="shop now"
-                            onclick="change()">Comunidade <i class="fa-solid fa-arrow-right"></i></button> </a>
-                    <!--                     <span class="shop_n animate__slideOutRight">Shop Now <i class="fa-solid fa-arrow-right"></i></span> -->
-                </div>
-            </div>
-            <div id="pro2" class="pro">
-                <div id="msg">
-                    <a href="itens.php"><button id="shop_now" type="submit" name="shop now" onclick="change()">Itens <i
-                                class="fa-solid fa-arrow-right"></i></button> </a>
-                    <!--  <span class="shop_n">Shop Now <i class="fa-solid fa-arrow-right"></i></span> -->
+        <!-- START FIRST CAROUSEL -->
+    <div class="carrossel_inicial bg-body-secondary">
+  <div class="container p-4 ">
+  <div id="carouselExampleDark" class="carousel carousel-dark slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active" data-bs-interval="10000">
+      <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Feditorialpaco.com.br%2Fquais-sao-as-partes-de-um-livro-impresso%2F&psig=AOvVaw01KSfLJZ8FgcFOd9g8-9zM&ust=1697977423627000&source=images&cd=vfe&opi=89978449&ved=0CA8QjRxqFwoTCJDpl_uQh4IDFQAAAAAdAAAAABAG" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>First slide label</h5>
+        <p>Some representative placeholder content for the first slide.</p>
+      </div>
+    </div>
+    <div class="carousel-item" data-bs-interval="2000">
+      <img src="https://editorialpaco.com.br/wp-content/uploads/2019/07/c8c74d9bca132ddb5e608bb5b212b386.jpg" class="d-block w-100 " alt="...">
+      <div class="carousel-caption d-none d-md-block">
+       <!-- texto adiciona aqui -->
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="..." class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Third slide label</h5>
+        <p>Some representative placeholder content for the third slide.</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
 
-                </div>
-            </div>
-            <div id="pro3" class="pro">
-                <div id="msg">
-                    <a href="sugestao.php"><button id="shop_now" type="submit" name="shop now"
-                            onclick="change()">Sugestão <i class="fa-solid fa-arrow-right"></i></button> </a>
-                    <!--  <span class="shop_n">Shop Now <i class="fa-solid fa-arrow-right"></i></span> -->
-
-                </div>
-            </div>
-        </div>
-        <!--END OF FIRST PRODUCTS GIRD-->
+    </div>
+  </div>
+  </div>
     </main>
     <!-- Site footer -->
 
@@ -176,9 +192,10 @@ $conexao->close();
 
         <div class="col-md-4 col-sm-6 col-xs-12">
           <ul class="social-icons">
-            <li><a class="facebook" href="https://www.facebook.com/profile.php?id=61552309210774&is_tour_dismissed=true"><i class="bi bi-facebook"></i></a></li>
-            <li><a class="twitter" href="https://twitter.com/creababyohw"><i class="bi bi-twitter"></i></a></li>
+            <li><a class="facebook" href="#"><i class="bi bi-facebook"></i></a></li>
+            <li><a class="twitter" href="#"><i class="bi bi-twitter"></i></a></li>
             <li><a class="dribbble" href="https://instagram.com/creatorsofthought?igshid=MzRlODBiNWFlZA"><i class="bi bi-instagram"></i></a></li>
+            <li><a class="linkedin" href="#"><i class="bi bi-linkedin"></i></a></li>
           </ul>
         </div>
       </div>
@@ -217,6 +234,7 @@ $conexao->close();
         }
     });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="js/extesion/choices.js"></script>
     <script src="js/extesion/custom-materialize.js"></script>
     <script src="js/extention/flatpickr.js"></script>
