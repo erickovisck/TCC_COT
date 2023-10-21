@@ -31,7 +31,6 @@ if (isset($_POST["pesquisar"])) {
     $_SESSION['pesquisar'] = $pesquisa;
 /*     include_once "pesquisa.php"; */
 }
-$conexao->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,10 +40,11 @@ $conexao->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="colorlib.com">
 
-   <title>Livro</title>
+    <title>Livro</title>
     <link rel="shortcut icon" href="imagens/logo_empresa.jpg">
     <link rel="stylesheet" href="assets/css/estilo.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
 
 </head>
@@ -107,9 +107,9 @@ $conexao->close();
 
     <main class="principal">
 
-    <div class="container-xxl text-center">
-        <div class="row align-items-center  bg-body p-3 border border-black">
-            <?php
+        <div class="container-xxl text-center">
+            <div class="row align-items-center  bg-body p-3 border border-black">
+                <?php
 if ($response) {
     $data = json_decode($response);
     
@@ -117,9 +117,9 @@ if ($response) {
         $item = $data->items[0];
 
         ?>
-        <div class="sla col-md-auto">
-            <div class="imglivro ">
-                <?php
+                <div class="sla col-md-auto">
+                    <div class="imglivro ">
+                        <?php
                 if(isset($item->volumeInfo->imageLinks->thumbnail)){
                     echo "<img src='". $thumbnail = $item->volumeInfo->imageLinks->thumbnail."'>";
                 }else{
@@ -138,21 +138,44 @@ if ($response) {
 
 /*  echo "Preço R$".$item->volumeInfo->saleInfo->saleability;
  */?>
-</div>
-            </div>
-<div class="dadoslivro col align-self-end">
-            <?php
+                    </div>
+                </div>
+                <div class="dadoslivro col align-self-end">
+                    <?php
        echo "<h1>" . $title = $item->volumeInfo->title."</h1>";
         echo "<h2>".$authors = implode(", ", $item->volumeInfo->authors)."</h2>";
        echo $item->volumeInfo->description;
+       $id_livro=$item->volumeInfo->industryIdentifiers[0]->identifier;
+      
     }
 }
 
 
 ?>
-</div>
-</div>
+                </div>
+            </div>
         </div>
+        <form action="" method="post">
+    <input type="submit" name="comprar" value="comprar">
+</form>
+
+<?php
+if(isset($_POST["comprar"])) {
+    
+    $sql = "INSERT INTO carrinho (id_livro, id_usuario) 
+            VALUES ('$idlivro', '".$usuario['id_usuario']."')";
+
+    if ($conexao->query($sql) === true) {
+        $itensAdicionados++;
+    } else {
+        echo "Erro ao adicionar item ao carrinho: " . $conexao->error;
+    }
+
+
+}
+?>
+
+             </form>
     </main>
 </body>
 
