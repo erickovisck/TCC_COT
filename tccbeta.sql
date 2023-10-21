@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 20-Out-2023 às 00:14
--- Versão do servidor: 8.0.31
+-- Tempo de geração: 21-Out-2023 às 12:38
+-- Versão do servidor: 8.0.27
 -- versão do PHP: 8.0.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `chat_geral` (
   `data_mensagem` date NOT NULL,
   PRIMARY KEY (`id_mensagem`),
   KEY `id_usuario` (`id_usuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=103 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `chat_geral`
@@ -105,7 +105,8 @@ CREATE TABLE IF NOT EXISTS `chat_geral` (
 INSERT INTO `chat_geral` (`id_mensagem`, `id_autor`, `id_usuario`, `mensagens`, `nome_usuario`, `cont_like`, `data_mensagem`) VALUES
 (101, 0, 10, 'ola', 'camila', 0, '2023-10-19'),
 (100, 0, 10, 'OII', 'camila', 0, '2023-10-19'),
-(99, 0, 10, 'OIII', 'camila', 0, '0000-00-00');
+(99, 0, 10, 'OIII', 'camila', 0, '0000-00-00'),
+(102, 0, 4, 'vou me matar', 'erick', 0, '2023-10-21');
 
 -- --------------------------------------------------------
 
@@ -122,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `chat_privado` (
   `id_usuario` int NOT NULL,
   `data_mensagem` datetime NOT NULL,
   PRIMARY KEY (`id_chat_privado`)
-) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `chat_privado`
@@ -135,7 +136,8 @@ INSERT INTO `chat_privado` (`id_chat_privado`, `mensagem`, `id_enviou`, `id_rece
 (29, 'cala boca', 10, 4, 10, '2023-10-19 00:00:00'),
 (28, 'pimenta no cu dos outro e refresco', 4, 10, 4, '2023-10-19 00:00:00'),
 (33, 'oi', 4, 10, 4, '2023-10-19 21:08:42'),
-(34, 'teste', 4, 10, 4, '2023-10-19 21:08:57');
+(34, 'teste', 4, 10, 4, '2023-10-19 21:08:57'),
+(35, 'oi', 4, 10, 4, '2023-10-21 08:21:38');
 
 -- --------------------------------------------------------
 
@@ -238,41 +240,29 @@ INSERT INTO `seguir` (`id_seguidor`, `id_seguido`, `tabseguir`) VALUES
 DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE IF NOT EXISTS `usuario` (
   `id_usuario` int NOT NULL AUTO_INCREMENT,
-  `id_chat_privado` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `id_chat_geral` int NOT NULL,
-  `id_carrinho` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `assinatura_nivel` int NOT NULL,
+  `assinatura_nivel` int NOT NULL DEFAULT '0',
   `nome_usuario` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `email` varchar(50) NOT NULL,
   `senha` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `preferencias` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `recuperacao` varchar(50) NOT NULL,
-  `autor` tinyint(1) NOT NULL,
-  `mensagens` varchar(140) NOT NULL,
-  `numero_cartao` varchar(16) NOT NULL,
-  `img_perfil` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `biografia` varchar(200) NOT NULL,
-  `seguindo` varchar(50) NOT NULL,
-  `seguidores` varchar(50) NOT NULL,
-  `cont_seguindo` int NOT NULL,
-  `cont_seguidores` int NOT NULL,
-  `seguindoId` int NOT NULL,
-  `quemsegueId` int NOT NULL,
-  PRIMARY KEY (`id_usuario`),
-  KEY `numero_cartao` (`numero_cartao`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `autor` tinyint(1) NOT NULL DEFAULT '0',
+  `img_perfil` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_',
+  `biografia` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
+  PRIMARY KEY (`id_usuario`)
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `usuario`
 --
 
-INSERT INTO `usuario` (`id_usuario`, `id_chat_privado`, `id_chat_geral`, `id_carrinho`, `assinatura_nivel`, `nome_usuario`, `email`, `senha`, `preferencias`, `recuperacao`, `autor`, `mensagens`, `numero_cartao`, `img_perfil`, `biografia`, `seguindo`, `seguidores`, `cont_seguindo`, `cont_seguidores`, `seguindoId`, `quemsegueId`) VALUES
-(4, '', 0, '2', 0, 'erick', '1', '1', '', '1', 0, '', '1234567891234567', 'https://www.petz.com.br/blog/wp-content/uploads/2019/05/cachorro-independente-1-1280x720.jpg', '', '', '', 4, 135, 0, 0),
-(5, '', 0, '2', 0, 'erick2', '23', '23', '', '23', 0, '', '', '', '', '', '', 0, 0, 0, 0),
-(6, '', 0, '2', 0, 'b', 'b', '3', '', 'b', 0, '', '', '', '', '', '', 0, 0, 0, 0),
-(7, '', 0, '2', 0, 'a', 'a', 'a', '', 'a', 0, '', '', '', '', '', '', 0, 0, 0, 0),
-(10, '', 0, '2', 0, 'camila', '2', '2', '', '2', 0, '', '', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', 'sasd', '', '', 0, 0, 0, 0),
-(11, '', 0, '2', 0, '5', '5', '5', '', '5', 0, '', '', '', '', '', '', 0, 4, 0, 0);
+INSERT INTO `usuario` (`id_usuario`, `assinatura_nivel`, `nome_usuario`, `email`, `senha`, `recuperacao`, `autor`, `img_perfil`, `biografia`) VALUES
+(4, 0, 'erick', '1', '1', '1', 0, 'https://www.petz.com.br/blog/wp-content/uploads/2019/05/cachorro-independente-1-1280x720.jpg', ''),
+(5, 0, 'erick2', '23', '23', '23', 0, '', ''),
+(6, 0, 'b', 'b', '3', 'b', 0, '', ''),
+(7, 0, 'a', 'a', 'a', 'a', 0, '', ''),
+(10, 0, 'camila', '2', '2', '2', 0, 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', 'sasd'),
+(11, 0, '5', '5', '5', '5', 0, '', ''),
+(12, 0, '2134', '2222', '1', '1', 0, 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', '');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
