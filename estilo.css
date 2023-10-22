@@ -1640,6 +1640,9 @@ background-image: url("https://img.freepik.com/fotos-gratis/grande-colecao-de-li
   }
 }
 
-.carrossel_inicial{
-  margin: 2rem 0rem;
+/* Carousel */
+
+.carousel-img {
+  width: 200px!important;
+  height: 500px!important;
 }

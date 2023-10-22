@@ -103,7 +103,7 @@ $conexao->close();
 
     <main class="principal">
         <!--START OF PAGE BANNER-->
-        <div class="container-fluid">
+        <div class="container-fluid ">
         <div id="page_banner">
             <div id="banner">
                 <div id="msg_box">
@@ -118,9 +118,10 @@ $conexao->close();
         </div>
         </div>
         <!--END OF PAGE BANNER-->
+        <hr class="divisor my-5">
         <!-- START FIRST CAROUSEL -->
-    <div class="carrossel_inicial bg-body-secondary">
-  <div class="container p-4 ">
+    <div class="carrossel_inicial my-5 bg-body-secondary">
+  
   <div id="carouselExampleDark" class="carousel carousel-dark slide">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -129,14 +130,22 @@ $conexao->close();
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active" data-bs-interval="10000">
-      <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Feditorialpaco.com.br%2Fquais-sao-as-partes-de-um-livro-impresso%2F&psig=AOvVaw01KSfLJZ8FgcFOd9g8-9zM&ust=1697977423627000&source=images&cd=vfe&opi=89978449&ved=0CA8QjRxqFwoTCJDpl_uQh4IDFQAAAAAdAAAAABAG" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
+
+    <div class="carousel-caption d-none d-md-block">
         <h5>First slide label</h5>
         <p>Some representative placeholder content for the first slide.</p>
       </div>
     </div>
     <div class="carousel-item" data-bs-interval="2000">
-      <img src="https://editorialpaco.com.br/wp-content/uploads/2019/07/c8c74d9bca132ddb5e608bb5b212b386.jpg" class="d-block w-100 " alt="...">
+      <div class="row mx-5">
+      <div class="col-6">
+    <img src="imagens/ComunityFreepik.jpg" class="carousel-img object-fit-contain border rounded" alt="">
+    </div>
+    <div class="col-6">
+      <img src="https://editorialpaco.com.br/wp-content/uploads/2019/07/c8c74d9bca132ddb5e608bb5b212b386.jpg" class="carousel-img object-fit-fill border rounded " alt="...">
+      </div>
+      </div>
+
       <div class="carousel-caption d-none d-md-block">
        <!-- texto adiciona aqui -->
       </div>
@@ -160,11 +169,12 @@ $conexao->close();
 
     </div>
   </div>
-  </div>
+
+  
     </main>
     <!-- Site footer -->
 
-  <footer class="site-footer">
+  <footer class="site-footer mt-5 ">
     <div class="container">
       <div class="row">
         <div class="col-sm-12 col-md-6">
