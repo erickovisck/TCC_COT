@@ -41,7 +41,7 @@ if (isset($_POST["pesquisar"])) {
     <meta name="author" content="colorlib.com">
 
     <title>Livro</title>
-    <link rel="shortcut icon" href="imagens/logo_empresa.jpg">
+    <link rel="shortcut icon" href="imagens/logo_empresa.png">
     <link rel="stylesheet" href="assets/css/estilo.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -164,28 +164,30 @@ if (isset($_POST["comprar"])) {
     $ver = "SELECT id_livro FROM carrinho WHERE id_usuario = " . $usuario["id_usuario"];
     $resul = $conexao->query($ver);
 
-    if ($resul) {
-        if ($resul->num_rows > 0) {
-            // O livro já está no carrinho
-            echo "Livro já no carrinho";
-        } else {
+  
+       
+      
             // O livro não está no carrinho, então você pode inseri-lo
-            $sql = "INSERT INTO carrinho (id_livro, id_usuario, quantidade) 
-                    VALUES ('$idlivro', '" . $usuario['id_usuario'] . "', 1)";
+            $sql = "INSERT INTO carrinho (id_livro, id_usuario, quantidade)
+            SELECT '$idlivro', '".$usuario["id_usuario"]."', 1
+            WHERE NOT EXISTS (
+                SELECT 1
+                FROM carrinho
+                WHERE id_livro = '$idlivro' AND id_usuario = '".$usuario["id_usuario"]."'
+            )";
 
             if ($conexao->query($sql) === true) {
                 // Inserção bem-sucedida
-            } else {
-                echo "Erro ao adicionar item ao carrinho: " . $conexao->error;
-            }
+                echo "Livro adicionado no carrinho com sucesso";
+            
+        }else{
+            echo "livro ja exite";
         }
-    } else {
-        echo "Erro na consulta: " . $conexao->error;
     }
-}
+
 
 ?>
-
+<a href="carrinho.php"> Carrinho</a>
              </form>
     </main>
 </body>
