@@ -1639,9 +1639,19 @@ background-image: url("../../imagens/biblioteca.png");
     font-weight:600
   }
 }
-.imagem_carrinho i{
-  font-size: 80px;
+
+/* Carousel */
+
+.carousel-img {
+  width: 200px!important;
+  height: 500px!important;
 }
-#meucarrinho{
-  text-align: center;
+
+hr {
+  height: 20px;
+}
+
+.titulo-parceiros{
+  margin-top: 120px;
+  font-size: 3rem;
 }
