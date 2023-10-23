@@ -29,6 +29,8 @@ $resultado = $conexao->query($sql);
     <link rel="shortcut icon" href="imagens/logo_empresa.jpg">
     <link rel="stylesheet" href="assets/css/estilo.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
 
 </head>
 
@@ -87,10 +89,10 @@ $resultado = $conexao->query($sql);
     <script src="script.js"></script>
     <main class="principal bg-body-secondary">
 
-    <h1>Meu carrinho</h1>
+    <h1 id="meucarrinho">Meu carrinho</h1>
     <div class="imagem_carrinho">
-        <img src="imagens/carrinho.png">
-    </div> <br> <br>
+    <i class="bi bi-bag-check"></i> 
+   </div> 
     <div class="estante container text-center">
 
     <?php 
