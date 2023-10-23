@@ -14,6 +14,7 @@ function limitarCaracteres($texto, $limite) {
 //GOOGLE API//
 
 $api_key = 'AIzaSyBHe1XX1RdFudsmfRaHaAkKlzIz7wDao9k';
+$_SESSION["api_key"]=$api_key;
 $query =$pesquisa;
 $max=1;
 
@@ -40,18 +41,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["comprar"])) {
         $_SESSION["carrinho"] = [];
     }
     
-    $carrinho = [
-        "id_livro" => $id_livro,
-        "quantidade" => $quantidade,
-        "id_carrinho" => $usuario['id_usuario']
-    ];
-    
-    // Adiciona o item ao carrinho na sessão
-    $_SESSION["carrinho"][] = $carrinhoItem;
+ 
 
-    // Redireciona o usuário após o envio do formulário usando GET
-    header("Location: " . $_SERVER['PHP_SELF']);
-    exit();
 }
 
 // Conectar ao banco de dados (já mostrado no código anterior)
@@ -209,12 +200,12 @@ do {
               } 
          
               
-            $max += count($data->items);
+            $max ++;
         } while (isset($data->items) && count($data->items) > 0);
         
                     } else {
                        
-                        
+                        $min=0;
                        
                  
 
@@ -223,25 +214,19 @@ do {
               <div class="estante container text-center">
                 <?php
                         do {
-                            error_reporting(0);
-        ini_set('display_errors', '0');
-                            $url = "https://www.googleapis.com/books/v1/volumes?q=intitle:" . urlencode($query) . "&startIndex=0&maxResults=$max&key=" . $api_key;
+
+        
+                            $url = "https://www.googleapis.com/books/v1/volumes?q=intitle:" . urlencode($query) . "&startIndex=$min&maxResults=$max&key=" . $api_key;
                             $response= file_get_contents($url);
 
-    if ($response ===false){
-        
-
-       
-    }
-       
-    
+  
                             $data = json_decode($response);
                             if ($data === null || !property_exists($data, 'items')) {
                                 break;  // Saia do loop do-while se não houver mais resultados
                             }
                             foreach ($data->items as $item) {
-       
-                              
+                              $livrosateaq=[$item->volumeInfo->title];
+                              if($livrosateaq!= $item->volumeInfo->title ){
                                 ?>
                                         <div class="livros bg-body p-3 border border-black">
                                             <?php
@@ -278,6 +263,8 @@ do {
                                  
                                       
                                     $max += count($data->items);
+                                    $min++;
+                            }
                                 } while (isset($data->items) && count($data->items) > 0);
                        
                                     }
