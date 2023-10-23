@@ -120,7 +120,7 @@ $conexao->close();
         <!--END OF PAGE BANNER-->
         <hr class="divisor my-5">
         <!-- START FIRST CAROUSEL -->
-    <div class="carrossel_inicial my-5 bg-body-secondary">
+    <div class="carrossel_inicial my-5">
   
   <div id="carouselExampleDark" class="carousel carousel-dark slide">
   <div class="carousel-indicators">
@@ -137,17 +137,26 @@ $conexao->close();
       </div>
     </div>
     <div class="carousel-item" data-bs-interval="2000">
-      <div class="row mx-5">
-      <div class="col-6">
-    <img src="imagens/ComunityFreepik.jpg" class="carousel-img object-fit-contain border rounded" alt="">
+      <div class="row mx-5 p-4">
+      <div class="col-3 d-flex justify-content-center">
+      <img src="" class="carousel-img object-fit-fill border rounded " alt="...">
+     
+      </div>
+    <div class="col-3 d-flex justify-content-center" >
+      <img src="" class="carousel-img object-fit-fill border rounded " alt="...">
+      
     </div>
-    <div class="col-6">
-      <img src="https://editorialpaco.com.br/wp-content/uploads/2019/07/c8c74d9bca132ddb5e608bb5b212b386.jpg" class="carousel-img object-fit-fill border rounded " alt="...">
+      <div class="col-3 d-flex justify-content-center">
+      <img src="" class="carousel-img object-fit-fill border rounded " alt="...">
+      
+    </div>
+      <div class="col-3 d-flex justify-content-center flex-wrap">
+      <img src="" class="carousel-img object-fit-fill border rounded " alt="...">
+      
+    </div>
       </div>
-      </div>
-
       <div class="carousel-caption d-none d-md-block">
-       <!-- texto adiciona aqui -->
+       <p></p>
       </div>
     </div>
     <div class="carousel-item">
@@ -170,7 +179,21 @@ $conexao->close();
     </div>
   </div>
 
-  
+  <hr class="divisor my-5">
+
+  <div class="container">
+  <div class="row">
+    <div class="col-7">
+      <h2 class="titulo-parceiros">Conheça nossos Parceiros </h2>
+    </div>
+    <div class="col-5">
+    <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Espaço reservado: 500 x 500" preserveAspectRatio="xMidYMid slice" focusable="false">
+  <rect width="100%" height="100%" fill="var(--bs-secondary-bg)"></rect>
+ <text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text>
+ </svg>
+ </div>
+  </div>
+  </div>
     </main>
     <!-- Site footer -->
 
