@@ -214,7 +214,8 @@ do {
               <div class="estante container text-center">
                 <?php
                         do {
-
+                            error_reporting(0);
+                            ini_set('display_errors', 0);
         
                             $url = "https://www.googleapis.com/books/v1/volumes?q=intitle:" . urlencode($query) . "&startIndex=$min&maxResults=$max&key=" . $api_key;
                             $response= file_get_contents($url);
@@ -262,7 +263,7 @@ do {
                                       } 
                                  
                                       
-                                    $max += count($data->items);
+                                    $max ++;
                                     $min++;
                             }
                                 } while (isset($data->items) && count($data->items) > 0);
