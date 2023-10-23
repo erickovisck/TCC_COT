@@ -1,25 +1,21 @@
-
 <?php
 require_once "conexao/conexao.php";
 session_start();
+function limitarCaracteres($texto, $limite) {
+    // Verifica se o texto é maior que o limite
+    if (strlen($texto) > $limite) {
+        // Corta o texto no limite e adiciona "..." ao final
+        $texto = substr($texto, 0, $limite) . "...";
+    }
+    return $texto;
+}
+$api_key = 'AIzaSyBHe1XX1RdFudsmfRaHaAkKlzIz7wDao9k';
+
 $usuario = $_SESSION['usuario'];
 
-$itensAdicionados = 0;
-$itensSelecionados = isset($_POST["selecionado"]) ? $_POST["selecionado"] : [];
+$sql = "SELECT id_livro FROM carrinho WHERE id_usuario=" . $usuario['id_usuario'];
+$resultado = $conexao->query($sql);
 
-if (isset($_POST["selecionado"])) {
-    $itensSelecionados = $_POST["selecionado"];
-    
-    foreach ($itensSelecionados as $id_livro) {
-        $quantidade = 1;
-        
-       
-    }
-    
-    // Redirecionar para esta página usando GET após a inserção bem-sucedida
-    header("Location: carrinho.php");
-    exit();
-}
 
 ?>
 
@@ -32,12 +28,12 @@ if (isset($_POST["selecionado"])) {
     <title>Carrinho</title>
     <link rel="shortcut icon" href="imagens/logo_empresa.jpg">
     <link rel="stylesheet" href="assets/css/estilo.css">
-   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 
 </head>
 
 <body>
-<div class="cabecalho">
+    <div class="cabecalho">
         <nav role="navigation">
             <div id="menuToggle">
 
@@ -81,7 +77,7 @@ if (isset($_POST["selecionado"])) {
                             </button>
                         </div>
                     </div>
-                    
+
                 </div>
             </form>
         </div>
@@ -89,83 +85,95 @@ if (isset($_POST["selecionado"])) {
 
     </div>
     <script src="script.js"></script>
-    
+    <main class="principal bg-body-secondary">
+
     <h1>Meu carrinho</h1>
     <div class="imagem_carrinho">
         <img src="imagens/carrinho.png">
     </div> <br> <br>
+    <div class="estante container text-center">
+
     <?php 
-     $saldo="";
-    $totalpreco=0;
-    $sql = "SELECT * FROM carrinho WHERE id_usuario='" . $usuario['id_usuario'] . "'";
-    $resultado = $conexao->query($sql);
-    if ($resultado) {
-        while ($dados = mysqli_fetch_array($resultado)) {
-            $verlivro = $dados['id_livro'];
-            $sql = "SELECT * FROM livros WHERE id_livro='$verlivro'";
-            $resultado2 = $conexao->query($sql);
+   while ($query = mysqli_fetch_array($resultado)) {
+    $isbn = $query['id_livro'];
+    $url = "https://www.googleapis.com/books/v1/volumes?q=isbn:" . $isbn . "&key=" . $api_key;
+    $response = file_get_contents($url);
 
-            if ($resultado2) {
-                while ($dados2 = mysqli_fetch_array($resultado2)) {
-                    $totalpreco= $totalpreco+ $dados2["preco"];
-                    echo"<div class='carrinho_item'>";
-                    echo '<p>Nome: '.$dados2["nome_livro"].' |Preço: R$'.$dados2["preco"].'</p>';
-                    echo"</div>";
-                }
-              
+    $data = json_decode($response);
 
-            } else {
-                echo "Erro ao buscar detalhes dos livros: " . $conexao->error;
-            }
-        }
-    } else {
-        echo "Erro ao buscar itens no carrinho: " . $conexao->error;
+    if ($data && isset($data->items)) {
+        ?>
+            <?php
+        foreach ($data->items as $item) {
+
+      
+            ?>
+                                        <div class="livros bg-body p-3 border border-black">
+        <?php
+                                      echo "<a href='livro.php?id_livro=" . $item->volumeInfo->industryIdentifiers[0]->identifier. "'>";
+                                      if (isset($item->volumeInfo->imageLinks)) {
+                  echo "<img src='" . $item->volumeInfo->imageLinks->thumbnail . "'>";
+              } else {
+                  // Lide com o caso em que a imagem não está disponível
+                  echo "Imagem não disponível";
+              }
+             $texto= $item->volumeInfo->title;
+             $limite = 33;
+              $titulo=limitarCaracteres($texto,$limite);
+    
+                          echo "<h1>". $titulo. "</h1>";  
+           echo "</a>"; 
+              echo "<h2>";    
+              if (isset($item->volumeInfo->authors)) {
+              echo  implode("",$item->volumeInfo->authors) . "<br>";  
+              }else{
+                  echo "Autor não disponivel<br>";
+              }
+              if (isset($item->volumeInfo->saleInfo->listPrice->amount)) {
+                  echo "Preço: R$ " . $item->volumeInfo->saleInfo->listPrice->amount;
+              } else {
+                  // Lide com o caso em que o preço não está disponível
+                  echo "Preço não disponível";
+              }
+                          echo "</h2>";
+              echo "<form method='post' action='carrinho.php'>"; // O formulário envia dados para a página "carrinho.php"
+              echo "</div>";
+                  } 
+             
+                  
+            } 
     }
-    if(isset($_POST["comprarcarrinho"])){
-        $sql2="SELECT * FROM cartao_credito WHERE numero_cartao='".$usuario['numero_cartao']."'";
-        $resultado3=$conexao->query($sql2);
-        $dados = mysqli_fetch_array($resultado3);
-        if($dados['limite']>=$totalpreco){
-        $sqll="DELETE FROM carrinho WHERE id_usuario='".$usuario["id_usuario"]."'";
-        $resultado=$conexao->query($sqll);
-        if($resultado){
-           
-            
-            echo"<script language='javascript' type='text/javascript'>alert('Compra realizada com sucesso!')
-            ;window.location.href='carrinho.php'</script>";
-             $novolimite=$dados['limite']-$totalpreco;
-             $sql3="UPDATE cartao_credito
-             SET limite='$novolimite'
-             WHERE numero_cartao='".$usuario['numero_cartao']."' ";
-             $resultado5=$conexao->query($sql3);
-             if(!$resultado5){
-                echo $conexao->error();
-               
-             }
-        }else{
-     
-            echo"<script language='javascript' type='text/javascript'>alert('erro na sua compra')
-            ;window.location.href='carrinho.php'</script>".$conexao->error;
-        }
-    }else{
-        $saldo= "saldo insuficiente (R$". $dados['limite'].")";  
-    }
-}
+
+
+// Certifique-se de fechar a conexão com o banco de dados após o uso
+
+
+
+    
+    // Redirecionar para esta página usando GET após a inserção bem-sucedida
+
+
+ 
+    
+
     ?>
+</div>
 
-    <form method="post" action="">
-        <div class="carrinhos">
-        <h2> Valor total: R$<?=$totalpreco?></div> <br>
+        <form method="post" action="">
+            <div class="carrinhos">
+                <h2> Valor total: R$
+            </div> <br>
             <input type="submit" name="comprarcarrinho" id="btncomprar" value="Comprar"> </input>
             <div class="carrinhos">
-            <h3><?= $saldo?> </h3></div>
-    </form> <br> <br>
-    <div class="voltarpagina">
-        <form method="" action="inicial.php">
-            <input type="submit" id="voltainc" value="VOLTAR AO INÍCIO">
-    </div>
-    </form>
-
+                <h3></h3>
+            </div>
+        </form> <br> <br>
+        <div class="voltarpagina">
+            <form method="" action="inicial.php">
+                <input type="submit" id="voltainc" value="VOLTAR AO INÍCIO">
+        </div>
+        </form>
+        </main>
 </body>
 
 </html>
