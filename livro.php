@@ -160,19 +160,30 @@ if ($response) {
 </form>
 
 <?php
-if(isset($_POST["comprar"])) {
-    
-    $sql = "INSERT INTO carrinho (id_livro, id_usuario) 
-            VALUES ('$idlivro', '".$usuario['id_usuario']."')";
+if (isset($_POST["comprar"])) {
+    $ver = "SELECT id_livro FROM carrinho WHERE id_usuario = " . $usuario["id_usuario"];
+    $resul = $conexao->query($ver);
 
-    if ($conexao->query($sql) === true) {
-        $itensAdicionados++;
+    if ($resul) {
+        if ($resul->num_rows > 0) {
+            // O livro já está no carrinho
+            echo "Livro já no carrinho";
+        } else {
+            // O livro não está no carrinho, então você pode inseri-lo
+            $sql = "INSERT INTO carrinho (id_livro, id_usuario, quantidade) 
+                    VALUES ('$idlivro', '" . $usuario['id_usuario'] . "', 1)";
+
+            if ($conexao->query($sql) === true) {
+                // Inserção bem-sucedida
+            } else {
+                echo "Erro ao adicionar item ao carrinho: " . $conexao->error;
+            }
+        }
     } else {
-        echo "Erro ao adicionar item ao carrinho: " . $conexao->error;
+        echo "Erro na consulta: " . $conexao->error;
     }
-
-
 }
+
 ?>
 
              </form>
