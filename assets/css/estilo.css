@@ -1639,3 +1639,9 @@ background-image: url("https://img.freepik.com/fotos-gratis/grande-colecao-de-li
     font-weight:600
   }
 }
+.imagem_carrinho i{
+  font-size: 80px;
+}
+#meucarrinho{
+  text-align: center;
+}
