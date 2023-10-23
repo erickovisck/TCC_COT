@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 21-Out-2023 às 12:38
--- Versão do servidor: 8.0.27
+-- Tempo de geração: 23-Out-2023 às 18:50
+-- Versão do servidor: 8.0.31
 -- versão do PHP: 8.0.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -31,29 +31,30 @@ DROP TABLE IF EXISTS `carrinho`;
 CREATE TABLE IF NOT EXISTS `carrinho` (
   `id_carrinho` int NOT NULL AUTO_INCREMENT,
   `id_usuario` int NOT NULL,
-  `id_livro` int NOT NULL,
+  `id_livro` varchar(40) NOT NULL,
   `quantidade` int NOT NULL,
   PRIMARY KEY (`id_carrinho`),
   KEY `id_livro` (`id_livro`),
   KEY `id_usuario` (`id_usuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=199 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=200 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `carrinho`
 --
 
 INSERT INTO `carrinho` (`id_carrinho`, `id_usuario`, `id_livro`, `quantidade`) VALUES
-(198, 4, 19, 1),
-(197, 4, 5, 1),
-(196, 4, 3, 1),
-(195, 4, 2, 1),
-(194, 4, 1, 1),
-(193, 4, 19, 1),
-(192, 4, 5, 1),
-(191, 4, 19, 1),
-(190, 4, 5, 1),
-(189, 4, 19, 1),
-(188, 4, 5, 1);
+(198, 4, '19', 1),
+(197, 4, '5', 1),
+(196, 4, '3', 1),
+(195, 4, '2', 1),
+(194, 4, '1', 1),
+(193, 4, '19', 1),
+(192, 4, '5', 1),
+(191, 4, '19', 1),
+(190, 4, '5', 1),
+(189, 4, '19', 1),
+(188, 4, '5', 1),
+(199, 12, '2147483647', 1);
 
 -- --------------------------------------------------------
 
