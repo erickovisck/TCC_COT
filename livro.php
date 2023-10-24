@@ -132,14 +132,11 @@ if ($response) {
                 }else{
                     echo "Nota não disponivel";
                 }
-                $preco="SELECT preco FROM livros WHERE isbn=".$item->volumeInfo->industryIdentifiers[0]->identifier."";
-                if(isset($item->volumeInfo->saleInfo->listPrice->amount)){
+                 $preco="SELECT preco FROM livros WHERE isbn=".$item->volumeInfo->industryIdentifiers[0]->identifier."";
               $resulpreco=$conexao->query($preco);
-                    echo "Preço".$item->volumeInfo->saleInfo->listPrice->amount;
                     $dadopreco=mysqli_fetch_array($resulpreco);
-                }else{
                     echo "R$".$dadopreco["preco"];
-                }
+               
 
 /*  echo "Preço R$".$item->volumeInfo->saleInfo->saleability;
  */?>
