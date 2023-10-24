@@ -15,7 +15,7 @@ if ($resultado && $resultado->num_rows > 0) {
 
 }
     
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["enviarnome"])) {
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["nome"])) {
 
     
     $altnome = $_POST["nome"];
@@ -166,7 +166,29 @@ if($resultado){
   <?php 
 
 if ($dados["biografia"]) {
+    if (isset($_POST["alterarbio"])) {
+        $bio = $_POST["bio2"];
+        $sql="UPDATE `usuario`
+        SET `biografia`='$bio' ,
+        `senha`='".$usuario["senha"]."'
+        WHERE `id_usuario`= '$id'";
+/*  $sql="INSERT biografia INTO usuario VALUE ($bio); "        ;
+ */    
+$resultado=$conexao->query($sql);
+
+if($resultado){
+    header("location: perfil.php");
+}else{
+ echo "Não foi possivel atualizar a bio";   
+}
+    }
     echo "<p style=' font-size: 20px;'>" . $dados["biografia"] . "</p>";
+    ?>
+    <form action="" method="post">
+        <input type="text" placeholder="insira algo aqui..." name="bio2" class="btn btn-light" />
+        <input type="submit" name="alterarbio" id="envbio"  class="btn btn-primary" style="font-weight: bold;">
+    </form>
+    <?php
 } else {
     if (isset($_POST["enviarbio"])) {
         $bio = $_POST["bio"];
@@ -177,6 +199,8 @@ if ($dados["biografia"]) {
 /*  $sql="INSERT biografia INTO usuario VALUE ($bio); "        ;
  */    
 $resultado=$conexao->query($sql);
+header("location: perfil.php");
+exit();
 if($resultado){
     echo $bio;
 }else{
