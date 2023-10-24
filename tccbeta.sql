@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 24-Out-2023 às 12:10
+-- Tempo de geração: 24-Out-2023 às 13:34
 -- Versão do servidor: 8.0.27
 -- versão do PHP: 8.0.26
 
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `carrinho` (
   PRIMARY KEY (`id_carrinho`),
   KEY `id_livro` (`id_livro`),
   KEY `id_usuario` (`id_usuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=200 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=201 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `carrinho`
@@ -54,7 +54,8 @@ INSERT INTO `carrinho` (`id_carrinho`, `id_usuario`, `id_livro`, `quantidade`) V
 (190, 4, '5', 1),
 (189, 4, '19', 1),
 (188, 4, '5', 1),
-(199, 12, '2147483647', 1);
+(199, 12, '2147483647', 1),
+(200, 4, '9781506701615', 1);
 
 -- --------------------------------------------------------
 
@@ -170,43 +171,12 @@ CREATE TABLE IF NOT EXISTS `livros` (
   `id_editora` int NOT NULL,
   `nome_livro` varchar(50) NOT NULL,
   `nome_autor` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `preco` double NOT NULL,
+  `preco` int NOT NULL,
+  `isbn` varchar(40) NOT NULL,
   PRIMARY KEY (`id_livro`),
   KEY `id_editora` (`id_editora`),
   KEY `id_autor` (`id_autor`)
 ) ENGINE=MyISAM AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Extraindo dados da tabela `livros`
---
-
-INSERT INTO `livros` (`id_livro`, `id_autor`, `id_editora`, `nome_livro`, `nome_autor`, `preco`) VALUES
-(76, 25, 25, 'O Lobo do Mar', 'Jack London', 27.99),
-(77, 26, 26, 'Os Três Mosqueteiros', 'Alexandre Dumas', 33.99),
-(78, 27, 27, 'Moby Dick', 'Herman Melville', 31.99),
-(79, 28, 28, 'Crime e Castigo', 'Fyodor Dostoevsky', 35.99),
-(80, 29, 29, 'Anna Karenina', 'Leo Tolstoy', 29.99),
-(81, 30, 30, 'O Conde de Monte Cristo', 'Alexandre Dumas', 38.99),
-(82, 31, 31, 'A Iliada', 'Homer', 27.99),
-(83, 32, 32, 'A Odisseia', 'Homer', 27.99),
-(84, 33, 33, 'A Metamorfose', 'Franz Kafka', 26.99),
-(85, 34, 34, 'Dom Quixote', 'Miguel de Cervantes', 31.99),
-(86, 35, 35, 'A Revolta de Atlas', 'Ayn Rand', 34.99),
-(87, 36, 36, 'O Morro dos Ventos Uivantes', 'Emily Brontë', 29.99),
-(88, 37, 37, 'Cem Anos de Solidão', 'Gabriel García Márquez', 30.99),
-(89, 38, 38, 'O Apanhador no Campo de Centeio', 'J.D. Salinger', 26.99),
-(90, 39, 39, '1984', 'George Orwell', 28.99),
-(91, 40, 40, 'O Sol é para Todos', 'Harper Lee', 29.99),
-(92, 41, 41, 'Orgulho e Preconceito', 'Jane Austen', 25.99),
-(93, 42, 42, 'O Retrato de Dorian Gray', 'Oscar Wilde', 27.99),
-(94, 43, 43, 'O Grande Gatsby', 'F. Scott Fitzgerald', 28.99),
-(95, 44, 44, 'O Pequeno Príncipe', 'Antoine de Saint-Exupéry', 24.99),
-(96, 45, 45, 'A Insustentável Leveza do Ser', 'Milan Kundera', 29.99),
-(97, 46, 46, 'As Crônicas de Nárnia', 'C.S. Lewis', 31.99),
-(98, 47, 47, 'O Senhor dos Anéis: A Sociedade do Anel', 'J.R.R. Tolkien', 32.99),
-(99, 48, 48, 'O Apanhador no Campo de Centeio', 'J.D. Salinger', 26.99),
-(100, 49, 49, 'O Silêncio dos Inocentes', 'Thomas Harris', 30.99),
-(101, 50, 50, 'O Cão dos Baskervilles', 'Arthur Conan Doyle', 28.99);
 
 -- --------------------------------------------------------
 
