@@ -179,8 +179,8 @@ foreach ($categoria as $cat){
                   echo "<img src='" . $item->volumeInfo->imageLinks->thumbnail . "'>";
               } else {
                   // Lide com o caso em que a imagem não está disponível
-                  echo "Imagem não disponível";
-              }
+                  echo "<img src='Red_Prohibited_sign_No_icon_warning_or_stop_symbol_safety_danger_isolated_vector_illustration.jpg'>";    
+                          }
              $texto= $item->volumeInfo->title;
              $limite = 33;
               $titulo=limitarCaracteres($texto,$limite);
@@ -197,11 +197,15 @@ foreach ($categoria as $cat){
               $resulpreco=$conexao->query($preco);
               
               if ($resulpreco && $resulpreco->num_rows > 0) {
-                  echo "Preço: R$".$resultpreco;
+                  $dadopreco=mysqli_fetch_array($resulpreco);
+                  echo "Preço: R$".$dadopreco["preco"];
                  
               } else {
                   // Lide com o caso em que o preço não está disponível
+                  
                   $preco2=rand($minn,$maxx);
+                  $preco2=$preco2+0.99;
+
                   echo "Preço: R$ " . $preco2;
                   $novpreco="INSERT INTO livros (isbn, preco) VALUES ('".$item->volumeInfo->industryIdentifiers[0]->identifier."', '$preco2')";
                 $resul2=$conexao->query($novpreco);
@@ -230,8 +234,8 @@ foreach ($categoria as $cat){
                 <div class="estante container text-center">
                     <?php
                         do {
-                           /*  error_reporting(0);
-                            ini_set('display_errors', 0); */
+                             error_reporting(0);
+                            ini_set('display_errors', 0); 
         
                             $url = "https://www.googleapis.com/books/v1/volumes?q=intitle:" . urlencode($query) . "&startIndex=$min&maxResults=$max&key=" . $api_key;
                             $response= file_get_contents($url);
@@ -242,19 +246,18 @@ foreach ($categoria as $cat){
                                 break;  // Saia do loop do-while se não houver mais resultados
                             }
                             foreach ($data->items as $item) {
-                              $livrosateaq=[$item->volumeInfo->title];
-                              if($livrosateaq!= $item->volumeInfo->title ){
+                             
+                              if($item->volumeInfo->title ){
                                 ?>
                     <div class="livros bg-body p-3 border border-black">
                         <?php
                                                           echo "<a href='livro.php?id_livro=" . $item->volumeInfo->industryIdentifiers[0]->identifier. "'>";
                     /*                                       echo implode("",$item->volumeInfo->categories);
                      */                                      if (isset($item->volumeInfo->imageLinks)) {
-                                      echo "<img src='" . $item->volumeInfo->imageLinks->thumbnail . "'>";
+                                      echo "<img src='" . $item->volumeInfo->imageLinks->smallThumbnail . "'>";
                                   } else {
                                       // Lide com o caso em que a imagem não está disponível
-                                      echo "Imagem não disponível";
-                                  }
+                                      echo "<img src='imagens/Red_Prohibited_sign_No_icon_warning_or_stop_symbol_safety_danger_isolated_vector_illustration.jpg'>";                                   }
                                  $texto= $item->volumeInfo->title;
                                  $limite = 33;
                                   $titulo=limitarCaracteres($texto,$limite);
@@ -267,20 +270,32 @@ foreach ($categoria as $cat){
                                   }else{
                                       echo "Autor não disponivel<br>";
                                   }
-                                  if (isset($item->volumeInfo->saleInfo->listPrice->amount)) {
-                                      echo "Preço: R$ " . $item->volumeInfo->saleInfo->listPrice->amount;
-                                  } else {
-                                      // Lide com o caso em que o preço não está disponível
-                                      echo "Preço: R$ " . rand($minn, $maxx);                                  }
+                                  $preco="SELECT preco FROM livros WHERE isbn=".$item->volumeInfo->industryIdentifiers[0]->identifier."";
+              $resulpreco=$conexao->query($preco);
+              
+              if ($resulpreco && $resulpreco->num_rows > 0) {
+                  $dadopreco=mysqli_fetch_array($resulpreco);
+                  echo "Preço: R$".$dadopreco["preco"];
+                 
+              } else {
+                  // Lide com o caso em que o preço não está disponível
+                  $preco2=rand($minn,$maxx);
+                  $preco2=$preco2+0.99;
+                  echo "Preço: R$ " . $preco2;
+                  $novpreco="INSERT INTO livros (isbn, preco) VALUES ('".$item->volumeInfo->industryIdentifiers[0]->identifier."', '$preco2')";
+                $resul2=$conexao->query($novpreco);
+
+                     }
                                               echo "</h2>";
                                   echo "<form method='post' action='carrinho.php'>"; // O formulário envia dados para a página "carrinho.php"
                                   echo "</div>";
-                                      } 
+                                       
                                  
                                       
                                     $max ++;
                                     $min++;
                             }
+                        }
                                 } while (isset($data->items) && count($data->items) > 0);
                        
                                     }
