@@ -10,7 +10,7 @@ function limitarCaracteres($texto, $limite) {
     return $texto;
 }
 $api_key = 'AIzaSyBHe1XX1RdFudsmfRaHaAkKlzIz7wDao9k';
-
+$precototal=0;
 $usuario = $_SESSION['usuario'];
 
 $sql = "SELECT id_livro FROM carrinho WHERE id_usuario=" . $usuario['id_usuario'];
@@ -65,11 +65,12 @@ $resultado = $conexao->query($sql);
 
 
         <div class="s128">
-            <form>
+            <form method="post" action="itens.php">
                 <div class="inner-form">
                     <div class="row">
                         <div class="input-field first" id="first">
-                            <input class="input" id="inputFocus" type="text" placeholder="Keyword" />
+                            <input class="input" id="inputFocus" type="text" placeholder="Pesquisar" name="pesquisar" />
+                            <input type="submit" name="enviar" id="pesqenviar">
                             <button class="clear" id="clear">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                     <path
@@ -131,12 +132,11 @@ $resultado = $conexao->query($sql);
               }else{
                   echo "Autor não disponivel<br>";
               }
-              if (isset($item->volumeInfo->saleInfo->listPrice->amount)) {
-                  echo "Preço: R$ " . $item->volumeInfo->saleInfo->listPrice->amount;
-              } else {
-                  // Lide com o caso em que o preço não está disponível
-                  echo "Preço não disponível";
-              }
+              $preco="SELECT preco FROM livros WHERE isbn=".$item->volumeInfo->industryIdentifiers[0]->identifier."";
+              $resulpreco=$conexao->query($preco);
+                    $dadopreco=mysqli_fetch_array($resulpreco);
+                    echo "R$".$dadopreco["preco"];
+             $precototal=$precototal+$dadopreco["preco"];
                           echo "</h2>";
               echo "<form method='post' action='carrinho.php'>"; // O formulário envia dados para a página "carrinho.php"
               echo "</div>";
@@ -163,7 +163,7 @@ $resultado = $conexao->query($sql);
 
         <form method="post" action="">
             <div class="carrinhos">
-                <h2> Valor total: R$
+                <h2> Valor total: R$<?=$precototal?></h2>
             </div> <br>
             <input type="submit" name="comprarcarrinho" id="btncomprar" value="Comprar"> </input>
             <div class="carrinhos">
