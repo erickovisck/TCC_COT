@@ -36,8 +36,8 @@ function cadastrarUsuario($usuario, $conexao) {
     $email = $conexao->real_escape_string($usuario["email"]);
     $recuperacao = $conexao->real_escape_string($usuario["recuperacao"]);
 
-    $sql = "INSERT INTO usuario (nome_usuario, Senha, email, id_chat_privado, id_carrinho, recuperacao) 
-            VALUES ('$nome', '$senha', '$email', '" . $usuario["chat_privado"] . "', '" . $usuario["carrinho"] . "',
+    $sql = "INSERT INTO usuario (nome_usuario, senha, email, recuperacao) 
+            VALUES ('$nome', '$senha', '$email',
             '$recuperacao')"; 
     if ($conexao->query($sql) === TRUE) {
        $logerro="funcionando";
@@ -61,8 +61,7 @@ if (verificarExistencia($email, $conexao)) {
     
     
         } else {
-        echo "<script language='javascript' type='text/javascript'>alert('Erro ao cadastrar.')
-        ;window.location.href='cadastro.php'</script>";
+        echo "erro".mysqli_error($conexao);
       
     }
 }
