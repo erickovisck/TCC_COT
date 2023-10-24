@@ -185,7 +185,8 @@ $conexao->close();
   <div class="container">
   <div class="row">
     <div class="col-7">
-      <h2 class="titulo-parceiros">Conheça nossos Parceiros </h2>
+      <h2 class="titulo-parceiros">Conheça nossa comunidade </h2>
+      <a class="btn btn-outline-dark" href="comunidade.php" role="button">Entre <i class="bi bi-people-fill"></i></a>
     </div>
     <div class="col-5">
     <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Espaço reservado: 500 x 500" preserveAspectRatio="xMidYMid slice" focusable="false">
