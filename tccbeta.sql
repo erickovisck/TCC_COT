@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 24-Out-2023 às 15:14
+-- Tempo de geração: 24-Out-2023 às 15:35
 -- Versão do servidor: 8.0.27
 -- versão do PHP: 8.0.26
 
@@ -151,7 +151,7 @@ CREATE TABLE IF NOT EXISTS `livros` (
   `preco` double NOT NULL,
   `isbn` varchar(40) NOT NULL,
   PRIMARY KEY (`id_livro`)
-) ENGINE=MyISAM AUTO_INCREMENT=869 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=878 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `livros`
@@ -413,7 +413,16 @@ INSERT INTO `livros` (`id_livro`, `preco`, `isbn`) VALUES
 (865, 41.99, '073908772X'),
 (866, 52.99, '133831291X'),
 (867, 44.99, '140886911X'),
-(868, 39.99, '152661829X');
+(868, 39.99, '152661829X'),
+(869, 58.99, 'STANFORD:36105035747885'),
+(870, 32.99, 'EAN:8596547367178'),
+(871, 30.99, 'WISC:89061839098'),
+(872, 46.99, 'STANFORD:36105121898261'),
+(873, 51.99, 'UCSD:31822023797939'),
+(874, 33.99, 'UOM:49015002947092'),
+(875, 34.99, 'STANFORD:36105040581212'),
+(876, 53.99, 'WISC:89061839098'),
+(877, 50.99, 'STANFORD:36105121898261');
 
 -- --------------------------------------------------------
 
