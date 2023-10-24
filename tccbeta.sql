@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 23-Out-2023 às 18:50
--- Versão do servidor: 8.0.31
+-- Tempo de geração: 24-Out-2023 às 12:10
+-- Versão do servidor: 8.0.27
 -- versão do PHP: 8.0.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -94,20 +94,22 @@ CREATE TABLE IF NOT EXISTS `chat_geral` (
   `mensagens` varchar(140) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `nome_usuario` varchar(40) NOT NULL,
   `cont_like` int NOT NULL,
-  `data_mensagem` date NOT NULL,
+  `data_mensagem` datetime NOT NULL,
   PRIMARY KEY (`id_mensagem`),
   KEY `id_usuario` (`id_usuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=103 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=114 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `chat_geral`
 --
 
 INSERT INTO `chat_geral` (`id_mensagem`, `id_autor`, `id_usuario`, `mensagens`, `nome_usuario`, `cont_like`, `data_mensagem`) VALUES
-(101, 0, 10, 'ola', 'camila', 0, '2023-10-19'),
-(100, 0, 10, 'OII', 'camila', 0, '2023-10-19'),
-(99, 0, 10, 'OIII', 'camila', 0, '0000-00-00'),
-(102, 0, 4, 'vou me matar', 'erick', 0, '2023-10-21');
+(113, 0, 10, 'aaa', 'camila', 0, '2023-10-24 08:54:30'),
+(112, 0, 10, 'laa', 'camila', 0, '2023-10-24 08:54:28'),
+(111, 0, 10, 'la', 'camila', 0, '2023-10-24 08:54:09'),
+(110, 0, 10, 'oi', 'camila', 0, '2023-10-24 08:54:02'),
+(109, 0, 10, 'nao', 'camila', 0, '2023-10-24 08:53:50'),
+(108, 0, 10, 'ola', 'camila', 0, '2023-10-24 08:53:42');
 
 -- --------------------------------------------------------
 
