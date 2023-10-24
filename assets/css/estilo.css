@@ -522,6 +522,7 @@ text-align:center ;
   text-align: center;
   font-weight: bold;  
   padding: 8px;
+  color: #2f2841;
 }
 .atnome{
   text-align: center;
@@ -537,16 +538,21 @@ text-align:center ;
 .atenviar label{
   text-align: right;
 }
-
-
+.envio{
+  font-weight: bold;
+}
+.n_usuario{
+  font-weight: bold;
+}
 
 .profile-pic {
-  border-radius: 100%;
-  -o-border-radius:100%;
   -webkit-border-radius:100%;
   max-width: 200px;
   max-height: 150px;
-  border: 1px solid black;
+  border: 2px solid #2f2841;
+  width: 128px;
+    height: 128px;
+    object-fit: cover;
 }
 
 
