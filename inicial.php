@@ -111,8 +111,8 @@ $conexao->close();
                     <p class="summer_s">Confira nossos Livros</p>
                     <h1 id="seventy_p">Compre agora!</h1>
                     <!--                     <p class="promo_c">Melhores preços aqui!</p> -->
-                    <a href="itens.php"><button id="shop_now" type="submit" name="shop now" onclick="change()">Comprar
-                            <i class="fa-solid fa-arrow-right"></i></button> </a>
+                    <a href="itens.php"><button id="shop_now" type="submit" name="shop now" onclick="change()">Comprar 
+                    <i class="bi bi-bag-fill"></i></button> </a>
                 </div>
             </div>
         </div>
@@ -130,6 +130,7 @@ $conexao->close();
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active" data-bs-interval="10000">
+      
 
     <div class="carousel-caption d-none d-md-block">
         <h5>First slide label</h5>
@@ -194,6 +195,78 @@ $conexao->close();
  </div>
   </div>
   </div>
+
+  <hr class="divisor my-5">
+  <!-- START SECOND CAROUSEL -->
+  <div id="carouselExample" class="carousel carousel-dark slide">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="..." class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="..." class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- <div class="container">
+	<div class="row">
+		<div class="col-xs-11 col-md-10 col-centered">
+
+			<div id="carousel" class="carousel slide" data-ride="carousel" data-type="multi" data-interval="2500">
+				<div class="carousel-inner">
+					<div class="item active">
+						<div class="carousel-col">
+							<div class="block red img-responsive"></div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="carousel-col">
+							<div class="block green img-responsive"></div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="carousel-col">
+							<div class="block blue img-responsive"></div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="carousel-col">
+							<div class="block yellow img-responsive"></div>
+						</div>
+					</div>
+				</div>
+
+				Controls 
+				<div class="left carousel-control">
+					<a href="#carousel" role="button" data-slide="prev">
+						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+					</a>
+				</div>
+				<div class="right carousel-control">
+					<a href="#carousel" role="button" data-slide="next">
+						<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div> -->
+<hr class="divisor my-5">
     </main>
     <!-- Site footer -->
 
@@ -227,7 +300,7 @@ $conexao->close();
           <ul class="social-icons">
             <li><a class="facebook" href="#"><i class="bi bi-facebook"></i></a></li>
             <li><a class="twitter" href="#"><i class="bi bi-twitter"></i></a></li>
-            <li><a class="dribbble" href="https://instagram.com/creatorsofthought?igshid=MzRlODBiNWFlZA"><i class="bi bi-instagram"></i></a></li>
+            <li><a class="insta" href="https://instagram.com/creatorsofthought?igshid=MzRlODBiNWFlZA"><i class="bi bi-instagram"></i></a></li>
             <li><a class="linkedin" href="#"><i class="bi bi-linkedin"></i></a></li>
           </ul>
         </div>

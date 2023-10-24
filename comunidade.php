@@ -24,6 +24,7 @@ if (is_null($usuario["email"])) {
     <link rel="shortcut icon" href="imagens/logo_projeto.png">
     <link rel="stylesheet" href="assets/css/estilo.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="assets/css/comunidade.css">
 
 
@@ -90,7 +91,7 @@ if (is_null($usuario["email"])) {
 
 
 
-            <main class="principal bg-dark">
+            <main class="principal bg-body-tertiary">
             <!--<div class="container">
             <div class="row">
                 <form action="" method="post">
@@ -99,18 +100,15 @@ if (is_null($usuario["email"])) {
                     
 
                 </form> -->
-<div class="container text-center text-bg-dark p-3">
+<div class="container text-center p-3">
   <div class="row justify-content-center">
-                <div class="mb-3 col-md-auto ">
-  <label for="exampleFormControlInput1" class="form-label"   >Titulo</label>   
-  <input type="email" class="form-control" id="exampleFormControlInput1" >
-</div>
-<div class="mb-3">
+        
+<div class="col-5 mb-3">
    
   <label for="exampleFormControlTextarea1" class="form-label" name="mensagem" >Mensagem: </label>
   <form action="" method="post">
   <input type="text" class="form-control" name="mensagem" id="exampleFormControlTextarea1" rows="3" placeholder="Bom Dia a todos!!"></input>
-  <input class="btn btn-secondary" type="submit" value="enviar" name="enviar">
+  <input class="btn btn-secondary" type="submit" value="enviar" name="enviar"> 
 </form> 
 </div>
 </div>
@@ -142,7 +140,7 @@ if (is_null($usuario["email"])) {
             </div>
             </div>
 
-            <div class="container text-center text-bg-dark p-3 border border-white">
+            <div class="container text-center bg-body-secondary p-3 rounded-5">
                 <main class="row justify-content-center">
                 <div class="col-8 " >
                     <section class="news-feed">
@@ -157,11 +155,11 @@ if (is_null($usuario["email"])) {
                                 echo "<div class='message' data-id='" . $dados['id_usuario'] . "'>";
                                 $id_usuario=$dados["id_usuario"];
                                 ?>
-                                <article class="post border border-primary">
+                                <article class="post my-1 rounded-2">
                                     <div class="post_header text-start">
                                         <img src="" alt="" class="avatar">
                                         <div class="post_info">
-                                          <a href="perfil_pessoa.php?id_usuario='<?=$id_usuario?>'">  <img class="profile-pic" id="iconperfil" src="imagens/teste.jpg" > <?php echo  $dados["nome_usuario"]; ?></a>
+                                          <a href="perfil_pessoa.php?id_usuario='<?=$id_usuario?>'" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">  <img class="profile-pic" id="iconperfil" src="imagens/teste.jpg" > <?php echo  $dados["nome_usuario"]; ?></a>
                                             <span>
                                                 <?php echo "Postado em " . $dados["data_mensagem"]; ?>
                                             </span>
@@ -171,11 +169,17 @@ if (is_null($usuario["email"])) {
                                     <div class="post_content ">
                                         <?php echo $dados["mensagens"] . "<br>" ?>
                                     </div>
-                                    <div class="post_engage row p-3 text-start ">
-                                        <?php echo "<div class='likes'>" . $dados["cont_like"] . "</div> " . " leitores curtiram"; ?>
+                                    <div class="post_engage row px-3 text-start">
+                                        <div class="col-2">
+                                        <p>curtidas: </p>
+                                        </div>
+                                        <div class="col-3">
+                                        <?php echo "<div class='likes'>" . $dados["cont_like"] . "</div> "; ?>
+                                        
+                                        </div>
                                     </div>
                                     <?php
-                                    echo "<button class='like_button btn btn-primary'><i class='bi bi-hand-thumbs-up'></i></button>";
+                                    echo "<button class='like_button'> <i class='bi bi-hand-thumbs-up'></i></button>";
                                     echo "</div>";
 
                             }

@@ -18,7 +18,6 @@
   
   .post {
     background: white;
-    border: solid 1px #ccc;
     padding: 10px;
     overflow:hidden;
   }
@@ -84,3 +83,4 @@
 .enviou{
 justify-content:end;
 }
+

@@ -1358,7 +1358,7 @@ html {
     padding: 25px;
     height: 80%;
 /*     background-image: url(https://blogdocolecionador.com.br/wp-content/uploads/2020/01/como-comecar-colecao-de-livros.jpg); */
-background-image: url("../../imagens/biblioteca.png");
+background-image: url("https://img.freepik.com/fotos-gratis/grande-colecao-de-livros-antigos-em-prateleiras-de-madeira-geradas-por-ia_188544-29739.jpg?w=1060&t=st=1696514170~exp=1696514770~hmac=c7a20b1b384c226002d9a865ed724113701c59f9fd72f44830c7c17356e634ac");
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
@@ -1482,7 +1482,7 @@ background-image: url("../../imagens/biblioteca.png");
   padding:45px 0 20px;
   font-size: 0.9rem;
   line-height:24px;
-  color:#FFA3FD;
+  color:#f1e9e9;
 }
 .site-footer hr
 {
@@ -1495,7 +1495,7 @@ background-image: url("../../imagens/biblioteca.png");
 }
 .site-footer h6
 {
-  color:#fff;
+  color:#FFA3FD;
   font-size: 1rem;
   text-transform:uppercase;
   margin-top:5px;
@@ -1626,7 +1626,7 @@ background-image: url("../../imagens/biblioteca.png");
 {
   background-color:#007bb6
 }
-.social-icons a.dribbble:hover
+.social-icons a.insta:hover
 {
   background-color:#f192b7
 }
@@ -1654,4 +1654,12 @@ hr {
 .titulo-parceiros{
   margin-top: 120px;
   font-size: 3rem;
+}
+
+.post_engage {
+  height:1rem;
+}
+
+.post_content {
+  min-height: 100px;
 }
