@@ -56,7 +56,7 @@ $resultado = $conexao->query($sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Itens</title>
+    <title>Itens</title>
     <link rel="shortcut icon" href="imagens/logo_empresa.jpg">
     <link rel="stylesheet" href="assets/css/estilo.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
@@ -119,9 +119,9 @@ $resultado = $conexao->query($sql);
 
     </div>
     <main class="principal bg-body-secondary">
-     
 
-   <!--  <div class="div-master">
+
+        <!--  <div class="div-master">
   <div class="before"><div class="arrow-left"></div></div>
   <div class="middle">
     <h4 class="title">Popular Movies</h4>
@@ -147,62 +147,64 @@ $resultado = $conexao->query($sql);
 </div>
  -->
 
-     
 
-                <?php
+
+        <?php
                  if ($pesquisa == null) {
-    $categoria=["romance","fiction","action","terror","horror"];
-do {    
+                     ?> <div class="estante container text-center"><?php
+    $categoria=[
+        "romance",
+        "fiction",
+        "action",
+        "terror",
+        "horror"];
+while (mysqli_fetch_array($categoria)){
         $url = "https://www.googleapis.com/books/v1/volumes?q=subject:romance&startIndex=0&maxResults=10&key=" . $api_key;
         $response = file_get_contents($url);
         $data = json_decode($response);
-    
-
-
-    if ($data === null || !property_exists($data, 'items')) {
-        break;  // Saia do loop do-while se não houver mais resultados
-    }
-    foreach ($data->items as $item) {
-
-      
-        ?>
-                <div class="livros">
-                    <?php
-                                  echo "<a href='livro.php?id_livro=" . $item->volumeInfo->industryIdentifiers[0]->identifier. "'>";
+        foreach ($data->items as $item) {
+          $livrosateaq=[$item->volumeInfo->title];
+          if($livrosateaq!= $item->volumeInfo->title ){
+            ?>
+            <div class="livros bg-body p-3 border border-black">
+                <?php
+                                      echo "<a href='livro.php?id_livro=" . $item->volumeInfo->industryIdentifiers[0]->identifier. "'>";
 /*                                       echo implode("",$item->volumeInfo->categories);
-*/                                      if (isset($item->volumeInfo->imageLinks)) {
-              echo "<img src='" . $item->volumeInfo->imageLinks->thumbnail . "'>";
-          } else {
-              // Lide com o caso em que a imagem não está disponível
-              echo "Imagem não disponível";
-          }
-         $texto= $item->volumeInfo->title;
-         $limite = 33;
-          $titulo=limitarCaracteres($texto,$limite);
+ */                                      if (isset($item->volumeInfo->imageLinks)) {
+                  echo "<img src='" . $item->volumeInfo->imageLinks->thumbnail . "'>";
+              } else {
+                  // Lide com o caso em que a imagem não está disponível
+                  echo "Imagem não disponível";
+              }
+             $texto= $item->volumeInfo->title;
+             $limite = 33;
+              $titulo=limitarCaracteres($texto,$limite);
 
-                      echo "<h1>". $titulo. "</h1>";  
-       echo "</a>"; 
-          echo "<h2>";    
-          if (isset($item->volumeInfo->authors)) {
-          echo  implode("",$item->volumeInfo->authors) . "<br>";  
-          }else{
-              echo "Autor não disponivel<br>";
-          }
-          if (isset($item->volumeInfo->saleInfo->listPrice->amount)) {
-              echo "Preço: R$ " . $item->volumeInfo->saleInfo->listPrice->amount;
-          } else {
-              // Lide com o caso em que o preço não está disponível
-              echo "Preço não disponível";
-          }
-                      echo "</h2>";
-          echo "<form method='post' action='carrinho.php'>"; // O formulário envia dados para a página "carrinho.php"
-          echo "</div>";
-              } 
-         
-              
-            $max ++;
-        } while (isset($data->items) && count($data->items) > 0);
+                          echo "<h1>". $titulo. "</h1>";  
+           echo "</a>"; 
+              echo "<h2>";    
+              if (isset($item->volumeInfo->authors)) {
+              echo  implode("",$item->volumeInfo->authors) . "<br>";  
+              }else{
+                  echo "Autor não disponivel<br>";
+              }
+              if (isset($item->volumeInfo->saleInfo->listPrice->amount)) {
+                  echo "Preço: R$ " . $item->volumeInfo->saleInfo->listPrice->amount;
+              } else {
+                  // Lide com o caso em que o preço não está disponível
+                  echo "Preço não disponível";
+              }
+                          echo "</h2>";
+              echo "<form method='post' action='carrinho.php'>"; // O formulário envia dados para a página "carrinho.php"
+              echo "</div>";
+                  
+             
+                  
+                
         
+    }
+}
+    }
                     } else {
                        
                         $min=0;
@@ -211,11 +213,11 @@ do {
 
                     
        ?>
-              <div class="estante container text-center">
-                <?php
+                <div class="estante container text-center">
+                    <?php
                         do {
-                            error_reporting(0);
-                            ini_set('display_errors', 0);
+                           /*  error_reporting(0);
+                            ini_set('display_errors', 0); */
         
                             $url = "https://www.googleapis.com/books/v1/volumes?q=intitle:" . urlencode($query) . "&startIndex=$min&maxResults=$max&key=" . $api_key;
                             $response= file_get_contents($url);
@@ -229,8 +231,8 @@ do {
                               $livrosateaq=[$item->volumeInfo->title];
                               if($livrosateaq!= $item->volumeInfo->title ){
                                 ?>
-                                        <div class="livros bg-body p-3 border border-black">
-                                            <?php
+                    <div class="livros bg-body p-3 border border-black">
+                        <?php
                                                           echo "<a href='livro.php?id_livro=" . $item->volumeInfo->industryIdentifiers[0]->identifier. "'>";
                     /*                                       echo implode("",$item->volumeInfo->categories);
                      */                                      if (isset($item->volumeInfo->imageLinks)) {
@@ -285,42 +287,45 @@ do {
             ?>
     </main>
     <footer class="site-footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12 col-md-6">
-          <h6>Sobre</h6>
-          <p class="text-justify">O desenvolvimento deste site se tornou necessário após uma breve pesquisa sobre sites com o mesmo propósito, contudo, percebemos que estes sites são quase inexistentes. Visando isso, decidimos fazer um site com mais reconhecimento para autores nacionais e para que mais pessoas possam ter gosto pela leitura.</p>
-        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <h6>Sobre</h6>
+                    <p class="text-justify">O desenvolvimento deste site se tornou necessário após uma breve pesquisa
+                        sobre sites com o mesmo propósito, contudo, percebemos que estes sites são quase inexistentes.
+                        Visando isso, decidimos fazer um site com mais reconhecimento para autores nacionais e para que
+                        mais pessoas possam ter gosto pela leitura.</p>
+                </div>
 
-        <div class="col-xs-6 col-md-3">
-          <h6>Links Rapidos</h6>
-          <ul class="footer-links">
+                <div class="col-xs-6 col-md-3">
+                    <h6>Links Rapidos</h6>
+                    <ul class="footer-links">
                         <li><a href="#">Sobre nos</a></li>
-            <li><a href="#">Fale conosco</a></li>
-            <li><a href="#">Politica de Privacidade</a></li>
-            <li><a href="#">Termos</a></li>
-          </ul>
+                        <li><a href="#">Fale conosco</a></li>
+                        <li><a href="#">Politica de Privacidade</a></li>
+                        <li><a href="#">Termos</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
         </div>
-      </div>
-      <hr>
-    </div>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8 col-sm-6 col-xs-12">
-   
-        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-6 col-xs-12">
 
-        <div class="col-md-4 col-sm-6 col-xs-12">
-          <ul class="social-icons">
-            <li><a class="facebook" href="#"><i class="bi bi-facebook"></i></a></li>
-            <li><a class="twitter" href="#"><i class="bi bi-twitter"></i></a></li>
-            <li><a class="dribbble" href="#"><i class="bi bi-instagram"></i></a></li>
-            <li><a class="linkedin" href="#"><i class="bi bi-linkedin"></i></a></li>
-          </ul>
+                </div>
+
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <ul class="social-icons">
+                        <li><a class="facebook" href="#"><i class="bi bi-facebook"></i></a></li>
+                        <li><a class="twitter" href="#"><i class="bi bi-twitter"></i></a></li>
+                        <li><a class="dribbble" href="#"><i class="bi bi-instagram"></i></a></li>
+                        <li><a class="linkedin" href="#"><i class="bi bi-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </footer>
+    </footer>
     <?php
 
 
