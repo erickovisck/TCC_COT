@@ -145,7 +145,7 @@ if (is_null($usuario["email"])) {
                 <div class="col-8 " >
                     <section class="news-feed">
                         <?php
-                        $sql = "SELECT * FROM chat_geral ORDER BY data_mensagem DESC";
+                        $sql = "SELECT * FROM chat_geral";
                         $resultado = $conexao->query($sql);
 
                         if ($resultado) {
@@ -157,25 +157,22 @@ if (is_null($usuario["email"])) {
                                 ?>
                                 <article class="post my-1 rounded-2">
                                     <div class="post_header text-start">
-                                        <?php 
-                                        $gambiarra="SELECT * FROM usuario WHERE id_usuario=".$dados["id_usuario"]."";
-                                        $resultadogambiarra=$conexao->query($gambiarra);
-                                        $dados2=mysqli_fetch_array($resultadogambiarra)?>
-                                  
-                                                                        <div class="post_info">
-                                                                        
-                                          <a href="perfil_pessoa.php?id_usuario='<?=$id_usuario?>'" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">  <img class="profile-pic" id="iconperfil" src="<?=$dados2["img_perfil"]?>" > <?php echo  $dados["nome_usuario"]; ?></a>
+                                        <img src="" alt="" class="avatar">
+                                        <div class="post_info">
+                                          <a href="perfil_pessoa.php?id_usuario='<?=$id_usuario?>'" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">  <img class="profile-pic" id="iconperfil" src="imagens/teste.jpg" > <?php echo  $dados["nome_usuario"]; ?></a>
                                             <span>
                                                 <?php echo "Postado em " . $dados["data_mensagem"]; ?>
                                             </span>
                                             <!--    echo $dados["data_mensagem"]. "<br>";  -->
                                         </div>
                                     </div>
-                                    <div class="post_content  text-start p-4">
+                                    <div class="post_content ">
                                         <?php echo $dados["mensagens"] . "<br>" ?>
                                     </div>
-                                    <div class="post_engage row px-4 text-start">
-
+                                    <div class="post_engage row px-3 text-start">
+                                        <div class="col-2">
+                                        <p>curtidas: </p>
+                                        </div>
                                         <div class="col-3">
                                         <?php echo "<div class='likes'>" . $dados["cont_like"] . "</div> "; ?>
                                         
@@ -183,9 +180,8 @@ if (is_null($usuario["email"])) {
                                     </div>
                                     <?php
                                     echo "<button class='like_button'> <i class='bi bi-hand-thumbs-up'></i></button>";
-?>
-                                    </div>
-<?php
+                                    echo "</div>";
+
                             }
 
                             ?>
