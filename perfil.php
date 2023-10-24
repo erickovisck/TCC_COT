@@ -7,8 +7,8 @@ $resultado=$conexao->query($sql);
 $id = $usuario ["id_usuario"];
 
 if ($resultado && $resultado->num_rows > 0) {
-    echo "login efetuado com sucesso";
-    
+/*     echo "login efetuado com sucesso";
+ */    
     $dados = mysqli_fetch_array($resultado);
     
     $_SESSION["usuario"]=$dados;
@@ -169,8 +169,7 @@ if ($dados["biografia"]) {
     if (isset($_POST["alterarbio"])) {
         $bio = $_POST["bio2"];
         $sql="UPDATE `usuario`
-        SET `biografia`='$bio' ,
-        `senha`='".$usuario["senha"]."'
+        SET `biografia`='$bio'
         WHERE `id_usuario`= '$id'";
 /*  $sql="INSERT biografia INTO usuario VALUE ($bio); "        ;
  */    
@@ -193,8 +192,8 @@ if($resultado){
     if (isset($_POST["enviarbio"])) {
         $bio = $_POST["bio"];
         $sql="UPDATE `usuario`
-        SET `biografia`='$bio' ,
-        `senha`='$altsenha'
+        SET `biografia`='$bio'
+        
         WHERE `id_usuario`= '$id'";
 /*  $sql="INSERT biografia INTO usuario VALUE ($bio); "        ;
  */    
