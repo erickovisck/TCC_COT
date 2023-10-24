@@ -21,7 +21,8 @@ $max=1;
 
 //------//
 //API PREÇO//
-
+$minn=30.00;
+$maxx=70.00;
 //----------//
 $usuario = $_SESSION["usuario"];
 
@@ -158,11 +159,15 @@ $resultado = $conexao->query($sql);
         "action",
         "terror",
         "horror"];
-while (mysqli_fetch_array($categoria)){
-        $url = "https://www.googleapis.com/books/v1/volumes?q=subject:romance&startIndex=0&maxResults=10&key=" . $api_key;
+        $cat="";
+foreach ($categoria as $cat){
+        $url = "https://www.googleapis.com/books/v1/volumes?q=subject:$cat&startIndex=0&maxResults=10&key=" . $api_key;
         $response = file_get_contents($url);
         $data = json_decode($response);
+        ?> <h1 class="text-center"> <?=$cat?> </h1> <?php
         foreach ($data->items as $item) {
+          
+
           $livrosateaq=[$item->volumeInfo->title];
           if($livrosateaq!= $item->volumeInfo->title ){
             ?>
@@ -188,12 +193,21 @@ while (mysqli_fetch_array($categoria)){
               }else{
                   echo "Autor não disponivel<br>";
               }
-              if (isset($item->volumeInfo->saleInfo->listPrice->amount)) {
-                  echo "Preço: R$ " . $item->volumeInfo->saleInfo->listPrice->amount;
+              $preco="SELECT preco FROM livros WHERE isbn=".$item->volumeInfo->industryIdentifiers[0]->identifier."";
+              $resulpreco=$conexao->query($preco);
+              
+              if ($resulpreco && $resulpreco->num_rows > 0) {
+                  echo "Preço: R$".$resultpreco;
+                 
               } else {
                   // Lide com o caso em que o preço não está disponível
-                  echo "Preço não disponível";
-              }
+                  $preco2=rand($minn,$maxx);
+                  echo "Preço: R$ " . $preco2;
+                  $novpreco="INSERT INTO livros (isbn, preco) VALUES ('".$item->volumeInfo->industryIdentifiers[0]->identifier."', '$preco2')";
+                $resul2=$conexao->query($novpreco);
+                echo "erro".mysqli_error($conexao);
+
+                     }
                           echo "</h2>";
               echo "<form method='post' action='carrinho.php'>"; // O formulário envia dados para a página "carrinho.php"
               echo "</div>";
@@ -257,8 +271,7 @@ while (mysqli_fetch_array($categoria)){
                                       echo "Preço: R$ " . $item->volumeInfo->saleInfo->listPrice->amount;
                                   } else {
                                       // Lide com o caso em que o preço não está disponível
-                                      echo "Preço não disponível";
-                                  }
+                                      echo "Preço: R$ " . rand($minn, $maxx);                                  }
                                               echo "</h2>";
                                   echo "<form method='post' action='carrinho.php'>"; // O formulário envia dados para a página "carrinho.php"
                                   echo "</div>";
