@@ -121,13 +121,13 @@ if($resultado){
         </div>
 </div>
 <div class="principal">
-<div class="container text-center " style="border: 1px solid black; border-radius: 3%; margin-top: 8%; height: 500px; ">
+<div class="container text-center " style="border: 1px solid #2f2841; border-radius: 3%; margin-top: 8%; height: 500px; ">
 <div class="row">
     <div class="col   p-4">
 <form action="" method="post">
-    <h3>Editar imagem</h3>
-    <input type="text" placeholder="Endereço da imagem" name="img" />
-    <input type="submit" name="enviarimg" id="enviarimg" placeholder="Endereço da imagem...">
+    <h2 class="alterar">EDITAR IMAGEM</h2>
+    <input type="text" placeholder="Endereço da imagem" name="img" class="btn btn-light"/>
+    <input type="submit" name="enviarimg" id="enviarimg" placeholder="Endereço da imagem..."  class="btn btn-primary" style="font-weight: bold;" >
     <?php
     if (isset($_POST["img"])) {
         $img = $_POST["img"];
@@ -160,15 +160,13 @@ if($resultado){
     ?>
 
   
-    <h1><?= $dados["nome_usuario"]?></h1>
+    <h4 class="n_usuario"><?= $dados["nome_usuario"]?></h4>
     <br>
-</div>
-    <div class="col col-lg-2  p-4">
-  <h2>Bio: </h2>
+  <h2 class="alterar">BIO </h2>
   <?php 
 
 if ($dados["biografia"]) {
-    echo "<p>" . $dados["biografia"] . "</p>";
+    echo "<p style=' font-size: 20px;'>" . $dados["biografia"] . "</p>";
 } else {
     if (isset($_POST["enviarbio"])) {
         $bio = $_POST["bio"];
@@ -189,8 +187,8 @@ if($resultado){
     } else {
         ?>
         <form action="" method="post">
-            <input type="text" placeholder="insira algo aqui..." name="bio" />
-            <input type="submit" name="enviarbio" id="envbio">
+            <input type="text" placeholder="insira algo aqui..." name="bio" class="btn btn-light" />
+            <input type="submit" name="enviarbio" id="envbio"  class="btn btn-primary" style="font-weight: bold;">
         </form>
         <?php
     }
@@ -201,7 +199,7 @@ if($resultado){
     <form action="" method="POST">
             <h1> <?=     $mens?> </h1>
 
-            <h2 class="alterar"> ALTERAR INFORMAÇÕES</h2>
+            <h2 class="alterar" style=" color: white;"> ALTERAR INFORMAÇÕES</h2>
             <br>
             <div class="atnome">
            <label for="alt_nome"> Nome <br>
@@ -217,7 +215,7 @@ if($resultado){
 </div>
 <div class="atenviar">
 <label for="alt_enviar">
-            <input type="submit" name="enviar">
+            <input type="submit" name="enviar" class="envio">
 </label>
 </div>
         </form>
@@ -231,7 +229,6 @@ if($resultado){
 </div>
 <footer  class="site-footer">
 </footer>
-
 
 
   
