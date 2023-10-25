@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Tempo de geração: 24-Out-2023 às 15:35
--- Versão do servidor: 8.0.27
--- versão do PHP: 8.0.26
+-- Host: 127.0.0.1:3308
+-- Tempo de geração: 25-Out-2023 às 12:55
+-- Versão do servidor: 8.0.21
+-- versão do PHP: 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -151,7 +151,7 @@ CREATE TABLE IF NOT EXISTS `livros` (
   `preco` double NOT NULL,
   `isbn` varchar(40) NOT NULL,
   PRIMARY KEY (`id_livro`)
-) ENGINE=MyISAM AUTO_INCREMENT=878 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=924 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `livros`
@@ -422,7 +422,53 @@ INSERT INTO `livros` (`id_livro`, `preco`, `isbn`) VALUES
 (874, 33.99, 'UOM:49015002947092'),
 (875, 34.99, 'STANFORD:36105040581212'),
 (876, 53.99, 'WISC:89061839098'),
-(877, 50.99, 'STANFORD:36105121898261');
+(877, 50.99, 'STANFORD:36105121898261'),
+(878, 51.99, '8532519474'),
+(879, 46.99, '9781781104040'),
+(880, 43.99, '9781781103708'),
+(881, 62.99, '9781781103074'),
+(882, 49.99, '9781781103104'),
+(883, 59.99, '9781781105337'),
+(884, 45.99, '9781781106587'),
+(885, 30.99, '6555321202'),
+(886, 36.99, '9781781103081'),
+(887, 51.99, '8532530427'),
+(888, 33.99, '9722331000'),
+(889, 48.99, '1408825848'),
+(890, 54.99, '0195798767'),
+(891, 67.99, 'IND:30000100662216'),
+(892, 33.99, '9780345807168'),
+(893, 68.99, '9781932100884'),
+(894, 32.99, 'IND:30000100662232'),
+(895, 37.99, '0545582938'),
+(896, 34.99, '9781408865279'),
+(897, 55.99, '9781408855928'),
+(898, 52.99, '1408810581'),
+(899, 49.99, '9781644732083'),
+(900, 38.99, '1408825945'),
+(901, 64.99, '1338572342'),
+(902, 39.99, '9780307958778'),
+(903, 33.99, 'PSU:000058699409'),
+(904, 50.99, '0606323511'),
+(905, 36.99, '9780062194039'),
+(906, 62.99, '152661832X'),
+(907, 58.99, '1526610302'),
+(908, 65.99, '1526618265'),
+(909, 55.99, '054506967X'),
+(910, 67.99, '1526606224'),
+(911, 55.99, '152660616X'),
+(912, 59.99, '1526618311'),
+(913, 58.99, '1582348286'),
+(914, 61.99, '140886911X'),
+(915, 64.99, '1408883791'),
+(916, 57.99, '1526618222'),
+(917, 61.99, '8000021226'),
+(918, 41.99, '0545791340'),
+(919, 44.99, '1408898144'),
+(920, 66.99, '0439294827'),
+(921, 33.99, '1526606208'),
+(922, 47.99, '9781644732113'),
+(923, 52.99, '1526618192');
 
 -- --------------------------------------------------------
 
@@ -464,25 +510,30 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `email` varchar(50) NOT NULL,
   `senha` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `recuperacao` varchar(50) NOT NULL,
-  `autor` tinyint(1) NOT NULL DEFAULT '0',
+  `autor` varchar(10) NOT NULL,
   `img_perfil` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_',
   `biografia` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id_usuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `usuario`
 --
 
 INSERT INTO `usuario` (`id_usuario`, `assinatura_nivel`, `nome_usuario`, `email`, `senha`, `recuperacao`, `autor`, `img_perfil`, `biografia`) VALUES
-(4, 0, 'erick', '1', '', '1', 0, 'https://www.petz.com.br/blog/wp-content/uploads/2019/05/cachorro-independente-1-1280x720.jpg', 'jads'),
-(5, 0, 'erick2', '23', '', '23', 0, '', 'ola'),
-(6, 0, 'b', 'b', '3', 'b', 0, '', ''),
-(7, 0, 'a', 'a', 'a', 'a', 0, '', ''),
-(10, 0, 'camila', '2', '2', '2', 0, 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', 'sasd'),
-(11, 0, '5', '5', '5', '5', 0, '', ''),
-(12, 0, '2134', '2222', '1', '1', 0, 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', ''),
-(13, 0, 'o', 'o', '', 'o', 0, 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', 'oii');
+(4, 0, 'erick', '1', '', '1', '0', 'https://www.petz.com.br/blog/wp-content/uploads/2019/05/cachorro-independente-1-1280x720.jpg', 'jads'),
+(5, 0, 'erick2', '23', '', '23', '0', '', 'ola'),
+(6, 0, 'b', 'b', '3', 'b', '0', '', ''),
+(7, 0, 'a', 'a', 'a', 'a', '0', '', ''),
+(10, 0, 'camila', '2', '2', '2', '0', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', 'sasd'),
+(11, 0, '5', '5', '5', '5', '0', '', ''),
+(12, 0, '2134', '2222', '1', '1', '0', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', ''),
+(13, 0, 'o', 'o', '', 'o', '0', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', 'oii'),
+(14, 0, 'l', 'l', 'l', 'l', '0', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', ''),
+(15, 0, '65', '56', '56', '56', '0', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', ''),
+(16, 0, 'o', 'agd', 'adfg', 'asdf', '0', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', ''),
+(28, 0, '', '', '', '', 'autor', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', ''),
+(29, 0, '', 'sdf', '', '', 'leitor', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', '');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
