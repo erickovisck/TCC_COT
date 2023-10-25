@@ -61,6 +61,7 @@ $conexao->close();
                     </h2>
                     <li><a href="perfil.php">Perfil</a></li>
                     <li><a href="ajuda.php">Ajuda</a></li>
+                    <li><a href="configuracoes.php">Configurações</a></li>
                     <li><a href="amigos.php">Amigos</a></li>
                     <li><a href="autores.php">Autores</a></li>
                     <li><a href="sobre_nos.php">Sobre nós</a></li>
@@ -188,9 +189,8 @@ $conexao->close();
       <a class="btn btn-outline-dark" href="comunidade.php" role="button">Entre <i class="bi bi-people-fill"></i></a>
     </div>
     <div class="col-5">
-    <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Espaço reservado: 500 x 500" preserveAspectRatio="xMidYMid slice" focusable="false">
+    <img  src="imagens/jovem-estudante-trabalhando-em-tarefa.jpg" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Espaço reservado: 500 x 500" preserveAspectRatio="xMidYMid slice" focusable="false">
   <rect width="100%" height="100%" fill="var(--bs-secondary-bg)"></rect>
- <text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text>
  </svg>
  </div>
   </div>
