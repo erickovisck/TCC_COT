@@ -73,7 +73,6 @@ if ($resultado) {
                     <li><a href="inicial.php">Inicial</a></li>
                     <li><a href="perfil.php">Perfil</a></li>
                     <li><a href="ajuda.php">Ajuda</a></li>
-                    <li><a href="configuracoes.php">Configurações</a></li>
                     <li><a href="amigos.php">Amigos</a></li>
                     <li><a href="autores.php">Autores</a></li>
                     <li><a href="sobre_nos.php">Sobre nós</a></li>
