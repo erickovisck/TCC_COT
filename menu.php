@@ -14,7 +14,6 @@
         <ul>
             <li><a href="#">Página Inicial</a></li>
             <li><a href="#">Perfil</a></li>
-            <li><a href="#">Configurações</a></li>
             <li><a href="#">Sair</a></li>
         </ul>
         <script src="script.js"></script>  
