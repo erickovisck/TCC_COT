@@ -209,7 +209,7 @@ if($resultado){
     } else {
         ?>
         <form action="" method="post">
-            <input type="text" placeholder="insira algo aqui..." name="bio" class="btn btn-light" />
+            <input type="text" placeholder="Insira algo aqui..." name="bio" class="btn btn-light" />
             <input type="submit" name="enviarbio" id="envbio"  class="btn btn-primary" style="font-weight: bold;">
         </form>
         <?php
