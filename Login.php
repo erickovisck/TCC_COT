@@ -75,16 +75,8 @@
         if ($resultado && $resultado->num_rows > 0) {
             echo "login efetuado com sucesso";
             
-            $dados = mysqli_fetch_array($resultado);
-            $usuario = [
-                'id_usuario' => $dados['id_usuario'],
-                'nome_usuario' => $dados['nome_usuario'],
-                'email' => $dados['email'],
-                'senha' => $dados['senha'],
-                'recuperacao' => $dados['recuperacao'],
-                'numero_cartao' => $dados['numero_cartao'],
-                'bio' => $dados['biograsia'],
-            ];
+            $usuario = mysqli_fetch_array($resultado);
+          
             $_SESSION["usuario"] = $usuario;
            
         
