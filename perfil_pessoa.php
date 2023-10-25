@@ -115,34 +115,22 @@ if ($resultado) {
 
 
     <main class="principal">
-<div class="container p-4">
-<div class="row align-items-start">
-        <div class="col text-center">
-           <h1> nnnnnnn </h1>
-        <img>
-    </div>
+<div class="container p-4" style="border: 1px solid #191825;  background-color: #191825; width: 700px; height: 500px;
+    color: white;
+    margin-top: 100px;
+    border-radius: 4%">
+    <div class="row">
+     <div class="col   p-4">
+           <img class="profile-pic" id="iconperfil" src="https://img.freepik.com/fotos-gratis/icone-de-perfil-de-usuario-frontal-com-fundo-branco_187299-40010.jpg?w=740&t=st=1697032016~exp=1697032616~hmac=d6f954d7e8c6ce2127a1fc24d262b5a7ccaa9abffb3a117fe93d5bc3055b5ab0">
 
-    <div class="row align-items-center">
-        <div class="col">
-        <img>
 
        <h1> <?= $dados["nome_usuario"] ?>  </h1>
-    </div>
-    <div class="col">
-        
-          
-    <a class="btn btn-outline-dark" role="button" href="mensagem.php"> Chat</a>
-    </div>
-    <div class="col">
         <h2> Bio</h2>
         <p>
             <?= $dados["biografia"] ?>
             
 
         </p>
-    </div>    
-</div>
-</div>
         
         <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -182,11 +170,8 @@ if ($resultado) {
             });
         });
         </script>
-        
-        
-        
-        
-        <div class="container">
+        </div>
+        <div class="col   p-4">
         <?php
 
 $seguir = isset($_POST['seguir']) ? true : false;
@@ -245,7 +230,7 @@ if (isset($_SESSION['usuario'])) {
 
 
        
-        <h4> <a href="seguir.php?seguir=1" class="btn btn-outline-success" role="button"> Seguidores </a>
+        <h4> <a href="seguir.php?seguir=1" class="btn btn-success" role="button"> Seguidores </a>
       <?= $seguidores ?> 
         </h4>
 
@@ -257,13 +242,16 @@ if (isset($_SESSION['usuario'])) {
                 <?= $seguindosn ?>
             </button>
         </form>
-
+    </div>
+    <div class="col   p-4">
         <h4><a href="seguir.php?seguir=2"> Seguindo </a>
             <?= $seguindo ?>
-        </h4>
-        </div>
-
-
+            </h4>
+            <div>
+            <a class="btn btn-primary" role="button" href="mensagem.php"> Chat</a>
+    </div>
+    </div>
+    </div>
     </div>
 
 
