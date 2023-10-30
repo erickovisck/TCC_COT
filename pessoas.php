@@ -96,7 +96,9 @@ if (is_null($usuario["email"])) {
     $resultado = $conexao->query($sql);
     if($resultado){
     while ($dados = mysqli_fetch_array($resultado)) {
-        ?><a href="perfil_pessoa.php?id_usuario=<?=$dados["id_usuario"]?>"><?php echo $dados["nome_usuario"]; ?></a> <br> <?php
+        ?><a href="perfil_pessoa.php?id_usuario=<?=$dados["id_usuario"]?>">
+         <img class="profile-pic" id="iconperfil" src="<?=$dados["img_perfil"]?>">
+<?php echo $dados["nome_usuario"]; ?></a> <br> <?php
     }
 }elseif(!$dados){
     echo "Leitor não encontrado :(";
