@@ -365,8 +365,7 @@ $conexao->close();
 
                             </div>
                         </div>
-                        <img src="..." class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
+                          <div class="carousel-caption d-none d-md-block">
                             <!-- <h5>Third slide label</h5>
                             <p>Some representative placeholder content for the third slide.</p> -->
                         </div>
@@ -406,29 +405,8 @@ $conexao->close();
             </div>
         </div>
 
-        <hr class="divisor my-5">
         <!-- START SECOND CAROUSEL -->
-        <div id="carouselExample" class="carousel carousel-dark slide">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="..." class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="..." class="d-block w-100" alt="...">
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
+    
 
         <!-- <div class="container">
 	<div class="row">
