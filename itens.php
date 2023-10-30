@@ -13,11 +13,8 @@ function limitarCaracteres($texto, $limite) {
 
 //GOOGLE API//
 
-$api_key = 'AIzaSyBHe1XX1RdFudsmfRaHaAkKlzIz7wDao9k';
-/*CHAVE RESERVA 
-$api_key='AIzaSyDNGgXF9fVeliQy1Xuj_kxO9AstKFZGOBc'
-*/
-$_SESSION["api_key"]=$api_key;
+
+$api_key=$_SESSION["api_key"];
 $query =$pesquisa;
 $max=1;
 
