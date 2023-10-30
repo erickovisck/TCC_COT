@@ -9,7 +9,7 @@ function limitarCaracteres($texto, $limite) {
     }
     return $texto;
 }
-$api_key = 'AIzaSyBHe1XX1RdFudsmfRaHaAkKlzIz7wDao9k';
+$api_key=$_SESSION["api_key"];
 $precototal=0;
 $usuario = $_SESSION['usuario'];
 
