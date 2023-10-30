@@ -183,7 +183,7 @@ if($resultado){
     echo "<p style=' font-size: 20px;'>" . $dados["biografia"] . "</p>";
     ?>
     <form action="" method="post">
-        <input type="text" placeholder="insira algo aqui..." name="bio2" class="btn btn-light" />
+        <input type="text" placeholder="Edite sua bio!" name="bio2" class="btn btn-light" />
         <input type="submit" name="alterarbio" id="envbio"  class="btn btn-primary" style="font-weight: bold;">
     </form>
     <?php
