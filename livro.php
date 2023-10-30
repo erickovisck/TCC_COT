@@ -1,7 +1,7 @@
 <?php
 session_start();
 //GOOGLE API//
-$api_key = 'AIzaSyBHe1XX1RdFudsmfRaHaAkKlzIz7wDao9k';
+$api_key=$_SESSION["api_key"];
 $idlivro=$_GET['id_livro']; 
 
 $url = "https://www.googleapis.com/books/v1/volumes?q=isbn:" . urlencode($idlivro) ."&key=" . $api_key;
