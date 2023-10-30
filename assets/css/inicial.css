@@ -35,7 +35,7 @@ background-size: cover;
 }
 
 .left-inicio h1{
-    color: #FFF2A0;
+    color: white;
     font-size: 3rem;
     margin: 0px;
     font-weight: 500;
@@ -67,7 +67,7 @@ background-size: cover;
 }
 
 .card-login h1 {
-    color: #FFF2A0;
+    color: #865DFF;
     font-weight: 800;
     margin: 0px;
 }
@@ -97,8 +97,8 @@ background-size: cover;
 }
 
 .textfield a:hover {
-    color: #9940D2;
-    background: #FFF2A0;
+    color: #f0ffffde;
+    background: #865DFF;
     text-decoration: none;
 }
 
