@@ -555,6 +555,7 @@ text-align:center ;
   width: 128px;
     height: 128px;
     object-fit: cover;
+    margin: 4px;
 }
 
 
@@ -1671,6 +1672,4 @@ hr {
 .post_content {
   min-height: 100px;
 }
-#meuBotao{
-  color:white;
-}
+
