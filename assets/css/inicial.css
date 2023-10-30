@@ -5,7 +5,7 @@ body {
     background-color: rgb(25, 24, 37);*/
     background-image: url("imagens/logo_make_11_06_2023_22.jpg");
 background-repeat: no-repeat;
-background-size: 100%;
+background-size: cover;
     margin: 0px;
     font-family: 'Oswald', sans-serif;
     display: grid;
