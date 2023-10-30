@@ -3,9 +3,12 @@ session_start();
 
 require_once "conexao/conexao.php";
 
-$api_key = 'AIzaSyBHe1XX1RdFudsmfRaHaAkKlzIz7wDao9k';
+$api_key = 'AIzaSyC__M7lAyjI2bopKugbtKMFQKfGVbE6Ujg';
 
-
+/*CHAVE RESERVA 
+$api_key='AIzaSyDD7Cx-7wsL0KQ1avM_vlj_x_GWTXJbiro'
+*/
+$_SESSION["api_key"]=$api_key;
 
 $usuario = $_SESSION["usuario"];
 
@@ -123,7 +126,7 @@ $conexao->close();
         <hr class="divisor my-5">
         <!-- START FIRST CAROUSEL -->
         <div class="carrossel_inicial my-5">
-
+<h1 class="text-center"> Destaques</h1>
             <div id="carouselExampleDark" class="carousel carousel-dark slide">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
