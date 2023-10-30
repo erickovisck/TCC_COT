@@ -123,7 +123,7 @@ if ($resultado) {
                 $sql2 = "SELECT * FROM usuario WHERE id_usuario = " . $dados["id_seguidor"];
                 $resultado2 = $conexao->query($sql2);
                 $dados3 = mysqli_fetch_array($resultado2);
-                ?><a href="perfil_pessoa.php?id_usuario=<?=$dados3["id_usuario"]?>"><?php echo $dados3["nome_usuario"]; ?></a> <br> <?php
+                ?><a href="perfil_pessoa.php?id_usuario=<?=$dados3["id_usuario"]?>"> <img class="profile-pic" id="iconperfil" src="<?=$dados3["img_perfil"]?>"><?php echo $dados3["nome_usuario"]; ?></a> <br> <?php
             }
         } elseif ($seguir == 2) { // Use "==" para comparar, em vez de "="
             $sql = "SELECT id_seguido FROM seguir WHERE id_seguidor = $idUsuario";
