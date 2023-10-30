@@ -124,9 +124,9 @@ if ($resultado) {
            <img class="profile-pic" id="iconperfil" src="https://img.freepik.com/fotos-gratis/icone-de-perfil-de-usuario-frontal-com-fundo-branco_187299-40010.jpg?w=740&t=st=1697032016~exp=1697032616~hmac=d6f954d7e8c6ce2127a1fc24d262b5a7ccaa9abffb3a117fe93d5bc3055b5ab0">
 
 
-       <h1> <?= $dados["nome_usuario"] ?>  </h1>
-        <h2> Bio</h2>
-        <p>
+       <h1 style="font-size: 30px; padding: 4px; margin-left: 8%;"> <?= $dados["nome_usuario"] ?>  </h1>
+        <h2 style="font-size:20px; font-weight: bold; padding:8px; margin-top:30px"> Bio</h2>
+        <p style="font-size:20px;">
             <?= $dados["biografia"] ?>
             
 
@@ -230,25 +230,26 @@ if (isset($_SESSION['usuario'])) {
 
 
        
-        <h4> <a href="seguir.php?seguir=1" class="btn btn-success" role="button"> Seguidores </a>
+        <h4 style="text-align: center;"> <a href="seguir.php?seguir=1" class="btn btn-outline-light" style="border:0px;" role="button"> Seguidores </a>
       <?= $seguidores ?> 
         </h4>
 
 
 
 
-        <form method="post" action="">
-            <button type="submit" name="seguir" id="meuBotao">
+        <form method="post" action="" style="text-align: center;">
+            <button type="submit" name="seguir" id="meuBotao" class="btn btn-outline-success" style="margin-top: 300px; font-size: 20px; height: 40px; color: white; font-weight: bold; border: 0px;
+            background-color: purple; width: 110px;">
                 <?= $seguindosn ?>
             </button>
         </form>
     </div>
     <div class="col   p-4">
-        <h4><a href="seguir.php?seguir=2"> Seguindo </a>
+        <h4 style="text-align: center;"><a href="seguir.php?seguir=2" class="btn btn-outline-light" style="border:0px;"> Seguindo </a> <br>
             <?= $seguindo ?>
             </h4>
             <div>
-            <a class="btn btn-primary" role="button" href="mensagem.php"> Chat</a>
+            <a class="btn btn-primary" role="button" href="mensagem.php" style="    margin-top: 300px; margin-left: 100px; height: 40px;text-align: center; font-size: 20px; font-weight: bold;"> Chat</a>
     </div>
     </div>
     </div>
