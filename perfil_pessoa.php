@@ -121,7 +121,7 @@ if ($resultado) {
     border-radius: 4%">
     <div class="row">
      <div class="col   p-4">
-           <img class="profile-pic" id="iconperfil" src="https://img.freepik.com/fotos-gratis/icone-de-perfil-de-usuario-frontal-com-fundo-branco_187299-40010.jpg?w=740&t=st=1697032016~exp=1697032616~hmac=d6f954d7e8c6ce2127a1fc24d262b5a7ccaa9abffb3a117fe93d5bc3055b5ab0">
+           <img class="profile-pic" id="iconperfil" src="<?=$dados["img_perfil"]?>">
 
 
        <h1 style="font-size: 30px; padding: 4px; margin-left: 8%;"> <?= $dados["nome_usuario"] ?>  </h1>
