@@ -6,7 +6,7 @@ if (window.matchMedia("(min-width:576px)").matches) {
   // Função para copiar os primeiros slides e anexá-los ao final
   function copyAndAppendSlides() {
     var $carouselInner = $carousel.find('.carousel-inner');
-    var $firstSlides = $carouselInner.find('.carousel-item:lt(4)').clone();
+    var $firstSlides = $carouselInner.find('.carousel-item:lt(6)').clone();
     $carouselInner.append($firstSlides);
   }
 
@@ -17,11 +17,11 @@ if (window.matchMedia("(min-width:576px)").matches) {
     if (scrollPosition < (carouselWidth - (cardWidth * 4))) {
       console.log('next');
       scrollPosition = scrollPosition + cardWidth;
-      $('.carousel-inner').animate({ scrollLeft: scrollPosition }, 600);
+      $('.carousel-inner').animate({ scrollLeft: scrollPosition }, 200);
     } else {
       // Se você chegou ao fim, volte para o início
       scrollPosition = 0;
-      $('.carousel-inner').animate({ scrollLeft: scrollPosition }, 600, function () {
+      $('.carousel-inner').animate({ scrollLeft: scrollPosition }, 200, function () {
         copyAndAppendSlides();
       });
     }
