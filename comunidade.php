@@ -47,10 +47,10 @@ if (is_null($usuario["email"])) {
 
 
                 <ul id="menu">
-                    <h2>Usuário:
+                    <h2><i class="bi bi-person-circle"></i>:
                         <?= $usuario['nome_usuario'] ?>
                     </h2>
-                    <li><a href="inicial">Inicial</a></li>
+                    <li><a href="inicial.php">Inicial</a></li>
                     <li><a href="perfil.php">Perfil</a></li>
                     <li><a href="ajuda.php">Ajuda</a></li>
                     <li><a href="configuracoes.php">Configurações</a></li>

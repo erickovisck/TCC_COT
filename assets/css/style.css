@@ -1,5 +1,4 @@
 .img-wrapper{
-    max-width: 100%;
     height: 65vw;
     display: flex;
     justify-content: center;
@@ -28,4 +27,12 @@ img{
 
 .card{
     margin: 0 .5em;
+}
+
+.link_card {
+    height: 100%;
+}
+
+.link_card img {
+    height: 100%;
 }

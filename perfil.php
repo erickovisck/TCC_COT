@@ -68,6 +68,7 @@ if($resultado){
     <link rel="shortcut icon" href="imagens/logo_projeto2.png">
     <link rel="stylesheet" href="assets/css/estilo.css">
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
 <body>
 <div class="cabecalho">
@@ -82,7 +83,9 @@ if($resultado){
 
 
                 <ul id="menu">
-                    <h2>Usuário: <?= $dados['nome_usuario']?> </h2>
+                <h2><i class="bi bi-person-circle"></i>:
+                        <?= $usuario['nome_usuario'] ?>
+                    </h2>
                     <li><a href="inicial.php">Inicial   </a></li>
                     <li><a href="perfil.php">Perfil</a></li>
                     <li><a href="ajuda.php">Ajuda</a></li>

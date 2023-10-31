@@ -3,7 +3,7 @@ session_start();
 
 require_once "conexao/conexao.php";
 
-$api_key = 'AIzaSyC__M7lAyjI2bopKugbtKMFQKfGVbE6Ujg';
+$api_key='AIzaSyAPwKI4X48Ju3lA6FJK1PHcu8nLEgcuOJ0';
 
 /*CHAVE RESERVA 
 $api_key='AIzaSyDD7Cx-7wsL0KQ1avM_vlj_x_GWTXJbiro'
@@ -79,7 +79,7 @@ $principal=[ 9788581051529,
 
 
                 <ul id="menu">
-                    <h2>Usuário:
+                    <h2><i class="bi bi-person-circle"></i>:
                         <?= $usuario['nome_usuario'] ?>
                     </h2>
                     <li><a href="perfil.php">Perfil</a></li>
@@ -136,13 +136,14 @@ $principal=[ 9788581051529,
                         <!--                     <p class="promo_c">Melhores preços aqui!</p> -->
                         <a href="itens.php"><button id="shop_now" type="submit" name="shop now"
                                 onclick="change()">Comprar
-                                <i class="bi bi-bag-contain"></i></button> </a>
+                                <i class="bi bi-bag-fill"></i></button> </a>
                     </div>
                 </div>
             </div>
         </div>
         <!--END OF PAGE BANNER-->
         <hr class="divisor my-5">
+
         <h1 class="text-center"> Escolhas da COT</h1>
         <div id="carouselExample" class="carousel carousel-dark slide">
             <div class="carousel-inner">
@@ -160,15 +161,13 @@ if ($response) {
 ?>
                 <div class="carousel-item active ">
                     <div class="card">
-
-                  
                         <div class="img-wrapper">
-                            <a href="livro.php?id_livro= <?=$item->volumeInfo->industryIdentifiers[0]->identifier?> ">
-                                <img src=" <?=$thumbnail = $item->volumeInfo->imageLinks->thumbnail?>">
+                            <a class="link_card" href="livro.php?id_livro= <?=$item->volumeInfo->industryIdentifiers[0]->identifier?> ">
+                                <img class="h-40" src=" <?=$thumbnail = $item->volumeInfo->imageLinks->thumbnail?>">
                             </a>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">
+                            <h5 class="card-title text-center">
                                 <?=$item->volumeInfo->title?> 
                             </h5>
 
@@ -201,8 +200,7 @@ if ($response) {
             <div class="row">
                 <div class="col-7">
                     <h2 class="titulo-parceiros">Conheça nossa comunidade </h2>
-                    <a class="btn btn-outline-dark" href="comunidade.php" role="button">Entre <i
-                            class="bi bi-people-contain"></i></a>
+                    <a class="btn btn-outline-dark" href="comunidade.php" role="button">Entre <i class="bi bi-people-fill"></i></a>
                 </div>
                 <div class="col-5">
                     <img src="imagens/jovem-estudante-trabalhando-em-tarefa.jpg"

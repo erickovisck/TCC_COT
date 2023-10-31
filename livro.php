@@ -63,7 +63,7 @@ if (isset($_POST["pesquisar"])) {
 
 
                 <ul id="menu">
-                    <h2>Usuário:
+                    <h2><i class="bi bi-person-circle"></i>:
                         <?= $usuario['nome_usuario'] ?>
                     </h2>
                     <li><a href="inicial.php">Inicial</a></li>
