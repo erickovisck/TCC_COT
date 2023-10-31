@@ -27,8 +27,23 @@ if (isset($_POST["pesquisar"])) {
     $_SESSION['pesquisar'] = $pesquisa;
 /*     include_once "pesquisa.php"; */
 }
-$conexao->close();
 ?>
+<?php 
+$principal=[ 9788581051529,
+9781401271701 ,
+9788560018000,
+9781526019073,
+9788583861799 ,
+9788581303079,
+9788576835196,
+9788550303635,
+9786555600155,
+ 1974709930,
+ 9786555603033
+
+];
+
+            ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,9 +55,12 @@ $conexao->close();
     <title>Inicial</title>
 
     <link rel="shortcut icon" href="imagens/logo_projeto.png">
-    <link rel="stylesheet" href="assets/css/estilo.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/estilo.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
 
 </head>
@@ -124,269 +142,57 @@ $conexao->close();
         </div>
         <!--END OF PAGE BANNER-->
         <hr class="divisor my-5">
-        <!-- START FIRST CAROUSEL -->
-        <div class="carrossel_inicial my-5">
-<h1 class="text-center"> Destaques</h1>
-            <div id="carouselExampleDark" class="carousel carousel-dark slide">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
-                </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active" data-bs-interval="10000">
+        <h1 class="text-center"> Escolhas da COT</h1>
+        <div id="carouselExample" class="carousel carousel-dark slide">
+            <div class="carousel-inner">
+                <?php
+            foreach ($principal as $prin){
 
+$url = "https://www.googleapis.com/books/v1/volumes?q=isbn:$prin&key=" . $api_key;
+$response = file_get_contents($url);
+if ($response) {
+  $data = json_decode($response);
+  if (isset($data->items[0])) {
+      $item = $data->items[0];
+  }
+    }
+?>
+                <div class="carousel-item active ">
+                    <div class="card">
 
-                    <div class="row mx-5 p-4">
-                            <div class="col-3 d-flex justify-content-center">
-                                <?php
-        $url = "https://www.googleapis.com/books/v1/volumes?q=isbn:9781781103685&key=" . $api_key;
-        $response = file_get_contents($url);
-        if ($response) {
-          $data = json_decode($response);
-          
-          if (isset($data->items[0])) {
-              $item = $data->items[0];
-      
-              ?>
-
-                                <?php
-             
-        ?> 
-                         
-                        <a href="livro.php?id_livro=<?=$item->volumeInfo->industryIdentifiers[0]->identifier?>  "> <img src="<?=$thumbnail = $item->volumeInfo->imageLinks->thumbnail?>"
-                                    class="carousel-img object-fit-contain  rounded " alt="..."> </a> 
-                                <?php }
-        }
-        ?>
-                            </div>
-                            <div class="col-3 d-flex justify-content-center">
-                                <?php
-      $url = "https://www.googleapis.com/books/v1/volumes?q=isbn:9788581051529&key=" . $api_key;
-      $response = file_get_contents($url);
-      if ($response) {
-        $data = json_decode($response);
-        
-        if (isset($data->items[0])) {
-            $item = $data->items[0];
-      ?>
-                                  <a href="livro.php?id_livro=<?=$item->volumeInfo->industryIdentifiers[0]->identifier?>  "> <img src="<?=$thumbnail = $item->volumeInfo->imageLinks->thumbnail?>"
-                                    class="carousel-img object-fit-contain  rounded " alt="..."> </a>
-                                <?php }
-        }
-        ?>
-                            </div>
-                            <div class="col-3 d-flex justify-content-center">
-                                <?php
-      $url = "https://www.googleapis.com/books/v1/volumes?q=isbn:9781401271701&key=" . $api_key;
-      $response = file_get_contents($url);
-      if ($response) {
-        $data = json_decode($response);
-        
-        if (isset($data->items[0])) {
-            $item = $data->items[0];
-      ?>
-                                  <a href="livro.php?id_livro=<?=$item->volumeInfo->industryIdentifiers[0]->identifier?>  "> <img src="<?=$thumbnail = $item->volumeInfo->imageLinks->thumbnail?>"
-                                    class="carousel-img object-fit-contain  rounded " alt="..."> </a>
-                                <?php }
-        }
-        ?>
-
-                            </div>
-                            <div class="col-3 d-flex justify-content-center flex-wrap">
-                                <?php
-      $url = "https://www.googleapis.com/books/v1/volumes?q=isbn:9788560018000&key=" . $api_key;
-      $response = file_get_contents($url);
-      if ($response) {
-        $data = json_decode($response);
-        
-        if (isset($data->items[0])) {
-            $item = $data->items[0];
-      ?>
-                                  <a href="livro.php?id_livro=<?=$item->volumeInfo->industryIdentifiers[0]->identifier?>  "> <img src="<?=$thumbnail = $item->volumeInfo->imageLinks->thumbnail?>"
-                                    class="carousel-img object-fit-contain  rounded " alt="..."> </a>
-                                <?php }
-        }
-        ?>
-
-                            </div>
+                  
+                        <div class="img-wrapper">
+                            <a href="livro.php?id_livro= <?=$item->volumeInfo->industryIdentifiers[0]->identifier?> ">
+                                <img src=" <?=$thumbnail = $item->volumeInfo->imageLinks->thumbnail?>">
+                            </a>
                         </div>
-                    </div>
-                    <div class="carousel-item" data-bs-interval="2000">
-                        <div class="row mx-5 p-4">
-                            <div class="col-3 d-flex justify-content-center">
-                                <?php
-        $url = "https://www.googleapis.com/books/v1/volumes?q=isbn:9781526019073&key=" . $api_key;
-        $response = file_get_contents($url);
-        if ($response) {
-          $data = json_decode($response);
-          
-          if (isset($data->items[0])) {
-              $item = $data->items[0];
-      
-              ?>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <?=$item->volumeInfo->title?> 
+                            </h5>
 
-                                <?php
-             
-        ?> 
-                         
-                                  <a href="livro.php?id_livro=<?=$item->volumeInfo->industryIdentifiers[0]->identifier?>  "> <img src="<?=$thumbnail = $item->volumeInfo->imageLinks->thumbnail?>"
-                                    class="carousel-img object-fit-contain  rounded " alt="..."> </a>
-                                <?php }
-        }
-        ?>
-                            </div>
-                            <div class="col-3 d-flex justify-content-center">
-                                <?php
-      $url = "https://www.googleapis.com/books/v1/volumes?q=isbn:9788583861799&key=" . $api_key;
-      $response = file_get_contents($url);
-      if ($response) {
-        $data = json_decode($response);
-        
-        if (isset($data->items[0])) {
-            $item = $data->items[0];
-      ?>
-                                  <a href="livro.php?id_livro=<?=$item->volumeInfo->industryIdentifiers[0]->identifier?>  "> <img src="<?=$thumbnail = $item->volumeInfo->imageLinks->thumbnail?>"
-                                    class="carousel-img object-fit-contain  rounded " alt="..."> </a>
-                                <?php }
-        }
-        ?>
-                            </div>
-                            <div class="col-3 d-flex justify-content-center">
-                                <?php
-      $url = "https://www.googleapis.com/books/v1/volumes?q=isbn:9788581303079&key=" . $api_key;
-      $response = file_get_contents($url);
-      if ($response) {
-        $data = json_decode($response);
-        
-        if (isset($data->items[0])) {
-            $item = $data->items[0];
-      ?>
-                                  <a href="livro.php?id_livro=<?=$item->volumeInfo->industryIdentifiers[0]->identifier?>  "> <img src="<?=$thumbnail = $item->volumeInfo->imageLinks->thumbnail?>"
-                                    class="carousel-img object-fit-contain  rounded " alt="..."> </a>
-                                <?php }
-        }
-        ?>
-
-                            </div>
-                            <div class="col-3 d-flex justify-content-center flex-wrap">
-                                <?php
-      $url = "https://www.googleapis.com/books/v1/volumes?q=isbn:9788576835196&key=" . $api_key;
-      $response = file_get_contents($url);
-      if ($response) {
-        $data = json_decode($response);
-        
-        if (isset($data->items[0])) {
-            $item = $data->items[0];
-      ?>
-                                  <a href="livro.php?id_livro=<?=$item->volumeInfo->industryIdentifiers[0]->identifier?>  "> <img src="<?=$thumbnail = $item->volumeInfo->imageLinks->thumbnail?>"
-                                    class="carousel-img object-fit-contain  rounded " alt="..."> </a>
-                                <?php }
-        }
-        ?>
-
-                            </div>
-                        </div>
-                        <div class="carousel-caption d-none d-md-block">
-                            <p></p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                    <div class="row mx-5 p-4">
-                            <div class="col-3 d-flex justify-content-center">
-                                <?php
-        $url = "https://www.googleapis.com/books/v1/volumes?q=isbn:9788550303635&key=" . $api_key;
-        $response = file_get_contents($url);
-        if ($response) {
-          $data = json_decode($response);
-          
-          if (isset($data->items[0])) {
-              $item = $data->items[0];
-      
-              ?>
-
-                                <?php
-             
-        ?>
-                                  <a href="livro.php?id_livro=<?=$item->volumeInfo->industryIdentifiers[0]->identifier?>  "> <img src="<?=$thumbnail = $item->volumeInfo->imageLinks->thumbnail?>"
-                                    class="carousel-img object-fit-contain  rounded " alt="..."> </a>
-                                <?php }
-        }
-        ?>
-                            </div>
-                            <div class="col-3 d-flex justify-content-center">
-                                <?php
-      $url = "https://www.googleapis.com/books/v1/volumes?q=isbn:9786555600155&key=" . $api_key;
-      $response = file_get_contents($url);
-      if ($response) {
-        $data = json_decode($response);
-        
-        if (isset($data->items[0])) {
-            $item = $data->items[0];
-      ?>
-                                  <a href="livro.php?id_livro=<?=$item->volumeInfo->industryIdentifiers[0]->identifier?>  "> <img src="<?=$thumbnail = $item->volumeInfo->imageLinks->thumbnail?>"
-                                    class="carousel-img object-fit-contain  rounded " alt="..."> </a>
-                                <?php }
-        }
-        ?>
-                            </div>
-                            <div class="col-3 d-flex justify-content-center">
-                                <?php
-      $url = "https://www.googleapis.com/books/v1/volumes?q=isbn:1974709930&key=" . $api_key;
-      $response = file_get_contents($url);
-      if ($response) {
-        $data = json_decode($response);
-        
-        if (isset($data->items[0])) {
-            $item = $data->items[0];
-      ?>
-                                  <a href="livro.php?id_livro=<?=$item->volumeInfo->industryIdentifiers[0]->identifier?>  "> <img src="<?=$thumbnail = $item->volumeInfo->imageLinks->thumbnail?>"
-                                    class="carousel-img object-fit-contain  rounded " alt="..."> </a>
-                                <?php }
-        }
-        ?>
-
-                            </div>
-                            <div class="col-3 d-flex justify-content-center flex-wrap">
-                                <?php
-      $url = "https://www.googleapis.com/books/v1/volumes?q=isbn:9786555603033&key=" . $api_key;
-      $response = file_get_contents($url);
-      if ($response) {
-        $data = json_decode($response);
-        
-        if (isset($data->items[0])) {
-            $item = $data->items[0];
-      ?>
-                                  <a href="livro.php?id_livro=<?=$item->volumeInfo->industryIdentifiers[0]->identifier?>  "> <img src="<?=$thumbnail = $item->volumeInfo->imageLinks->thumbnail?>"
-                                    class="carousel-img object-fit-contain  rounded " alt="..."> </a>
-                                <?php }
-        }
-        ?>
-
-                            </div>
-                        </div>
-                          <div class="carousel-caption d-none d-md-block">
-                            <!-- <h5>Third slide label</h5>
-                            <p>Some representative placeholder content for the third slide.</p> -->
                         </div>
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
+
+            <?php } ?>
 
             </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
+
+
+        <!--  -->
+
+
 
         <hr class="divisor my-5">
 
@@ -408,56 +214,8 @@ $conexao->close();
             </div>
         </div>
 
-        <!-- START SECOND CAROUSEL -->
-    
-
-        <!-- <div class="container">
-	<div class="row">
-		<div class="col-xs-11 col-md-10 col-centered">
-
-			<div id="carousel" class="carousel slide" data-ride="carousel" data-type="multi" data-interval="2500">
-				<div class="carousel-inner">
-					<div class="item active">
-						<div class="carousel-col">
-							<div class="block red img-responsive"></div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="carousel-col">
-							<div class="block green img-responsive"></div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="carousel-col">
-							<div class="block blue img-responsive"></div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="carousel-col">
-							<div class="block yellow img-responsive"></div>
-						</div>
-					</div>
-				</div>
-
-				Controls 
-				<div class="left carousel-control">
-					<a href="#carousel" role="button" data-slide="prev">
-						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-						<span class="sr-only">Previous</span>
-					</a>
-				</div>
-				<div class="right carousel-control">
-					<a href="#carousel" role="button" data-slide="next">
-						<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-						<span class="sr-only">Next</span>
-					</a>
-				</div>
-			</div>
-
-		</div>
-	</div>
-</div> -->
         <hr class="divisor my-5">
+
     </main>
     <!-- Site footer -->
 
@@ -466,9 +224,12 @@ $conexao->close();
             <div class="row">
                 <div class="col-sm-12 col-md-6">
                     <h6>Sobre</h6>
-                    <p class="text-justify">O desenvolvimento deste site se tornou necessário após uma breve pesquisa
-                        sobre sites com o mesmo propósito, contudo, percebemos que estes sites são quase inexistentes.
-                        Visando isso, decidimos fazer um site com mais reconhecimento para autores nacionais e para que
+                    <p class="text-justify">O desenvolvimento deste site se tornou necessário após uma breve
+                        pesquisa
+                        sobre sites com o mesmo propósito, contudo, percebemos que estes sites são quase
+                        inexistentes.
+                        Visando isso, decidimos fazer um site com mais reconhecimento para autores nacionais e para
+                        que
                         mais pessoas possam ter gosto pela leitura.</p>
                 </div>
 
@@ -516,13 +277,7 @@ $conexao->close();
 <script>
 var btnDelete = document.getElementById('clear');
 var inputFocus = document.getElementById('inputFocus');
-//- btnDelete.on('click', function(e) {
-//-   e.preventDefault();
-//-   inputFocus.classList.add('isFocus')
-//- })
-//- inputFocus.addEventListener('click', function() {
-//-   this.classList.add('isFocus')
-//- })
+
 btnDelete.addEventListener('click', function(e) {
     e.preventDefault();
     inputFocus.value = ''
@@ -543,6 +298,13 @@ document.addEventListener('click', function(e) {
 <script src="js/extesion/custom-materialize.js"></script>
 <script src="js/extention/flatpickr.js"></script>
 <script src="js/main" .js></script>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+</script>
+<script src="js/script.js"></script>
 </body>
 
 </html>
