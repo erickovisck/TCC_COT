@@ -7,6 +7,7 @@ $api_key = 'AIzaSyC__M7lAyjI2bopKugbtKMFQKfGVbE6Ujg';
 
 /*CHAVE RESERVA 
 $api_key='AIzaSyDD7Cx-7wsL0KQ1avM_vlj_x_GWTXJbiro'
+$api_key='AIzaSyAPwKI4X48Ju3lA6FJK1PHcu8nLEgcuOJ0'
 */
 $_SESSION["api_key"]=$api_key;
 
