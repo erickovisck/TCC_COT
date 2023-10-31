@@ -129,7 +129,7 @@ if ($response) {
                 if(isset($item->volumeInfo->averageRating)){
                     echo "Nota média ".$item->volumeInfo->averageRating."★<br>";
                 }else{
-                    echo "Nota não disponivel";
+                    echo "Nota não disponivel <br>";
                 }
                  $preco="SELECT preco FROM livros WHERE isbn=".$item->volumeInfo->industryIdentifiers[0]->identifier."";
               $resulpreco=$conexao->query($preco);

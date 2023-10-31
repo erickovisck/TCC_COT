@@ -1,7 +1,11 @@
 <?php
 session_start();
 require_once "conexao/conexao.php";
+if(isset($_POST["pesquisar"])){
 $pesquisa = $_POST["pesquisar"];
+$query =$pesquisa;
+
+}
 function limitarCaracteres($texto, $limite) {
     // Verifica se o texto é maior que o limite
     if (strlen($texto) > $limite) {
@@ -15,7 +19,6 @@ function limitarCaracteres($texto, $limite) {
 
 
 $api_key=$_SESSION["api_key"];
-$query =$pesquisa;
 $max=1;
 
 
@@ -57,8 +60,8 @@ $resultado = $conexao->query($sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Itens</title>
     <link rel="shortcut icon" href="imagens/logo_projeto2.png">
+    <title>Itens</title>
     <link rel="stylesheet" href="assets/css/estilo.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 
@@ -150,8 +153,9 @@ $resultado = $conexao->query($sql);
 
 
         <?php
-                 if ($pesquisa == null) {
-                     ?> <div class="estante container text-center"><?php
+if(isset($_POST["pesquisar"])==false){
+                    
+
     $categoria=[
         "romance",
         "fiction",
@@ -160,10 +164,13 @@ $resultado = $conexao->query($sql);
         "horror"];
         $cat="";
 foreach ($categoria as $cat){
-        $url = "https://www.googleapis.com/books/v1/volumes?q=subject:$cat&startIndex=0&maxResults=10&key=" . $api_key;
+        $url = "https://www.googleapis.com/books/v1/volumes?q=subject:$cat&startIndex=0&maxResults=8&key=" . $api_key;
         $response = file_get_contents($url);
         $data = json_decode($response);
-        ?> <h1 class="text-center"> <?=$cat?> </h1> <?php
+        ?><div class="categoria"> <h1 class="categoria text-center"> <?=$cat?> </h1> </div><?php
+        ?> <div class="estante container text-center"><?php
+
+
         foreach ($data->items as $item) {
           
 
@@ -178,7 +185,7 @@ foreach ($categoria as $cat){
                   echo "<img src='" . $item->volumeInfo->imageLinks->thumbnail . "'>";
               } else {
                   // Lide com o caso em que a imagem não está disponível
-                  echo "<img src='Red_Prohibited_sign_No_icon_warning_or_stop_symbol_safety_danger_isolated_vector_illustration.jpg'>";    
+                  echo "<img src='imagens/Red_Prohibited_sign_No_icon_warning_or_stop_symbol_safety_danger_isolated_vector_illustration.jpg'>";    
                           }
              $texto= $item->volumeInfo->title;
              $limite = 33;
@@ -213,15 +220,17 @@ foreach ($categoria as $cat){
                      }
                           echo "</h2>";
               echo "<form method='post' action='carrinho.php'>"; // O formulário envia dados para a página "carrinho.php"
-              echo "</div>";
-                  
-             
+            
+              echo "</div>";   
+
                   
                 
         
     }
+    
 }
-    }
+
+echo "</div>";  }
                     } else {
                        
                         $min=0;

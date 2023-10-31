@@ -76,7 +76,6 @@
         $resultado = verificaLogin($usuario["email"], $usuario["senha"], $conexao);
 
         if ($resultado && $resultado->num_rows > 0) {
-            echo "login efetuado com sucesso";
             
             $usuario = mysqli_fetch_array($resultado);
           

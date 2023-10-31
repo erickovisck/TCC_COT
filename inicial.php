@@ -8,6 +8,7 @@ $api_key='AIzaSyAPwKI4X48Ju3lA6FJK1PHcu8nLEgcuOJ0';
 /*CHAVE RESERVA 
 $api_key='AIzaSyDD7Cx-7wsL0KQ1avM_vlj_x_GWTXJbiro'
 $api_key='AIzaSyAPwKI4X48Ju3lA6FJK1PHcu8nLEgcuOJ0'
+$api_key='AIzaSyBHe1XX1RdFudsmfRaHaAkKlzIz7wDao9k'
 */
 $_SESSION["api_key"]=$api_key;
 
@@ -55,7 +56,7 @@ $principal=[ 9788581051529,
 
     <title>Inicial</title>
 
-    <link rel="shortcut icon" href="imagens/logo_projeto.png">
+    <link rel="shortcut icon" href="imagens/logo_projeto2.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="assets/css/style.css">

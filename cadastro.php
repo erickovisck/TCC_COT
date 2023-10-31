@@ -107,7 +107,7 @@ $conexao->close();
 </label>
 <br> <br>
     <div class="cad_input">
-    <label for="logemail2">E-mail
+    <label for="logemail2">E-mail/usuario
     <input required  type="text" name="cademail" id="cademail"  class="cad_inputuser" placeholder="Digite seu e-mail"> <br>
 </div>
 </label>
