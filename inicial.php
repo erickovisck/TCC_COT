@@ -32,10 +32,10 @@ if (isset($_POST["pesquisar"])) {
 ?>
 <?php 
 $principal=[ 9788581051529,
-9781401271701 ,
+9781401271701,
 9788560018000,
 9781526019073,
-9788583861799 ,
+9788583861799,
 9788581303079,
 9788576835196,
 9788550303635,
@@ -80,10 +80,11 @@ $principal=[ 9788581051529,
 
 
                 <ul id="menu">
-                    <h2><i class="bi bi-person-circle"></i>:
-                        <?= $usuario['nome_usuario'] ?>
+                    <h2><a href="perfil.php"><i class="bi bi-person-circle"></i>
+                    <?= $usuario['nome_usuario'] ?></a>
+                        
                     </h2>
-                    <li><a href="perfil.php">Perfil</a></li>
+
                     <li><a href="ajuda.php">Ajuda</a></li>
                     <li><a href="configuracoes.php">Configurações</a></li>
                     <li><a href="amigos.php">Amigos</a></li>
