@@ -31,17 +31,17 @@ if (isset($_POST["pesquisar"])) {
 }
 ?>
 <?php 
-$principal=[ 9788581051529,
+$principal=[9788581051529,
 9781401271701,
 9788560018000,
 9781526019073,
 9788583861799,
-9788581303079,
+9789878151922,
 9788576835196,
 9788550303635,
 9786555600155,
- 1974709930,
- 9786555603033
+1974709930,
+9786555603033
 
 ];
 
@@ -147,6 +147,7 @@ $principal=[ 9788581051529,
         <hr class="divisor my-5">
 
         <h1 class="text-center"> Escolhas da COT</h1>
+    <h2 class="text-center"><a href="autores.php" >Quer divulgar suas obras aqui? </a></h2>
         <div id="carouselExample" class="carousel carousel-dark slide">
             <div class="carousel-inner">
                 <?php
@@ -164,7 +165,7 @@ if ($response) {
                 <div class="carousel-item active ">
                     <div class="card">
                         <div class="img-wrapper">
-                            <a class="link_card" href="livro.php?id_livro= <?=$item->volumeInfo->industryIdentifiers[0]->identifier?> ">
+                            <a class="link_card" href="livro.php?id_livro=<?=$item->volumeInfo->industryIdentifiers[0]->identifier?> ">
                                 <img class="h-40" src=" <?=$thumbnail = $item->volumeInfo->imageLinks->thumbnail?>">
                             </a>
                         </div>

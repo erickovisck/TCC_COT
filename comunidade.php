@@ -52,7 +52,7 @@ if (is_null($usuario["email"])) {
                     <?= $usuario['nome_usuario'] ?></a>
                         
                     </h2>
-
+                    <li><a href="inicial.php">Inicial   </a></li>
                     <li><a href="ajuda.php">Ajuda</a></li>
                     <li><a href="configuracoes.php">Configurações</a></li>
                     <li><a href="amigos.php">Amigos</a></li>
