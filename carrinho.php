@@ -175,6 +175,10 @@ $resultado = $conexao->query($sql);
         if(isset($_POST["comprarcarrinho"])){
             $del="DELETE FROM carrinho WHERE id_usuario=".$usuario["id_usuario"]."";
             $delres=$conexao->query($del);
+            header("Location: carrinho.php");
+            exit();
+        
+
         }
         ?>
         <div class="voltarpagina">

@@ -22,10 +22,12 @@ if (is_null($usuario["email"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>Comunidade</title>
     <link rel="shortcut icon" href="imagens/logo_projeto2.png">
-    <link rel="stylesheet" href="assets/css/estilo.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="assets/css/estilo.css">
     <link rel="stylesheet" href="assets/css/comunidade.css">
+
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
 
 
@@ -34,8 +36,7 @@ if (is_null($usuario["email"])) {
 <body>  
 
 
-
-    <div class="cabecalho">
+<div class="cabecalho">
         <nav role="navigation">
             <div id="menuToggle">
 
@@ -46,8 +47,12 @@ if (is_null($usuario["email"])) {
 
 
 
-               <h2><a href="perfil.php"><i class="bi bi-person-circle"> <?= $usuario['nome_usuario'] ?></a></i></h2> 
-                    <li><a href="perfil.php">Perfil</a></li>
+                <ul id="menu">
+                    <h2><a href="perfil.php"><i class="bi bi-person-circle"></i>
+                    <?= $usuario['nome_usuario'] ?></a>
+                        
+                    </h2>
+
                     <li><a href="ajuda.php">Ajuda</a></li>
                     <li><a href="configuracoes.php">Configurações</a></li>
                     <li><a href="amigos.php">Amigos</a></li>
@@ -63,12 +68,15 @@ if (is_null($usuario["email"])) {
 
 
         <div class="s128">
-        <form method="post" action="pessoas.php">
+            <form method="post" action="itens.php">
                 <div class="inner-form">
                     <div class="row">
                         <div class="input-field first" id="first">
-                            <input class="input" id="inputFocus" type="text" placeholder="Pesquisar" name="pesquisarpessoa" />
+
+                            <input class="input" id="inputFocus" type="text" placeholder="Pesquisar" name="pesquisar" />
                             <input type="submit" name="enviar" id="pesqenviar">
+
+
                             <button class="clear" id="clear">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                     <path

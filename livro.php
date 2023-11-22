@@ -51,7 +51,7 @@ if (isset($_POST["pesquisar"])) {
 </head>
 
 <body>
-    <div class="cabecalho">
+<div class="cabecalho">
         <nav role="navigation">
             <div id="menuToggle">
 
@@ -62,9 +62,14 @@ if (isset($_POST["pesquisar"])) {
 
 
 
-               <h2><a href="perfil.php"><i class="bi bi-person-circle"><?= $usuario['nome_usuario'] ?></a></i></h2> 
-                    <li><a href="perfil.php">Perfil</a></li>
+                <ul id="menu">
+                    <h2><a href="perfil.php"><i class="bi bi-person-circle"></i>
+                    <?= $usuario['nome_usuario'] ?></a>
+                        
+                    </h2>
+
                     <li><a href="ajuda.php">Ajuda</a></li>
+                    <li><a href="configuracoes.php">Configurações</a></li>
                     <li><a href="amigos.php">Amigos</a></li>
                     <li><a href="autores.php">Autores</a></li>
                     <li><a href="sobre_nos.php">Sobre nós</a></li>
@@ -82,8 +87,11 @@ if (isset($_POST["pesquisar"])) {
                 <div class="inner-form">
                     <div class="row">
                         <div class="input-field first" id="first">
+
                             <input class="input" id="inputFocus" type="text" placeholder="Pesquisar" name="pesquisar" />
                             <input type="submit" name="enviar" id="pesqenviar">
+
+
                             <button class="clear" id="clear">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                     <path
@@ -97,10 +105,7 @@ if (isset($_POST["pesquisar"])) {
                 </div>
             </form>
         </div>
-
-
-    </div>
-
+        </div>
     <main class="principal">
 
         <div class="container-xxl p-4">
