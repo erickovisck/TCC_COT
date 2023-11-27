@@ -85,7 +85,7 @@ $principal=[9788581051529,
                         
                     </h2>
 
-                    <li><a href="ajuda.php">Ajuda</a></li>
+                    <li><a href="https://mail.google.com/mail/u/0/#inbox?compose=CllgCHrgCgXQjzhLKWMkFtfgKwlfqMLzWBsTXCQqVdQMlGgkfcdTJqgpbVmLvZbRVrsRdPNrmgq">Ajuda</a></li>
                     <li><a href="configuracoes.php">Configurações</a></li>
                     <li><a href="amigos.php">Amigos</a></li>
                     <li><a href="autores.php">Autores</a></li>
