@@ -48,14 +48,14 @@ if (is_null($usuario["email"])) {
 
 
                 <ul id="menu">
-                    <h2><i class="bi bi-person-circle"></i>:
+                    <h2><i class="bi bi-person-circle"> </i>:
                         <?= $usuario['nome_usuario'] ?>
                     </h2>
                     <li><a href="inicial">Inicial</a></li>
                     <li><a href="perfil.php">Perfil</a></li>
                     <li><a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=creatorsofthought@gmail.com">Ajuda</a></li>
                     
-                    <li><a href="amigos.php">amigos</a></li>
+                    <li><a href="Amigos.php">Amigos</a></li>
                     <li><a href="autores.php">Autores</a></li>
                     <li><a href="sobre_nos.php">Sobre nós</a></li>
                     <li><a href="sair.php">Sair</a></li>
@@ -89,24 +89,38 @@ if (is_null($usuario["email"])) {
         </div>
         </div>
         <main class="principal bg-body-tertiary">
-<?php
-$sql = "SELECT * FROM seguir WHERE id_seguidor=" . $usuario["id_usuario"];
-$result = $conexao->query($sql);
-$data = mysqli_fetch_array($result);
+        <?php
+// Users whom I follow
+$sql_following = "SELECT * FROM seguir WHERE id_seguidor=" . $usuario["id_usuario"];
+$result_following = $conexao->query($sql_following);
 
-$sql2 = "SELECT * FROM seguir WHERE id_seguidor=" . $usuario["id_usuario"] . " AND id_seguido=" . $data["id_seguido"];
-$result2 = $conexao->query($sql2);
-$data2 = mysqli_fetch_array($result2);
+while ($data_following = mysqli_fetch_array($result_following)) {
+    $sql_user_following = "SELECT * FROM usuario WHERE id_usuario = " . $data_following["id_seguido"];
+    $result_user_following = $conexao->query($sql_user_following);
+    $user_following = mysqli_fetch_array($result_user_following);
 
-while ($data2 = mysqli_fetch_array($result2)) {
-    $sql3 = "SELECT * FROM usuario WHERE id_usuario = " . $data2["id_seguido"];
-    $resultado3 = $conexao->query($sql3);
-    $dados4 = mysqli_fetch_array($resultado3);
-
-    ?><a href="perfil_pessoa.php?id_usuario=<?=$dados4["id_usuario"]?>"> <img class="profile-pic" id="iconperfil" src="<?=$dados4["img_perfil"]?>"><?php echo $dados4["nome_usuario"]; ?></a> <br> <?php
+    ?><a href="perfil_pessoa.php?id_usuario=<?=$user_following["id_usuario"]?>">
+        <img class="profile-pic" id="iconperfil" src="<?=$user_following["img_perfil"]?>">
+        <?php echo $user_following["nome_usuario"]; ?>
+    </a><br> <?php
 }
 
+// Users who follow me
+$sql_followers = "SELECT * FROM seguir WHERE id_seguido=" . $usuario["id_usuario"];
+$result_followers = $conexao->query($sql_followers);
+
+while ($data_followers = mysqli_fetch_array($result_followers)) {
+    $sql_user_followers = "SELECT * FROM usuario WHERE id_usuario = " . $data_followers["id_seguidor"];
+    $result_user_followers = $conexao->query($sql_user_followers);
+    $user_followers = mysqli_fetch_array($result_user_followers);
+
+    ?><a href="perfil_pessoa.php?id_usuario=<?=$user_followers["id_usuario"]?>">
+        <img class="profile-pic" id="iconperfil" src="<?=$user_followers["img_perfil"]?>">
+        <?php echo $user_followers["nome_usuario"]; ?>
+    </a><br> <?php
+}
 ?>
+
 
         </main>
            

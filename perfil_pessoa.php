@@ -8,9 +8,7 @@ $dupl = "DELETE FROM `seguir` WHERE id_seguido = 0";
 $dupl2 = $conexao->query($dupl);
 
 $usuario = $_SESSION["usuario"];
-if ($usuario["id_usuario"] == $_GET["id_usuario"]) {
-    header("Location:perfil.php");
-}
+
 
 
 
@@ -27,28 +25,35 @@ if (isset($_POST["pesquisar"])) {
     $_SESSION['pesquisar'] = $pesquisa;
     /*     include_once "pesquisa.php"; */
 }
-$iddados = $_GET["id_usuario"];
-echo $iddados;
+
+
+$iddados = isset($_GET["id_usuario"]) ? $_GET["id_usuario"] : $_SESSION["iddados"];
+echo"<br>";
+
 $sql = "SELECT * FROM usuario where id_usuario = $iddados";
 $resultado = $conexao->query($sql);
+
 if ($resultado) {
-    echo "USUARIO ENCONTRADO";
+    
     $dados = mysqli_fetch_array($resultado);
-    $idUsuario = $dados['id_usuario'];
-    $_SESSION["idUsuario"]=$idUsuario;
+    $iddados = $dados['id_usuario'];
+    $_SESSION["iddados"] = $iddados;
 
-
+    // Resto do seu código...
 } else {
     echo "usuario nao";
 }
+if ($usuario["id_usuario"] == $iddados) {
+    header("Location:perfil.php");
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="colorlib.com">
 
     <title>Leitor</title>
     <link rel="shortcut icon" href="imagens/logo_projeto2.png">
@@ -73,11 +78,11 @@ if ($resultado) {
 
 
                 <ul id="menu">
-                <h2><a href="perfil.php"><i class="bi bi-person-circle"><?= $usuario['nome_usuario'] ?></a></i></h2> 
+                <h2><a href="perfil.php"><i class="bi bi-person-circle"> <?= $usuario['nome_usuario'] ?></a></i></h2> 
 
                     <li><a href="inicial.php">Inicial   </a></li>
                     <li><a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=creatorsofthought@gmail.com">Ajuda</a></li>
-                    
+                    <li><a href="Amigos.php">Amigos</a></li>
                     <li><a href="autores.php">Autores</a></li>
                     <li><a href="sobre_nos.php">Sobre nós</a></li>
                     <li><a href="sair.php">Sair</a></li>
@@ -132,6 +137,7 @@ if ($resultado) {
         </p>
         
         <script>
+            
         document.addEventListener("DOMContentLoaded", function() {
             const seguirButton = document.getElementById('meuBotao');
             const contSeguindoElement = document.querySelector('h4');
@@ -182,24 +188,26 @@ if (isset($_SESSION['usuario'])) {
     $result = $conexao->query($verific);
 
     if ($result && $result->num_rows > 0) {
-        $seguindosn = "seguir";
+        $seguindosn = "seguindo";
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($seguir) {
                 $sql = "DELETE FROM seguir WHERE id_seguido = $idUsuario AND id_seguidor = " . $usuario["id_usuario"];
                 if ($conexao->query($sql) === true) {
-                    // Redirecione para a mesma página para atualizar a exibição
+                    echo "<script>window.location.href='perfil_pessoa.php';</script>";
                 } else {
                     echo "Erro";
                 }
             }
         }
     } else {
-        $seguindosn = "seguindo";
+        $seguindosn = "seguir";
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($seguir) {
                 $sql = "INSERT INTO seguir (id_seguido, id_seguidor) VALUES ('$idUsuario', '" . $usuario["id_usuario"] . "')";
                 if ($conexao->query($sql) === true) {
                     // Redirecione para a mesma página para atualizar a exibição
+                    echo "<script>window.location.href='perfil_pessoa.php';</script>";
+                    
                 } else {
                     echo "Erro";
                 }
