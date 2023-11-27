@@ -125,7 +125,29 @@ if (isset($_POST["pesquisar"])) {
   <div class="card-body text-secondary">
     <h5 class="card-title">Secondary card title</h5>
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <button type="button" class="btn btn-secondary">Secondary</button>
+    <form action="" method="post">autor
+    <input type="checkbox" name="autor" value="autor">
+
+        <input type="submit" name="envia">
+    <button type="button" class="btn btn-secondary">Inscrever</button>
+</input>
+</form>
+<?php
+
+
+if(isset($_POST['autor'])){
+    $sql="UPDATE `usuario` SET `autor`='$autor' WHERE `id_usuario`='".$usuario["id_usuario"]."'";
+    $response=$conexao->query($sql);
+    $autor = $_POST['autor'];
+
+    if($response){
+        echo"<script language='javascript' type='text/javascript'>alert('Bem vindo autor!')
+        ;window.location.href='Login.php'</script>"; 
+        header("Location: autores.php");
+    exit();
+    }
+}
+    ?>
   </div>
 </div>
     </div>
