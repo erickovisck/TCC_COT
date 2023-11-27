@@ -53,9 +53,8 @@ if (is_null($usuario["email"])) {
                         
                     </h2>
                     <li><a href="inicial.php">Inicial   </a></li>
-                    <li><a href="ajuda.php">Ajuda</a></li>
-                    <li><a href="configuracoes.php">Configurações</a></li>
-                    <li><a href="amigos.php">Amigos</a></li>
+                    <li><a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=creatorsofthought@gmail.com">Ajuda</a></li>
+                    
                     <li><a href="autores.php">Autores</a></li>
                     <li><a href="sobre_nos.php">Sobre nós</a></li>
                     <li><a href="sair.php">Sair</a></li>
@@ -68,15 +67,12 @@ if (is_null($usuario["email"])) {
 
 
         <div class="s128">
-            <form method="post" action="itens.php">
+        <form method="post" action="pessoas.php">
                 <div class="inner-form">
                     <div class="row">
                         <div class="input-field first" id="first">
-
-                            <input class="input" id="inputFocus" type="text" placeholder="Pesquisar" name="pesquisar" />
+                            <input class="input" id="inputFocus" type="text" placeholder="Pesquisar" name="pesquisarpessoa" />
                             <input type="submit" name="enviar" id="pesqenviar">
-
-
                             <button class="clear" id="clear">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                     <path

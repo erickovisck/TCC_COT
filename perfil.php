@@ -86,8 +86,8 @@ if($resultado){
                 <h2><a href="perfil.php"><i class="bi bi-person-circle"><?= $usuario['nome_usuario'] ?></a></i></h2> 
 
                     <li><a href="inicial.php">Inicial   </a></li>
-                    <li><a href="ajuda.php">Ajuda</a></li>
-                    <li><a href="amigos.php">Amigos</a></li>
+                    <li><a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=creatorsofthought@gmail.com">Ajuda</a></li>
+                    
                     <li><a href="autores.php">Autores</a></li>
                     <li><a href="sobre_nos.php">Sobre nós</a></li>
                     <li><a href="sair.php">Sair</a></li>
@@ -99,13 +99,13 @@ if($resultado){
 
 
 
-        <div class="s128">
-            <form method="post" action="itens.php">
+      <div class="s128">
+        <form method="post" action="pessoas.php">
                 <div class="inner-form">
                     <div class="row">
                         <div class="input-field first" id="first">
-                            <input class="input" id="inputFocus" type="text" placeholder="Pesquisar" name="pesquisar"/>
-                            <input  type="submit" name="enviar" id="pesqenviar">
+                            <input class="input" id="inputFocus" type="text" placeholder="Pesquisar" name="pesquisarpessoa" />
+                            <input type="submit" name="enviar" id="pesqenviar">
                             <button class="clear" id="clear">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                     <path
@@ -119,7 +119,7 @@ if($resultado){
                 </div>
             </form>
         </div>
-</div>
+        </div>
 <div class="principal">
 <div class="container text-center " style="border: 1px solid #2f2841; border-radius: 3%; margin-top: 8%; height: 500px; ">
 <div class="row">

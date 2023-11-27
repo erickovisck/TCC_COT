@@ -64,9 +64,8 @@ if (isset($_POST["pesquisar"])) {
                         
                     </h2>
                     <li><a href="inicial.php">Inicial   </a></li>
-                    <li><a href="ajuda.php">Ajuda</a></li>
-                    <li><a href="configuracoes.php">Configurações</a></li>
-                    <li><a href="amigos.php">Amigos</a></li>
+                    <li><a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=creatorsofthought@gmail.com">Ajuda</a></li>
+                    
                     <li><a href="autores.php">Autores</a></li>
                     <li><a href="sobre_nos.php">Sobre nós</a></li>
                     <li><a href="sair.php">Sair</a></li>
@@ -141,9 +140,9 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
 $response2=$conexao->query($verifi);
 $data=mysqli_fetch_array($response2);
 if($response2){
-    echo"sexo";
+  
 }else{
-    echo "PENIS";
+    echo "erro";
 }
 if($data["autor"]=="autor"){
     echo"<script language='javascript' type='text/javascript'>alert('Ja e autor')

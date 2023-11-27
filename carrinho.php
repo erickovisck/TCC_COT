@@ -50,8 +50,8 @@ $resultado = $conexao->query($sql);
                     <h2>Usuário: <?= $usuario['nome_usuario']?> </h2>
                     <li><a href="inicial">Inicial</a></li>
                     <li><a href="perfil.php">Perfil</a></li>
-                    <li><a href="ajuda.php">Ajuda</a></li>
-                    <li><a href="amigos.php">Amigos</a></li>
+                    <li><a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=creatorsofthought@gmail.com">Ajuda</a></li>
+                    
                     <li><a href="autores.php">Autores</a></li>
                     <li><a href="sobre_nos.php">Sobre nós</a></li>
                     <li><a href="sair.php">Sair</a></li>

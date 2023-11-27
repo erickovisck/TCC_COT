@@ -53,8 +53,9 @@ if (is_null($usuario["email"])) {
                     </h2>
                     <li><a href="inicial">Inicial</a></li>
                     <li><a href="perfil.php">Perfil</a></li>
-                    <li><a href="ajuda.php">Ajuda</a></li>
-                    <li><a href="amigos.php">Amigos</a></li>
+                    <li><a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=creatorsofthought@gmail.com">Ajuda</a></li>
+                    
+                    <li><a href="amigos.php">amigos</a></li>
                     <li><a href="autores.php">Autores</a></li>
                     <li><a href="sobre_nos.php">Sobre nós</a></li>
                     <li><a href="sair.php">Sair</a></li>
@@ -89,8 +90,24 @@ if (is_null($usuario["email"])) {
         </div>
         <main class="principal bg-body-tertiary">
 <?php
-$amigos="SELECT * FROM seguir WHERE id_seguidor ";
+$sql = "SELECT * FROM seguir WHERE id_seguidor=" . $usuario["id_usuario"];
+$result = $conexao->query($sql);
+$data = mysqli_fetch_array($result);
+
+$sql2 = "SELECT * FROM seguir WHERE id_seguidor=" . $usuario["id_usuario"] . " AND id_seguido=" . $data["id_seguido"];
+$result2 = $conexao->query($sql2);
+$data2 = mysqli_fetch_array($result2);
+
+while ($data2 = mysqli_fetch_array($result2)) {
+    $sql3 = "SELECT * FROM usuario WHERE id_usuario = " . $data2["id_seguido"];
+    $resultado3 = $conexao->query($sql3);
+    $dados4 = mysqli_fetch_array($resultado3);
+
+    ?><a href="perfil_pessoa.php?id_usuario=<?=$dados4["id_usuario"]?>"> <img class="profile-pic" id="iconperfil" src="<?=$dados4["img_perfil"]?>"><?php echo $dados4["nome_usuario"]; ?></a> <br> <?php
+}
+
 ?>
+
         </main>
            
            </body>

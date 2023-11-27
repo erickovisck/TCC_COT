@@ -82,12 +82,10 @@ $principal=[9788581051529,
                 <ul id="menu">
                     <h2><a href="perfil.php"><i class="bi bi-person-circle"></i>
                     <?= $usuario['nome_usuario'] ?></a>
-                        
                     </h2>
-
-                    <li><a href="https://mail.google.com/mail/u/0/#inbox?compose=CllgCHrgCgXQjzhLKWMkFtfgKwlfqMLzWBsTXCQqVdQMlGgkfcdTJqgpbVmLvZbRVrsRdPNrmgq">Ajuda</a></li>
-                    <li><a href="configuracoes.php">Configurações</a></li>
-                    <li><a href="amigos.php">Amigos</a></li>
+                    <li><a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=creatorsofthought@gmail.com">Ajuda</a></li>
+                    <li><a href="amigos.php">amigos</a></li>
+    
                     <li><a href="autores.php">Autores</a></li>
                     <li><a href="sobre_nos.php">Sobre nós</a></li>
                     <li><a href="sair.php">Sair</a></li>
