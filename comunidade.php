@@ -115,28 +115,35 @@ if (is_null($usuario["email"])) {
 </div>
 </div>
                 <?php
-                if (isset($_POST["mensagem"])) {
-                    $mensagem = $_POST["mensagem"];
-                    // Verifique se a mensagem não está vazia
-                
-                    if (!$mensagem) {
-                        echo "mensagem vazia <br><br>";
-                    } else {
-                        // A mensagem não está vazia, então insira no banco de dados
-                        $sql = "INSERT INTO chat_geral (id_usuario, mensagens,  nome_usuario, cont_like, data_mensagem) VALUES
-            ('" . $usuario['id_usuario'] . "', '$mensagem', '" . $usuario['nome_usuario'] . "', 0, NOW())";
-                        $resultado = $conexao->query($sql);
-                        if ($resultado) {
-                            echo "mensagem enviada <br>";
-                            header("Location: comunidade.php");
-                            $mensagem = "";
-                            exit();
-
-                        } else {
-                            echo "erro ao enviar" . mysqli_error($conexao);
-                        }
-                    }
-                }
+             
+             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                 if (isset($_POST["mensagem"])) {
+                     $mensagem = $_POST["mensagem"];
+             
+                     // Verifique se a mensagem não está vazia
+                     if (empty($mensagem)) {
+                         echo "Mensagem vazia <br><br>";
+                     } else {
+                         // A mensagem não está vazia, então insira no banco de dados
+                         $sql = "INSERT INTO chat_geral (id_usuario, mensagens, nome_usuario, cont_like, data_mensagem) VALUES (?, ?, ?, 0, NOW())";
+             
+                         // Use instrução preparada para evitar injeção de SQL
+                         $stmt = $conexao->prepare($sql);
+                         $stmt->bind_param("iss", $usuario['id_usuario'], $mensagem, $usuario['nome_usuario']);
+             
+                         if ($stmt->execute()) {
+                             echo "<script language='javascript' type='text/javascript'>alert('Mensagem enviada'); window.location.href='comunidade.php'</script>";
+                         } else {
+                             echo "Erro ao enviar: " . $stmt->error;
+                         }
+             
+                         // Feche a instrução preparada
+                         $stmt->close();
+                     }
+                 }
+             }
+             
+             
                 ?>
             </div>
             </div>
@@ -193,51 +200,90 @@ if (is_null($usuario["email"])) {
                             <script>
                             // ...
                 
-                document.addEventListener("DOMContentLoaded", function () {
-                    document.querySelectorAll('.like_button').forEach((button) => {
-                        button.addEventListener('click', () => {
-                            const messageId = button.parentNode.getAttribute('data-id');
-                            const cont_likeElement = button.parentNode.querySelector('.likes');
-                            let cont_like = parseInt(cont_likeElement.innerHTML);
-                
-                            // Verifique se o usuário já deu "like"
-                            const hasLiked = button.classList.contains('liked');
-                
-                            if (hasLiked) {
-                                // Remove o "like"
-                                cont_like--;
-                                button.classList.remove('liked');
-                            } else {
-                                // Adiciona o "like"
-                                cont_like++;
-                                button.classList.add('liked');
-                            }
-                
-                            // Enviar cont_like para o PHP usando AJAX
-                            const xhr = new XMLHttpRequest();
-                            xhr.open('POST', 'atualizar_likes.php');
-                            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                            xhr.onload = () => {
-                                if (xhr.status === 200) {
-                                    // Atualize o valor de cont_like no elemento HTML após a confirmação do servidor
-                                    cont_likeElement.innerHTML = cont_like;
-                                } else {
-                                    // Lida com erros, se houverem
-                                    console.error('Erro na solicitação AJAX');
-                                }
-                            };
-                
-                            // Crie uma string de dados a serem enviados
-                            const data = `id_mensagem=${messageId}&cont_like=${cont_like}`;
-                
-                            xhr.send(data);
-                        });
-                    });
-                });
+                            document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll('.like_button').forEach((button) => {
+        button.addEventListener('click', () => {
+            const messageId = button.parentNode.getAttribute('data-id');
+            const cont_likeElement = button.parentNode.querySelector('.likes');
+            let cont_like = parseInt(cont_likeElement.innerHTML);
+
+            // Verifique se o usuário já deu "like"
+            const hasLiked = button.classList.contains('liked');
+
+            if (hasLiked) {
+                // Remove o "like"
+                cont_like--;
+                button.classList.remove('liked');
+            } else {
+                // Adiciona o "like"
+                cont_like++;
+                button.classList.add('liked');
+            }
+
+            // Enviar cont_like para o PHP usando AJAX
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', 'atualizar_likes.php');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = () => {
+                if (xhr.status === 200) {
+                    // Atualize o valor de cont_like no elemento HTML após a confirmação do servidor
+                    cont_likeElement.innerHTML = cont_like;
+                } else {
+                    // Lida com erros, se houverem
+                    console.error('Erro na solicitação AJAX');
+                }
+            };
+
+            // Crie uma string de dados a serem enviados
+            const data = `id_mensagem=${messageId}&cont_like=${cont_like}`;
+
+            xhr.send(data);
+        });
+    });
+});
+
                  </script>
-                 <?php
-                            ?>
-                                <?php
+               <?php
+
+
+// ... (código existente)
+
+if ($_SERVER['REQUEST_METHOD'] === "POST") {
+    
+    // Verifique se as variáveis estão definidas
+    if (isset($_POST['id_mensagem']) && isset($_POST['cont_like'])) {
+        // Recupere o ID da mensagem e a nova contagem de likes da solicitação AJAX
+        $messageId = $_POST['id_mensagem'];
+        $newLikeCount = $_POST['cont_like'];
+
+        // Crie uma consulta SQL segura para evitar injeção de SQL
+        $sqlUpdate = "UPDATE chat_geral SET cont_like = $newLikeCount WHERE id_mensagem = $messageId";
+
+        // Prepare a consulta
+        $stmt = $conexao->prepare($sqlUpdate);
+
+        // Vincule os parâmetros
+        $stmt->bind_param("ii", $newLikeCount, $messageId);
+
+        // Execute a consulta SQL
+        if ($stmt->execute()) {
+            // A atualização foi bem-sucedida
+            echo "Contagem de likes atualizada com sucesso!";
+        } else {
+            // Lida com erros, se houverem
+            echo "Erro na atualização da contagem de likes: " . $stmt->error;
+        }
+
+        // Feche a conexão com o banco de dados
+        $stmt->close();
+    } else {
+        echo "Parâmetros ausentes.";
+    }
+}
+?>
+
+
+                             <?php
 
 
                                 // Feche a conexão com o banco de dados
