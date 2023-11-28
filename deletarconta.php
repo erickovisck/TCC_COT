@@ -143,7 +143,54 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 ?>
+</main>
+    <!-- Site footer -->
+    <footer class="site-footer mt-5 ">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <h6>Sobre</h6>
+                    <p class="text-justify">O desenvolvimento deste site se tornou necessário após uma breve
+                        pesquisa
+                        sobre sites com o mesmo propósito, contudo, percebemos que estes sites são quase
+                        inexistentes.
+                        Visando isso, decidimos fazer um site com mais reconhecimento para autores nacionais e para
+                        que
+                        mais pessoas possam ter gosto pela leitura.</p>
+                </div>
 
+                <div class="col-xs-6 col-md-3">
+                    <h6>Links Rapidos</h6>
+                    <ul class="footer-links">
+                        <li><a href="sobre_nos.php">Sobre nos</a></li>
+                        <li><a href="#">Fale conosco</a></li>
+                        <li><a href="politicas.html">Politica de Privacidade</a></li>
+                        <li><a href="politicas.html">Termos</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-6 col-xs-12">
+
+                </div>
+
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <ul class="social-icons">
+                        <li><a class="facebook" href="#"><i class="bi bi-facebook"></i></a></li>
+                        <li><a class="twitter" href="#"><i class="bi bi-twitter"></i></a></li>
+                        <li><a class="insta" href="https://instagram.com/creatorsofthought?igshid=MzRlODBiNWFlZA"><i
+                                    class="bi bi-instagram"></i></a></li>
+                        <li><a class="linkedin" href="#"><i class="bi bi-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="js/script.js"></script>
 </body>
 </html>
-<?php
