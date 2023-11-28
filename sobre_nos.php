@@ -120,7 +120,8 @@ include_once "pesquisa.php";
 
 
 
-<footer class="main_footer">
+<!-- Site footer -->
+<footer class="site-footer mt-5 ">
 <div class="container text-center" style="margin-top: 4%; color:white;">
 <div class="row">
 <h2 class="sobre_title" style="padding:10px;">Criadores:</h2> 
@@ -147,16 +148,54 @@ include_once "pesquisa.php";
 </div>
 </div>
 <br> <br>
-     <div class="container text-center">
-        <h2 class="sobre_title">Acesse nossas redes sociais:</h2>
-    <a href="https://www.instagram.com/creatorsofthought/?igshid=MzRlODBiNWFlZA"><img src="imagens/instagram_icon.png"> </a> 
-    <a href=""><img src="imagens/email_icon.png"></a>
+<div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <h6>Sobre</h6>
+                    <p class="text-justify">O desenvolvimento deste site se tornou necessário após uma breve
+                        pesquisa
+                        sobre sites com o mesmo propósito, contudo, percebemos que estes sites são quase
+                        inexistentes.
+                        Visando isso, decidimos fazer um site com mais reconhecimento para autores nacionais e para
+                        que
+                        mais pessoas possam ter gosto pela leitura.</p>
+                </div>
+
+                <div class="col-xs-6 col-md-3">
+                    <h6>Links Rapidos</h6>
+                    <ul class="footer-links">
+                        <li><a href="sobre_nos.php">Sobre nos</a></li>
+                        <li><a href="#">Fale conosco</a></li>
+                        <li><a href="politicas.html">Politica de Privacidade</a></li>
+                        <li><a href="politicas.html">Termos</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-6 col-xs-12">
+
+                </div>
+
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <ul class="social-icons">
+                        <li><a class="facebook" href="#"><i class="bi bi-facebook"></i></a></li>
+                        <li><a class="twitter" href="#"><i class="bi bi-twitter"></i></a></li>
+                        <li><a class="insta" href="https://instagram.com/creatorsofthought?igshid=MzRlODBiNWFlZA"><i
+                                    class="bi bi-instagram"></i></a></li>
+                        <li><a class="linkedin" href="#"><i class="bi bi-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 </div>
 </footer>
 
 
 
-    <script src="js/menulateral".js> </script>
+<script src="js/script.js"></script>
 
 </body>
 </html>
