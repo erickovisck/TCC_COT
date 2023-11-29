@@ -6,7 +6,8 @@ require_once "conexao/conexao.php";
 //ARRUMAR BANCO//
 $dupl = "DELETE FROM `seguir` WHERE id_seguido = 0";
 $dupl2 = $conexao->query($dupl);
-$iddados=$_SESSION["idUsuario"];
+$iddados = isset($_GET["id_usuario"]) ? $_GET["id_usuario"] : $_SESSION["iddados"];
+echo"<br>";
 $usuario = $_SESSION["usuario"];
 if ($usuario["id_usuario"] == $iddados) {
     header("Location:perfil.php");
@@ -51,13 +52,14 @@ if ($resultado) {
     <link rel="stylesheet" href="assets/css/mensagem.css">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
 
 </head>
 
 <body>
     <div class="cabecalho">
-        <nav role="navigation">
+     <nav role="navigation">
             <div id="menuToggle">
 
                 <input type="checkbox" />
@@ -67,9 +69,10 @@ if ($resultado) {
 
 
 
-               <h2><a href="perfil.php"><i class="bi bi-person-circle"> <?= $usuario['nome_usuario'] ?></a></i></h2> 
-               <li><a href="inicial.php">Inicial   </a></li>
-                    <li><a href="perfil.php">Perfil</a></li>
+                <ul id="menu">
+                <h2><a href="perfil.php"><i class="bi bi-person-circle"> <?= $usuario['nome_usuario'] ?></a></i></h2> 
+
+                    <li><a href="inicial.php">Inicial   </a></li>
                     <li><a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=creatorsofthought@gmail.com">Ajuda</a></li>
                     <li><a href="Amigos.php">Amigos</a></li>
                     <li><a href="autores.php">Autores</a></li>

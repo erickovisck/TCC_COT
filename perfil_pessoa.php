@@ -144,7 +144,7 @@ if ($usuario["id_usuario"] == $iddados) {
             const hasSeguido = seguirButton.classList.contains('seguido');
 
             seguirButton.addEventListener('click', () => {
-                const idUsuario = <?= $dados["id_usuario"] ?>;
+                const iddados = <?= $dados["id_usuario"] ?>;
                 const seguir = !hasSeguido;
 
                 if (seguir) {
@@ -180,18 +180,18 @@ if ($usuario["id_usuario"] == $iddados) {
         <?php
 
 $seguir = isset($_POST['seguir']) ? true : false;
-$idUsuario = $_SESSION['idUsuario']; // Certifique-se de que a variável $idUsuario está definida
+$iddados = $_SESSION['iddados']; // Certifique-se de que a variável $iddados está definida
 
 // Verifique se o usuário está logado (você pode personalizar essa verificação)
 if (isset($_SESSION['usuario'])) {
-    $verific = "SELECT * FROM seguir WHERE id_seguido = '$idUsuario' AND id_seguidor = '" . $usuario["id_usuario"] . "'";
+    $verific = "SELECT * FROM seguir WHERE id_seguido = '$iddados' AND id_seguidor = '" . $usuario["id_usuario"] . "'";
     $result = $conexao->query($verific);
 
     if ($result && $result->num_rows > 0) {
         $seguindosn = "seguindo";
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($seguir) {
-                $sql = "DELETE FROM seguir WHERE id_seguido = $idUsuario AND id_seguidor = " . $usuario["id_usuario"];
+                $sql = "DELETE FROM seguir WHERE id_seguido = $iddados AND id_seguidor = " . $usuario["id_usuario"];
                 if ($conexao->query($sql) === true) {
                     echo "<script>window.location.href='perfil_pessoa.php';</script>";
                 } else {
@@ -203,7 +203,7 @@ if (isset($_SESSION['usuario'])) {
         $seguindosn = "seguir";
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($seguir) {
-                $sql = "INSERT INTO seguir (id_seguido, id_seguidor) VALUES ('$idUsuario', '" . $usuario["id_usuario"] . "')";
+                $sql = "INSERT INTO seguir (id_seguido, id_seguidor) VALUES ('$iddados', '" . $usuario["id_usuario"] . "')";
                 if ($conexao->query($sql) === true) {
                     // Redirecione para a mesma página para atualizar a exibição
                     echo "<script>window.location.href='perfil_pessoa.php';</script>";
@@ -219,13 +219,13 @@ if (isset($_SESSION['usuario'])) {
 }
 
 
-        $seguirverifi = "SELECT * FROM seguir WHERE id_seguido = $idUsuario";
+        $seguirverifi = "SELECT * FROM seguir WHERE id_seguido = $iddados";
         $resulseguir = $conexao->query($seguirverifi);
         $seguidores = 0;
         while ($dados = mysqli_fetch_array($resulseguir)) {
             $seguidores++;
         }
-        $seguirverifi2 = "SELECT * FROM seguir WHERE id_seguidor = $idUsuario";
+        $seguirverifi2 = "SELECT * FROM seguir WHERE id_seguidor = $iddados";
         $resulseguir2 = $conexao->query($seguirverifi2);
         $seguindo = 0;
         while ($dados = mysqli_fetch_array($resulseguir2)) {

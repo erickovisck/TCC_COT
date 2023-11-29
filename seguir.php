@@ -8,7 +8,6 @@ $dupl = "DELETE FROM `seguir` WHERE id_seguido = 0";
 $dupl2 = $conexao->query($dupl);
 
 $usuario = $_SESSION["usuario"];
-$iddados=$_SESSION["idUsuario"];
 
 
 
@@ -27,12 +26,13 @@ if (isset($_POST["pesquisar"])) {
     /*     include_once "pesquisa.php"; */
 }
 
-$iddados2 = $_GET["seguir"]; 
+$iddados = isset($_GET["id_usuario"]) ? $_GET["id_usuario"] : $_SESSION["iddados"];
+echo"<br>";
 
 $sql = "SELECT * FROM usuario where id_usuario = $iddados";
 $resultado = $conexao->query($sql);
 if ($resultado) {
-    echo "USUARIO ENCONTRADO";
+   
     $dados = mysqli_fetch_array($resultado);
 
 
@@ -47,13 +47,10 @@ if ($resultado) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="colorlib.com">
-
     <title>Seguidores/Seguindo</title>
     <link rel="stylesheet" href="assets/css/estilo.css">
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
 
 <body>
@@ -109,10 +106,10 @@ if ($resultado) {
     <main class="principal">
         <?php
         $seguir=$_GET["seguir"];
-        $idUsuario=$_SESSION["idUsuario"];
-        $idUsuario = $_SESSION["idUsuario"];
+      
+        
         if ($seguir == 1) { // Use "==" para comparar, em vez de "="
-            $sql = "SELECT id_seguidor FROM seguir WHERE id_seguido = $idUsuario";
+            $sql = "SELECT id_seguidor FROM seguir WHERE id_seguido = $iddados";
             $resultado = $conexao->query($sql);
             while ($dados = mysqli_fetch_array($resultado)) {
                 $sql2 = "SELECT * FROM usuario WHERE id_usuario = " . $dados["id_seguidor"];
@@ -121,7 +118,7 @@ if ($resultado) {
                 ?><a href="perfil_pessoa.php?id_usuario=<?=$dados3["id_usuario"]?>"> <img class="profile-pic" id="iconperfil" src="<?=$dados3["img_perfil"]?>"><?php echo $dados3["nome_usuario"]; ?></a> <br> <?php
             }
         } elseif ($seguir == 2) { // Use "==" para comparar, em vez de "="
-            $sql = "SELECT id_seguido FROM seguir WHERE id_seguidor = $idUsuario";
+            $sql = "SELECT id_seguido FROM seguir WHERE id_seguidor = $iddados";
             $resultado = $conexao->query($sql);
             while ($dados = mysqli_fetch_array($resultado)) {
                 $sql2 = "SELECT * FROM usuario WHERE id_usuario = " . $dados["id_seguido"];
