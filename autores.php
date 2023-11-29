@@ -108,7 +108,7 @@ if (isset($_POST["pesquisar"])) {
 
 <main class="principal">
 <?php 
-echo $usuario["autor"];
+if($usuario["autor"]=="leitor"){
 ?>
 <div class="container p-5">
     <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
@@ -167,6 +167,7 @@ if($data["autor"]=="autor"){
   </div>
 </div>
     </div>
+  
     <div class="col">
     <div class="card border-primary mb-3" style="max-width: 18rem;">
   <div class="card-header">Empresa</div>
@@ -183,7 +184,14 @@ if($data["autor"]=="autor"){
     </div>
 </div>
 
+<?php
+}else{
+?>
+<h1> publique aqui seu livro </h1>
 
+<?php
+}
+?>
 </main>
 </body>
 </html>
