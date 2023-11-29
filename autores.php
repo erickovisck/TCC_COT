@@ -11,9 +11,10 @@ $api_key='AIzaSyAPwKI4X48Ju3lA6FJK1PHcu8nLEgcuOJ0'
 $api_key='AIzaSyBHe1XX1RdFudsmfRaHaAkKlzIz7wDao9k'
 */
 $_SESSION["api_key"]=$api_key;
-
-$usuario = $_SESSION["usuario"];
-
+$usuario=$_SESSION["usuario"];
+$usu= "SELECT * FROM usuario WHERE email=".$usuario["email"]."";
+$resultado = $conexao->query($usu);
+$usuario = mysqli_fetch_array($resultado);
 
 
 
@@ -44,7 +45,7 @@ if (isset($_POST["pesquisar"])) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <title>prototipo</title>
+    <title>Autores</title>
 </head>
 <body>
 <div class="cabecalho">
@@ -106,7 +107,9 @@ if (isset($_POST["pesquisar"])) {
     </div>
 
 <main class="principal">
-
+<?php 
+echo $usuario["autor"];
+?>
 <div class="container p-5">
     <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
     <div class="col">
@@ -146,7 +149,7 @@ if($response2){
     echo "erro";
 }
 if($data["autor"]=="autor"){
-    echo"<script language='javascript' type='text/javascript'>alert('Ja e autor')
+    echo"<script language='javascript' type='text/javascript'>alert('Já é autor')
     ;window.location.href='autores.php'</script>"; 
 }else{
 

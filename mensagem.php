@@ -8,8 +8,10 @@ $dupl = "DELETE FROM `seguir` WHERE id_seguido = 0";
 $dupl2 = $conexao->query($dupl);
 $iddados = isset($_GET["id_usuario"]) ? $_GET["id_usuario"] : $_SESSION["iddados"];
 echo"<br>";
-$usuario = $_SESSION["usuario"];
-if ($usuario["id_usuario"] == $iddados) {
+$usuario=$_SESSION["usuario"];
+$usu= "SELECT * FROM usuario WHERE email=".$usuario["email"]."";
+$resultado = $conexao->query($usu);
+$usuario = mysqli_fetch_array($resultado);if ($usuario["id_usuario"] == $iddados) {
     header("Location:perfil.php");
 }
 

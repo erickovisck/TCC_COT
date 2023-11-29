@@ -27,9 +27,10 @@ $max=1;
 $minn=30.00;
 $maxx=70.00;
 //----------//
-$usuario = $_SESSION["usuario"];
-
-if (is_null($usuario["email"])) {
+$usuario=$_SESSION["usuario"];
+$usu= "SELECT * FROM usuario WHERE email=".$usuario["email"]."";
+$resultado = $conexao->query($usu);
+$usuario = mysqli_fetch_array($resultado);if (is_null($usuario["email"])) {
     session_unset();
     session_destroy();
     header("Location: index.php");

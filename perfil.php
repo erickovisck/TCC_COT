@@ -138,7 +138,8 @@ if($resultado){
  
 $resultado=$conexao->query($sql);
 if($resultado){
-  echo "imagem alterada";
+    echo"<script language='javascript' type='text/javascript'>alert('Imagem alterada')
+    ;window.location.href='perfil.php'</script>"; 
 }else{
  echo "Não foi possivel atualizar a imagem";   
 }

@@ -12,9 +12,10 @@ $api_key='AIzaSyBHe1XX1RdFudsmfRaHaAkKlzIz7wDao9k'
 */
 $_SESSION["api_key"]=$api_key;
 
-$usuario = $_SESSION["usuario"];
-
-
+$usuario=$_SESSION["usuario"];
+$usu= "SELECT * FROM usuario WHERE email=".$usuario["email"]."";
+$resultado = $conexao->query($usu);
+$usuario = mysqli_fetch_array($resultado);
 
 
 if (is_null($usuario["email"])) {
