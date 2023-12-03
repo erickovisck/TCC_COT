@@ -23,11 +23,9 @@ if (is_null($usuario["email"])) {
     header("Location: Login.php");
     exit();
 }
-//echo $nomeUsuario;
 if (isset($_POST["pesquisar"])) {
     $pesquisa = $_POST["pesquisar"];
     $_SESSION['pesquisar'] = $pesquisa;
-    /*     include_once "pesquisa.php"; */
 }
 ?>
 
@@ -46,7 +44,7 @@ if (isset($_POST["pesquisar"])) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets\css\estilo.css">
 
-    <title>prototipo</title>
+    <title>Autores</title>
 </head>
 
 <body>
@@ -62,22 +60,18 @@ if (isset($_POST["pesquisar"])) {
 
 
                 <ul id="menu">
-                <h2><a href="perfil.php"><i class="bi bi-person-circle"> </i>
-                    <h2><a href="perfil.php"><i class="bi bi-person-circle"></i>
-                    <?= $usuario['nome_usuario'] ?></a>
+                    <h2><a href="perfil.php"><i class="bi bi-person-circle"> </i>
                             <?= $usuario['nome_usuario'] ?>
 
                         </a>
                     </h2>
-                    <li><a href="inicial.php">Inicial   </a></li>
-                    <li><a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=creatorsofthought@gmail.com">Ajuda</a></li>
-                    <li><a href="Amigos.php">Amigos</a></li>
-
-                    </h2>
                     <li><a href="inicial.php">Inicial </a></li>
-                    <li><a href="ajuda.php">Ajuda</a></li>
+                    <li><a
+                            href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=creatorsofthought@gmail.com">Ajuda</a>
+                    </li>
+                    <li><a href="Amigos.php">Amigos</a></li>
+                    </h2>
                     <li><a href="configuracoes.php">Configurações</a></li>
-                    <li><a href="amigos.php">Amigos</a></li>
                     <li><a href="autores.php">Autores</a></li>
                     <li><a href="sobre_nos.php">Sobre nós</a></li>
                     <li><a href="sair.php">Sair</a></li>
@@ -117,7 +111,10 @@ if (isset($_POST["pesquisar"])) {
     </div>
 
     <main class="principal">
- <div class="container">
+        <?php
+    if($usuario["autor"]=="leitor"){
+         ?>
+        <div class="container">
             <div class="card-autor row bg-secondary row-cols">
                 <div class="c-left col mx-5 my-3 ">
                     <b class="fs-3 my-3 white"> Assine nosso plano aqui </b>
@@ -151,15 +148,19 @@ echo "erro";
 if($data["autor"]=="autor"){
 echo"<script language='javascript' type='text/javascript'>alert('Já é autor')
 ;window.location.href='autores.php'</script>"; 
+$verificautor=1;
 }else{
 
 
 $sql="UPDATE `usuario` SET `autor`='$autor' WHERE `id_usuario`='".$usuario["id_usuario"]."'";
+$usuario["autor"]="autor";
+
 $response=$conexao->query($sql);
 
 if($response){
  echo"<script language='javascript' type='text/javascript'>alert('Bem vindo autor!')
  ;window.location.href='autores.php'</script>"; 
+ $verificautor=1;
 }
 }
 }
@@ -173,11 +174,11 @@ if($response){
             <div class="container text-center">
                 <div class="row row-cols-1 row-cols-md-3">
                     <div class="col mb-4">
-                    <div class="card shadow-sm">
+                        <div class="card shadow-sm">
                             <div class="card-header">
                                 <h4>Grátis</h4>
                             </div>
-                            <div class="card-body">
+                            <form method="post" action="" class="card-body">
                                 <h1 class="my-0 font-weight-normal">R$0 <small class="text-muted">/mo</small></h1>
                                 <ul class="list-unstyled mt-3 mb-4">
                                     <li>Lorem ipsum dolor sit</li>
@@ -186,16 +187,16 @@ if($response){
                                     <li>Lorem ipsum sit</li>
                                 </ul>
                                 <button type="button" class="btn btn-outline-primary btn-lg">Primary</button>
-                            </div>
-                    </div>
+                            </form>
+                        </div>
                     </div>
 
                     <div class="col mb-4">
-                    <div class="card shadow-sm">
+                        <div class="card shadow-sm">
                             <div class="card-header">
                                 <h4>Grátis</h4>
                             </div>
-                            <div class="card-body">
+                            <form method="post" action="" class="card-body">
                                 <h1 class="my-0 font-weight-normal">R$0 <small class="text-muted">/mo</small></h1>
                                 <ul class="list-unstyled mt-3 mb-4">
                                     <li>Lorem ipsum dolor sit</li>
@@ -203,17 +204,18 @@ if($response){
                                     <li>Lorem ipsum dolor </li>
                                     <li>Lorem ipsum sit</li>
                                 </ul>
-                                <button type="button" class="btn btn-outline-primary btn-lg">Primary</button>
-                            </div>
-                    </div>
+                                <button type="submit" class="btn btn-outline-primary btn-lg"
+                                    name="autor">Primary</button>
+                            </form>
+                        </div>
                     </div>
 
                     <div class="col mb-4">
-                    <div class="card shadow-sm">
+                        <div class="card shadow-sm">
                             <div class="card-header">
                                 <h4>Grátis</h4>
                             </div>
-                            <div class="card-body">
+                            <form method="post" action="" class="card-body">
                                 <h1 class="my-0 font-weight-normal">R$0 <small class="text-muted">/mo</small></h1>
                                 <ul class="list-unstyled mt-3 mb-4">
                                     <li>Lorem ipsum dolor sit</li>
@@ -222,27 +224,30 @@ if($response){
                                     <li>Lorem ipsum sit</li>
                                 </ul>
                                 <button type="button" class="btn btn-outline-primary btn-lg">Primary</button>
-                            </div>
-                    </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-                            <?php
+            <?php
 
 
-                            if (isset($_POST['autor'])) {
-                                $sql = "UPDATE `usuario` SET `autor`='$autor' WHERE `id_usuario`='" . $usuario["id_usuario"] . "'";
-                                $response = $conexao->query($sql);
-                                $autor = $_POST['autor'];
-
-                                if ($response) {
-                                    echo "<script language='javascript' type='text/javascript'>alert('Bem vindo autor!')
-        ;window.location.href='Login.php'</script>";
-                                    header("Location: autores.php");
-                                    exit();
-                                }
-                            }
                             ?>
+            <?php
+    }else{
+?> Insira aqui os dados de seu livro
+            <form method="post" action="">
+                <label>Titulo</label>
+                <input type="text" name="titulo"> </input>
+                <label>Descrição breve</label>
+                <input type="text" name="titulo"> </input>
+                <label>Preço</label>
+                <input type="text" name="titulo"> </input>
+                <label>Titulo</label>
+                <input type="text" name="titulo"> </input>
+                <?php
+    }
+    ?>
     </main>
 
 

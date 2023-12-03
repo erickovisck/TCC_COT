@@ -22,6 +22,11 @@
     <label for="logsenha2"> Senha
     <input type="text" name="novasenha" class="cad_inputuser" placeholder="Digite sua nova senha">
 </label>
+<br> <br>
+
+    <label for="logsenha2"> Confirmar senha
+    <input type="text" name="novasenha2" class="cad_inputuser" placeholder="Confirme sua senha">
+</label>
 </div>
 <br> <br>
             <label for="botaoenviar">
@@ -41,8 +46,12 @@ require_once "conexao/conexao.php";
 $mens2="";
 if($_SERVER["REQUEST_METHOD"]==="POST"){
 $novsenha = $_POST['novasenha'];
+$novsenha2 = $_POST['novasenha2'];
 $esqemail = $_SESSION['esqemail'];
-
+if($novsenha!=$novsenha2){
+    echo"<script language='javascript' type='text/javascript'>alert('Senhas diferem')
+;window.location.href='alterar_senha.php'</script>"; 
+}else{
 $sql = "UPDATE `usuario`
         SET `senha` = '$novsenha'
         WHERE `email` = '$esqemail'";
@@ -50,10 +59,11 @@ $sql = "UPDATE `usuario`
 if ($conexao->query($sql)) {
 
     echo "Senha alterada com sucesso.";
-    echo "<meta http-equiv='refresh' content=1;url=Login.php>";
-
+    echo"<script language='javascript' type='text/javascript'>alert('Senha alterada com sucesso')
+    ;window.location.href='login.php'</script>"; 
 } else {
     echo"Erro ao alterar a senha: " . $conexao->error;
+}
 }
 }
 $conexao->close();
