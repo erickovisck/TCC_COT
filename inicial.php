@@ -13,17 +13,10 @@ $api_key='AIzaSyBHe1XX1RdFudsmfRaHaAkKlzIz7wDao9k'
 $_SESSION["api_key"]=$api_key;
 
 $usuario=$_SESSION["usuario"];
-$usu= "SELECT * FROM usuario WHERE email=".$usuario["email"]."";
-$resultado = $conexao->query($usu);
-$usuario = mysqli_fetch_array($resultado);
 
 
-if (is_null($usuario["email"])) {
-    session_unset();
-    session_destroy();
-    header("Location: Login.php");
-    exit();
-}
+
+
 //echo $nomeUsuario;
 if (isset($_POST["pesquisar"])) {
     $pesquisa = $_POST["pesquisar"];
@@ -150,6 +143,27 @@ $principal=[9788581051529,
         <div id="carouselExample" class="carousel carousel-dark slide">
             <div class="carousel-inner">
                 <?php
+                $escolhas="SELECT * FROM livros2";
+                $escolharesul=$conexao->query($escolhas);
+                while($livro2=mysqli_fetch_array($escolharesul)){
+                    ?>
+                    <div class="carousel-item active ">
+                    <div class="card">
+                        <div class="img-wrapper">
+                            <a class="link_card" href="livro.php?id_livro=<?=$id_livro=$livro2="id_livro"?> ">
+                                <img class="h-40" src=" <?=$link=$livro2["img_livro2"]?>">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-center">
+                                <?=$titulo= $livro2["titulo"]?> 
+                            </h5>
+
+                        </div>
+                    </div>
+                </div>
+                <?php
+                }
             foreach ($principal as $prin){
 
 $url = "https://www.googleapis.com/books/v1/volumes?q=isbn:$prin&key=" . $api_key;
