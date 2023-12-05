@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Tempo de geração: 29-Nov-2023 às 22:58
--- Versão do servidor: 8.0.31
--- versão do PHP: 8.0.26
+-- Host: 127.0.0.1:3308
+-- Tempo de geração: 05-Dez-2023 às 12:08
+-- Versão do servidor: 8.0.21
+-- versão do PHP: 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -167,7 +167,7 @@ CREATE TABLE IF NOT EXISTS `livros` (
   `preco` double NOT NULL,
   `isbn` varchar(40) NOT NULL,
   PRIMARY KEY (`id_livro`)
-) ENGINE=MyISAM AUTO_INCREMENT=2061 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2078 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `livros`
@@ -1621,7 +1621,48 @@ INSERT INTO `livros` (`id_livro`, `preco`, `isbn`) VALUES
 (2057, 68.99, '9783319426051'),
 (2058, 35.99, '0791429709'),
 (2059, 65.99, '0253213118'),
-(2060, 57.99, 'UOM:39015013539468');
+(2060, 57.99, 'UOM:39015013539468'),
+(2061, 58.99, '9781781104057'),
+(2062, 50.99, '0563533617'),
+(2063, 41.99, 'PKEY:90159886'),
+(2064, 60.99, '9781429985208'),
+(2065, 38.99, '9783640903726'),
+(2066, 63.99, '0742539598'),
+(2067, 55.99, '140941244X'),
+(2068, 33.99, '9781476635521'),
+(2069, 61.99, '9781921479311'),
+(2070, 35.99, '9781476673554'),
+(2071, 62.99, '9781496840530'),
+(2072, 31.99, '9781647221966'),
+(2073, 54.99, '0979233100'),
+(2074, 54.99, ''),
+(2075, 70.99, '9781476601229'),
+(2076, 32.99, 'IND:30000100662232'),
+(2077, 58.99, 'PSU:000058699409');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `livros2`
+--
+
+DROP TABLE IF EXISTS `livros2`;
+CREATE TABLE IF NOT EXISTS `livros2` (
+  `titulo` varchar(50) NOT NULL,
+  `autor` varchar(50) NOT NULL,
+  `descricao` varchar(300) NOT NULL,
+  `preco` double NOT NULL,
+  `id_livro2` int NOT NULL AUTO_INCREMENT,
+  `img_livro2` varchar(500) NOT NULL,
+  PRIMARY KEY (`id_livro2`)
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Extraindo dados da tabela `livros2`
+--
+
+INSERT INTO `livros2` (`titulo`, `autor`, `descricao`, `preco`, `id_livro2`, `img_livro2`) VALUES
+('livro do erick', 'erick', 'livro foda', 2000000000, 7, 'https://static.wikia.nocookie.net/hollowknight/images/c/cd/HK_Cover_Art.png/revision/latest?cb=20220613045755&path-prefix=pt');
 
 -- --------------------------------------------------------
 
@@ -1668,14 +1709,14 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `img_perfil` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_',
   `biografia` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id_usuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `usuario`
 --
 
 INSERT INTO `usuario` (`id_usuario`, `assinatura_nivel`, `nome_usuario`, `email`, `senha`, `recuperacao`, `autor`, `img_perfil`, `biografia`) VALUES
-(4, 0, 'erick', '1', '', '1', '', 'https://media.tenor.com/d2-vweg4VLQAAAAM/john-marston-john.gif', 'oi'),
+(4, 0, 'erick', '1', '', '1', 'autor', 'https://media.tenor.com/d2-vweg4VLQAAAAM/john-marston-john.gif', 'oi'),
 (5, 0, 'erick2', '23', '', '23', '0', '', 'ola'),
 (6, 0, 'b', 'b', '3', 'b', '0', '', ''),
 (7, 0, 'a', 'a', 'a', 'a', '0', '', ''),
@@ -1687,10 +1728,12 @@ INSERT INTO `usuario` (`id_usuario`, `assinatura_nivel`, `nome_usuario`, `email`
 (15, 0, '65', '56', '56', '56', '0', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', ''),
 (16, 0, 'o', 'agd', 'adfg', 'asdf', '0', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', ''),
 (28, 0, '', '', '', '', 'autor', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', ''),
-(29, 0, '', 'sdf', '', '', 'leitor', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', ''),
+(29, 0, '', 'sdf', '2', '', 'autor', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', ''),
 (30, 0, '32', '32', '32', '32', 'autor', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', ''),
 (31, 0, '45', '45', '45', '45', 'autor', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', ''),
-(32, 0, 'grazi', '55', '55', '55', 'autor', 'https://i.pinimg.com/564x/6c/70/33/6c703330ab07aef07629ad59b77ed14e.jpg', '');
+(32, 0, 'grazi', '55', '55', '55', 'autor', 'https://i.pinimg.com/564x/6c/70/33/6c703330ab07aef07629ad59b77ed14e.jpg', ''),
+(34, 0, '70', '70', '70', '70', '', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', ''),
+(33, 0, '2', 'as', 'as', 'as', '', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', '');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
