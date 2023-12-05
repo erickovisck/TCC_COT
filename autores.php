@@ -11,18 +11,12 @@ $api_key='AIzaSyAPwKI4X48Ju3lA6FJK1PHcu8nLEgcuOJ0'
 $api_key='AIzaSyBHe1XX1RdFudsmfRaHaAkKlzIz7wDao9k'
 */
 $_SESSION["api_key"] = $api_key;
-
 $usuario = $_SESSION["usuario"];
+$usu= "SELECT * FROM usuario WHERE email=".$usuario["email"]."";
+$resultado = $conexao->query($usu);
+$usuario = mysqli_fetch_array($resultado);
+$_SESSION["usuario"]=$usuario;
 
-
-
-
-if (is_null($usuario["email"])) {
-    session_unset();
-    session_destroy();
-    header("Location: Login.php");
-    exit();
-}
 if (isset($_POST["pesquisar"])) {
     $pesquisa = $_POST["pesquisar"];
     $_SESSION['pesquisar'] = $pesquisa;
@@ -112,7 +106,7 @@ if (isset($_POST["pesquisar"])) {
 
     <main class="principal">
         <?php
-    if($usuario["autor"]=="leitor"){
+    if($usuario["autor"]==""){
          ?>
         <div class="container">
             <div class="card-autor row bg-secondary row-cols">
@@ -239,13 +233,35 @@ if($response){
             <form method="post" action="">
                 <label>Titulo</label>
                 <input type="text" name="titulo"> </input>
+                <label>Autor</label>
+                <input type="text" name="autor"> </input>
                 <label>Descrição breve</label>
-                <input type="text" name="titulo"> </input>
+                <input type="text" name="descricao"> </input>
                 <label>Preço</label>
-                <input type="text" name="titulo"> </input>
-                <label>Titulo</label>
-                <input type="text" name="titulo"> </input>
-                <?php
+                <input type="text" name="preco"> </input>
+                <label>Link da imagem</label>
+                <input type="text" name="img"> </input>
+                <input type="submit" name="enviar"> </input>
+            </form>
+
+            <?php
+if($_SERVER["REQUEST_METHOD"]==="POST"){
+    $titulo=$_POST["titulo"];
+                $autor=$_POST["autor"];
+                $descricao=$_POST["descricao"];
+                $preco=$_POST["preco"];
+                $img=$_POST["img"];
+                $inserirlivro="INSERT INTO livros2 (titulo, autor, descricao, preco, img_livro2) VALUES ('$titulo', '$autor', '$descricao', '$preco', '$img')";
+                $result=$conexao->query($inserirlivro);
+                if($result){
+                    echo"<script language='javascript' type='text/javascript'>alert('Livro inserido no banco')
+                    ;window.location.href='inicial.php'</script>";
+                    header("location:inicial.php"); 
+                    exit();
+                }else{
+                    echo"ERRO".mysqli_error($conexao);
+                }
+            }
     }
     ?>
     </main>
