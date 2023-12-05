@@ -2,14 +2,25 @@
 session_start();
 //GOOGLE API//
 $api_key=$_SESSION["api_key"];
-$idlivro=$_GET['id_livro']; 
+require_once "conexao/conexao.php";
+$id_livro = isset($_GET['id_livro']) ? $_GET['id_livro'] : null;
+$id_livro2 = isset($_GET['id_livro2']) ? $_GET['id_livro2'] : null;
 
-$url = "https://www.googleapis.com/books/v1/volumes?q=isbn:" . urlencode($idlivro) ."&key=" . $api_key;
+if($id_livro){
+$url = "https://www.googleapis.com/books/v1/volumes?q=isbn:" . urlencode($id_livro) ."&key=" . $api_key;
 $response = file_get_contents($url);
 $data = json_decode($response);
+$response2=null;
+}else{
+    $id_livro2=$_GET['id_livro2'];
+    $url2="SELECT * FROM livros2 WHERE id_livro2=$id_livro2";
+    $response2=$conexao->query($url2);
+    $livro2=mysqli_fetch_array($response2);
+    $response=null;
+
+}
 
 
-require_once "conexao/conexao.php";
 
 
 
@@ -118,7 +129,7 @@ if ($response) {
     
     if (isset($data->items[0])) {
         $item = $data->items[0];
-
+    if($item2!= $item->volumeInfo->title){
         ?>
                 <div class="sla col-md-auto p-5 text-center">
                     <div class="imglivro ">
@@ -149,8 +160,31 @@ if ($response) {
         echo "<h2>".$authors = implode(", ", $item->volumeInfo->authors)."</h2>";
        echo $item->volumeInfo->description;
        $id_livro=$item->volumeInfo->industryIdentifiers[0]->identifier;
-      
+      $item2= $item->volumeInfo->title;
     }
+}
+}elseif($livro2){
+?>
+  <div class="sla col-md-auto p-5 text-center">
+                    <div class="imglivro ">
+                        <?php
+                    echo "<img src='". $livro2["img_livro2"]."'>";
+               
+            
+                    echo "R$".$livro2["preco"];
+               
+
+/*  echo "Preço R$".$item->volumeInfo->saleInfo->saleability;
+ */?>
+                    </div>
+                </div>
+                <div class="dadoslivro col py-5 align-self-end">
+                    <?php
+       echo "<h1>" . $livro2["titulo"]."</h1>";
+        echo "<h2>".$livro2["autor"]."</h2>";
+       echo $livro2["descricao"];
+      
+
 }
 
 
@@ -171,14 +205,13 @@ if (isset($_POST["comprar"])) {
 
   
        
-      
-            // O livro não está no carrinho, então você pode inseri-lo
-            $sql = "INSERT INTO carrinho (id_livro, id_usuario, quantidade)
-            SELECT '$idlivro', '".$usuario["id_usuario"]."', 1
+      if($id_livro2==null){
+            $sql = "INSERT INTO carrinho (id_livro, id_usuario, quantidade,livro2)
+            SELECT '$id_livro', '".$usuario["id_usuario"]."', 1, 0
             WHERE NOT EXISTS (
                 SELECT 1
                 FROM carrinho
-                WHERE id_livro = '$idlivro' AND id_usuario = '".$usuario["id_usuario"]."'
+                WHERE id_livro = '$id_livro' AND id_usuario = '".$usuario["id_usuario"]."'
             )";
 
             if ($conexao->query($sql) === true) {
@@ -188,6 +221,23 @@ if (isset($_POST["comprar"])) {
         }else{
             echo "livro ja exite";
         }
+    }elseif($id_livro==null){
+        $sql = "INSERT INTO carrinho (id_livro, id_usuario, quantidade,livro2)
+        SELECT '$id_livro', '".$usuario["id_usuario"]."', 1, 0
+        WHERE NOT EXISTS (
+            SELECT 1
+            FROM carrinho
+            WHERE id_livro = '$id_livro' AND id_usuario = '".$usuario["id_usuario"]."'
+        )";
+
+        if ($conexao->query($sql) === true) {
+            // Inserção bem-sucedida
+            echo "Livro adicionado no carrinho com sucesso";
+        
+    }else{
+        echo "livro ja exite";
+    }
+    }
     }
 
 
