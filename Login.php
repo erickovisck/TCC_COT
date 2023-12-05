@@ -63,6 +63,7 @@
         $sql = "SELECT * FROM usuario WHERE email ='$email' AND senha='$senha'";
 
         $resultado = $conexao->query($sql);
+    
         return $resultado;
 
     }
@@ -82,7 +83,7 @@
             $_SESSION["usuario"] = $usuario;
            
         
-           $_SESSION["usuario"]=$usuario;
+
            echo"<script language='javascript' type='text/javascript'>alert('Login realizado com sucesso')
            ;window.location.href='inicial.php'</script>";
 
