@@ -53,7 +53,7 @@ if (isset($_POST["pesquisar"])) {
     <meta name="author" content="colorlib.com">
 
     <title>Livro</title>
-    <link rel="shortcut icon" href="imagens/logo_empresa.png">
+    <link rel="shortcut icon" href="imagens/logo_projeto2.png">
     <link rel="stylesheet" href="assets/css/estilo.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -129,7 +129,7 @@ if ($response) {
     
     if (isset($data->items[0])) {
         $item = $data->items[0];
-    if($item2!= $item->volumeInfo->title){
+
         ?>
                 <div class="sla col-md-auto p-5 text-center">
                     <div class="imglivro ">
@@ -161,7 +161,7 @@ if ($response) {
        echo $item->volumeInfo->description;
        $id_livro=$item->volumeInfo->industryIdentifiers[0]->identifier;
       $item2= $item->volumeInfo->title;
-    }
+    
 }
 }elseif($livro2){
 ?>
@@ -223,7 +223,7 @@ if (isset($_POST["comprar"])) {
         }
     }elseif($id_livro==null){
         $sql = "INSERT INTO carrinho (id_livro, id_usuario, quantidade,livro2)
-        SELECT '$id_livro', '".$usuario["id_usuario"]."', 1, 0
+        SELECT '$id_livro', '".$usuario["id_usuario"]."', 1, 1
         WHERE NOT EXISTS (
             SELECT 1
             FROM carrinho
