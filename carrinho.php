@@ -99,6 +99,7 @@ $resultado = $conexao->query($sql);
 
     <?php 
    while ($query = mysqli_fetch_array($resultado)) {
+       if(!$query["livro2"]){
     $isbn = $query['id_livro'];
     $url = "https://www.googleapis.com/books/v1/volumes?q=isbn:" . $isbn . "&key=" . $api_key;
     $response = file_get_contents($url);
@@ -145,8 +146,43 @@ $resultado = $conexao->query($sql);
              
                   
             } 
-    }
+    }else{
+        foreach ($data->items as $item) {
 
+      
+            ?>
+                                        <div class="livros bg-body p-3 border border-black">
+        <?php
+                                      echo "<a href='livro.php?id_livro=" . $item->volumeInfo->industryIdentifiers[0]->identifier. "'>";
+                                      if (isset($item->volumeInfo->imageLinks)) {
+                  echo "<img src='" . $item->volumeInfo->imageLinks->thumbnail . "'>";
+              } else {
+                  // Lide com o caso em que a imagem não está disponível
+                  echo "Imagem não disponível";
+              }
+             $texto= $item->volumeInfo->title;
+             $limite = 33;
+              $titulo=limitarCaracteres($texto,$limite);
+    
+                          echo "<h1>". $titulo. "</h1>";  
+           echo "</a>"; 
+              echo "<h2>";    
+              if (isset($item->volumeInfo->authors)) {
+              echo  implode("",$item->volumeInfo->authors) . "<br>";  
+              }else{
+                  echo "Autor não disponivel<br>";
+              }
+              $preco="SELECT preco FROM livros WHERE isbn=".$item->volumeInfo->industryIdentifiers[0]->identifier."";
+              $resulpreco=$conexao->query($preco);
+                    $dadopreco=mysqli_fetch_array($resulpreco);
+                    echo "R$".$dadopreco["preco"];
+             $precototal=$precototal+$dadopreco["preco"];
+                          echo "</h2>";
+              echo "<form method='post' action='carrinho.php'>"; // O formulário envia dados para a página "carrinho.php"
+              echo "</div>";
+                  } 
+    }
+   
 
 // Certifique-se de fechar a conexão com o banco de dados após o uso
 
