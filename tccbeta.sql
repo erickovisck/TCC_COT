@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Tempo de geração: 05-Dez-2023 às 12:08
+-- Tempo de geração: 05-Dez-2023 às 14:56
 -- Versão do servidor: 8.0.21
 -- versão do PHP: 7.3.21
 
@@ -33,10 +33,18 @@ CREATE TABLE IF NOT EXISTS `carrinho` (
   `id_usuario` int NOT NULL,
   `id_livro` varchar(40) NOT NULL,
   `quantidade` int NOT NULL,
+  `livro2` tinyint(1) NOT NULL,
   PRIMARY KEY (`id_carrinho`),
   KEY `id_livro` (`id_livro`),
   KEY `id_usuario` (`id_usuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=207 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=209 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Extraindo dados da tabela `carrinho`
+--
+
+INSERT INTO `carrinho` (`id_carrinho`, `id_usuario`, `id_livro`, `quantidade`, `livro2`) VALUES
+(208, 4, '', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -113,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `chat_privado` (
   `id_usuario` int NOT NULL,
   `data_mensagem` datetime NOT NULL,
   PRIMARY KEY (`id_chat_privado`)
-) ENGINE=MyISAM AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `chat_privado`
@@ -138,7 +146,8 @@ INSERT INTO `chat_privado` (`id_chat_privado`, `mensagem`, `id_enviou`, `id_rece
 (43, 'aa', 32, 10, 32, '2023-11-29 19:16:20'),
 (44, 'aa', 32, 10, 32, '2023-11-29 19:16:21'),
 (45, 'aa', 32, 10, 32, '2023-11-29 19:16:22'),
-(46, 'aa', 32, 10, 32, '2023-11-29 19:16:26');
+(46, 'aa', 32, 10, 32, '2023-11-29 19:16:26'),
+(47, 'oiii', 4, 10, 4, '2023-12-05 11:34:26');
 
 -- --------------------------------------------------------
 
@@ -167,7 +176,7 @@ CREATE TABLE IF NOT EXISTS `livros` (
   `preco` double NOT NULL,
   `isbn` varchar(40) NOT NULL,
   PRIMARY KEY (`id_livro`)
-) ENGINE=MyISAM AUTO_INCREMENT=2078 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2174 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `livros`
@@ -1638,7 +1647,103 @@ INSERT INTO `livros` (`id_livro`, `preco`, `isbn`) VALUES
 (2074, 54.99, ''),
 (2075, 70.99, '9781476601229'),
 (2076, 32.99, 'IND:30000100662232'),
-(2077, 58.99, 'PSU:000058699409');
+(2077, 58.99, 'PSU:000058699409'),
+(2078, 30.99, 'PKEY:90159886'),
+(2079, 69.99, '140941244X'),
+(2080, 60.99, ''),
+(2081, 30.99, 'IND:30000100662232'),
+(2082, 30.99, 'PSU:000058699409'),
+(2083, 52.99, 'PKEY:90159886'),
+(2084, 38.99, '140941244X'),
+(2085, 38.99, ''),
+(2086, 69.99, 'IND:30000100662232'),
+(2087, 69.99, 'PSU:000058699409'),
+(2088, 67.99, 'PKEY:90159886'),
+(2089, 40.99, '140941244X'),
+(2090, 69.99, ''),
+(2091, 53.99, 'IND:30000100662232'),
+(2092, 63.99, 'PSU:000058699409'),
+(2093, 51.99, 'PKEY:90159886'),
+(2094, 45.99, '140941244X'),
+(2095, 64.99, ''),
+(2096, 51.99, 'IND:30000100662232'),
+(2097, 59.99, 'PSU:000058699409'),
+(2098, 31.99, 'PKEY:90159886'),
+(2099, 40.99, '140941244X'),
+(2100, 33.99, ''),
+(2101, 38.99, 'IND:30000100662232'),
+(2102, 34.99, 'PSU:000058699409'),
+(2103, 65.99, 'PKEY:90159886'),
+(2104, 50.99, '140941244X'),
+(2105, 44.99, ''),
+(2106, 65.99, 'IND:30000100662232'),
+(2107, 58.99, 'PSU:000058699409'),
+(2108, 35.99, '9788577150595'),
+(2109, 49.99, 'BL:A0023350225'),
+(2110, 65.99, 'BL:A0023350231'),
+(2111, 48.99, 'UTEXAS:059173015246654'),
+(2112, 33.99, 'BL:A0023350218'),
+(2113, 46.99, 'BL:A0023350215'),
+(2114, 57.99, 'BL:A0023350229'),
+(2115, 49.99, 'BL:A0023350224'),
+(2116, 53.99, 'BL:A0023350232'),
+(2117, 50.99, '9788506075630'),
+(2118, 31.99, 'BL:A0023350229'),
+(2119, 51.99, 'BL:A0023350224'),
+(2120, 50.99, 'BL:A0023350232'),
+(2121, 67.99, 'BL:A0023350214'),
+(2122, 46.99, 'BL:A0023350211'),
+(2123, 62.99, 'BL:A0023350222'),
+(2124, 49.99, '9788542804621'),
+(2125, 61.99, 'BL:A0023350221'),
+(2126, 31.99, 'BSB:BSB10926079'),
+(2127, 67.99, 'OCLC:255400356'),
+(2128, 53.99, 'BL:A0019624347'),
+(2129, 38.99, 'BL:A0019624347'),
+(2130, 44.99, 'BSB:BSB10636151'),
+(2131, 61.99, 'BL:A0023350233'),
+(2132, 68.99, 'BL:A0027134356'),
+(2133, 52.99, 'BSB:BSB10636159'),
+(2134, 64.99, 'BSB:BSB10636189'),
+(2135, 69.99, 'BSB:BSB10636144'),
+(2136, 41.99, 'BSB:BSB10636205'),
+(2137, 30.99, 'BSB:BSB10636161'),
+(2138, 51.99, 'BSB:BSB10636164'),
+(2139, 30.99, '9788491880097'),
+(2140, 54.99, 'BSB:BSB10980793'),
+(2141, 50.99, 'UCM:5325291116'),
+(2142, 34.99, 'UCM:5325290504'),
+(2143, 52.99, 'BSB:BSB10636157'),
+(2144, 57.99, 'BSB:BSB10980813'),
+(2145, 34.99, 'BSB:BSB10636230'),
+(2146, 37.99, 'PKEY:CLDEAU74670'),
+(2147, 39.99, 'BSB:BSB10636148'),
+(2148, 47.99, 'BSB:BSB10636210'),
+(2149, 59.99, 'BSB:BSB10636166'),
+(2150, 56.99, 'BSB:BSB10636217'),
+(2151, 54.99, 'BSB:BSB10980783'),
+(2152, 34.99, 'BSB:BSB10636226'),
+(2153, 55.99, 'BSB:BSB10980798'),
+(2154, 70.99, 'OCLC:683419732'),
+(2155, 31.99, '9789897732737'),
+(2156, 65.99, 'BSB:BSB10636162'),
+(2157, 65.99, 'BSB:BSB10980781'),
+(2158, 33.99, 'ONB:+Z218771402'),
+(2159, 64.99, 'PKEY:90159886'),
+(2160, 30.99, '140941244X'),
+(2161, 32.99, ''),
+(2162, 36.99, 'IND:30000100662232'),
+(2163, 30.99, 'PSU:000058699409'),
+(2164, 33.99, 'PKEY:90159886'),
+(2165, 41.99, '140941244X'),
+(2166, 67.99, ''),
+(2167, 66.99, 'IND:30000100662232'),
+(2168, 49.99, 'PSU:000058699409'),
+(2169, 56.99, 'PKEY:90159886'),
+(2170, 32.99, '140941244X'),
+(2171, 31.99, ''),
+(2172, 53.99, 'IND:30000100662232'),
+(2173, 54.99, 'PSU:000058699409');
 
 -- --------------------------------------------------------
 
@@ -1655,14 +1760,15 @@ CREATE TABLE IF NOT EXISTS `livros2` (
   `id_livro2` int NOT NULL AUTO_INCREMENT,
   `img_livro2` varchar(500) NOT NULL,
   PRIMARY KEY (`id_livro2`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `livros2`
 --
 
 INSERT INTO `livros2` (`titulo`, `autor`, `descricao`, `preco`, `id_livro2`, `img_livro2`) VALUES
-('livro do erick', 'erick', 'livro foda', 2000000000, 7, 'https://static.wikia.nocookie.net/hollowknight/images/c/cd/HK_Cover_Art.png/revision/latest?cb=20220613045755&path-prefix=pt');
+('livro do erick', 'erick', 'livro foda', 2000000000, 7, 'https://static.wikia.nocookie.net/hollowknight/images/c/cd/HK_Cover_Art.png/revision/latest?cb=20220613045755&path-prefix=pt'),
+('livro foda de teste', 'erick ', '\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill', 40, 8, 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAflBMVEX///8AAADy8vL7+/v29vb4+Pg3Nzf8/PxaWlqPj4/x8fEWFhY0NDRnZ2dWVlaIiIgsLCzk5ORGRkacnJzq6upCQkJOTk58fHxhYWHQ0NDZ2dlwcHB1dXWNjY2/v7+1tbUlJSWoqKjHx8cPDw+ZmZmsrKyCgoLBwcEfHx+3t7cJukcgAAATqUlEQVR4nM2de3+yOgzHGZex4dzGpm66q26687z/N3iEpvckLQho/jif8wyM/UKhbZL+TBLcMmFJvl3+XF2u/Sy3BUHQWHk0CrBoLdmdGyHCdiRfRhKWgq8o1+dufZStKcAsIwglYJGcu+2RRt2mFhE9lAtLvs7d9Ej7om5Tg4gcAr48S17P3fRIe/UpsjwXiCxgsmw///1xi9gDGHpQ20fkefK0B/4052s/vtsWLjHAFhEFTFtrAJ');
 
 -- --------------------------------------------------------
 
