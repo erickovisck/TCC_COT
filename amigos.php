@@ -5,9 +5,6 @@ session_start();
 require_once "conexao/conexao.php";
 
 $usuario=$_SESSION["usuario"];
-$usu= "SELECT * FROM usuario WHERE email=".$usuario["email"]."";
-$resultado = $conexao->query($usu);
-$usuario = mysqli_fetch_array($resultado);
 
 if (is_null($usuario["email"])) {
     session_unset();
@@ -49,18 +46,19 @@ if (is_null($usuario["email"])) {
 
 
                 <ul id="menu">
-                    <h2><i class="bi bi-person-circle"> </i>:
-                        <?= $usuario['nome_usuario'] ?>
-                    </h2>
-                    <li><a href="inicial">Inicial</a></li>
-                    <li><a href="perfil.php">Perfil</a></li>
-                    <li><a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=creatorsofthought@gmail.com">Ajuda</a></li>
-                    
+                <h2><a href="perfil.php"><i class="bi bi-person-circle"> </i>
+                    <?= $usuario['nome_usuario'] ?></a>
+                    </h2>                    <li><a href="inicial">Inicial</a></li>
+                    <li><a href="comunidade.php">Comunidade</a></li>
                     <li><a href="Amigos.php">Amigos</a></li>
+                    <li><a href="carrinho.php">Carrinho</a></li>
                     <li><a href="autores.php">Autores</a></li>
+                    <li><a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=creatorsofthought@gmail.com">Ajuda</a></li>
                     <li><a href="sobre_nos.php">Sobre nós</a></li>
                     <li><a href="sair.php">Sair</a></li>
                 </ul>
+
+
 
 
             </div>
