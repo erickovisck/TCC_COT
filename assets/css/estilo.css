@@ -556,6 +556,27 @@ text-align:center ;
     object-fit: cover;
     margin: 4px;
 }
+/*CSS Página Autores.php*/
+.publique{
+  margin-top: 10px;
+  border: 1px solid #26272b;
+}
+.pubtitulo{
+  transform:translateY(4px);
+  left:13px;
+  font-size:18px;
+}
+.publique2{
+  margin-top: 10px;
+  width: 425px;
+    height: 200px;
+    text-align: center;
+    border: 1px soli d#26272b;
+}
+.pubotao{
+  margin-top: 2%;
+    margin-left: 51%;
+}
 
 
 

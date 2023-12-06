@@ -229,19 +229,25 @@ if($response){
                             ?>
             <?php
     }else{
-?> Insira aqui os dados de seu livro
+?> <div class="container text-center" style="margin-top:68px; border:1px solid black; height:500px; width:700px;">
+<h2 class="alterar" style="margin-top:10px">Publique  aqui os dados de seu Livro</h2>
             <form method="post" action="">
-                <label>Titulo</label>
-                <input type="text" name="titulo"> </input>
-                <label>Autor</label>
-                <input type="text" name="autor"> </input>
-                <label>Descrição breve</label>
-                <input type="text" name="descricao"> </input>
-                <label>Preço</label>
-                <input type="text" name="preco"> </input>
-                <label>Link da imagem</label>
-                <input type="text" name="img"> </input>
-                <input type="submit" name="enviar"> </input>
+                <label class="pubtitulo">
+                <input type="text" name="titulo" placeholder="Titulo"> </input>
+                </label>   
+                <label  class="pubtitulo">
+                <input type="text" name="autor" placeholder="Nome Autor" class="publique"> </input>
+                </label> <br>
+                <labe class="pubtitulo">
+                <input type="text" name="descricao" placeholder="Descrição" class="publique2"> </input>
+    </label> <br>
+                <label class="pubtitulo">
+                <input type="text" name="preco" placeholder="Preço" class="publique"> </input>
+    </label>
+                <label class="pubtitulo">
+                <input type="text" name="img" placeholder="Link Imagem(capa)" class="publique"> </input>
+    </label> <br> <br>
+                <input type="submit" name="enviar" placeholder="Publicar" class="pubotao" style="background-color:#26272b; color:white;"> </input>
             </form>
 
             <?php
@@ -264,8 +270,52 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
             }
     }
     ?>
+    </div>
+</div>
     </main>
 
+    <!-- rodapé -->
+    <footer class="site-footer" style="margin-top:2%">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <h6>Sobre</h6>
+                    <p class="text-justify">O desenvolvimento deste site se tornou necessário após uma breve pesquisa
+                        sobre sites com o mesmo propósito, contudo, percebemos que estes sites são quase inexistentes.
+                        Visando isso, decidimos fazer um site com mais reconhecimento para autores nacionais e para que
+                        mais pessoas possam ter gosto pela leitura.</p>
+                </div>
+                <div class="col-xs-6 col-md-3">
+                    <h6>Links Rapidos</h6>
+                    <ul class="footer-links">
+                        <li><a href="#">Sobre nos</a></li>
+                        <li><a href="#">Fale conosco</a></li>
+                        <li><a href="#">Politica de Privacidade</a></li>
+                        <li><a href="#">Termos</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                    <p class="copyright-text">Copyright &copy; 2023 All Rights Reserved by
+                        <a href="#">Scanfcode</a>.
+                    </p>
+                </div>
+
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <ul class="social-icons">
+                        <li><a class="facebook" href="#"><i class="bi bi-facebook"></i></a></li>
+                        <li><a class="twitter" href="#"><i class="bi bi-twitter"></i></a></li>
+                        <li><a class="dribbble" href="#"><i class="bi bi-instagram"></i></a></li>
+                        <li><a class="linkedin" href="#"><i class="bi bi-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
 
 </body>
 

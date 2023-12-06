@@ -53,7 +53,7 @@ if (isset($_POST["pesquisar"])) {
     <meta name="author" content="colorlib.com">
 
     <title>Livro</title>
-    <link rel="shortcut icon" href="imagens/logo_projeto2.png">
+    <link rel="shortcut icon" href="imagens/logo_empresa.png">
     <link rel="stylesheet" href="assets/css/estilo.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -72,21 +72,20 @@ if (isset($_POST["pesquisar"])) {
                 <span></span>
                 <span></span>
 
-
-
                 <ul id="menu">
-                    <h2><a href="perfil.php"><i class="bi bi-person-circle"> </i>
+                <h2><a href="perfil.php"><i class="bi bi-person-circle"> </i>
                     <?= $usuario['nome_usuario'] ?></a>
-                        
-                    </h2>
-                    <li><a href="inicial.php">Inicial   </a></li>
-                    <li><a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=creatorsofthought@gmail.com">Ajuda</a></li>
+                    </h2>                    <li><a href="inicial">Inicial</a></li>
+                    <li><a href="comunidade.php">Comunidade</a></li>
                     <li><a href="Amigos.php">Amigos</a></li>
-
+                    <li><a href="carrinho.php">Carrinho</a></li>
                     <li><a href="autores.php">Autores</a></li>
+                    <li><a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=creatorsofthought@gmail.com">Ajuda</a></li>
                     <li><a href="sobre_nos.php">Sobre nós</a></li>
                     <li><a href="sair.php">Sair</a></li>
                 </ul>
+
+
 
 
             </div>
@@ -129,7 +128,6 @@ if ($response) {
     
     if (isset($data->items[0])) {
         $item = $data->items[0];
-
         ?>
                 <div class="sla col-md-auto p-5 text-center">
                     <div class="imglivro ">
@@ -161,7 +159,7 @@ if ($response) {
        echo $item->volumeInfo->description;
        $id_livro=$item->volumeInfo->industryIdentifiers[0]->identifier;
       $item2= $item->volumeInfo->title;
-    
+                
 }
 }elseif($livro2){
 ?>
@@ -223,7 +221,7 @@ if (isset($_POST["comprar"])) {
         }
     }elseif($id_livro==null){
         $sql = "INSERT INTO carrinho (id_livro, id_usuario, quantidade,livro2)
-        SELECT '$id_livro', '".$usuario["id_usuario"]."', 1, 1
+        SELECT '".$livro2["id_livro2"]."', '".$usuario["id_usuario"]."', 1, 1
         WHERE NOT EXISTS (
             SELECT 1
             FROM carrinho
