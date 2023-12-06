@@ -13,7 +13,7 @@ $api_key=$_SESSION["api_key"];
 $precototal=0;
 $usuario = $_SESSION['usuario'];
 
-$sql = "SELECT id_livro FROM carrinho WHERE id_usuario=" . $usuario['id_usuario'];
+$sql = "SELECT * FROM carrinho WHERE id_usuario=" . $usuario['id_usuario'];
 $resultado = $conexao->query($sql);
 
 
@@ -47,13 +47,14 @@ $resultado = $conexao->query($sql);
 
 
                 <ul id="menu">
-                    <h2>Usuário: <?= $usuario['nome_usuario']?> </h2>
-                    <li><a href="inicial">Inicial</a></li>
-                    <li><a href="perfil.php">Perfil</a></li>
-                    <li><a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=creatorsofthought@gmail.com">Ajuda</a></li>
+                <h2><a href="perfil.php"><i class="bi bi-person-circle"> </i>
+                    <?= $usuario['nome_usuario'] ?></a>
+                    </h2>                    <li><a href="inicial">Inicial</a></li>
+                    <li><a href="comunidade.php">Comunidade</a></li>
                     <li><a href="Amigos.php">Amigos</a></li>
-
+                    <li><a href="carrinho.php">Carrinho</a></li>
                     <li><a href="autores.php">Autores</a></li>
+                    <li><a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=creatorsofthought@gmail.com">Ajuda</a></li>
                     <li><a href="sobre_nos.php">Sobre nós</a></li>
                     <li><a href="sair.php">Sair</a></li>
                 </ul>
@@ -99,7 +100,7 @@ $resultado = $conexao->query($sql);
 
     <?php 
    while ($query = mysqli_fetch_array($resultado)) {
-       if(!$query["livro2"]){
+       if($query["livro2"]==0){
     $isbn = $query['id_livro'];
     $url = "https://www.googleapis.com/books/v1/volumes?q=isbn:" . $isbn . "&key=" . $api_key;
     $response = file_get_contents($url);
@@ -147,20 +148,23 @@ $resultado = $conexao->query($sql);
                   
             } 
     }else{
-        foreach ($data->items as $item) {
+       
+$sql="SELECT * FROM livros2 WHERE id_livro2 =".$query["id_livro"]."";
+$result2=$conexao->query($sql);
 
+$livro2=mysqli_fetch_array($result2);
       
             ?>
                                         <div class="livros bg-body p-3 border border-black">
         <?php
-                                      echo "<a href='livro.php?id_livro=" . $item->volumeInfo->industryIdentifiers[0]->identifier. "'>";
-                                      if (isset($item->volumeInfo->imageLinks)) {
-                  echo "<img src='" . $item->volumeInfo->imageLinks->thumbnail . "'>";
+                                      echo "<a href='livro.php?id_livro=" . $livro2["id_livro2"]. "'>";
+                                      if (isset($livro2["img_livro2"])) {
+                  echo "<img src='" . $livro2["img_livro2"]. "'>";
               } else {
                   // Lide com o caso em que a imagem não está disponível
                   echo "Imagem não disponível";
               }
-             $texto= $item->volumeInfo->title;
+             $texto= $livro2["titulo"];
              $limite = 33;
               $titulo=limitarCaracteres($texto,$limite);
     
@@ -172,18 +176,17 @@ $resultado = $conexao->query($sql);
               }else{
                   echo "Autor não disponivel<br>";
               }
-              $preco="SELECT preco FROM livros WHERE isbn=".$item->volumeInfo->industryIdentifiers[0]->identifier."";
-              $resulpreco=$conexao->query($preco);
-                    $dadopreco=mysqli_fetch_array($resulpreco);
-                    echo "R$".$dadopreco["preco"];
-             $precototal=$precototal+$dadopreco["preco"];
+              
+              
+                    echo "R$".$livro2["preco"];
+             $precototal=$precototal+$livro2["preco"];
                           echo "</h2>";
               echo "<form method='post' action='carrinho.php'>"; // O formulário envia dados para a página "carrinho.php"
               echo "</div>";
                   } 
     }
    
-
+   
 // Certifique-se de fechar a conexão com o banco de dados após o uso
 
 
