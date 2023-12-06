@@ -142,59 +142,63 @@ $principal=[9788581051529,
         <hr class="divisor my-5">
 
         <h1 class="text-center"> Escolhas da COT</h1>
-<h2 class="text-center"><a href="autores.php" >Quer divulgar suas obras aqui? </a></h2>
-<div id="carouselExample" class="carousel carousel-dark slide">
-    <div class="carousel-inner">
-        <?php
-        $escolhas = "SELECT * FROM livros2";
-        $escolharesul = $conexao->query($escolhas);
-        while ($livro2 = mysqli_fetch_array($escolharesul)) {
-            ?>
-            <div class="carousel-item  ">
-                <div class="card">
-                    <div class="img-wrapper">
+    <h2 class="text-center"><a href="autores.php" >Quer divulgar suas obras aqui? </a></h2>
+        <div id="carouselExample" class="carousel carousel-dark slide">
+            <div class="carousel-inner">
+                <?php
+                $escolhas="SELECT * FROM livros2";
+                $escolharesul=$conexao->query($escolhas);
+                while($livro2=mysqli_fetch_array($escolharesul)){
+                    ?>
+                    <div class="carousel-item active ">
+                    <div class="card">
+                        <div class="img-wrapper">
                         <a class="link_card" href="livro.php?id_livro2=<?= $livro2["id_livro2"] ?>">
-                            <img class="h-40" src=" <?= $livro2["img_livro2"] ?>">
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title text-center">
-                            <?= $titulo = $livro2["titulo"] ?>
-                        </h5>
+                        <img class="h-40" src="<?= $livro2["img_livro2"] ?>" alt="<?= $livro2["titulo"] ?>">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-center">
+                                <?=$titulo= $livro2["titulo"]?> 
+                            </h5>
+
+                        </div>
                     </div>
                 </div>
-            </div>
-            <?php
-        }
-        foreach ($principal as $prin) {
-
-            $url = "https://www.googleapis.com/books/v1/volumes?q=isbn:$prin&key=" . $api_key;
-            $response = file_get_contents($url);
-            if ($response) {
-                $data = json_decode($response);
-                if (isset($data->items[0])) {
-                    $item = $data->items[0];
+                <?php
                 }
-            }
-            ?>
-            <div class="carousel-item active ">
-                <div class="card">
-                    <div class="img-wrapper">
-                        <a class="link_card" href="livro.php?id_livro=<?= $item->volumeInfo->industryIdentifiers[0]->identifier ?> ">
-                            <img class="h-40" src=" <?= $thumbnail = $item->volumeInfo->imageLinks->thumbnail ?>">
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title text-center">
-                            <?= $item->volumeInfo->title ?>
-                        </h5>
+            foreach ($principal as $prin){
+
+$url = "https://www.googleapis.com/books/v1/volumes?q=isbn:$prin&key=" . $api_key;
+$response = file_get_contents($url);
+if ($response) {
+  $data = json_decode($response);
+  if (isset($data->items[0])) {
+      $item = $data->items[0];
+  }
+    }
+?>
+                <div class="carousel-item active ">
+                    <div class="card">
+                        <div class="img-wrapper">
+                            <a class="link_card" href="livro.php?id_livro=<?=$item->volumeInfo->industryIdentifiers[0]->identifier?> ">
+                                <img class="h-40" src=" <?=$thumbnail = $item->volumeInfo->imageLinks->thumbnail?>">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-center">
+                                <?=$item->volumeInfo->title?> 
+                            </h5>
+
+                        </div>
                     </div>
                 </div>
-            </div>
-        <?php } ?>
-    </div>
-</div>
 
+            <?php } 
+            ?>
+
+         
+            </div>
 
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -209,7 +213,18 @@ $principal=[9788581051529,
 
         <!--  -->
 
+        <h4 class="text-center">Nossos autores patrocinados </h1>
+        <?php 
+$aut = "SELECT * FROM usuario WHERE autor = 'autor'";
+$result = $conexao->query($aut);
 
+while ($autor = mysqli_fetch_array($result)) {
+    ?>
+    <img class="profile-pic" id="iconperfil" src="<?= $autor["img_perfil"] ?>" >
+    <h4><?=$autor["nome_usuario"]?></h4>
+<?php
+}
+?>
 
         <hr class="divisor my-5">
 

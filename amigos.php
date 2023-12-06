@@ -92,7 +92,7 @@ if (is_null($usuario["email"])) {
 // Users whom I follow
 $sql_following = "SELECT * FROM seguir WHERE id_seguidor=" . $usuario["id_usuario"];
 $result_following = $conexao->query($sql_following);
-
+echo"Seguindo";
 while ($data_following = mysqli_fetch_array($result_following)) {
     $sql_user_following = "SELECT * FROM usuario WHERE id_usuario = " . $data_following["id_seguido"];
     $result_user_following = $conexao->query($sql_user_following);
@@ -107,7 +107,7 @@ while ($data_following = mysqli_fetch_array($result_following)) {
 // Users who follow me
 $sql_followers = "SELECT * FROM seguir WHERE id_seguido=" . $usuario["id_usuario"];
 $result_followers = $conexao->query($sql_followers);
-
+echo "Seguidores";
 while ($data_followers = mysqli_fetch_array($result_followers)) {
     $sql_user_followers = "SELECT * FROM usuario WHERE id_usuario = " . $data_followers["id_seguidor"];
     $result_user_followers = $conexao->query($sql_user_followers);
