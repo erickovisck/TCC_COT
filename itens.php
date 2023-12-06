@@ -28,14 +28,7 @@ $minn=30.00;
 $maxx=70.00;
 //----------//
 $usuario=$_SESSION["usuario"];
-$usu= "SELECT * FROM usuario WHERE email=".$usuario["email"]."";
-$resultado = $conexao->query($usu);
-$usuario = mysqli_fetch_array($resultado);if (is_null($usuario["email"])) {
-    session_unset();
-    session_destroy();
-    header("Location: index.php");
-    exit();
-}
+
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["comprar"])) {
     $id_livro = $_POST["id_livro"];
@@ -54,6 +47,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["comprar"])) {
 
 $sql = "SELECT * FROM livros";
 $resultado = $conexao->query($sql);
+$sql2="SELECT * FROM livros2 WHERE titulo=$pesquisa";
+$resultado2=$conexao->query($sql2);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -83,16 +78,18 @@ $resultado = $conexao->query($sql);
 
 
                 <ul id="menu">
-                    <h2>Usuário: <?= $usuario['nome_usuario']?> </h2>
-                    <li><a href="inicial.php">Inicial</a></li>
-                    <li><a href="perfil.php">Perfil</a></li>
-                    <li><a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=creatorsofthought@gmail.com">Ajuda</a></li>
+                <h2><a href="perfil.php"><i class="bi bi-person-circle"> </i>
+                    <?= $usuario['nome_usuario'] ?></a>
+                    </h2>                    <li><a href="inicial">Inicial</a></li>
+                    <li><a href="comunidade.php">Comunidade</a></li>
                     <li><a href="Amigos.php">Amigos</a></li>
-
+                    <li><a href="carrinho.php">Carrinho</a></li>
                     <li><a href="autores.php">Autores</a></li>
+                    <li><a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=creatorsofthought@gmail.com">Ajuda</a></li>
                     <li><a href="sobre_nos.php">Sobre nós</a></li>
                     <li><a href="sair.php">Sair</a></li>
                 </ul>
+
 
 
             </div>
@@ -234,7 +231,59 @@ foreach ($categoria as $cat){
 
 echo "</div>";  }
                     } else {
-                       
+                       if($resultado2){
+                         
+                           while($livro2=mysqli_fetch_array($resultado2)){
+                               ?>
+                            <div class="livros bg-body p-3 border border-black">
+                            <?php
+                                                              echo "<a href='livro.php?id_livro=" . $livro2["id_livro"]. "'>";
+                        /*                                       echo implode("",$item->volumeInfo->categories);
+                         */                                      if (isset($item->volumeInfo->imageLinks)) {
+                                          echo "<img src='" . $livro2["img_livro2"]. "'>";
+                                      } else {
+                                          // Lide com o caso em que a imagem não está disponível
+                                          echo "<img src='imagens/Red_Prohibited_sign_No_icon_warning_or_stop_symbol_safety_danger_isolated_vector_illustration.jpg'>";                                   }
+                                     $texto= $item->volumeInfo->title;
+                                     $limite = 33;
+                                      $titulo=limitarCaracteres($texto,$limite);
+    
+                                                  echo "<h1>". $titulo. "</h1>";  
+                                   echo "</a>"; 
+                                      echo "<h2>";    
+                                      if (isset($item->volumeInfo->authors)) {
+                                      echo  implode("",$item->volumeInfo->authors) . "<br>";  
+                                      }else{
+                                          echo "Autor não disponivel<br>";
+                                      }
+                                      $preco="SELECT preco FROM livros WHERE isbn=".$item->volumeInfo->industryIdentifiers[0]->identifier."";
+                  $resulpreco=$conexao->query($preco);
+                  
+                  if ($resulpreco && $resulpreco->num_rows > 0) {
+                      $dadopreco=mysqli_fetch_array($resulpreco);
+                      echo "Preço: R$".$dadopreco["preco"];
+                     
+                  } else {
+                      // Lide com o caso em que o preço não está disponível
+                      $preco2=rand($minn,$maxx);
+                      $preco2=$preco2+0.99;
+                      echo "Preço: R$ " . $preco2;
+                      $novpreco="INSERT INTO livros (isbn, preco) VALUES ('".$item->volumeInfo->industryIdentifiers[0]->identifier."', '$preco2')";
+                    $resul2=$conexao->query($novpreco);
+    
+                         }
+                                                  echo "</h2>";
+                                      echo "<form method='post' action='carrinho.php'>"; // O formulário envia dados para a página "carrinho.php"
+                                      echo "</div>";
+                                           
+                                     
+                                          
+                                        $max ++;
+                                        $min++;
+                                }
+                            }
+                        
+                      
                         $min=0;
                        
                  
