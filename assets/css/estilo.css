@@ -1689,3 +1689,22 @@ hr {
 .post_content {
   min-height: 100px;
 }
+
+.white {
+  color: #fff;
+  max-width: 500px;
+}
+
+.img-autor {
+  height: 400px;
+
+}
+
+.card-autor {
+  max-height: 400px;
+}
+
+.img-icon {
+  margin-top: 10px;
+  height: 73px;
+}
