@@ -16,7 +16,7 @@ $usu= "SELECT * FROM usuario WHERE email='".$usuario["email"]."'";
 $resultado = $conexao->query($usu);
 $usuario = mysqli_fetch_array($resultado);
 $_SESSION["usuario"]=$usuario;
-$sql = "SELECT * FROM carrinho WHERE id_usuario=" . $usuario['id_usuario'];
+$sql = "SELECT * FROM carrinho WHERE id_usuario='". $usuario['id_usuario']."'";
 $resultado = $conexao->query($sql);
 
 
@@ -218,7 +218,7 @@ $livro2=mysqli_fetch_array($result2);
         if(isset($_POST["comprarcarrinho"])){
             $del="DELETE FROM carrinho WHERE id_usuario=".$usuario["id_usuario"]."";
             $delres=$conexao->query($del);
-           echo" <meta http-equiv='refresh' content='5'>";
+           echo" <script> alert('Compra realizada com sucesso!')</script>";
 
             exit();
         

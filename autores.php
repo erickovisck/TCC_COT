@@ -285,7 +285,6 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
     </div>
 </div>
     </main>
-
     <!-- rodapé -->
     <footer class="site-footer" style="margin-top:2%">
         <div class="container">
