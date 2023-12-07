@@ -229,27 +229,38 @@ if($response){
                             ?>
             <?php
     }else{
-?> <div class="container text-center" style="margin-top:68px; border:1px solid black; height:500px; width:700px;">
-<h2 class="alterar" style="margin-top:10px">Publique  aqui os dados de seu Livro</h2>
+?> <div class="container text-center" style="margin-top:68px; border:1px solid black; height:650px; width:900px;">
+<div class="row">
+<div class="col p-4" style="background-color:#2f2841; height:650px;">
+<h4 class="pub-real">Realize seus sonhos!</h4>
+<div class="pub-image">
+   <img src="imagens/undraw_book_lover_re_rwjy.svg" >
+    </div>
+    <p class="pub-p">"As pessoas não compreendem como toda a vida de um homem pode ser mudada por um único livro"</p>
+        <p class="pub-p">Malcom X</p>
+</div>
+<div class="col p-4">
+<h2 class="alterar" style="margin-top:-2%">Publique  aqui os dados de seu Livro</h2>
             <form method="post" action="">
-                <label class="pubtitulo">
-                <input type="text" name="titulo" placeholder="Titulo"> </input>
+                <label class="input-box"> 
+                <input type="text" name="titulo" placeholder="Titulo do Livro"> </input>
                 </label>   
-                <label  class="pubtitulo">
+                <label  class="input-box">
                 <input type="text" name="autor" placeholder="Nome Autor" class="publique"> </input>
-                </label> <br>
-                <labe class="pubtitulo">
+                </label> 
+                <labe class="input-box">
                 <input type="text" name="descricao" placeholder="Descrição" class="publique2"> </input>
-    </label> <br>
-                <label class="pubtitulo">
-                <input type="text" name="preco" placeholder="Preço" class="publique"> </input>
+    </label> <br> <br>
+                <label class="input-box">
+                <input type="text" name="preco" placeholder="Preço do Livro" class="publique"> </input>
     </label>
-                <label class="pubtitulo">
+                <label class="input-box">
                 <input type="text" name="img" placeholder="Link Imagem(capa)" class="publique"> </input>
     </label> <br> <br>
-                <input type="submit" name="enviar" placeholder="Publicar" class="pubotao" style="background-color:#26272b; color:white;"> </input>
+                <input type="submit" name="enviar" class="pubotao"></input>
             </form>
-
+            </div>
+</div>
             <?php
 if($_SERVER["REQUEST_METHOD"]==="POST"){
     $titulo=$_POST["titulo"];
