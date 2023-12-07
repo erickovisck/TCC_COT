@@ -1,3 +1,7 @@
+<?php require_once "conexao/conexao.php";
+session_start();
+$usuario = $_SESSION['usuario'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -116,19 +120,23 @@
 </div>
 </main>
     <?php
-require_once "conexao/conexao.php";
-session_start();
-$usuario = $_SESSION['usuario'];
+
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $demail = $_POST["email"];
     $dsenha = $_POST["senha"];
     $dcsenha = $_POST["csenha"];
-    
+    $dcid=$usuario["id_usuario"];
     if ($dsenha == $dcsenha) {
         if ($demail == $usuario['email'] && $dsenha == $usuario['senha']) {
             $sql = "DELETE FROM usuario WHERE email = '$demail' AND senha = '$dsenha'";
+            $sql2="DELETE FROM seguir WHERE id_seguidor=$dcid AND id_seguido=$dcid";
+            $sql3="DELETE FROM chat_geral WHERE id_usuario=$dcid";
+            $sql4="DELETE FROM chat_privado WHERE id_enviou=$dcid AND id_recebeu=$dcid";
             $resultado = $conexao->query($sql);
+            $resultado2 = $conexao->query($sql2);
+            $resultado3= $conexao->query($sql3);
+            $resultado4 = $conexao->query($sql4);
             
             if ($resultado) {
                 echo"<script language='javascript' type='text/javascript'>alert('Conta deletada')

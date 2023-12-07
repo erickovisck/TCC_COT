@@ -47,8 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["comprar"])) {
 
 $sql = "SELECT * FROM livros";
 $resultado = $conexao->query($sql);
-$sql2="SELECT * FROM livros2 WHERE titulo=$pesquisa";
-$resultado2=$conexao->query($sql2);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,6 +59,7 @@ $resultado2=$conexao->query($sql2);
     <title>Itens</title>
     <link rel="stylesheet" href="assets/css/estilo.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
 
 
@@ -230,58 +230,59 @@ foreach ($categoria as $cat){
 }
 
 echo "</div>";  }
-                    } else {
-                       if($resultado2){
+                    } else {?>
+
+                        <div class="estante container text-center">
+<?php
+                        $sql2="SELECT * FROM livros2";
+                        $resultado2 = $conexao->query($sql2);
+                        if($resultado2){
                          
                            while($livro2=mysqli_fetch_array($resultado2)){
+                            if($livro2["titulo"]=="$pesquisa"){
                                ?>
                             <div class="livros bg-body p-3 border border-black">
                             <?php
-                                                              echo "<a href='livro.php?id_livro=" . $livro2["id_livro"]. "'>";
+                                                              echo "<a href='livro.php?id_livro=" . $livro2["id_livro2"]. "'>";
                         /*                                       echo implode("",$item->volumeInfo->categories);
-                         */                                      if (isset($item->volumeInfo->imageLinks)) {
+                         */                                      if (isset($livro2["img_livro2"])) {
                                           echo "<img src='" . $livro2["img_livro2"]. "'>";
                                       } else {
                                           // Lide com o caso em que a imagem não está disponível
                                           echo "<img src='imagens/Red_Prohibited_sign_No_icon_warning_or_stop_symbol_safety_danger_isolated_vector_illustration.jpg'>";                                   }
-                                     $texto= $item->volumeInfo->title;
+                                     $texto= $livro2["titulo"];
                                      $limite = 33;
                                       $titulo=limitarCaracteres($texto,$limite);
     
                                                   echo "<h1>". $titulo. "</h1>";  
                                    echo "</a>"; 
                                       echo "<h2>";    
-                                      if (isset($item->volumeInfo->authors)) {
-                                      echo  implode("",$item->volumeInfo->authors) . "<br>";  
+                                      if (isset($livro2["autor"])) {
+                                      echo  $livro2["autor"] ."<br>";  
                                       }else{
                                           echo "Autor não disponivel<br>";
                                       }
-                                      $preco="SELECT preco FROM livros WHERE isbn=".$item->volumeInfo->industryIdentifiers[0]->identifier."";
-                  $resulpreco=$conexao->query($preco);
-                  
-                  if ($resulpreco && $resulpreco->num_rows > 0) {
-                      $dadopreco=mysqli_fetch_array($resulpreco);
-                      echo "Preço: R$".$dadopreco["preco"];
-                     
-                  } else {
+                                     
+                      echo "Preço: R$".$livro2["preco"];
+            
                       // Lide com o caso em que o preço não está disponível
-                      $preco2=rand($minn,$maxx);
-                      $preco2=$preco2+0.99;
-                      echo "Preço: R$ " . $preco2;
-                      $novpreco="INSERT INTO livros (isbn, preco) VALUES ('".$item->volumeInfo->industryIdentifiers[0]->identifier."', '$preco2')";
-                    $resul2=$conexao->query($novpreco);
+                    
+                  
     
-                         }
+                         
                                                   echo "</h2>";
                                       echo "<form method='post' action='carrinho.php'>"; // O formulário envia dados para a página "carrinho.php"
                                       echo "</div>";
                                            
                                      
                                           
-                                        $max ++;
-                                        $min++;
+                                      
                                 }
                             }
+                            }else{
+                                echo"erro".mysqli_error($conexao);
+                            }
+
                         
                       
                         $min=0;
@@ -290,7 +291,6 @@ echo "</div>";  }
 
                     
        ?>
-                <div class="estante container text-center">
                     <?php
                         do {
                              error_reporting(0);
