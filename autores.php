@@ -11,9 +11,12 @@ $api_key='AIzaSyAPwKI4X48Ju3lA6FJK1PHcu8nLEgcuOJ0'
 $api_key='AIzaSyBHe1XX1RdFudsmfRaHaAkKlzIz7wDao9k'
 */
 $_SESSION["api_key"] = $api_key;
-$usuario = $_SESSION["usuario"];
-
+$usuario = $_SESSION["usuario"]; 
+$usu= "SELECT * FROM usuario WHERE email='".$usuario["email"]."'";
+$resultado = $conexao->query($usu);
+$usuario = mysqli_fetch_array($resultado);
 $_SESSION["usuario"]=$usuario;
+
 
 if (isset($_POST["pesquisar"])) {
     $pesquisa = $_POST["pesquisar"];
@@ -135,7 +138,7 @@ $response2=$conexao->query($verifi);
 $data=mysqli_fetch_array($response2);
 if($response2){
 }else{
-echo "erro";
+echo "erro".mysqli_error($conexao);
 }
 if($data["autor"]=="autor"){
 echo"<script language='javascript' type='text/javascript'>alert('Já é autor')
@@ -160,7 +163,7 @@ if($response){
 
             <div class="container text-center py-5">
                 <h1>Planos</h1>
-                <p class="lead">compra esta merda</p>
+                <p class="lead">Assinaturas disponíveis</p>
             </div>
 
             <div class="container text-center">
@@ -171,10 +174,10 @@ if($response){
                                 <h4>Grátis</h4>
                             </div>
                             <form method="post" action="" class="card-body">
-                                <h1 class="my-0 font-weight-normal">R$0 <small class="text-muted">/mo</small></h1>
+                                <h1 class="my-0 font-weight-normal">R$0.00 <small class="text-muted">/mo</small></h1>
                                 <ul class="list-unstyled mt-3 mb-4">
-                                    <li>Lorem ipsum dolor sit</li>
-                                    <li>Lorem dolor sit</li>
+                                    <li>Publicar seus próprios livros</li>
+                                    <li>Divulgação do autor e livro na página principal </li>
                                     <li>Lorem ipsum dolor </li>
                                     <li>Lorem ipsum sit</li>
                                 </ul>
@@ -189,10 +192,10 @@ if($response){
                                 <h4>Grátis</h4>
                             </div>
                             <form method="post" action="" class="card-body">
-                                <h1 class="my-0 font-weight-normal">R$0 <small class="text-muted">/mo</small></h1>
+                                <h1 class="my-0 font-weight-normal">R$14.99  <small class="text-muted">/mo</small></h1>
                                 <ul class="list-unstyled mt-3 mb-4">
-                                    <li>Lorem ipsum dolor sit</li>
-                                    <li>Lorem dolor sit</li>
+                                    <li>Publicar seus próprios livros</li>
+                                    <li>Divulgação do autor e livro na página principal</li>
                                     <li>Lorem ipsum dolor </li>
                                     <li>Lorem ipsum sit</li>
                                 </ul>

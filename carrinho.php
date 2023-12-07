@@ -12,7 +12,10 @@ function limitarCaracteres($texto, $limite) {
 $api_key=$_SESSION["api_key"];
 $precototal=0;
 $usuario = $_SESSION['usuario'];
-
+$usu= "SELECT * FROM usuario WHERE email='".$usuario["email"]."'";
+$resultado = $conexao->query($usu);
+$usuario = mysqli_fetch_array($resultado);
+$_SESSION["usuario"]=$usuario;
 $sql = "SELECT * FROM carrinho WHERE id_usuario=" . $usuario['id_usuario'];
 $resultado = $conexao->query($sql);
 
