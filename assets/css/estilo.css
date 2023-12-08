@@ -317,7 +317,8 @@ flex-direction: column;
 .livros img {
   margin-bottom: 10px;
 
-  height: auto;
+  height:192px;
+  width:128px;
   object-fit: cover;
 }
 .livro {
