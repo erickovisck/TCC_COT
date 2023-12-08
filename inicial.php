@@ -158,7 +158,7 @@ $principal=[9788581051529,
                     <div class="card">
                         <div class="img-wrapper">
                         <a class="link_card" href="livro.php?id_livro2=<?= $livro2["id_livro2"] ?>">
-                        <img class="h-40" src="<?= $livro2["img_livro2"] ?>" alt="<?= $livro2["titulo"] ?>">
+                        <img class="h-40" src="<?= $livro2["img_livro2"] ?>">
                             </a>
                         </div>
                         <div class="card-body">

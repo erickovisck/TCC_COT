@@ -99,7 +99,7 @@ $resultado = $conexao->query($sql);
     <div class="imagem_carrinho">
     <i class="bi bi-bag-check"></i> 
    </div> 
-    <div class="estante container text-center">
+    <div class="estante container text-center row">
 
     <?php 
    while ($query = mysqli_fetch_array($resultado)) {
@@ -113,43 +113,54 @@ $resultado = $conexao->query($sql);
     if ($data && isset($data->items)) {
         ?>
             <?php
-        foreach ($data->items as $item) {
-
-      
-            ?>
-                                        <div class="livros bg-body p-3 border border-black">
-        <?php
-                                      echo "<a href='livro.php?id_livro=" . $item->volumeInfo->industryIdentifiers[0]->identifier. "'>";
-                                      if (isset($item->volumeInfo->imageLinks)) {
-                  echo "<img src='" . $item->volumeInfo->imageLinks->thumbnail . "'>";
-              } else {
-                  // Lide com o caso em que a imagem não está disponível
-                  echo "Imagem não disponível";
-              }
-             $texto= $item->volumeInfo->title;
-             $limite = 33;
-              $titulo=limitarCaracteres($texto,$limite);
+    foreach ($data->items as $item) {
+        ?>
+        <div class="livros row-sm-6  bg-body p-3 border border-blac">
+            <?php
+            echo "<a href='livro.php?id_livro=" . $item->volumeInfo->industryIdentifiers[0]->identifier . "'>";
+            if (isset($item->volumeInfo->imageLinks)) {
+                echo "<img src='" . $item->volumeInfo->imageLinks->thumbnail . "'>";
+            } else {
+                // Lide com o caso em que a imagem não está disponível
+                echo "Imagem não disponível";
+            }
+            $texto = $item->volumeInfo->title;
+            $limite = 33;
+            $titulo = limitarCaracteres($texto, $limite);
     
-                          echo "<h1>". $titulo. "</h1>";  
-           echo "</a>"; 
-              echo "<h2>";    
-              if (isset($item->volumeInfo->authors)) {
-              echo  implode("",$item->volumeInfo->authors) . "<br>";  
-              }else{
-                  echo "Autor não disponivel<br>";
-              }
-              $preco="SELECT preco FROM livros WHERE isbn=".$item->volumeInfo->industryIdentifiers[0]->identifier."";
-              $resulpreco=$conexao->query($preco);
-                    $dadopreco=mysqli_fetch_array($resulpreco);
-                    echo "R$".$dadopreco["preco"];
-             $precototal=$precototal+$dadopreco["preco"];
-                          echo "</h2>";
-              echo "<form method='post' action='carrinho.php'>"; // O formulário envia dados para a página "carrinho.php"
-              echo "</div>";
-                  } 
-             
-                  
-            } 
+            echo "<h1>" . $titulo . "</h1>";
+            echo "</a>";
+            echo "<h2>";
+            if (isset($item->volumeInfo->authors)) {
+                echo  implode("", $item->volumeInfo->authors) . "<br>";
+            } else {
+                echo "Autor não disponível<br>";
+            }
+            $preco = "SELECT preco FROM livros WHERE isbn=" . $item->volumeInfo->industryIdentifiers[0]->identifier . "";
+            $resulpreco = $conexao->query($preco);
+            $dadopreco = mysqli_fetch_array($resulpreco);
+            echo "R$" . $dadopreco["preco"];
+            $precototal = $precototal + $dadopreco["preco"];
+            echo "</h2>";
+            echo "<form method='post' action='carrinho.php'>"; // O formulário envia dados para a página "carrinho.php"
+            echo "<input type='hidden' name='isbn' value='" . $item->volumeInfo->industryIdentifiers[0]->identifier . "'>";
+            echo "<button type='submit' name='remover_do_carrinho'>Remover do Carrinho</button>";
+
+            echo "</form>";
+            if(isset($_POST["remover_do_carrinho"])){
+                $del2="DELETE FROM carrinho WHERE id_livro=".$item->volumeInfo->industryIdentifiers[0]->identifier."";
+                $delres2=$conexao->query($del2);
+               
+                echo"<script language='javascript' type='text/javascript'>alert('Livro removido')
+                ;window.location.href='carrinho.php'</script>"; 
+                exit();
+            
+            }
+            echo "</div>";
+        }
+    }
+    
+    
     }else{
        
 $sql="SELECT * FROM livros2 WHERE id_livro2 =".$query["id_livro"]."";
@@ -158,9 +169,9 @@ $result2=$conexao->query($sql);
 $livro2=mysqli_fetch_array($result2);
       
             ?>
-                                        <div class="livros bg-body p-3 border border-black">
+                                        <div class="livros row-sm-6  bg-body p-3 border border-blac ">
         <?php
-                                      echo "<a href='livro.php?id_livro=" . $livro2["id_livro2"]. "'>";
+                                      echo "<a href='livro.php?id_livro2=" . $livro2["id_livro2"]. "'>";
                                       if (isset($livro2["img_livro2"])) {
                   echo "<img src='" . $livro2["img_livro2"]. "'>";
               } else {
@@ -174,8 +185,8 @@ $livro2=mysqli_fetch_array($result2);
                           echo "<h1>". $titulo. "</h1>";  
            echo "</a>"; 
               echo "<h2>";    
-              if (isset($item->volumeInfo->authors)) {
-              echo  implode("",$item->volumeInfo->authors) . "<br>";  
+              if (isset($livro2["autor"])) {
+              echo  $livro2["autor"]. "<br>";  
               }else{
                   echo "Autor não disponivel<br>";
               }
@@ -224,6 +235,7 @@ $livro2=mysqli_fetch_array($result2);
         
 
         }
+       
         ?>
         <div class="voltarpagina">
             <form method="" action="inicial.php">
