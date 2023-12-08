@@ -207,7 +207,7 @@ if($response){
                             ?>
             <?php
     }else{
-?> <div class="container text-center" style="margin-top:68px; border:1px solid black; height:650px; width:900px;">
+?> <div class="container text-center" style="margin-top:84px; border:1px solid black; height:650px; width:900px;">
 <div class="row">
 <div class="col p-4" style="background-color:#2f2841; height:650px;">
 <h4 class="pub-real">Realize seus sonhos!</h4>
@@ -263,7 +263,7 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
 </div>
     </main>
     <!-- rodapé -->
-    <footer class="site-footer" style="margin-top:2%">
+    <footer class="site-footer" style="margin-top:7%">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-md-6">
