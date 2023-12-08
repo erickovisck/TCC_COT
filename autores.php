@@ -55,19 +55,15 @@ if (isset($_POST["pesquisar"])) {
 
 
                 <ul id="menu">
-                    <h2><a href="perfil.php"><i class="bi bi-person-circle"> </i>
-                            <?= $usuario['nome_usuario'] ?>
-
-                        </a>
-                    </h2>
-                    <li><a href="inicial.php">Inicial </a></li>
-                    <li><a
-                            href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=creatorsofthought@gmail.com">Ajuda</a>
-                    </li>
+                <h2><a href="perfil.php"><i class="bi bi-person-circle"> </i>
+                    <?= $usuario['nome_usuario'] ?></a>
+                    </h2>                  
+                    <li><a href="inicial">Inicial</a></li>
+                    <li><a href="comunidade.php">Comunidade</a></li>
                     <li><a href="Amigos.php">Amigos</a></li>
-                    </h2>
-                    <li><a href="configuracoes.php">Configurações</a></li>
+                    <li><a href="carrinho.php">Carrinho</a></li>
                     <li><a href="autores.php">Autores</a></li>
+                    <li><a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=creatorsofthought@gmail.com">Ajuda</a></li>
                     <li><a href="sobre_nos.php">Sobre nós</a></li>
                     <li><a href="sair.php">Sair</a></li>
                 </ul>

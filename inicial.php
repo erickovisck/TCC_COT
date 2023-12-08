@@ -221,13 +221,16 @@ if ($response) {
         <?php 
 $aut = "SELECT * FROM usuario WHERE autor = 'autor'";
 $result = $conexao->query($aut);
-
-while ($autor = mysqli_fetch_array($result)) {
-    ?>
-    <img class="profile-pic" id="iconperfil" src="<?= $autor["img_perfil"] ?>" >
-    <h4><?=$autor["nome_usuario"]?></h4>
-<?php
+for ($i = 0; $i < 3; $i++) {
+    $autor = mysqli_fetch_array($result);
+    if ($autor) { // Verifica se há um autor antes de exibir
+        ?>
+        <img class="profile-pic" id="iconperfil" src="<?= $autor["img_perfil"] ?>">
+        <h4><?= $autor["nome_usuario"] ?></h4>
+        <?php
+    }
 }
+
 ?>
 
         <hr class="divisor my-5">

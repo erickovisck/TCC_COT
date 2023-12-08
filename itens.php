@@ -243,7 +243,7 @@ echo "</div>";  }
                                ?>
                             <div class="livros bg-body p-3 border border-black">
                             <?php
-                                                              echo "<a href='livro.php?id_livro=" . $livro2["id_livro2"]. "'>";
+                                                              echo "<a href='livro.php?id_livro2=" . $livro2["id_livro2"]. "'>";
                         /*                                       echo implode("",$item->volumeInfo->categories);
                          */                                      if (isset($livro2["img_livro2"])) {
                                           echo "<img src='" . $livro2["img_livro2"]. "'>";
