@@ -231,7 +231,7 @@ $livro2=mysqli_fetch_array($result2);
             <div class="carrinhos">
                 <h2> Valor total: R$<?=$precototal?></h2>
             </div> <br>
-            <input type="submit" name="comprarcarrinho" id="btncomprar" class="text-end" value="Comprar"> </input>
+            <input type="submit" name="comprarcarrinho" class="btn btn-primary" id="btncomprar" class="text-end" value="Comprar"> </input>
             
             <div class="carrinhos">
                 <h3></h3>
@@ -251,7 +251,7 @@ $livro2=mysqli_fetch_array($result2);
         ?>
         <div class="voltarpagina">
             <form method="" action="inicial.php">
-                <input type="submit" id="voltainc" value="VOLTAR AO INÍCIO">
+                <input type="submit" class="btn" id="voltainc" value="VOLTAR AO INÍCIO">
         </div>
         </form>
         </div>
