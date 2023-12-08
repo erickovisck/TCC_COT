@@ -201,8 +201,8 @@ $livro2=mysqli_fetch_array($result2);
                           echo "<button type='submit' name='remover_do_carrinho_" . $item->volumeInfo->industryIdentifiers[0]->identifier . "'>Remover do Carrinho</button>";
                           echo "</form>";
                           
-                          if (isset($_POST["remover_do_carrinho_" . $item->volumeInfo->industryIdentifiers[0]->identifier])) {
-                              $del2 = "DELETE FROM carrinho WHERE id_livro=" . $item->volumeInfo->industryIdentifiers[0]->identifier . "";
+                          if (isset($_POST["remover_do_carrinho_" . $livro2["id_livro2"]])) {
+                              $del2 = "DELETE FROM carrinho WHERE id_livro=" . $livro2["id_livro2"] . "";
                               $delres2 = $conexao->query($del2);
                           
                               echo "<script language='javascript' type='text/javascript'>alert('Livro removido');window.location.href='carrinho.php'</script>";
