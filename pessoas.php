@@ -51,7 +51,7 @@ if (is_null($usuario["email"])) {
                 <ul id="menu">
                 <h2><a href="perfil.php"><i class="bi bi-person-circle"> </i>
                     <?= $usuario['nome_usuario'] ?></a>
-                    </h2>                    <li><a href="inicial">Inicial</a></li>
+                    </h2>                    <li><a href="inicial.php">Inicial</a></li>
                     <li><a href="comunidade.php">Comunidade</a></li>
                     <li><a href="Amigos.php">Amigos</a></li>
                     <li><a href="carrinho.php">Carrinho</a></li>
