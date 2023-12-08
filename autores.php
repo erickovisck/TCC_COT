@@ -167,15 +167,14 @@ if($response){
                     <div class="col mb-4">
                         <div class="card shadow-sm">
                             <div class="card-header">
-                                <h4>Grátis</h4>
+                                <h4>Leitor (padrão)</h4>
                             </div>
                             <form method="post" action="" class="card-body">
                                 <h1 class="my-0 font-weight-normal">R$0.00 <small class="text-muted">/mo</small></h1>
                                 <ul class="list-unstyled mt-3 mb-4">
-                                    <li>Publicar seus próprios livros</li>
-                                    <li>Divulgação do autor e livro na página principal </li>
-                                    <li>Lorem ipsum dolor </li>
-                                    <li>Lorem ipsum sit</li>
+                                    <li>Interagir com outros usuários</li>
+                                    <li>Comprar livros </li>
+                                    <li>Compartilhar seus gostos </li>
                                 </ul>
                                 <button type="button" class="btn btn-outline-primary btn-lg">Primary</button>
                             </form>
@@ -185,15 +184,14 @@ if($response){
                     <div class="col mb-4">
                         <div class="card shadow-sm">
                             <div class="card-header">
-                                <h4>Grátis</h4>
+                                <h4>Autor</h4>
                             </div>
                             <form method="post" action="" class="card-body">
                                 <h1 class="my-0 font-weight-normal">R$14.99  <small class="text-muted">/mo</small></h1>
                                 <ul class="list-unstyled mt-3 mb-4">
                                     <li>Publicar seus próprios livros</li>
                                     <li>Divulgação do autor e livro na página principal</li>
-                                    <li>Lorem ipsum dolor </li>
-                                    <li>Lorem ipsum sit</li>
+                                    
                                 </ul>
                                 <button type="submit" class="btn btn-outline-primary btn-lg"
                                     name="autor">Primary</button>
@@ -201,23 +199,7 @@ if($response){
                         </div>
                     </div>
 
-                    <div class="col mb-4">
-                        <div class="card shadow-sm">
-                            <div class="card-header">
-                                <h4>Grátis</h4>
-                            </div>
-                            <form method="post" action="" class="card-body">
-                                <h1 class="my-0 font-weight-normal">R$0 <small class="text-muted">/mo</small></h1>
-                                <ul class="list-unstyled mt-3 mb-4">
-                                    <li>Lorem ipsum dolor sit</li>
-                                    <li>Lorem dolor sit</li>
-                                    <li>Lorem ipsum dolor </li>
-                                    <li>Lorem ipsum sit</li>
-                                </ul>
-                                <button type="button" class="btn btn-outline-primary btn-lg">Primary</button>
-                            </form>
-                        </div>
-                    </div>
+                   
                 </div>
             </div>
             <?php
