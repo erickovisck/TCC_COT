@@ -367,12 +367,15 @@ flex-direction: column;
 }
 #voltainc{
     padding: 10px;
-    border-radius:15px;
+    margin: 30px 0px;
+    border-radius: 5px;
     cursor: pointer;
     background: white;
     border-color:#5B3D99 ;
     color: #42247e;
 }
+
+
 .carrinho_item{
   max-width: 1200px;
   margin:10px;
@@ -395,10 +398,10 @@ text-align: center;
 }
 #btncomprar{
     padding: 10px;
-    border-radius:9px;
+    border-radius: 5px;
     cursor: pointer;
     background: rgb(132, 83, 187);
-    border-color:#5B3D99 ;
+    border-color:rgb(132, 83, 187) ;
     color: white;
     display: flex;
     justify-content: flex-end;
