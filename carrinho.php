@@ -196,6 +196,18 @@ $livro2=mysqli_fetch_array($result2);
              $precototal=$precototal+$livro2["preco"];
                           echo "</h2>";
               echo "<form method='post' action='carrinho.php'>"; // O formulário envia dados para a página "carrinho.php"
+              echo "<button type='submit' name='remover_do_carrinho'>Remover do Carrinho</button>";
+
+            echo "</form>";
+            if(isset($_POST["remover_do_carrinho"])){
+                $del2="DELETE FROM carrinho WHERE id_livro=".$livro2["id_livro2"]."";
+                $delres2=$conexao->query($del2);
+               
+                echo"<script language='javascript' type='text/javascript'>alert('Livro removido')
+                ;window.location.href='carrinho.php'</script>"; 
+                exit();
+            
+            }
               echo "</div>";
                   } 
     }
