@@ -109,13 +109,12 @@ if (isset($_POST["pesquisar"])) {
             <div class="card-autor row bg-secondary row-cols">
                 <div class="c-left col mx-5 my-3 ">
                     <b class="fs-3 my-3 white"> Assine nosso plano aqui </b>
-                    <p class="fs-5 lh-1 my-3 white">Aproveite frete GRÁTIS e rápido, filmes, séries, músicas e muito
-                        mais por apenas R$ 14,90/mês ou R$ 119,00/ano, dependendo do plano escolhido.</p>
+                    <p class="fs-5 lh-1 my-3 white">Aproveite para alavancar sua carreira de autor, com diversas oportunidades de parceria, divulgaçao, e mais!</p>
 
-                    <button type="button" class="btn btn-primary btn-lg my-3 ">Assine Aqui</button>
+                   <!--  <button type="button" class="btn btn-primary btn-lg my-3 ">Assine Aqui</button>
                     <p class="fs-6 lh-1 my-1 white"> Após o período de teste, o Amazon Prime custará R$ 14,90/mês ou R$
                         119,00/ano, dependendo do plano escolhido. Cancele a qualquer momento.
-                    </p>
+                    </p> -->
                     <img src="imagens\logo-neutra-semFundo.png" class="img-icon d-block" alt="logo da empresa">
 
                 </div>
@@ -176,7 +175,7 @@ if($response){
                                     <li>Comprar livros </li>
                                     <li>Compartilhar seus gostos </li>
                                 </ul>
-                                <button type="button" class="btn btn-outline-primary btn-lg">Primary</button>
+                                <button type="button" class="btn btn-outline-primary btn-lg">Assinar</button>
                             </form>
                         </div>
                     </div>
@@ -194,7 +193,7 @@ if($response){
                                     
                                 </ul>
                                 <button type="submit" class="btn btn-outline-primary btn-lg"
-                                    name="autor">Primary</button>
+                                    name="autor">Assinar</button>
                             </form>
                         </div>
                     </div>
