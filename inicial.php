@@ -3,7 +3,7 @@ session_start();
 
 require_once "conexao/conexao.php";
 
-$api_key='AIzaSyAPwKI4X48Ju3lA6FJK1PHcu8nLEgcuOJ0';
+$api_key='AIzaSyBHe1XX1RdFudsmfRaHaAkKlzIz7wDao9k';
 
 /*CHAVE RESERVA 
 $api_key='AIzaSyDD7Cx-7wsL0KQ1avM_vlj_x_GWTXJbiro'
@@ -134,7 +134,7 @@ $principal=[9788581051529,
 
                         <p class="summer_s">Confira nossos Livros</p>
                         <h1 id="seventy_p">Compre agora!</h1>
-                                           <!-- <p class="promo_c">Melhores preços aqui!</p> -->
+                        <!--                     <p class="promo_c">Melhores preços aqui!</p> -->
                         <a href="itens.php"><button id="shop_now" type="submit" name="shop now"
                                 onclick="change()">Comprar
                                 <i class="bi bi-bag-fill"></i></button> </a>
@@ -145,7 +145,7 @@ $principal=[9788581051529,
         <!--END OF PAGE BANNER-->
         <hr class="divisor my-5">
 
-      <h1 class="text-center"> Escolhas da COT</h1>
+        <h1 class="text-center"> Escolhas da COT</h1>
     <h2 class="text-center"><a href="autores.php" >Quer divulgar suas obras aqui? </a></h2>
         <div id="carouselExample" class="carousel carousel-dark slide">
             <div class="carousel-inner">
@@ -214,10 +214,10 @@ if ($response) {
             </button>
         </div>
 
- 
+
         <!--  -->
-<div class="container mt-5">
-        <h2 class="text-center">Nossos autores patrocinados </h2>
+
+        <h4 class="text-center">Nossos autores patrocinados </h1>
         <?php 
 $aut = "SELECT * FROM usuario WHERE autor = 'autor'";
 $result = $conexao->query($aut);
@@ -225,21 +225,13 @@ for ($i = 0; $i < 3; $i++) {
     $autor = mysqli_fetch_array($result);
     if ($autor) { // Verifica se há um autor antes de exibir
         ?>
-        <div class="row my-5">
-            <div class="col-2">
-        <img class="profile-pic img_autor"  id="iconperfil" src="<?= $autor["img_perfil"] ?>">
-        </div>
-        <div class="col">
-        <h3 class="d-flex justify-content-start "> <?= $autor["nome_usuario"] ?></h3> 
-        <?=$autor["biografia"]?>
-        </div>
-        </div>
+        <img class="profile-pic" id="iconperfil" src="<?= $autor["img_perfil"] ?>">
+        <h4><?= $autor["nome_usuario"] ?></h4>
         <?php
     }
 }
 
 ?>
-</div>
 
         <hr class="divisor my-5">
 
