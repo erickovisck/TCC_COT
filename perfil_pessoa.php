@@ -127,13 +127,13 @@ if ($usuario["id_usuario"] == $iddados) {
     margin-top: 100px;
     border-radius: 4%">
     <div class="row">
-     <div class="col   p-4">
+     <div class="col p-4">
            <img class="profile-pic" id="iconperfil" src="<?=$dados["img_perfil"]?>">
 
 
        <h1 style="font-size: 30px; padding: 4px; margin-left: 8%;"> <?= $dados["nome_usuario"] ?>  </h1>
         <h2 style="font-size:20px; font-weight: bold; padding:8px; margin-top:30px"> Bio</h2>
-        <p style="font-size:20px;">
+        <p class="bio_autor text-break">
             <?= $dados["biografia"] ?>
             
 
