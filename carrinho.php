@@ -197,8 +197,8 @@ $livro2=mysqli_fetch_array($result2);
              $precototal=$precototal+$livro2["preco"];
                           echo "</h2>";
                           echo "<form method='post' action='carrinho.php'>";
-                          echo "<input type='hidden' name='isbn' value='" . $item->volumeInfo->industryIdentifiers[0]->identifier . "'>";
-                          echo "<button type='submit' name='remover_do_carrinho_" . $item->volumeInfo->industryIdentifiers[0]->identifier . "'>Remover do Carrinho</button>";
+                          echo "<input type='hidden' name='isbn' value='" . $livro2["id_livro2"] . "'>";
+                          echo "<button type='submit' name='remover_do_carrinho_" . $livro2["id_livro2"] . "'>Remover do Carrinho</button>";
                           echo "</form>";
                           
                           if (isset($_POST["remover_do_carrinho_" . $livro2["id_livro2"]])) {
