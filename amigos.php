@@ -88,40 +88,49 @@ if (is_null($usuario["email"])) {
         </div>
         </div>
         <main class="principal bg-body-tertiary">
+            <div class="container my-5">
+            
         <?php
+        
 // Users whom I follow
 $sql_following = "SELECT * FROM seguir WHERE id_seguidor=" . $usuario["id_usuario"];
 $result_following = $conexao->query($sql_following);
-echo"Seguindo";
+echo"<h2> Seguindo </h2>";
 while ($data_following = mysqli_fetch_array($result_following)) {
     $sql_user_following = "SELECT * FROM usuario WHERE id_usuario = " . $data_following["id_seguido"];
     $result_user_following = $conexao->query($sql_user_following);
     $user_following = mysqli_fetch_array($result_user_following);
 
-    ?><a href="perfil_pessoa.php?id_usuario=<?=$user_following["id_usuario"]?>">
+    ?><ul class="list-group list-group-flush">
+      <li class="list-group-item"><a href="perfil_pessoa.php?id_usuario=<?=$user_following["id_usuario"]?>">
         <img class="profile-pic" id="iconperfil" src="<?=$user_following["img_perfil"]?>">
         <?php echo $user_following["nome_usuario"]; ?>
-    </a><br> <?php
+        
+    </a></li><br> <?php
 }
+
 
 // Users who follow me
 $sql_followers = "SELECT * FROM seguir WHERE id_seguido=" . $usuario["id_usuario"];
 $result_followers = $conexao->query($sql_followers);
-echo "Seguidores";
+echo "<h2> Seguidores </h2>";
 while ($data_followers = mysqli_fetch_array($result_followers)) {
     $sql_user_followers = "SELECT * FROM usuario WHERE id_usuario = " . $data_followers["id_seguidor"];
     $result_user_followers = $conexao->query($sql_user_followers);
     $user_followers = mysqli_fetch_array($result_user_followers);
 
-    ?><a href="perfil_pessoa.php?id_usuario=<?=$user_followers["id_usuario"]?>">
+    ?><ul class="list-group list-group-flush">
+    <li class="list-group-item"><a href="perfil_pessoa.php?id_usuario=<?=$user_followers["id_usuario"]?>">
         <img class="profile-pic" id="iconperfil" src="<?=$user_followers["img_perfil"]?>">
         <?php echo $user_followers["nome_usuario"]; ?>
-    </a><br> <?php
+    </a></li><br> <?php
 }
 ?>
-
+</div>
 
         </main>
+
+        <!-- footer -->
            <footer class="site-footer mt-5 ">
         <div class="container">
             <div class="row">
