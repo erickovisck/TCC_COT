@@ -274,7 +274,7 @@ if($resultado){
                     <h6>Links Rapidos</h6>
                     <ul class="footer-links">
                         <li><a href="sobre_nos.php">Sobre nós</a></li>
-                        <li><a href="#">Fale conosco</a></li>
+                        <li><a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=creatorsofthought@gmail.com">Fale conosco</a></li>
                         <li><a href="politicas.html">Politica de Privacidade</a></li>
                         <li><a href="politicas.html">Termos</a></li>
                     </ul>
@@ -291,10 +291,10 @@ if($resultado){
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <ul class="social-icons">
                         <li><a class="facebook" href="#"><i class="bi bi-facebook"></i></a></li>
-                        <li><a class="twitter" href="#"><i class="bi bi-twitter"></i></a></li>
+                        <li><a class="twitter" href="https://x.com/creababyohw?s=20"><i class="bi bi-twitter"></i></a></li>
                         <li><a class="insta" href="https://instagram.com/creatorsofthought?igshid=MzRlODBiNWFlZA"><i
                                     class="bi bi-instagram"></i></a></li>
-                        <li><a class="linkedin" href="#"><i class="bi bi-linkedin"></i></a></li>
+                        
                     </ul>
                 </div>
             </div>

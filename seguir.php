@@ -108,7 +108,9 @@ if ($resultado) {
             </form>
         </div>
         </div>
-    <main class="principal">
+    <main class="principal bg-body-tertiary">
+    <div class="container my-5">
+
         <?php
         $seguir=$_GET["seguir"];
       
@@ -120,7 +122,13 @@ if ($resultado) {
                 $sql2 = "SELECT * FROM usuario WHERE id_usuario = " . $dados["id_seguidor"];
                 $resultado2 = $conexao->query($sql2);
                 $dados3 = mysqli_fetch_array($resultado2);
-                ?><a href="perfil_pessoa.php?id_usuario=<?=$dados3["id_usuario"]?>"> <img class="profile-pic" id="iconperfil" src="<?=$dados3["img_perfil"]?>"><?php echo $dados3["nome_usuario"]; ?></a> <br> <?php
+                ?>
+                <ul class="list-group list-group-flush">
+    <li class="list-group-item"><a href="perfil_pessoa.php?id_usuario=<?=$dados3["id_usuario"]?>">
+        <img class="profile-pic" id="iconperfil" src="<?=$dados3["img_perfil"]?>">
+        <?php $dados3["nome_usuario"]; ?>
+    </a></li><br>
+<?php
             }
         } elseif ($seguir == 2) { // Use "==" para comparar, em vez de "="
             $sql = "SELECT id_seguido FROM seguir WHERE id_seguidor = $iddados";
@@ -129,11 +137,19 @@ if ($resultado) {
                 $sql2 = "SELECT * FROM usuario WHERE id_usuario = " . $dados["id_seguido"];
                 $resultado2 = $conexao->query($sql2); // Use $resultado2 em vez de $resultado3
                 $dados4 = mysqli_fetch_array($resultado2); // Use $dados4 em vez de $dados3
-                ?><a href="perfil_pessoa.php?id_usuario=<?=$dados4["id_usuario"]?>"> <img class="profile-pic" id="iconperfil" src="<?=$dados4["img_perfil"]?>"><?php echo $dados4["nome_usuario"]; ?></a> <br> <?php
+            ?>
+
+                <ul class="list-group list-group-flush">
+                <li class="list-group-item"> <a href="perfil_pessoa.php?id_usuario=<?=$dados4["id_usuario"]?>">
+                    <img class="profile-pic" id="iconperfil" src="<?=$dados4["img_perfil"]?>">
+                    <?= $dados4["nome_usuario"]; ?>
+                </a></li><br>
+            <?php
             }
         }
         
         ?>
+        </div>
     </main>
     <footer class="site-footer">
         <div class="container">
@@ -148,10 +164,10 @@ if ($resultado) {
                 <div class="col-xs-6 col-md-3">
                     <h6>Links Rapidos</h6>
                     <ul class="footer-links">
-                        <li><a href="#">Sobre nos</a></li>
-                        <li><a href="#">Fale conosco</a></li>
-                        <li><a href="#">Politica de Privacidade</a></li>
-                        <li><a href="#">Termos</a></li>
+                        <li><a href="sobre_nos.php">Sobre nos</a></li>
+                        <li><a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=creatorsofthought@gmail.com">Fale conosco</a></li>
+                        <li><a href="politica.html">Poliítica de Privacidade</a></li>
+                        
                     </ul>
                 </div>
             </div>
@@ -160,17 +176,18 @@ if ($resultado) {
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-sm-6 col-xs-12">
-                    <p class="copyright-text">Copyright &copy; 2023 All Rights Reserved by
-                        <a href="#">Scanfcode</a>.
+                    <p class="copyright-text">Copyright &copy; 2023 Todos os direitos reservados para
+                        <a href="#">Creators of Thought</a>.
                     </p>
                 </div>
 
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <ul class="social-icons">
                         <li><a class="facebook" href="#"><i class="bi bi-facebook"></i></a></li>
-                        <li><a class="twitter" href="#"><i class="bi bi-twitter"></i></a></li>
-                        <li><a class="dribbble" href="#"><i class="bi bi-instagram"></i></a></li>
-                        <li><a class="linkedin" href="#"><i class="bi bi-linkedin"></i></a></li>
+                        <li><a class="twitter" href="https://x.com/creababyohw?s=20"><i class="bi bi-twitter"></i></a></li>
+                        <li><a class="insta" href="https://instagram.com/creatorsofthought?igshid=MzRlODBiNWFlZA"><i
+                                    class="bi bi-instagram"></i></a></li>
+                        
                     </ul>
                 </div>
             </div>

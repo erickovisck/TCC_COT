@@ -55,15 +55,17 @@ if (isset($_POST["pesquisar"])) {
 
 
                 <ul id="menu">
-                <h2><a href="perfil.php"><i class="bi bi-person-circle"> </i>
-                    <?= $usuario['nome_usuario'] ?></a>
-                    </h2>                  
+                    <h2><a href="perfil.php"><i class="bi bi-person-circle"> </i>
+                            <?= $usuario['nome_usuario'] ?></a>
+                    </h2>
                     <li><a href="inicial.php">Inicial</a></li>
                     <li><a href="comunidade.php">Comunidade</a></li>
                     <li><a href="Amigos.php">Amigos</a></li>
                     <li><a href="carrinho.php">Carrinho</a></li>
                     <li><a href="autores.php">Autores</a></li>
-                    <li><a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=creatorsofthought@gmail.com">Ajuda</a></li>
+                    <li><a
+                            href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=creatorsofthought@gmail.com">Ajuda</a>
+                    </li>
                     <li><a href="sobre_nos.php">Sobre nós</a></li>
                     <li><a href="sair.php">Sair</a></li>
                 </ul>
@@ -106,19 +108,23 @@ if (isset($_POST["pesquisar"])) {
     if($usuario["autor"]==""){
          ?>
         <div class="container">
-            <div class="card-autor row bg-secondary row-cols">
+            <div class="card-autor row bg-secondary row-cols pr-0">
                 <div class="c-left col mx-5 my-3 ">
                     <b class="fs-3 my-3 white"> Assine nosso plano aqui </b>
-                    <p class="fs-5 lh-1 my-3 white">Aproveite para alavancar sua carreira de autor, com diversas oportunidades de parceria, divulgaçao, e mais!</p>
+                    <p class="fs-5 lh-1 my-3 white">Aproveite para alavancar sua carreira de autor, com diversas
+                        oportunidades de parceria, divulgaçao, e mais!</p>
 
-                   <!--  <button type="button" class="btn btn-primary btn-lg my-3 ">Assine Aqui</button>
+                    <!--  <button type="button" class="btn btn-primary btn-lg my-3 ">Assine Aqui</button>
                     <p class="fs-6 lh-1 my-1 white"> Após o período de teste, o Amazon Prime custará R$ 14,90/mês ou R$
                         119,00/ano, dependendo do plano escolhido. Cancele a qualquer momento.
                     </p> -->
-                    <img src="imagens\logo-neutra-semFundo.png" class="img-icon d-block" alt="logo da empresa">
+                    <p class="fs-6 lh-1 mt-5 white txtbillgates"> “Meus filhos terão computadores, sim, mas antes terão livros. Sem
+                        livros, sem leitura, nossos filhos serão incapazes de escrever inclusive a própria história”. —
+                        Bill Gates</p>
+                        <img src="imagens\logo-neutra-semFundo.png" class="img-icon mt-3 d-block" alt="logo da empresa">
 
                 </div>
-                <div class="col">
+                <div class="col imgplano">
                     <img src="imagens\mulher-escolhendo-livro.jpg" class="img-autor img-fluid"
                         alt="imagem de uma mulher escolhendo um livro">
                 </div>
@@ -162,44 +168,41 @@ if($response){
             </div>
 
             <div class="container text-center">
-                <div class="row row-cols-1 row-cols-md-3">
-                    <div class="col mb-4">
-                        <div class="card shadow-sm">
-                            <div class="card-header">
-                                <h4>Leitor (padrão)</h4>
-                            </div>
-                            <form method="post" action="" class="card-body">
-                                <h1 class="my-0 font-weight-normal">R$0.00 <small class="text-muted">/mo</small></h1>
-                                <ul class="list-unstyled mt-3 mb-4">
-                                    <li>Interagir com outros usuários</li>
-                                    <li>Comprar livros </li>
-                                    <li>Compartilhar seus gostos </li>
-                                </ul>
-                                <button type="button" class="btn btn-outline-primary btn-lg">Assinar</button>
-                            </form>
-                        </div>
-                    </div>
+            <div class="row row-cols-1 row-cols-md-3 justify-content-center">
+    <div class="col mb-4 mx-auto">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h4>Leitor (padrão)</h4>
+            </div>
+            <form method="post" action="" class="card-body">
+                <h1 class="my-0 font-weight-normal">R$0.00 <small class="text-muted">/mês</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>Interagir com outros usuários</li>
+                    <li>Comprar livros </li>
+                    <li>Compartilhar seus gostos </li>
+                </ul>
+                <button type="button" class="btn btn-outline-primary btn-lg">Assinar</button>
+            </form>
+        </div>
+    </div>
 
-                    <div class="col mb-4">
-                        <div class="card shadow-sm">
-                            <div class="card-header">
-                                <h4>Autor</h4>
-                            </div>
-                            <form method="post" action="" class="card-body">
-                                <h1 class="my-0 font-weight-normal">R$14.99  <small class="text-muted">/mo</small></h1>
-                                <ul class="list-unstyled mt-3 mb-4">
-                                    <li>Publicar seus próprios livros</li>
-                                    <li>Divulgação do autor e livro na página principal</li>
-                                    
-                                </ul>
-                                <button type="submit" class="btn btn-outline-primary btn-lg"
-                                    name="autor">Assinar</button>
-                            </form>
-                        </div>
-                    </div>
+    <div class="col mb-4 mx-auto">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h4>Autor</h4>
+            </div>
+            <form method="post" action="" class="card-body">
+                <h1 class="my-0 font-weight-normal">R$14.99 <small class="text-muted">/mês</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>Publicar seus próprios livros</li>
+                    <li>Divulgação do autor e livro na página principal</li>
+                </ul>
+                <button type="submit" class="btn btn-outline-primary btn-lg" name="autor">Assinar</button>
+            </form>
+        </div>
+    </div>
+</div>
 
-                   
-                </div>
             </div>
             <?php
 
@@ -208,38 +211,41 @@ if($response){
             <?php
     }else{
 ?> <div class="container text-center" style="margin-top:84px; border:1px solid black; height:650px; width:900px;">
-<div class="row">
-<div class="col p-4" style="background-color:#2f2841; height:650px;">
-<h4 class="pub-real">Realize seus sonhos!</h4>
-<div class="pub-image">
-   <img src="imagens/undraw_book_lover_re_rwjy.svg" >
-    </div>
-    <p class="pub-p">"As pessoas não compreendem como toda a vida de um homem pode ser mudada por um único livro"</p>
-        <p class="pub-p">Malcom X</p>
-</div>
-<div class="col p-4">
-<h2 class="alterar" style="margin-top:-2%">Publique  aqui os dados de seu Livro</h2>
-            <form method="post" action="">
-                <label class="input-box"> 
-                <input type="text" name="titulo" placeholder="Titulo do Livro"> </input>
-                </label>   
-                <label  class="input-box">
-                <input type="text" name="autor" placeholder="Nome Autor" class="publique"> </input>
-                </label> 
-                <labe class="input-box">
-                <input type="text" name="descricao" placeholder="Descrição" class="publique2"> </input>
-    </label> <br> <br>
-                <label class="input-box">
-                <input type="text" name="preco" placeholder="Preço do Livro" class="publique"> </input>
-    </label>
-                <label class="input-box">
-                <input type="text" name="img" placeholder="Link Imagem(capa)" class="publique"> </input>
-    </label> <br> <br>
-                <input type="submit" name="enviar" class="pubotao"></input>
-            </form>
-            </div>
-</div>
-            <?php
+                <div class="row">
+                    <div class="col p-4" style="background-color:#2f2841; height:650px;">
+                        <h4 class="pub-real">Realize seus sonhos!</h4>
+                        <div class="pub-image">
+                            <img src="imagens/undraw_book_lover_re_rwjy.svg">
+                        </div>
+                        <p class="pub-p">"As pessoas não compreendem como toda a vida de um homem pode ser mudada por um
+                            único livro"</p>
+                        <p class="pub-p">-Malcom X</p>
+                    </div>
+                    <div class="col p-4">
+                        <h2 class="alterar" style="margin-top:-2%">Publique aqui os dados de seu Livro</h2>
+                        <form method="post" action="">
+                            <label class="input-box">
+                                <input type="text" name="titulo" placeholder="Titulo do Livro"> </input>
+                            </label>
+                            <label class="input-box">
+                                <input type="text" name="autor" placeholder="Nome do autor" class="publique"> </input>
+                            </label>
+                            <labe class="input-box">
+                                <input type="text" name="descricao" placeholder="Descrição" class="publique2"> </input>
+                                </label> <br> <br>
+                                <label class="input-box">
+                                    <input type="text" name="preco" placeholder="Preço do Livro" class="publique">
+                                    </input>
+                                </label>
+                                <label class="input-box">
+                                    <input type="text" name="img" placeholder="Link Imagem (capa)" class="publique">
+                                    </input>
+                                </label> <br> <br>
+                                <input type="submit" name="enviar" class="pubotao"></input>
+                        </form>
+                    </div>
+                </div>
+                <?php
 if($_SERVER["REQUEST_METHOD"]==="POST"){
     $titulo=$_POST["titulo"];
                 $autor=$_POST["autor"];
@@ -259,8 +265,8 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
             }
     }
     ?>
-    </div>
-</div>
+            </div>
+        </div>
     </main>
     <!-- rodapé -->
     <footer class="site-footer" style="margin-top:7%">
@@ -276,10 +282,10 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
                 <div class="col-xs-6 col-md-3">
                     <h6>Links Rapidos</h6>
                     <ul class="footer-links">
-                        <li><a href="#">Sobre nós</a></li>
-                        <li><a href="#">Fale conosco</a></li>
-                        <li><a href="#">Politica de Privacidade</a></li>
-                        <li><a href="#">Termos</a></li>
+                        <li><a href="sobre_nos.php">Sobre nós</a></li>
+                        <li><a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=creatorsofthought@gmail.com">Fale conosco</a></li>
+                        <li><a href="politica.html">Poliítica de Privacidade</a></li>
+                        
                     </ul>
                 </div>
             </div>
@@ -288,17 +294,18 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-sm-6 col-xs-12">
-                    <p class="copyright-text">Copyright &copy; 2023 All Rights Reserved by
-                        <a href="#">Scanfcode</a>.
+                    <p class="copyright-text">Copyright &copy; 2023 Todos os direitos reservados para
+                        <a href="#">Creators of Thought</a>.
                     </p>
                 </div>
 
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <ul class="social-icons">
                         <li><a class="facebook" href="#"><i class="bi bi-facebook"></i></a></li>
-                        <li><a class="twitter" href="#"><i class="bi bi-twitter"></i></a></li>
-                        <li><a class="dribbble" href="#"><i class="bi bi-instagram"></i></a></li>
-                        <li><a class="linkedin" href="#"><i class="bi bi-linkedin"></i></a></li>
+                        <li><a class="twitter" href="https://x.com/creababyohw?s=20"><i class="bi bi-twitter"></i></a></li>
+                        <li><a class="insta" href="https://instagram.com/creatorsofthought?igshid=MzRlODBiNWFlZA"><i
+                                    class="bi bi-instagram"></i></a></li>
+                        
                     </ul>
                 </div>
             </div>

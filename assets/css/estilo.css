@@ -24,7 +24,7 @@ body {
     grid-area: cabecalho;
     color: white;
    /*  box-shadow: 0px 30px 30px -1px rgba(37,24,64,1); */
-    background:#836FFF;
+    
 }
 button{
     background-color: transparent;
@@ -1748,4 +1748,14 @@ hr {
 .img-icon {
   margin-top: 10px;
   height: 73px;
+}
+
+.list-group-item a{
+  color:#191825;
+}
+.row .imgplano{
+  padding: 0px !important;
+}
+.txtbillgates{
+margin-top: 100%;
 }

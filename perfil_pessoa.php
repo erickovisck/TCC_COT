@@ -286,10 +286,10 @@ if (isset($_SESSION['usuario'])) {
                 <div class="col-xs-6 col-md-3">
                     <h6>Links Rapidos</h6>
                     <ul class="footer-links">
-                        <li><a href="#">Sobre nos</a></li>
-                        <li><a href="#">Fale conosco</a></li>
-                        <li><a href="#">Politica de Privacidade</a></li>
-                        <li><a href="#">Termos</a></li>
+                        <li><a href="sobre_nos.php">Sobre nos</a></li>
+                        <li><a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=creatorsofthought@gmail.com">Fale conosco</a></li>
+                        <li><a href="politica.html">Poliítica de Privacidade</a></li>
+                        
                     </ul>
                 </div>
             </div>
@@ -298,17 +298,18 @@ if (isset($_SESSION['usuario'])) {
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-sm-6 col-xs-12">
-                    <p class="copyright-text">Copyright &copy; 2023 All Rights Reserved by
-                        <a href="#">Scanfcode</a>.
+                    <p class="copyright-text">Copyright &copy; 2023 Todos os direitos reservados para
+                        <a href="#">Creators of Thought</a>.
                     </p>
                 </div>
 
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <ul class="social-icons">
                         <li><a class="facebook" href="#"><i class="bi bi-facebook"></i></a></li>
-                        <li><a class="twitter" href="#"><i class="bi bi-twitter"></i></a></li>
-                        <li><a class="dribbble" href="#"><i class="bi bi-instagram"></i></a></li>
-                        <li><a class="linkedin" href="#"><i class="bi bi-linkedin"></i></a></li>
+                        <li><a class="twitter" href="https://x.com/creababyohw?s=20"><i class="bi bi-twitter"></i></a></li>
+                        <li><a class="insta" href="https://instagram.com/creatorsofthought?igshid=MzRlODBiNWFlZA"><i
+                                    class="bi bi-instagram"></i></a></li>
+                        
                     </ul>
                 </div>
             </div>

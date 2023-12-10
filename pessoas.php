@@ -94,23 +94,39 @@ if (is_null($usuario["email"])) {
 
 
 
-            <main class="principal">
+            <main class="principal bg-body-tertiary">
+            <div class="container my-5">
+
                 <?php
               if ($pesquisarp) {
+                
     $sql = "SELECT * FROM usuario WHERE nome_usuario = '$pesquisarp'";
     $resultado = $conexao->query($sql);
-    if($resultado){
-    while ($dados = mysqli_fetch_array($resultado)) {
-        ?><a href="perfil_pessoa.php?id_usuario=<?=$dados["id_usuario"]?>">
-         <img class="profile-pic" id="iconperfil" src="<?=$dados["img_perfil"]?>">
-<?php echo $dados["nome_usuario"]; ?></a> <br> <?php
+    
+    if ($dados = mysqli_fetch_array($resultado)) {
+        echo "<h2 class='text-center'>Usuários encontrados: </h2>";
+    
+        // Use a while loop to iterate through each row of the result
+        do{
+            ?>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <a href="perfil_pessoa.php?id_usuario=<?= $dados["id_usuario"] ?>">
+                        <img class="profile-pic" id="iconperfil" src="<?= $dados["img_perfil"] ?>">
+                        <?= $dados["nome_usuario"] ?>
+                    </a>
+                </li>
+            </ul>
+            <?php
+        }while( ($dados = mysqli_fetch_array($resultado)) );    
+    } else {
+        // If no rows were found
+        echo "<h2 class='text-center'> Leitor não encontrado :( </h2>";
     }
-}elseif(!$dados){
-    echo "Leitor não encontrado :(";
-}
 }
 
                 ?>
+                </div>
             </main>
            
            </body>

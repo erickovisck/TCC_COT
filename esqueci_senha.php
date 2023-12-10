@@ -76,7 +76,8 @@ if($resultado && $resultado->num_rows > 0){
     ;window.location.href='alterar_senha.php'</script>";
     
 }else{
-echo"dados incorretos";
+    echo"<script language='javascript' type='text/javascript'>alert('Dados incorretos')
+    ;window.location.href='esqueci_senha.php'</script>";
 }
 }
 ?>

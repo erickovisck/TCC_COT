@@ -23,16 +23,16 @@ body {
 }
 
 fieldset {
-    border: 3px solid #FFF2A0;
+    border: 3px solid #6959CD;
 }
 
 legend {
     text-align: center;
     font-weight: bold;
-    background-color: #FFF2A0;
+    background-color: #6959CD;
     border-radius: 8px;
     padding: 10px;
-    color: black;
+    color: white;
 }
 
 .cad_input {
@@ -48,7 +48,7 @@ legend {
 }
 
 #submit {
-    background-image: linear-gradient(#9D4DD6, #9940D2, #B56AD5);
+    background-color:#6959CD;
     color: white;
     width: 100%;
     border: none;

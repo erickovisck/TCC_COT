@@ -58,11 +58,12 @@ $sql = "UPDATE `usuario`
        
 if ($conexao->query($sql)) {
 
-    echo "Senha alterada com sucesso.";
+    
     echo"<script language='javascript' type='text/javascript'>alert('Senha alterada com sucesso')
     ;window.location.href='login.php'</script>"; 
 } else {
-    echo"Erro ao alterar a senha: " . $conexao->error;
+    echo"<script language='javascript' type='text/javascript'>alert('Erro ao alterar')
+    ;window.location.href='alterar_senha.php'</script>". $conexao->error;
 }
 }
 }

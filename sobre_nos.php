@@ -39,7 +39,7 @@ include_once "pesquisa.php";
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
    
-    <title>sobre nos</title>
+    <title>Sobre nós</title>
 </head>
 <body>
 <div class="cabecalho">
@@ -164,7 +164,7 @@ include_once "pesquisa.php";
                 <div class="col-xs-6 col-md-3">
                     <h6>Links Rapidos</h6>
                     <ul class="footer-links">
-                        <li><a href="#">Fale conosco</a></li>
+                        <li><a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=creatorsofthought@gmail.com">Fale conosco</a></li>
                         <li><a href="politicas.html">Politica de Privacidade</a></li>
                         <li><a href="politicas.html">Termos</a></li>
                     </ul>
@@ -181,10 +181,10 @@ include_once "pesquisa.php";
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <ul class="social-icons">
                         <li><a class="facebook" href="#"><i class="bi bi-facebook"></i></a></li>
-                        <li><a class="twitter" href="#"><i class="bi bi-twitter"></i></a></li>
+                        <li><a class="twitter" href="https://x.com/creababyohw?s=20"><i class="bi bi-twitter"></i></a></li>
                         <li><a class="insta" href="https://instagram.com/creatorsofthought?igshid=MzRlODBiNWFlZA"><i
                                     class="bi bi-instagram"></i></a></li>
-                        <li><a class="linkedin" href="#"><i class="bi bi-linkedin"></i></a></li>
+                        
                     </ul>
                 </div>
             </div>
