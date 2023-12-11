@@ -3,7 +3,7 @@ session_start();
 
 require_once "conexao/conexao.php";
 
-$api_key='AIzaSyAPwKI4X48Ju3lA6FJK1PHcu8nLEgcuOJ0';
+$api_key='AIzaSyBHe1XX1RdFudsmfRaHaAkKlzIz7wDao9k';
 
 /*CHAVE RESERVA 
 $api_key='AIzaSyDD7Cx-7wsL0KQ1avM_vlj_x_GWTXJbiro'
@@ -159,14 +159,15 @@ $principal=[9788581051529,
                         <div class="img-wrapper">
                         <a class="link_card" href="livro.php?id_livro2=<?= $livro2["id_livro2"] ?>">
                         <img class="h-40" src="<?= $livro2["img_livro2"] ?>">
-                            </a>
-                        </div>
                         <div class="card-body">
-                            <h5 class="card-title text-center">
+                            <h5 class="card-title text-center nomelivroinicial">
                                 <?=$titulo= $livro2["titulo"]?> 
                             </h5>
 
                         </div>
+                            </a>
+                        </div>
+                       
                     </div>
                 </div>
                 <?php
