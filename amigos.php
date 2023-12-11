@@ -93,43 +93,46 @@ if (is_null($usuario["email"])) {
         <?php
         
 // Users whom I follow
-$sql_following = "SELECT * FROM seguir WHERE id_seguidor=" . $usuario["id_usuario"];
+$sql_following = "SELECT * FROM seguir WHERE id_seguidor='" . $usuario["id_usuario"]."'";
 $result_following = $conexao->query($sql_following);
-$sql_followers = "SELECT * FROM seguir WHERE id_seguido=" . $usuario["id_usuario"];
+$sql_followers = "SELECT * FROM seguir WHERE id_seguido='" . $usuario["id_usuario"]."'";
 $result_followers = $conexao->query($sql_followers);
-if($data_following=mysqli_fetch_array($result_following) && $data_followers=mysqli_fetch_array($result_followers) ){
-echo"<h2> Seguindo </h2>";
-do{
-    $sql_user_following = "SELECT * FROM usuario WHERE id_usuario = " . $data_following["id_seguido"];
-    $result_user_following = $conexao->query($sql_user_following);
-    $user_following = mysqli_fetch_array($result_user_following);
 
-    ?><ul class="list-group list-group-flush">
-      <li class="list-group-item"><a href="perfil_pessoa.php?id_usuario=<?=$user_following["id_usuario"]?>">
-        <img class="profile-pic" id="iconperfil" src="<?=$user_following["img_perfil"]?>">
-        <?php echo $user_following["nome_usuario"]; ?>
-        
-    </a></li><br> <?php
-}while ($data_following = mysqli_fetch_array($result_following)) ;
+if (($data_following = mysqli_fetch_array($result_following)) && ($data_followers = mysqli_fetch_array($result_followers))) {
+    echo "<h2> Seguindo </h2>";
+    do {
+        $sql_user_following = "SELECT * FROM usuario WHERE id_usuario = '" . $data_following["id_seguido"] . "'";
+        $result_user_following = $conexao->query($sql_user_following);
+        $user_following = mysqli_fetch_array($result_user_following);
+        ?>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><a href="perfil_pessoa.php?id_usuario=<?=$user_following["id_usuario"]?>">
+                    <img class="profile-pic" id="iconperfil" src="<?=$user_following["img_perfil"]?>">
+                    <?php echo $user_following["nome_usuario"]; ?>
+                </a></li>
+        </ul>
+        <?php
+    } while ($data_following = mysqli_fetch_array($result_following));
 
-
-// Users who follow me
-
-echo "<h2> Seguidores </h2>";
-do {
-    $sql_user_followers = "SELECT * FROM usuario WHERE id_usuario = " . $data_followers["id_seguidor"];
-    $result_user_followers = $conexao->query($sql_user_followers);
-    $user_followers = mysqli_fetch_array($result_user_followers);
-
-    ?><ul class="list-group list-group-flush">
-    <li class="list-group-item"><a href="perfil_pessoa.php?id_usuario=<?=$user_followers["id_usuario"]?>">
-        <img class="profile-pic" id="iconperfil" src="<?=$user_followers["img_perfil"]?>">
-        <?php echo $user_followers["nome_usuario"]; ?>
-    </a></li><br> <?php
-}while ($data_followers = mysqli_fetch_array($result_followers));
-}else{
+    // Users who follow me
+    echo "<h2> Seguidores </h2>";
+    do {
+        $sql_user_followers = "SELECT * FROM usuario WHERE id_usuario = '" . $data_followers["id_seguidor"] . "'";
+        $result_user_followers = $conexao->query($sql_user_followers);
+        $user_followers = mysqli_fetch_array($result_user_followers);
+        ?>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><a href="perfil_pessoa.php?id_usuario=<?=$user_followers["id_usuario"]?>">
+                    <img class="profile-pic" id="iconperfil" src="<?=$user_followers["img_perfil"]?>">
+                    <?php echo $user_followers["nome_usuario"]; ?>
+                </a></li>
+        </ul>
+        <?php
+    } while ($data_followers = mysqli_fetch_array($result_followers));
+} else {
     echo "<h2 class='text-center'> Sua lista de amigos está vazia </h2>";
 }
+
 ?>
 </div>
 
