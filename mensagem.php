@@ -12,7 +12,7 @@ $usuario = $_SESSION["usuario"]; $usu= "SELECT * FROM usuario WHERE email='".$us
 $resultado = $conexao->query($usu);
 $usuario = mysqli_fetch_array($resultado);
 $_SESSION["usuario"]=$usuario;
-$usu = "SELECT * FROM usuario WHERE email=" . $usuario["email"] . "";
+$usu = "SELECT * FROM usuario WHERE email='" . $usuario["email"] . "'";
 $resultado = $conexao->query($usu);
 $usuario = mysqli_fetch_array($resultado);
 if ($usuario["id_usuario"] == $iddados) {
