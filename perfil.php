@@ -2,16 +2,15 @@
 require_once "conexao/conexao.php";
 session_start();
 $usuario=$_SESSION["usuario"];
-$sql="SELECT * FROM usuario WHERE id_usuario = ".$usuario["id_usuario"]." ";
-$resultado=$conexao->query($sql);   
+$sql="SELECT * FROM usuario WHERE id_usuario =' ".$usuario["id_usuario"]."' ";
+$resultado=$conexao->query($sql);
+$usuario=mysqli_fetch_array($resultado);
 $id = $usuario ["id_usuario"];
 
 if ($resultado && $resultado->num_rows > 0) {
 /*     echo "login efetuado com sucesso";
  */    
-    $dados = mysqli_fetch_array($resultado);
-    
-    $_SESSION["usuario"]=$dados;
+  
 
 }
     
@@ -151,9 +150,9 @@ if($resultado){
 </form>  
             
         <?php
-    if($dados["img_perfil"]){    
+    if($usuario["img_perfil"]){    
     ?>
-    <img class="profile-pic" id="iconperfil" src="<?=$dados["img_perfil"]?>" >
+    <img class="profile-pic" id="iconperfil" src="<?=$usuario["img_perfil"]?>" >
     
     <?php 
     }else{ 
@@ -165,12 +164,12 @@ if($resultado){
     ?>
 
   
-    <h4 class="n_usuario"><?= $dados["nome_usuario"]?></h4>
+    <h4 class="n_usuario"><?= $usuario["nome_usuario"]?></h4>
     <br>
   <h2 class="alterar">BIO </h2>
   <?php 
 
-if ($dados["biografia"]) {
+if ($usuario["biografia"]) {
     if (isset($_POST["alterarbio"])) {
         $bio = $_POST["bio2"];
         $sql="UPDATE `usuario`
@@ -186,7 +185,7 @@ if($resultado){
  echo "Não foi possivel atualizar a bio";   
 }
     }
-    echo "<p class='bio_autor text-break'>" . $dados["biografia"] . "</p>";
+    echo "<p class='bio_autor text-break'>" . $usuario["biografia"] . "</p>";
     ?>
     <form action="" method="post">
         <input type="text" placeholder="Edite sua bio!" name="bio2" class="btn btn-light" />
