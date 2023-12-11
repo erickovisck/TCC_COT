@@ -8,7 +8,7 @@ $dupl = "DELETE FROM `seguir` WHERE id_seguido = 0";
 $dupl2 = $conexao->query($dupl);
 
 $usuario=$_SESSION["usuario"];
-$usu= "SELECT * FROM usuario WHERE email=".$usuario["email"]."";
+$usu= "SELECT * FROM usuario WHERE email='".$usuario["email"]."'";
 $resultado = $conexao->query($usu);
 $usuario = mysqli_fetch_array($resultado);
 
@@ -126,7 +126,7 @@ if ($resultado) {
                 <ul class="list-group list-group-flush">
     <li class="list-group-item"><a href="perfil_pessoa.php?id_usuario=<?=$dados3["id_usuario"]?>">
         <img class="profile-pic" id="iconperfil" src="<?=$dados3["img_perfil"]?>">
-        <?php $dados3["nome_usuario"]; ?>
+        <?= $dados3["nome_usuario"] ?>
     </a></li><br>
 <?php
             }
