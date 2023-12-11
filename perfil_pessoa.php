@@ -8,7 +8,7 @@ $dupl = "DELETE FROM `seguir` WHERE id_seguido = 0";
 $dupl2 = $conexao->query($dupl);
 
 $usuario=$_SESSION["usuario"];
-$usu= "SELECT * FROM usuario WHERE email=".$usuario["email"]."";
+$usu= "SELECT * FROM usuario WHERE email='".$usuario["email"]."'";
 $resultado = $conexao->query($usu);
 $usuario = mysqli_fetch_array($resultado);
 
