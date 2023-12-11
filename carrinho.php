@@ -237,14 +237,21 @@ $livro2=mysqli_fetch_array($result2);
                 <h3></h3>
             </div>
         </form> <br> <br>
-        <?php 
+        <?php    if($precototal>0){
         if(isset($_POST["comprarcarrinho"])){
+         
             $del="DELETE FROM carrinho WHERE id_usuario=".$usuario["id_usuario"]."";
             $delres=$conexao->query($del);
            echo"<script language='javascript' type='text/javascript'>alert('Compra realizada com sucesso!')
            ;window.location.href='carrinho.php'</script>";
             exit();
         
+            }else{
+             
+            }
+
+        }else{
+            echo "<h2 class='text-center'> Carrinho vazio </h2>";
 
         }
        
