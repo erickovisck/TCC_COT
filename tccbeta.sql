@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 11-Dez-2023 às 11:40
+-- Tempo de geração: 11-Dez-2023 às 15:28
 -- Versão do servidor: 8.0.27
 -- versão do PHP: 8.0.26
 
@@ -37,7 +37,15 @@ CREATE TABLE IF NOT EXISTS `carrinho` (
   PRIMARY KEY (`id_carrinho`),
   KEY `id_livro` (`id_livro`),
   KEY `id_usuario` (`id_usuario`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Extraindo dados da tabela `carrinho`
+--
+
+INSERT INTO `carrinho` (`id_carrinho`, `id_usuario`, `id_livro`, `quantidade`, `livro2`) VALUES
+(3, 37, '1', 1, 1),
+(6, 38, '2', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -56,7 +64,17 @@ CREATE TABLE IF NOT EXISTS `chat_geral` (
   `data_mensagem` datetime NOT NULL,
   PRIMARY KEY (`id_mensagem`),
   KEY `id_usuario` (`id_usuario`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Extraindo dados da tabela `chat_geral`
+--
+
+INSERT INTO `chat_geral` (`id_mensagem`, `id_autor`, `id_usuario`, `mensagens`, `nome_usuario`, `cont_like`, `data_mensagem`) VALUES
+(1, 0, 36, 'Bom dia amigos, boa apresentação!!', 'Raquel Menezes', 0, '2023-12-11 11:15:03'),
+(2, 0, 37, 'bom dia', 'erick', 0, '2023-12-11 11:36:36'),
+(3, 0, 4, 'f', 'erick', 0, '2023-12-11 11:58:14'),
+(4, 0, 38, 'oii', 'gui', 0, '2023-12-11 12:25:54');
 
 -- --------------------------------------------------------
 
@@ -73,7 +91,15 @@ CREATE TABLE IF NOT EXISTS `chat_privado` (
   `id_usuario` int NOT NULL,
   `data_mensagem` datetime NOT NULL,
   PRIMARY KEY (`id_chat_privado`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Extraindo dados da tabela `chat_privado`
+--
+
+INSERT INTO `chat_privado` (`id_chat_privado`, `mensagem`, `id_enviou`, `id_recebeu`, `id_usuario`, `data_mensagem`) VALUES
+(1, 'oiii', 37, 36, 37, '2023-12-11 11:37:22'),
+(2, 'ola', 38, 4, 38, '2023-12-11 12:26:09');
 
 -- --------------------------------------------------------
 
@@ -87,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `livros` (
   `preco` double NOT NULL,
   `isbn` varchar(40) NOT NULL,
   PRIMARY KEY (`id_livro`)
-) ENGINE=MyISAM AUTO_INCREMENT=2174 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2274 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `livros`
@@ -1654,7 +1680,107 @@ INSERT INTO `livros` (`id_livro`, `preco`, `isbn`) VALUES
 (2170, 32.99, '140941244X'),
 (2171, 31.99, ''),
 (2172, 53.99, 'IND:30000100662232'),
-(2173, 54.99, 'PSU:000058699409');
+(2173, 54.99, 'PSU:000058699409'),
+(2174, 65.99, '1908533072'),
+(2175, 58.99, 'UOM:39015009390546'),
+(2176, 67.99, '9780307486264'),
+(2177, 56.99, 'EAN:8596547367178'),
+(2178, 50.99, '0732910323'),
+(2179, 43.99, '0691090157'),
+(2180, 48.99, 'STANFORD:36105121898261'),
+(2181, 37.99, 'WISC:89061839098'),
+(2182, 69.99, 'UCSD:31822023797939'),
+(2183, 53.99, 'UOM:49015000870908'),
+(2184, 35.99, '9781481410502'),
+(2185, 45.99, 'UOM:39015009390546'),
+(2186, 62.99, 'EAN:8596547367178'),
+(2187, 69.99, 'STANFORD:36105121898261'),
+(2188, 67.99, 'WISC:89061839098'),
+(2189, 48.99, 'UCSD:31822023797939'),
+(2190, 49.99, 'UOM:49015000870908'),
+(2191, 57.99, '9781781100264'),
+(2192, 30.99, '0747589941'),
+(2193, 60.99, 'PKEY:90159886'),
+(2194, 46.99, '140941244X'),
+(2195, 39.99, '9789892060965'),
+(2196, 65.99, '9781461637233'),
+(2197, 44.99, ''),
+(2198, 60.99, '9781684128396'),
+(2199, 35.99, 'IND:30000100662232'),
+(2200, 53.99, '9780664236588'),
+(2201, 56.99, '074253779X'),
+(2202, 53.99, '0972393617'),
+(2203, 61.99, '6555321792'),
+(2204, 42.99, '9781443816281'),
+(2205, 43.99, 'UOM:39015009390546'),
+(2206, 44.99, 'EAN:8596547367178'),
+(2207, 32.99, 'STANFORD:36105121898261'),
+(2208, 49.99, 'WISC:89061839098'),
+(2209, 63.99, 'UCSD:31822023797939'),
+(2210, 39.99, 'UOM:49015002947092'),
+(2211, 32.99, 'UOM:49015000870908'),
+(2212, 38.99, 'PKEY:90159886'),
+(2213, 53.99, '140941244X'),
+(2214, 44.99, ''),
+(2215, 40.99, 'IND:30000100662232'),
+(2216, 55.99, '074253779X'),
+(2217, 39.99, '9798640100235'),
+(2218, 31.99, ''),
+(2219, 58.99, '9786588490334'),
+(2220, 31.99, '9781632911377'),
+(2221, 53.99, '9788568292365'),
+(2222, 65.99, '9786586655865'),
+(2223, 39.99, '9781094359045'),
+(2224, 59.99, '9788583862727'),
+(2225, 32.99, '9781071587454'),
+(2226, 45.99, '9788554513436'),
+(2227, 41.99, '9791220129572'),
+(2228, 69.99, '9781094303390'),
+(2229, 32.99, ''),
+(2230, 54.99, '9781675373958'),
+(2231, 68.99, ''),
+(2232, 67.99, '9786551230516'),
+(2233, 34.99, '9781526040497'),
+(2234, 65.99, '9781939416834'),
+(2235, 51.99, '9788568292617'),
+(2236, 47.99, '9781370957941'),
+(2237, 61.99, '9781094359304'),
+(2238, 40.99, '9781094359274'),
+(2239, 34.99, '9786550970901'),
+(2240, 68.99, '9781094303925'),
+(2241, 55.99, '9781071525395'),
+(2242, 60.99, '9781094303628'),
+(2243, 39.99, '9781507114520'),
+(2244, 34.99, '9788576866497'),
+(2245, 37.99, '9788576865902'),
+(2246, 52.99, '9781943036608'),
+(2247, 48.99, '9781667449784'),
+(2248, 42.99, '9788582452257'),
+(2249, 58.99, '9781547541003'),
+(2250, 50.99, '9781507195741'),
+(2251, 46.99, '9781071575789'),
+(2252, 31.99, '9781547501847'),
+(2253, 60.99, '9781547528387'),
+(2254, 36.99, '9786587795010'),
+(2255, 33.99, '9798738186028'),
+(2256, 68.99, '9798698277620'),
+(2257, 44.99, '9786525027876'),
+(2258, 63.99, '9781526076663'),
+(2259, 63.99, '9788575594186'),
+(2260, 52.99, '9788520011997'),
+(2261, 47.99, '9788582864937'),
+(2262, 50.99, ''),
+(2263, 43.99, '9781698476353'),
+(2264, 58.99, '9781697061055'),
+(2265, 59.99, '9786555299465'),
+(2266, 30.99, ''),
+(2267, 55.99, '9781547522361'),
+(2268, 70.99, '9781547561285'),
+(2269, 44.99, '9781507185322'),
+(2270, 66.99, '9781526064608'),
+(2271, 62.99, '9781700740700'),
+(2272, 31.99, '9781671039322'),
+(2273, 33.99, '9788551841761');
 
 -- --------------------------------------------------------
 
@@ -1671,7 +1797,15 @@ CREATE TABLE IF NOT EXISTS `livros2` (
   `id_livro2` int NOT NULL AUTO_INCREMENT,
   `img_livro2` varchar(500) NOT NULL,
   PRIMARY KEY (`id_livro2`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Extraindo dados da tabela `livros2`
+--
+
+INSERT INTO `livros2` (`titulo`, `autor`, `descricao`, `preco`, `id_livro2`, `img_livro2`) VALUES
+('livro', 'erick', 'livro bom', 40, 1, ''),
+('livro 2', 'gui', 'livro', 49, 2, '');
 
 -- --------------------------------------------------------
 
@@ -1685,7 +1819,19 @@ CREATE TABLE IF NOT EXISTS `seguir` (
   `id_seguido` int NOT NULL,
   `tabseguir` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`tabseguir`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Extraindo dados da tabela `seguir`
+--
+
+INSERT INTO `seguir` (`id_seguidor`, `id_seguido`, `tabseguir`) VALUES
+(37, 36, 1),
+(37, 4, 7),
+(37, 10, 6),
+(4, 10, 8),
+(38, 4, 9),
+(38, 37, 10);
 
 -- --------------------------------------------------------
 
@@ -1705,14 +1851,14 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `img_perfil` varchar(800) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_',
   `biografia` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id_usuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `usuario`
 --
 
 INSERT INTO `usuario` (`id_usuario`, `assinatura_nivel`, `nome_usuario`, `email`, `senha`, `recuperacao`, `autor`, `img_perfil`, `biografia`) VALUES
-(4, 0, 'erick', '1', '', '1', 'autor', 'https://media.tenor.com/d2-vweg4VLQAAAAM/john-marston-john.gif', 'oi'),
+(4, 0, 'erickovisck', '1', '1', '1', 'autor', 'https://pm1.aminoapps.com/8387/a4f701f9f4f71452e2ee42145b3c7b6a12670112r1-575-641v2_00.jpg', 'KIFka'),
 (5, 0, 'erick2', '23', '', '23', '0', '', 'ola'),
 (6, 0, 'b', 'b', '3', 'b', '0', '', ''),
 (7, 0, 'a', 'a', 'a', 'a', '0', '', ''),
@@ -1730,7 +1876,10 @@ INSERT INTO `usuario` (`id_usuario`, `assinatura_nivel`, `nome_usuario`, `email`
 (32, 0, 'grazi', '55', '55', '55', 'autor', 'https://i.pinimg.com/564x/6c/70/33/6c703330ab07aef07629ad59b77ed14e.jpg', ''),
 (34, 0, '70', '70', '70', '70', '', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', ''),
 (33, 0, '2', 'as', 'as', 'as', '', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', ''),
-(35, 0, '90', '90', '90', 's', NULL, 'https://upload.wikimedia.org/wikipedia/commons/b/bb/Neymar_Jr._with_Al_Hilal%2C_3_October_2023_-_03_%28cropped%29.jpg', '');
+(35, 0, '90', '90', '90', 's', NULL, 'https://upload.wikimedia.org/wikipedia/commons/b/bb/Neymar_Jr._with_Al_Hilal%2C_3_October_2023_-_03_%28cropped%29.jpg', ''),
+(36, 0, 'Raquel Menezes', 'raquel@gmail.com', '777', 'judo', NULL, 'https://cultura.uol.com.br/upload/tvcultura/entretenimento/20230831143714_beyonce.jpg', 'Adoro Ler'),
+(37, 0, 'erick', 'erick123', '123', '123', 'autor', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', ''),
+(38, 0, 'gui', 'gui123', '123', 'cachorro', 'autor', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', '');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
