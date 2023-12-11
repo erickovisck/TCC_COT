@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3308
--- Tempo de geração: 05-Dez-2023 às 14:56
--- Versão do servidor: 8.0.21
--- versão do PHP: 7.3.21
+-- Host: 127.0.0.1:3306
+-- Tempo de geração: 11-Dez-2023 às 11:40
+-- Versão do servidor: 8.0.27
+-- versão do PHP: 8.0.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -37,38 +37,7 @@ CREATE TABLE IF NOT EXISTS `carrinho` (
   PRIMARY KEY (`id_carrinho`),
   KEY `id_livro` (`id_livro`),
   KEY `id_usuario` (`id_usuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=209 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Extraindo dados da tabela `carrinho`
---
-
-INSERT INTO `carrinho` (`id_carrinho`, `id_usuario`, `id_livro`, `quantidade`, `livro2`) VALUES
-(208, 4, '', 1, 0);
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `cartao_credito`
---
-
-DROP TABLE IF EXISTS `cartao_credito`;
-CREATE TABLE IF NOT EXISTS `cartao_credito` (
-  `numero_cartao` varchar(16) NOT NULL,
-  `ccv` varchar(3) NOT NULL,
-  `nome_usuario` varchar(40) NOT NULL,
-  `data_validade` varchar(5) NOT NULL,
-  `limite` decimal(10,2) NOT NULL,
-  PRIMARY KEY (`numero_cartao`),
-  KEY `nome_usuario` (`nome_usuario`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Extraindo dados da tabela `cartao_credito`
---
-
-INSERT INTO `cartao_credito` (`numero_cartao`, `ccv`, `nome_usuario`, `data_validade`, `limite`) VALUES
-('1234567891234567', '123', '1', '30/09', '999999.00');
 
 -- --------------------------------------------------------
 
@@ -87,24 +56,7 @@ CREATE TABLE IF NOT EXISTS `chat_geral` (
   `data_mensagem` datetime NOT NULL,
   PRIMARY KEY (`id_mensagem`),
   KEY `id_usuario` (`id_usuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=119 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Extraindo dados da tabela `chat_geral`
---
-
-INSERT INTO `chat_geral` (`id_mensagem`, `id_autor`, `id_usuario`, `mensagens`, `nome_usuario`, `cont_like`, `data_mensagem`) VALUES
-(113, 0, 10, 'aaa', 'camila', 0, '2023-10-24 08:54:30'),
-(112, 0, 10, 'laa', 'camila', 0, '2023-10-24 08:54:28'),
-(111, 0, 10, 'la', 'camila', 0, '2023-10-24 08:54:09'),
-(110, 0, 10, 'oi', 'camila', 0, '2023-10-24 08:54:02'),
-(109, 0, 10, 'nao', 'camila', 0, '2023-10-24 08:53:50'),
-(108, 0, 10, 'ola', 'camila', 0, '2023-10-24 08:53:42'),
-(114, 0, 10, 'socorro puta q pariu', 'camila', 0, '2023-11-27 19:52:56'),
-(115, 0, 10, 'socorro puta q pariu', 'camila', 0, '2023-11-27 19:53:54'),
-(116, 0, 10, 'oi', 'camila', 0, '2023-11-27 19:54:13'),
-(117, 0, 32, 'hhHAAHAHHAHAHHAHHSHSHSHSHSHHSSHSHSHSHHSHSHSHHS', 'grazi', 0, '2023-11-29 19:06:53'),
-(118, 0, 32, 'oiiiiIIIIIIIIIIIIIIIIII CAMILAAAAAAAAAAAAAAAAAAAAAAAA', 'grazi', 0, '2023-11-29 19:08:19');
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -121,47 +73,6 @@ CREATE TABLE IF NOT EXISTS `chat_privado` (
   `id_usuario` int NOT NULL,
   `data_mensagem` datetime NOT NULL,
   PRIMARY KEY (`id_chat_privado`)
-) ENGINE=MyISAM AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Extraindo dados da tabela `chat_privado`
---
-
-INSERT INTO `chat_privado` (`id_chat_privado`, `mensagem`, `id_enviou`, `id_recebeu`, `id_usuario`, `data_mensagem`) VALUES
-(32, 'se fode maluco', 4, 10, 4, '2023-10-19 00:00:00'),
-(31, '?', 10, 4, 10, '2023-10-19 00:00:00'),
-(30, 'Ue porra', 10, 4, 10, '2023-10-19 00:00:00'),
-(29, 'cala boca', 10, 4, 10, '2023-10-19 00:00:00'),
-(28, 'pimenta no cu dos outro e refresco', 4, 10, 4, '2023-10-19 00:00:00'),
-(33, 'oi', 4, 10, 4, '2023-10-19 21:08:42'),
-(34, 'teste', 4, 10, 4, '2023-10-19 21:08:57'),
-(35, 'oi', 4, 10, 4, '2023-10-21 08:21:38'),
-(36, 'oa', 32, 10, 32, '2023-11-29 19:16:00'),
-(37, 'skd', 32, 10, 32, '2023-11-29 19:16:03'),
-(38, 'teste', 32, 10, 32, '2023-11-29 19:16:05'),
-(39, 'ete]', 32, 10, 32, '2023-11-29 19:16:08'),
-(40, 'aa', 32, 10, 32, '2023-11-29 19:16:12'),
-(41, 'aa', 32, 10, 32, '2023-11-29 19:16:14'),
-(42, 'aa', 32, 10, 32, '2023-11-29 19:16:16'),
-(43, 'aa', 32, 10, 32, '2023-11-29 19:16:20'),
-(44, 'aa', 32, 10, 32, '2023-11-29 19:16:21'),
-(45, 'aa', 32, 10, 32, '2023-11-29 19:16:22'),
-(46, 'aa', 32, 10, 32, '2023-11-29 19:16:26'),
-(47, 'oiii', 4, 10, 4, '2023-12-05 11:34:26');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `editora`
---
-
-DROP TABLE IF EXISTS `editora`;
-CREATE TABLE IF NOT EXISTS `editora` (
-  `id_editora` int DEFAULT NULL,
-  `id_autor` int DEFAULT NULL,
-  `nome_editora` varchar(50) NOT NULL,
-  PRIMARY KEY (`nome_editora`),
-  KEY `id_autor` (`id_autor`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -1760,15 +1671,7 @@ CREATE TABLE IF NOT EXISTS `livros2` (
   `id_livro2` int NOT NULL AUTO_INCREMENT,
   `img_livro2` varchar(500) NOT NULL,
   PRIMARY KEY (`id_livro2`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Extraindo dados da tabela `livros2`
---
-
-INSERT INTO `livros2` (`titulo`, `autor`, `descricao`, `preco`, `id_livro2`, `img_livro2`) VALUES
-('livro do erick', 'erick', 'livro foda', 2000000000, 7, 'https://static.wikia.nocookie.net/hollowknight/images/c/cd/HK_Cover_Art.png/revision/latest?cb=20220613045755&path-prefix=pt'),
-('livro foda de teste', 'erick ', '\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill', 40, 8, 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAflBMVEX///8AAADy8vL7+/v29vb4+Pg3Nzf8/PxaWlqPj4/x8fEWFhY0NDRnZ2dWVlaIiIgsLCzk5ORGRkacnJzq6upCQkJOTk58fHxhYWHQ0NDZ2dlwcHB1dXWNjY2/v7+1tbUlJSWoqKjHx8cPDw+ZmZmsrKyCgoLBwcEfHx+3t7cJukcgAAATqUlEQVR4nM2de3+yOgzHGZex4dzGpm66q26687z/N3iEpvckLQho/jif8wyM/UKhbZL+TBLcMmFJvl3+XF2u/Sy3BUHQWHk0CrBoLdmdGyHCdiRfRhKWgq8o1+dufZStKcAsIwglYJGcu+2RRt2mFhE9lAtLvs7d9Ej7om5Tg4gcAr48S17P3fRIe/UpsjwXiCxgsmw///1xi9gDGHpQ20fkefK0B/4052s/vtsWLjHAFhEFTFtrAJ');
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -1782,20 +1685,7 @@ CREATE TABLE IF NOT EXISTS `seguir` (
   `id_seguido` int NOT NULL,
   `tabseguir` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`tabseguir`)
-) ENGINE=MyISAM AUTO_INCREMENT=118 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Extraindo dados da tabela `seguir`
---
-
-INSERT INTO `seguir` (`id_seguidor`, `id_seguido`, `tabseguir`) VALUES
-(4, 4, 16),
-(4, 11, 47),
-(11, 4, 25),
-(11, 11, 29),
-(11, 10, 34),
-(32, 4, 117),
-(4, 10, 68);
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -1811,11 +1701,11 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `email` varchar(50) NOT NULL,
   `senha` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `recuperacao` varchar(50) NOT NULL,
-  `autor` varchar(10) NOT NULL,
-  `img_perfil` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_',
+  `autor` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `img_perfil` varchar(800) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_',
   `biografia` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id_usuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `usuario`
@@ -1839,7 +1729,8 @@ INSERT INTO `usuario` (`id_usuario`, `assinatura_nivel`, `nome_usuario`, `email`
 (31, 0, '45', '45', '45', '45', 'autor', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', ''),
 (32, 0, 'grazi', '55', '55', '55', 'autor', 'https://i.pinimg.com/564x/6c/70/33/6c703330ab07aef07629ad59b77ed14e.jpg', ''),
 (34, 0, '70', '70', '70', '70', '', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', ''),
-(33, 0, '2', 'as', 'as', 'as', '', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', '');
+(33, 0, '2', 'as', 'as', 'as', '', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', ''),
+(35, 0, '90', '90', '90', 's', NULL, 'https://upload.wikimedia.org/wikipedia/commons/b/bb/Neymar_Jr._with_Al_Hilal%2C_3_October_2023_-_03_%28cropped%29.jpg', '');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
