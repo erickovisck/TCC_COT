@@ -6,7 +6,8 @@ require_once "conexao/conexao.php";
 $usuario=$_SESSION["usuario"];
 $usu= "SELECT * FROM usuario WHERE email='".$usuario["email"]."'";
 $resultado = $conexao->query($usu);
-$usuario = mysqli_fetch_array($resultado);$pesquisarp = $_POST["pesquisarpessoa"];
+$usuario = mysqli_fetch_array($resultado);
+$pesquisarp = $_POST["pesquisarpessoa"];
 
 if (is_null($usuario["email"])) {
     session_unset();
