@@ -3,7 +3,7 @@ require_once "conexao/conexao.php";
 session_start();
 $usuario=$_SESSION["usuario"];
 $sql="SELECT * FROM usuario WHERE id_usuario = ".$usuario["id_usuario"]." ";
-$resultado=$conexao->query($sql);
+$resultado=$conexao->query($sql);   
 $id = $usuario ["id_usuario"];
 
 if ($resultado && $resultado->num_rows > 0) {
