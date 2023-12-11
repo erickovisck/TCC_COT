@@ -4,7 +4,7 @@ session_start();
 require_once "conexao/conexao.php";
 
 $usuario=$_SESSION["usuario"];
-$usu= "SELECT * FROM usuario WHERE email=".$usuario["email"]."";
+$usu= "SELECT * FROM usuario WHERE email='".$usuario["email"]."'";
 $resultado = $conexao->query($usu);
 $usuario = mysqli_fetch_array($resultado);$pesquisarp = $_POST["pesquisarpessoa"];
 
