@@ -99,7 +99,7 @@ $sql_followers = "SELECT * FROM seguir WHERE id_seguido=" . $usuario["id_usuario
 $result_followers = $conexao->query($sql_followers);
 if($data_following=mysqli_fetch_array($result_following) && $data_followers=mysqli_fetch_array($result_followers) ){
 echo"<h2> Seguindo </h2>";
-while ($data_following = mysqli_fetch_array($result_following)) {
+do{
     $sql_user_following = "SELECT * FROM usuario WHERE id_usuario = " . $data_following["id_seguido"];
     $result_user_following = $conexao->query($sql_user_following);
     $user_following = mysqli_fetch_array($result_user_following);
@@ -110,13 +110,13 @@ while ($data_following = mysqli_fetch_array($result_following)) {
         <?php echo $user_following["nome_usuario"]; ?>
         
     </a></li><br> <?php
-}
+}while ($data_following = mysqli_fetch_array($result_following)) ;
 
 
 // Users who follow me
 
 echo "<h2> Seguidores </h2>";
-while ($data_followers = mysqli_fetch_array($result_followers)) {
+do {
     $sql_user_followers = "SELECT * FROM usuario WHERE id_usuario = " . $data_followers["id_seguidor"];
     $result_user_followers = $conexao->query($sql_user_followers);
     $user_followers = mysqli_fetch_array($result_user_followers);
@@ -126,7 +126,7 @@ while ($data_followers = mysqli_fetch_array($result_followers)) {
         <img class="profile-pic" id="iconperfil" src="<?=$user_followers["img_perfil"]?>">
         <?php echo $user_followers["nome_usuario"]; ?>
     </a></li><br> <?php
-}
+}while ($data_followers = mysqli_fetch_array($result_followers));
 }else{
     echo "<h2 class='text-center'> Sua lista de amigos está vazia </h2>";
 }
