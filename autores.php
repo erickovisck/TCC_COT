@@ -134,7 +134,7 @@ if (isset($_POST["pesquisar"])) {
             <?php
 if($_SERVER["REQUEST_METHOD"]==="POST"){
 $autor ="autor";   
-$verifi="SELECT autor FROM usuario WHERE email=".$usuario["email"]."";
+$verifi="SELECT autor FROM usuario WHERE email='".$usuario["email"]."'";
 $response2=$conexao->query($verifi);
 $data=mysqli_fetch_array($response2);
 if($response2){
