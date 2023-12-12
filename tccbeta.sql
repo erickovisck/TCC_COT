@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 11-Dez-2023 às 15:28
--- Versão do servidor: 8.0.27
+-- Tempo de geração: 12-Dez-2023 às 20:49
+-- Versão do servidor: 8.0.31
 -- versão do PHP: 8.0.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -37,15 +37,7 @@ CREATE TABLE IF NOT EXISTS `carrinho` (
   PRIMARY KEY (`id_carrinho`),
   KEY `id_livro` (`id_livro`),
   KEY `id_usuario` (`id_usuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Extraindo dados da tabela `carrinho`
---
-
-INSERT INTO `carrinho` (`id_carrinho`, `id_usuario`, `id_livro`, `quantidade`, `livro2`) VALUES
-(3, 37, '1', 1, 1),
-(6, 38, '2', 1, 1);
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -64,17 +56,19 @@ CREATE TABLE IF NOT EXISTS `chat_geral` (
   `data_mensagem` datetime NOT NULL,
   PRIMARY KEY (`id_mensagem`),
   KEY `id_usuario` (`id_usuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `chat_geral`
 --
 
 INSERT INTO `chat_geral` (`id_mensagem`, `id_autor`, `id_usuario`, `mensagens`, `nome_usuario`, `cont_like`, `data_mensagem`) VALUES
-(1, 0, 36, 'Bom dia amigos, boa apresentação!!', 'Raquel Menezes', 0, '2023-12-11 11:15:03'),
-(2, 0, 37, 'bom dia', 'erick', 0, '2023-12-11 11:36:36'),
-(3, 0, 4, 'f', 'erick', 0, '2023-12-11 11:58:14'),
-(4, 0, 38, 'oii', 'gui', 0, '2023-12-11 12:25:54');
+(1, 0, 2, 'é assim que acaba sempre acaba comigo😭', 'Camila Santiago', 0, '2023-12-12 16:58:19'),
+(2, 0, 2, 'os dois morrem no final é um livro ótimo!', 'Camila Santiago', 0, '2023-12-12 17:06:27'),
+(3, 0, 2, 'queria que esse escritor fosse mais conhecido', 'Camila Santiago', 0, '2023-12-12 16:59:09'),
+(5, 0, 5, 'O mistério desvendado por Sherlock Holmes sobre o  Cão dos Baskervilles é algo surpreendente', 'Guilherme Pereira', 0, '2023-12-12 17:00:07'),
+(6, 0, 3, 'Alguém me ajuda a entender o final de laranja mecânica kkk', 'Erick Dantas', 0, '2023-12-12 17:00:35'),
+(7, 0, 1, 'Sherlock Holmes é excelente', 'Erick Fernando ', 0, '2023-12-12 17:14:50');
 
 -- --------------------------------------------------------
 
@@ -91,15 +85,7 @@ CREATE TABLE IF NOT EXISTS `chat_privado` (
   `id_usuario` int NOT NULL,
   `data_mensagem` datetime NOT NULL,
   PRIMARY KEY (`id_chat_privado`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Extraindo dados da tabela `chat_privado`
---
-
-INSERT INTO `chat_privado` (`id_chat_privado`, `mensagem`, `id_enviou`, `id_recebeu`, `id_usuario`, `data_mensagem`) VALUES
-(1, 'oiii', 37, 36, 37, '2023-12-11 11:37:22'),
-(2, 'ola', 38, 4, 38, '2023-12-11 12:26:09');
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -1797,15 +1783,14 @@ CREATE TABLE IF NOT EXISTS `livros2` (
   `id_livro2` int NOT NULL AUTO_INCREMENT,
   `img_livro2` varchar(500) NOT NULL,
   PRIMARY KEY (`id_livro2`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `livros2`
 --
 
 INSERT INTO `livros2` (`titulo`, `autor`, `descricao`, `preco`, `id_livro2`, `img_livro2`) VALUES
-('livro', 'erick', 'livro bom', 40, 1, ''),
-('livro 2', 'gui', 'livro', 49, 2, '');
+('O Criador de Pensamento', 'creators of thought', 'Criador de Pensamentos\" é uma jornada fascinante pelo universo da mente humana, explorando as complexidades do pensamento e da criatividade. Neste livro envolvente, o autor mergulha nas origens dos pensamentos, examinando como ideias nascem, evoluem e moldam nossas vidas. Com uma abordagem única e i', 19.99, 1, 'https://static.vecteezy.com/system/resources/previews/002/219/582/non_2x/illustration-of-book-icon-free-vector.jpg');
 
 -- --------------------------------------------------------
 
@@ -1819,19 +1804,33 @@ CREATE TABLE IF NOT EXISTS `seguir` (
   `id_seguido` int NOT NULL,
   `tabseguir` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`tabseguir`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `seguir`
 --
 
 INSERT INTO `seguir` (`id_seguidor`, `id_seguido`, `tabseguir`) VALUES
-(37, 36, 1),
-(37, 4, 7),
-(37, 10, 6),
-(4, 10, 8),
-(38, 4, 9),
-(38, 37, 10);
+(5, 2, 1),
+(5, 1, 2),
+(5, 4, 3),
+(5, 3, 4),
+(4, 3, 5),
+(4, 2, 6),
+(4, 1, 7),
+(4, 5, 8),
+(3, 1, 9),
+(3, 2, 10),
+(3, 4, 11),
+(3, 5, 12),
+(2, 5, 13),
+(2, 4, 14),
+(2, 3, 15),
+(2, 1, 16),
+(1, 5, 17),
+(1, 4, 18),
+(1, 3, 19),
+(1, 2, 20);
 
 -- --------------------------------------------------------
 
@@ -1851,35 +1850,19 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `img_perfil` varchar(800) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_',
   `biografia` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id_usuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `usuario`
 --
 
 INSERT INTO `usuario` (`id_usuario`, `assinatura_nivel`, `nome_usuario`, `email`, `senha`, `recuperacao`, `autor`, `img_perfil`, `biografia`) VALUES
-(4, 0, 'erickovisck', '1', '1', '1', 'autor', 'https://pm1.aminoapps.com/8387/a4f701f9f4f71452e2ee42145b3c7b6a12670112r1-575-641v2_00.jpg', 'KIFka'),
-(5, 0, 'erick2', '23', '', '23', '0', '', 'ola'),
-(6, 0, 'b', 'b', '3', 'b', '0', '', ''),
-(7, 0, 'a', 'a', 'a', 'a', '0', '', ''),
-(10, 0, 'camila', '2', '2', '2', '0', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', 'sasd'),
-(11, 0, '5', '5', '5', '5', '0', '', ''),
-(12, 0, '2134', '2222', '1', '1', '0', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', ''),
-(13, 0, 'o', 'o', '', 'o', '0', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', 'oii'),
-(14, 0, 'l', 'l', 'l', 'l', '0', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', ''),
-(15, 0, '65', '56', '56', '56', '0', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', ''),
-(16, 0, 'o', 'agd', 'adfg', 'asdf', '0', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', ''),
-(28, 0, '', '', '', '', 'autor', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', ''),
-(29, 0, '', 'sdf', '2', '', 'autor', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', ''),
-(30, 0, '32', '32', '32', '32', 'autor', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', ''),
-(31, 0, '45', '45', '45', '45', 'autor', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', ''),
-(32, 0, 'grazi', '55', '55', '55', 'autor', 'https://i.pinimg.com/564x/6c/70/33/6c703330ab07aef07629ad59b77ed14e.jpg', ''),
-(34, 0, '70', '70', '70', '70', '', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', ''),
-(33, 0, '2', 'as', 'as', 'as', '', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', ''),
-(35, 0, '90', '90', '90', 's', NULL, 'https://upload.wikimedia.org/wikipedia/commons/b/bb/Neymar_Jr._with_Al_Hilal%2C_3_October_2023_-_03_%28cropped%29.jpg', ''),
-(36, 0, 'Raquel Menezes', 'raquel@gmail.com', '777', 'judo', NULL, 'https://cultura.uol.com.br/upload/tvcultura/entretenimento/20230831143714_beyonce.jpg', 'Adoro Ler'),
-(37, 0, 'erick', 'erick123', '123', '123', 'autor', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', ''),
-(38, 0, 'gui', 'gui123', '123', 'cachorro', 'autor', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', '');
+(1, 0, 'Erick Fernando ', 'erickovisck', '123', 'ralph', NULL, 'https://i.pinimg.com/564x/bd/39/01/bd3901781a3e79e333c6ace4d0a51b4d.jpg', ''),
+(2, 0, 'Camila Santiago', 'camila', '123', '123', NULL, 'https://www.livepass.com.br/obj/media/BR-eventim/galery/222x222/s/sabrinacarpenter-eventim-profilepicture.png', 'Sport Club Corinthians Paulista.'),
+(3, 0, 'Erick Dantas', 'dantas', '123', '123', NULL, 'https://tntsports.com.br/__export/1663851452239/sites/esporteinterativo/img/2022/09/22/endrick-gazeta-press-foto-1772259.jpg_423682103.jpg', 'Sociedade Esportiva Palmeiras.'),
+(4, 0, 'Gustavo Barbosa', 'barbosa', '123', '123', NULL, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvVcPVUP89GK-NWFV0NDR-3pZHuC7TIbASaA&usqp=CAU', 'Never say never'),
+(5, 0, 'Guilherme Pereira', 'pereira', '123', '123', NULL, 'https://assets.goal.com/v3/assets/bltcc7a7ffd2fbf71f5/blt6b9e372a8299a185/60dc9037454f930f33f8b5d4/b8a62911879a89b7d8a82347ae07527c29d35af8.jpg?auto=webp&format=pjpg&width=3840&quality=60', 'Ousadia e alegria.'),
+(7, 0, 'Creators of Thought', 'autor', '123', '123', 'autor', 'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_', 'Um autor desconhecido querendo divulgação de seu recente lançamento');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
