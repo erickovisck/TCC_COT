@@ -154,20 +154,19 @@ $principal=[9788581051529,
                 $escolharesul=$conexao->query($escolhas);
                 while($livro2=mysqli_fetch_array($escolharesul)){
                     ?>
-                    <div class="carousel-item active ">
+                     <div class="carousel-item active ">
                     <div class="card">
                         <div class="img-wrapper">
-                        <a class="link_card" href="livro.php?id_livro2=<?= $livro2["id_livro2"] ?>">
-                        <img class="h-40" src="<?= $livro2["img_livro2"] ?>">
+                            <a class="link_card" href="livro.php?id_livro2=<?=$livro2["id_livro2"]?> ">
+                                <img class="h-40" src=" <?=$livro2["img_livro2"]?>">
+                            </a>
+                        </div>
                         <div class="card-body">
-                            <h5 class="card-title text-center nomelivroinicial">
-                                <?=$titulo= $livro2["titulo"]?> 
+                            <h5 class="card-title text-center">
+                                <?=$livro2["titulo"]?> 
                             </h5>
 
                         </div>
-                            </a>
-                        </div>
-                       
                     </div>
                 </div>
                 <?php
