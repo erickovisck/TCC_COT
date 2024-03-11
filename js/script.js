@@ -3,6 +3,7 @@ if(window.matchMedia("(min-width:576px)").matches){
   var cardWidth = $('.carousel-item').width();
   
   var scrollPosition = 0;
+
   
   $('.carousel-control-next').on('click', function(){
       if (scrollPosition < (carouselWidth - (cardWidth * 4))) {
