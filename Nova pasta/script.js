@@ -10,6 +10,7 @@ if (window.matchMedia("(min-width:576px)").matches) {
     $carouselInner.append($firstSlides);
   }
 
+  
   copyAndAppendSlides();
 
   $('.carousel-control-next').on('click', function () {
