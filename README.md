@@ -6,7 +6,7 @@ O nome dado ao projeto foi de COT books, com base no nome da empresa fictícia C
 Tela principal
 ![image](https://github.com/erickovisck/TCC_COT/assets/141879391/6c3adc44-18f0-41b6-bb19-0759bf91e28c)
 
-Tela de comunidade com chat geral funcional
+Tela de comunidade com chat geral
 ![image](https://github.com/erickovisck/TCC_COT/assets/141879391/5fe6d65a-78c8-4ac3-b1e0-f2353c10a605)
 
 Tela de pesquisa de livros, usando a API Google Books
